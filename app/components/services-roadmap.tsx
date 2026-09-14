@@ -55,7 +55,7 @@ export function ServicesRoadmap() {
                 <div key={s.slug} className="relative grid grid-cols-[2.5rem_1fr] md:grid-cols-[1fr_4rem_1fr] gap-4 md:gap-0">
                   <div className="md:col-start-2 md:row-start-1 flex md:justify-center pt-1">
                     <Reveal variant="scale">
-                      <span className="relative size-9 bg-carbone border-2 border-orange flex items-center justify-center font-serif italic text-[0.95rem] text-orange shadow-[0_0_0_6px_rgba(169,118,44,0.1)]">
+                      <span className="relative size-9 bg-carbone border-2 border-orange flex items-center justify-center font-serif italic t-sec text-orange shadow-[0_0_0_6px_rgba(45,92,156,0.12)]">
                         {s.marque}
                       </span>
                     </Reveal>
@@ -68,14 +68,14 @@ export function ServicesRoadmap() {
                     >
                       <div className={`flex items-start justify-between gap-4 ${left ? "md:flex-row-reverse" : ""}`}>
                         <div className="flex flex-col gap-1">
-                          <span className="serif-accent text-[1rem] text-orange">{s.accroche}</span>
-                          <h3 className="display text-[1.4rem] text-ivoire leading-tight">{s.titre}</h3>
+                          <span className="serif-accent t-sec text-orange">{s.accroche}</span>
+                          <h3 className="display t-fort text-ivoire leading-tight">{s.titre}</h3>
                         </div>
                         <span className={`size-8 border shrink-0 flex items-center justify-center transition-all duration-400 ${open ? "border-orange bg-orange text-white rotate-45" : "border-line-strong text-muted"}`}>
                           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round"><path d="M12 5v14M5 12h14" /></svg>
                         </span>
                       </div>
-                      <p className="text-muted text-[0.9rem] leading-relaxed mt-2">{s.texte}</p>
+                      <p className="text-muted t-petit leading-relaxed mt-2">{s.texte}</p>
 
                       <AnimatePresence initial={false}>
                         {open && (
@@ -88,7 +88,7 @@ export function ServicesRoadmap() {
                           >
                             <div className={`grid grid-cols-1 sm:grid-cols-2 gap-2 mt-4 pt-4 border-t border-line ${left ? "md:text-right" : ""}`}>
                               {s.details.map((d) => (
-                                <div key={d} className={`flex items-start gap-2 text-[0.85rem] text-ivoire/85 ${left ? "md:flex-row-reverse md:text-right" : ""}`}>
+                                <div key={d} className={`flex items-start gap-2 t-petit text-ivoire/85 ${left ? "md:flex-row-reverse md:text-right" : ""}`}>
                                   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--c-orange)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" className="mt-0.5 shrink-0"><path d="M20 6 9 17l-5-5" /></svg>
                                   {d}
                                 </div>
@@ -98,7 +98,7 @@ export function ServicesRoadmap() {
                               <img src={PHOTOS[s.photo as keyof typeof PHOTOS]} alt={s.titre} className="absolute inset-0 size-full object-cover" loading="lazy" />
                             </div>
                             {SERVICES_LINKS[s.slug] && (
-                              <Link href={SERVICES_LINKS[s.slug]} className={`inline-flex items-center gap-1.5 text-orange text-[0.86rem] font-medium mt-3 hover:underline ${left ? "md:justify-end md:w-full" : ""}`}>
+                              <Link href={SERVICES_LINKS[s.slug]} className={`inline-flex items-center gap-1.5 text-orange t-petit font-medium mt-3 hover:underline ${left ? "md:justify-end md:w-full" : ""}`}>
                                 La page dédiée {s.titre.toLowerCase()}
                                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
                               </Link>

@@ -19,7 +19,7 @@ export default function EtudeDeCasPage() {
       />
 
       <section className="relative pb-6">
-        <div className="container-site max-w-4xl mx-auto">
+        <div className="rf-wrap mq-mesure--large">
           {/* 05/09 — IMAGE REMPLACÉE. Le visuel affiché ici était PHOTOS.chantierIsolation,
               c'est-à-dire chIsolationCombles.jpeg : elle ne montre PAS une rénovation mais une
               CONSTRUCTION NEUVE — murs en briques monomur rouges encore nues, charpente neuve,
@@ -34,14 +34,14 @@ export default function EtudeDeCasPage() {
           <div className="relative aspect-[3/2] rounded-none overflow-hidden card-e mb-4">
             <img src="/photos/maquette/pavillon-facade-apres.jpg" alt="Façade de pavillon rénovée : enduit clair, menuiseries anthracite, garde-corps et perron refaits" className="absolute inset-0 size-full object-cover" />
           </div>
-          <p className="font-mono text-[0.68rem] tracking-[0.18em] uppercase text-muted text-center">Visuel d&apos;illustration — nouvelle marque, premiers chantiers à venir</p>
+          <p className="text-center mq-mention">Visuel d&apos;illustration — nouvelle marque, premiers chantiers à venir</p>
         </div>
       </section>
 
       <article className="relative pb-20 md:pb-28">
-        <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-7 text-ivoire/85 text-[1.02rem] leading-relaxed">
+        <div className="rf-wrap mq-mesure flex flex-col gap-7 text-ivoire/85 t-base leading-relaxed">
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">La situation</h2>
+            <h2 className="display t-titre text-ivoire normal-case">La situation</h2>
             <p>
               118 m² sur deux niveaux plus combles, acquis en l&apos;état, aucun travaux depuis 1978. Électricité en
               fils sous moulures, chaudière fioul, aucune isolation, salle de bain unique à l&apos;étage. Les
@@ -49,7 +49,7 @@ export default function EtudeDeCasPage() {
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">La contrainte</h2>
+            <h2 className="display t-titre text-ivoire normal-case">La contrainte</h2>
             <p>
               La contrainte n&apos;était pas technique, elle était calendaire. Cinq mois pour douze lots signifie
               que rien ne peut prendre de retard sans décaler tout le reste. Le point critique était le délai de
@@ -58,7 +58,7 @@ export default function EtudeDeCasPage() {
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">Ce qui a été fait</h2>
+            <h2 className="display t-titre text-ivoire normal-case">Ce qui a été fait</h2>
             <p>
               Curage complet, reprise des planchers bois au premier, isolation des combles et des murs par
               l&apos;intérieur, réfection totale de l&apos;électricité avec tableau neuf aux normes NF C 15-100,
@@ -69,7 +69,7 @@ export default function EtudeDeCasPage() {
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">Le calendrier réel</h2>
+            <h2 className="display t-titre text-ivoire normal-case">Le calendrier réel</h2>
             <p>
               Dix-neuf semaines de chantier, livré avec quatre jours d&apos;avance sur la date de fin de bail. Deux
               semaines de tampon avaient été réservées dans le calendrier prévisionnel : elles ont été consommées à
@@ -78,10 +78,10 @@ export default function EtudeDeCasPage() {
           </div>
 
           <dl className="card-e rounded-none p-6 grid grid-cols-2 gap-4 mt-2">
-            <div><dt className="font-mono text-[0.66rem] uppercase tracking-wider text-muted">Surface</dt><dd className="text-ivoire">118 m²</dd></div>
-            <div><dt className="font-mono text-[0.66rem] uppercase tracking-wider text-muted">Lots intervenus</dt><dd className="text-ivoire">12</dd></div>
-            <div><dt className="font-mono text-[0.66rem] uppercase tracking-wider text-muted">Durée de chantier</dt><dd className="text-ivoire">19 semaines</dd></div>
-            <div><dt className="font-mono text-[0.66rem] uppercase tracking-wider text-muted">Budget</dt><dd className="text-ivoire">Indicatif, communiqué sur demande</dd></div>
+            <div><dt className="mq-mention">Surface</dt><dd className="text-ivoire">118 m²</dd></div>
+            <div><dt className="mq-mention">Lots intervenus</dt><dd className="text-ivoire">12</dd></div>
+            <div><dt className="mq-mention">Durée de chantier</dt><dd className="text-ivoire">19 semaines</dd></div>
+            <div><dt className="mq-mention">Budget</dt><dd className="text-ivoire">Indicatif, communiqué sur demande</dd></div>
           </dl>
         </div>
       </article>

@@ -216,21 +216,21 @@ export default function Page() {
       <MqSection kicker="Les douze guides" title="Chaque guide répond à une décision précise et renvoie vers la page utile" wide>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           {GUIDES.map((g) => (
-            <div key={g.href + g.q} className="group border border-line bg-surface rounded-[2px] p-6 flex flex-col gap-2 hover:border-line-strong transition-colors">
-              <span className="font-mono text-[0.64rem] font-bold tracking-[0.14em] uppercase text-orange-deep">{g.kicker}</span>
-              <h3 className="display text-[1.1rem] text-ivoire text-balance">
+            <div key={g.href + g.q} className="group border border-line bg-surface rounded-none p-6 flex flex-col gap-2 hover:border-line-strong transition-colors">
+              <span className="mq-mention mq-mention--accent">{g.kicker}</span>
+              <h3 className="display t-base text-ivoire text-balance">
                 <Link href={g.href} className="hover:text-orange-deep transition-colors">{g.q}</Link>
               </h3>
-              <p className="text-muted text-[0.88rem] leading-relaxed">{g.texte}</p>
-              <p className="text-[0.85rem] mt-1">
+              <p className="text-muted t-petit leading-relaxed">{g.texte}</p>
+              <p className="t-petit mt-1">
                 <Link href={g.href} className="text-orange-deep font-medium hover:underline">→ {g.cible}</Link>
               </p>
               <div className="mt-2 pt-3 border-t border-line">
-                <span className="text-muted text-[0.72rem] font-semibold tracking-[0.1em] uppercase">Articles du blog sur ce sujet</span>
+                <span className="mq-mention">Articles du blog sur ce sujet</span>
                 <ul className="flex flex-col gap-1.5 mt-2">
                   {g.articles.map((a) => (
                     <li key={a.href}>
-                      <Link href={a.href} className="text-ivoire/85 text-[0.85rem] leading-snug hover:text-orange-deep transition-colors underline underline-offset-4 decoration-line">
+                      <Link href={a.href} className="text-ivoire/85 t-petit leading-snug hover:text-orange-deep transition-colors underline underline-offset-4 decoration-line">
                         {a.label}
                       </Link>
                     </li>
@@ -251,13 +251,13 @@ export default function Page() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
           {ARTICLES_PAR_CATEGORIE.map(([categorie, articles]) => (
             <div key={categorie} className="flex flex-col gap-2">
-              <h3 className="font-mono text-[0.68rem] font-bold tracking-[0.14em] uppercase text-orange-deep border-b border-line pb-2">
+              <h3 className="border-b border-line pb-2 mq-mention mq-mention--accent">
                 {categorie}
               </h3>
               <ul className="flex flex-col gap-2 mt-1">
                 {articles.map((a) => (
                   <li key={a.slug}>
-                    <Link href={`/blog/${a.slug}`} className="text-ivoire/85 text-[0.88rem] leading-snug hover:text-orange-deep transition-colors">
+                    <Link href={`/blog/${a.slug}`} className="text-ivoire/85 t-petit leading-snug hover:text-orange-deep transition-colors">
                       {a.titre}
                     </Link>
                   </li>
@@ -266,7 +266,7 @@ export default function Page() {
             </div>
           ))}
         </div>
-        <p className="text-muted text-[0.88rem] leading-relaxed mt-8">
+        <p className="text-muted t-petit leading-relaxed mt-8">
           <Link href="/blog" className="text-orange-deep hover:underline">Parcourir le blog par date de publication</Link>
           {" · "}
           <Link href="/services" className="text-orange-deep hover:underline">Voir l&apos;index complet des prestations</Link>
@@ -276,19 +276,19 @@ export default function Page() {
       </MqSection>
 
       <MqSection kicker="Zone d'intervention" title="Où ces projets sont étudiés">
-        <p className="text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+        <p className="text-muted t-sec leading-relaxed max-w-2xl">
           Les décisions décrites dans ces guides valent partout ; l&apos;accompagnement, lui, se limite à une zone
           géographique. ARCHI PILOTE RÉNOVATION intervient en priorité dans les Hauts-de-Seine et, selon l&apos;ampleur
           du projet, plus largement en Île-de-France.
         </p>
         <ul className="flex flex-col gap-2 mt-4">
           <li>
-            <Link href="/renovation-hauts-de-seine-92" className="text-orange-deep hover:underline text-[0.95rem]">
+            <Link href="/renovation-hauts-de-seine-92" className="text-orange-deep hover:underline t-sec">
               Rénovation dans les Hauts-de-Seine (92)
             </Link>
           </li>
           <li>
-            <Link href="/renovation-ile-de-france" className="text-orange-deep hover:underline text-[0.95rem]">
+            <Link href="/renovation-ile-de-france" className="text-orange-deep hover:underline t-sec">
               La zone d&apos;intervention en Île-de-France
             </Link>
           </li>

@@ -112,7 +112,7 @@ export default function Page() {
         Alt à utiliser : "Principaux éléments techniques expliqués dans le glossaire de
         la rénovation."
         Une fois produite, l'ajouter ici (hero compact, format large) via
-        <div className="container-site max-w-4xl pb-12 md:pb-16">
+        <div className="rf-wrap mq-mesure--large pb-12 md:pb-16">
           <MqFig src="..." alt="..." ratio="aspect-[21/9]" caption="..." />
         </div>
         avant la première <MqSection> des familles de termes — compact, PAS une image
@@ -130,7 +130,7 @@ export default function Page() {
       */}
 
       <MqSection kicker="Mode d'emploi" title="Chaque définition renvoie vers la page qui traite le sujet">
-        <p className="text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+        <p className="text-muted t-sec leading-relaxed max-w-2xl">
           Un terme rencontré dans un devis ou un diagnostic conduit presque toujours à une décision de chantier.
           Sous chaque définition figure donc le lien vers la page ou l&apos;article qui détaille ce sujet : travaux
           concernés, points de vigilance et ordre d&apos;intervention.
@@ -142,10 +142,10 @@ export default function Page() {
           <dl className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-6">
             {f.termes.map((term) => (
               <div key={term.t} className="border-b border-line pb-4">
-                <dt className="display text-[1.05rem] text-ivoire">{term.t}</dt>
-                <dd className="text-muted text-[0.9rem] mt-1 leading-relaxed">
+                <dt className="display t-base text-ivoire">{term.t}</dt>
+                <dd className="text-muted t-petit mt-1 leading-relaxed">
                   {term.d}
-                  <Link href={term.href} className="block mt-1.5 text-orange-deep text-[0.85rem] hover:underline">
+                  <Link href={term.href} className="block mt-1.5 text-orange-deep t-petit hover:underline">
                     → {term.lien}
                   </Link>
                 </dd>
@@ -158,32 +158,32 @@ export default function Page() {
       <MqSection kicker="Poursuivre" title="Où ce vocabulaire est mis en pratique" wide>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-6">
           <div>
-            <h3 className="display text-[1.05rem] text-ivoire">Les pages qui couvrent ces sujets</h3>
+            <h3 className="display t-base text-ivoire">Les pages qui couvrent ces sujets</h3>
             <ul className="flex flex-col gap-2 mt-3">
-              <li><Link href="/services" className="text-orange-deep hover:underline text-[0.9rem]">L&apos;index complet des prestations pilotées</Link></li>
-              <li><Link href="/nos-specialites" className="text-orange-deep hover:underline text-[0.9rem]">Nos spécialités, de la structure aux finitions</Link></li>
-              <li><Link href="/notre-methode" className="text-orange-deep hover:underline text-[0.9rem]">Les huit étapes de la méthode de pilotage</Link></li>
-              <li><Link href="/guides" className="text-orange-deep hover:underline text-[0.9rem]">Les guides et articles classés par sujet</Link></li>
-              <li><Link href="/observatoire-prix-renovation" className="text-orange-deep hover:underline text-[0.9rem]">Les fourchettes de prix par poste de travaux</Link></li>
-              <li><Link href="/faq" className="text-orange-deep hover:underline text-[0.9rem]">Les questions fréquentes classées par décision</Link></li>
+              <li><Link href="/services" className="text-orange-deep hover:underline t-petit">L&apos;index complet des prestations pilotées</Link></li>
+              <li><Link href="/nos-specialites" className="text-orange-deep hover:underline t-petit">Nos spécialités, de la structure aux finitions</Link></li>
+              <li><Link href="/notre-methode" className="text-orange-deep hover:underline t-petit">Les huit étapes de la méthode de pilotage</Link></li>
+              <li><Link href="/guides" className="text-orange-deep hover:underline t-petit">Les guides et articles classés par sujet</Link></li>
+              <li><Link href="/observatoire-prix-renovation" className="text-orange-deep hover:underline t-petit">Les fourchettes de prix par poste de travaux</Link></li>
+              <li><Link href="/faq" className="text-orange-deep hover:underline t-petit">Les questions fréquentes classées par décision</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="display text-[1.05rem] text-ivoire">Zone d&apos;intervention</h3>
-            <p className="text-muted text-[0.9rem] leading-relaxed mt-3">
+            <h3 className="display t-base text-ivoire">Zone d&apos;intervention</h3>
+            <p className="text-muted t-petit leading-relaxed mt-3">
               Ce vocabulaire vaut partout ; l&apos;accompagnement, lui, couvre en priorité les Hauts-de-Seine et,
               selon l&apos;ampleur du projet, le reste de l&apos;Île-de-France.
             </p>
             <ul className="flex flex-col gap-2 mt-3">
-              <li><Link href="/renovation-hauts-de-seine-92" className="text-orange-deep hover:underline text-[0.9rem]">Rénovation dans les Hauts-de-Seine (92)</Link></li>
-              <li><Link href="/renovation-ile-de-france" className="text-orange-deep hover:underline text-[0.9rem]">La zone d&apos;intervention en Île-de-France</Link></li>
+              <li><Link href="/renovation-hauts-de-seine-92" className="text-orange-deep hover:underline t-petit">Rénovation dans les Hauts-de-Seine (92)</Link></li>
+              <li><Link href="/renovation-ile-de-france" className="text-orange-deep hover:underline t-petit">La zone d&apos;intervention en Île-de-France</Link></li>
             </ul>
           </div>
         </div>
       </MqSection>
 
       <MqSection>
-        <p className="text-[0.82rem] text-muted max-w-3xl">
+        <p className="t-mini text-muted max-w-3xl">
           <strong className="text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
           les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et,
           lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et

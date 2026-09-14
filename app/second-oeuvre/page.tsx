@@ -18,7 +18,7 @@ export default function Page() {
         lead="Une fois la structure traitée, le second œuvre rassemble l'électricité, la plomberie, le chauffage, les cloisons, les menuiseries intérieures et les finitions. Chaque lot est simple pris isolément ; la difficulté vient de leurs interfaces, en particulier avant fermeture des cloisons. ARCHI PILOTE RÉNOVATION structure l'enchaînement des lots et les points de contrôle, pendant que les entreprises partenaires contractantes exécutent et facturent chaque intervention."
       />
 
-      <div className="container-site max-w-4xl pb-4 md:pb-6">
+      <div className="rf-wrap mq-mesure--large pb-4 md:pb-6 mq-planche-ouverture">
         <MqFig
           src="/photos/pedagogie/09-second-oeuvre-axono.jpeg"
           alt="Axonométrie d'un appartement montrant électricité, plomberie, VMC, cloisons, chauffage et menuiserie"
@@ -33,8 +33,8 @@ export default function Page() {
       >
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Tableau électrique et circuits</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Tableau électrique et circuits</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Un tableau ancien sans protection différentielle adaptée est presque toujours remplacé pour permettre une mise en sécurité réelle de l'installation.
             </p>
             <div className="mt-4">
@@ -49,8 +49,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Plan d'implantation et mise en sécurité</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Plan d'implantation et mise en sécurité</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Chaque point d'électricité est positionné sur un plan validé avant l'ouverture des cloisons, jamais improvisé en cours de chantier.
             </p>
             <div className="mt-4">
@@ -90,8 +90,8 @@ export default function Page() {
             />
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Cheminement des réseaux avant fermeture</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Cheminement des réseaux avant fermeture</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Une fois le plan validé, les gaines sont tirées et repérées pendant que tout reste accessible : c&apos;est la dernière étape
               où une correction reste peu coûteuse.
             </p>
@@ -148,8 +148,8 @@ export default function Page() {
         </div>
         <div className="mt-12 flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Évacuations : la pente avant tout</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Évacuations : la pente avant tout</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Une évacuation sans pente suffisante s'engorge tôt ou tard, quelle que soit la qualité du reste de l'installation.
             </p>
             <div className="mt-4">
@@ -167,7 +167,7 @@ export default function Page() {
               qu'elle porte, après son texte. Planche composée en 1448 × 1086 : affichée entière
               (object-contain) en aspect-[4/3], jamais recadrée.
             */}
-            <div className="mt-6 max-w-4xl mx-auto">
+            <div className="mt-6 max-w-4xl">
               <MqFig
                 src="/photos/pedagogie/infographie-evacuations-pente.jpg"
                 alt="Infographie ARCHI PILOTE RÉNOVATION : Évacuations : la pente avant tout"
@@ -178,8 +178,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Diamètres, alimentation et encastrements</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Diamètres, alimentation et encastrements</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Le diamètre d'une canalisation dépend de l'usage desservi et du nombre d'appareils raccordés sur le même réseau.
             </p>
             <div className="mt-4">
@@ -228,7 +228,7 @@ export default function Page() {
           qu'elle porte. Planche composée (titre, légendes, logo intégrés) en 1227 × 1282 : affichée
           entière (object-contain) en aspect-square, jamais recadrée.
         */}
-        <div className="max-w-3xl mx-auto mb-10">
+        <div className="max-w-3xl mb-10">
           <MqFig
             src="/photos/pedagogie/infographie-chauffage-cloisons-doublages.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : Chauffage, cloisons et doublages"
@@ -239,7 +239,7 @@ export default function Page() {
         </div>
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Chauffage : cohérence avec l'isolation et les émetteurs</h3>
+            <h3 className="display t-fort text-ivoire">Chauffage : cohérence avec l'isolation et les émetteurs</h3>
             <div className="mt-4">
               <MqProse>
                 <p>
@@ -283,8 +283,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Cloisons et doublages : charges, acoustique et locaux humides</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Cloisons et doublages : charges, acoustique et locaux humides</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Une cloison n'est pas neutre : elle doit supporter les charges suspendues prévues, limiter les transmissions sonores et résister à l'humidité si nécessaire.
             </p>
             <div className="mt-4">
@@ -302,7 +302,7 @@ export default function Page() {
               introduit par le sous-titre h3 qu'elle porte. Planche composée en 1448 × 1086 :
               affichée entière (object-contain) en aspect-[4/3], jamais recadrée.
             */}
-            <div className="mt-6 max-w-4xl mx-auto">
+            <div className="mt-6 max-w-4xl">
               <MqFig
                 src="/photos/pedagogie/infographie-cloisons-charges-acoustique.jpg"
                 alt="Infographie ARCHI PILOTE RÉNOVATION : Cloisons et doublages : charges, acoustique et locaux humides"
@@ -353,7 +353,7 @@ export default function Page() {
           qu'elle porte. Planche composée en 1448 × 1086 : affichée entière (object-contain) en
           aspect-[4/3], jamais recadrée.
         */}
-        <div className="max-w-4xl mx-auto mb-8">
+        <div className="max-w-4xl mb-8">
           <MqFig
             src="/photos/pedagogie/infographie-etancheite-salle-eau.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : Salles d'eau : l'étanchéité sous carrelage, un point sans marge d'erreur"
@@ -421,8 +421,8 @@ export default function Page() {
             },
           ].map((f) => (
             <div key={f.title} className="flex flex-col gap-2 border-t border-line pt-4">
-              <h3 className="display text-[1.1rem] text-ivoire">{f.title}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{f.text}</p>
+              <h3 className="display t-base text-ivoire">{f.title}</h3>
+              <p className="text-muted t-sec leading-relaxed">{f.text}</p>
             </div>
           ))}
         </div>
@@ -574,12 +574,12 @@ export default function Page() {
         title="Tableau récapitulatif des interfaces à risque"
         lead="Ces interfaces concentrent la majorité des désordres constatés lorsque les lots ne sont pas pensés ensemble dès la phase de plan."
       >
-        <div className="overflow-x-auto border border-line rounded-[2px]">
+        <div className="overflow-x-auto border border-line rounded-none">
           <table className="w-full min-w-[560px] border-collapse bg-surface text-left">
             <thead>
               <tr className="border-b border-line">
-                <th className="px-5 py-3 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-muted">Interface entre lots</th>
-                <th className="px-5 py-3 text-[0.78rem] font-bold uppercase tracking-[0.14em] text-muted">Risque principal</th>
+                <th className="px-5 py-3 mq-mention">Interface entre lots</th>
+                <th className="px-5 py-3 mq-mention">Risque principal</th>
               </tr>
             </thead>
             <tbody>
@@ -592,8 +592,8 @@ export default function Page() {
                 ["Revêtements de sol / Chauffage au sol", "Revêtement posé avant la mise en chauffe progressive requise par une chape avec plancher chauffant."],
               ].map(([lots, risque]) => (
                 <tr key={lots} className="border-b border-line last:border-b-0 align-top">
-                  <td className="px-5 py-3 text-[0.92rem] font-medium text-ivoire">{lots}</td>
-                  <td className="px-5 py-3 text-[0.92rem] leading-relaxed text-muted">{risque}</td>
+                  <td className="px-5 py-3 t-sec font-medium text-ivoire">{lots}</td>
+                  <td className="px-5 py-3 t-sec leading-relaxed text-muted">{risque}</td>
                 </tr>
               ))}
             </tbody>
@@ -615,7 +615,7 @@ export default function Page() {
             "Photo datée de chaque réseau encastré avant pose des plaques de cloison",
           ]}
         />
-        <p className="mt-8 max-w-2xl text-[0.95rem] leading-relaxed text-ivoire/85">
+        <p className="mt-8 max-w-2xl t-sec leading-relaxed text-ivoire/85">
           Chacun de ces points, et la manière dont il est documenté avant disparition sous les
           finitions, est développé dans{" "}
           <Link href="/detail-invisible" className="text-orange-deep underline underline-offset-4 hover:text-orange transition-colors">le détail invisible : contrôle qualité avant fermeture des cloisons</Link>.
@@ -629,7 +629,7 @@ export default function Page() {
           La légende ne nomme ni la pièce ni sa destination : la faïence d'origine et les attentes
           d'eau le laissent supposer, l'image ne le prouve pas.
         */}
-        <div className="mt-8 max-w-sm mx-auto">
+        <div className="mt-8 max-w-sm">
           <MqFig
             src="/photos/chantiers/chOssatureDevantFaienceOrigine.jpeg"
             alt="Ossature métallique montée devant un mur d'origine carrelé de faïence blanche, robinets d'arrêt, attente d'évacuation en PVC et boîte électrique encore apparents entre les montants"
@@ -674,8 +674,8 @@ export default function Page() {
       >
         <div className="flex flex-col gap-12">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Électricité : du tableau vétuste à l'installation conforme</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Électricité : du tableau vétuste à l'installation conforme</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Différentiels 30 mA, circuits séparés et repérés, câblage en peignes et attestation de conformité remise au client à la réception.
             </p>
             <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -694,8 +694,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Salle d'eau : de la condensation chronique à la ventilation maîtrisée</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Salle d'eau : de la condensation chronique à la ventilation maîtrisée</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               La cause est traitée avant la finition : le renouvellement d&apos;air est rétabli par une extraction mécanique raccordée, avant tout travail de peinture ou de revêtement.
             </p>
             {/*
@@ -759,7 +759,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="mt-8 max-w-2xl border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <p className="mt-8 max-w-2xl border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
           <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées.
         </p>
       </MqSection>

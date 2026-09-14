@@ -81,7 +81,7 @@ export default function DetailInvisiblePage() {
         lead="Une finition soignée ne prouve rien sur ce qui se cache derrière. Étanchéité de salle de bains, supports de fixation, traversées de parois, réservations, réseau de ventilation et câblage électrique doivent être contrôlés et photographiés avant que le lot suivant ne les recouvre. Ce contrôle documenté évite les défauts qui ne se révèlent qu'à l'usage, une fois le chantier terminé."
       />
 
-      <div className="container-site max-w-4xl pb-4">
+      <div className="rf-wrap mq-mesure--large pb-4 mq-planche-ouverture">
         <MqFig entier
           src="/photos/pedagogie/16-detail-invisible-hero.jpeg"
           alt="Coupe technique d'une salle d'eau montrant réseaux électriques, plomberie encastrée, isolation, pare-vapeur et natte d'étanchéité avant fermeture"
@@ -124,20 +124,20 @@ export default function DetailInvisiblePage() {
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Ce qui se voit n&apos;est pas ce qui compte</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Ce qui se voit n&apos;est pas ce qui compte</h3>
+              <p className="text-muted t-sec leading-relaxed">
                 {"La réception visuelle d'un chantier porte sur les surfaces terminées, jamais sur les couches techniques enfouies."}
               </p>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+              <p className="t-sec text-ivoire/85 leading-relaxed">
                 {"Un client réceptionne une salle de bains sur l'aspect du carrelage, la propreté des joints et le fonctionnement des appareils. L'étanchéité sous carrelage, elle, n'est plus accessible à ce stade : elle doit avoir été vérifiée avant."}
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Le coût d&apos;une reprise après coup</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Le coût d&apos;une reprise après coup</h3>
+              <p className="text-muted t-sec leading-relaxed">
                 {"Un défaut découvert après fermeture impose de rouvrir la paroi, avec un surcoût sans commune mesure avec un contrôle préalable."}
               </p>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+              <p className="t-sec text-ivoire/85 leading-relaxed">
                 {"Une infiltration liée à une étanchéité incomplète, un meuble qui se descelle faute de renfort, une bouche de ventilation mal raccordée : ces défauts se révèlent des mois après la réception, quand la reprise suppose de casser une finition neuve."}
               </p>
             </div>
@@ -200,8 +200,8 @@ export default function DetailInvisiblePage() {
             caption="Schéma pédagogique : principe d'une VMC hygroréglable en appartement — entrées d'air en pièces sèches, extraction en cuisine, salle de bains et WC, réseau raccordé au caisson placé en combles."
             ratio="aspect-[10/7]"
           />
-          <div className="overflow-x-auto border border-line rounded-[2px] bg-surface">
-            <table className="w-full text-left text-[0.92rem]">
+          <div className="overflow-x-auto border border-line rounded-none bg-surface">
+            <table className="w-full text-left t-sec">
               <thead>
                 <tr className="border-b border-line">
                   <th className="px-4 py-3 font-semibold text-ivoire whitespace-nowrap">Zone technique</th>
@@ -297,8 +297,8 @@ export default function DetailInvisiblePage() {
       </MqSection>
 
       <section className="py-10 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="text-muted t-petit leading-relaxed max-w-2xl">
             {"Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées."}
           </p>
         </div>

@@ -91,11 +91,11 @@ export function AvantApres({
       {/* Labels — version courte sur mobile (les libellés complets se chevauchaient
           sur écran étroit) ; la mention « illustration » reste portée par le texte
           d'intro et la légende sous le comparateur. */}
-      <span className="absolute top-4 left-4 bg-black/45 border border-white/25 px-3.5 py-1.5 font-mono text-[0.66rem] tracking-[0.18em] uppercase text-white/90 pointer-events-none">
+      <span className="absolute top-4 left-4 bg-black/70 border border-white/25 px-3.5 py-1.5 pointer-events-none mq-mention mq-mention--clair">
         <span className="sm:hidden">{avantLabel.split("—")[0].trim()}</span>
         <span className="hidden sm:inline">{avantLabel}</span>
       </span>
-      <span className="absolute top-4 right-4 bg-black/45 border border-white/25 px-3.5 py-1.5 font-mono text-[0.66rem] tracking-[0.18em] uppercase text-white/90 pointer-events-none">
+      <span className="absolute top-4 right-4 bg-black/70 border border-white/25 px-3.5 py-1.5 pointer-events-none mq-mention mq-mention--clair">
         <span className="sm:hidden">{apresLabel.split("—")[0].trim()}</span>
         <span className="hidden sm:inline">{apresLabel}</span>
       </span>
@@ -107,7 +107,7 @@ export function AvantApres({
       >
         <div className="absolute inset-y-0 -translate-x-1/2 w-[2px] bg-white/85 shadow-[0_0_18px_rgba(0,0,0,0.5)]" />
         <div
-          className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-12 rounded-full bg-black/45 border border-white/30 flex items-center justify-center text-white transition-transform duration-300 ${
+          className={`absolute top-1/2 -translate-y-1/2 -translate-x-1/2 size-12 rounded-full bg-black/60 border border-white/45 flex items-center justify-center text-white transition-transform duration-300 ${
             dragging ? "scale-110" : ""
           }`}
         >
@@ -149,10 +149,10 @@ export function AvantApres({
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
           viewport={{ once: true, margin: "-12%" }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-5xl w-full mx-auto"
+          className="max-w-5xl w-full"
         >
           {comparateur}
-          <p className="mt-4 text-center font-mono text-[0.66rem] tracking-[0.2em] uppercase text-muted">
+          <p className="mt-4 text-center mq-mention">
             ← Faites glisser — illustration d&apos;un chantier type →
           </p>
         </motion.div>

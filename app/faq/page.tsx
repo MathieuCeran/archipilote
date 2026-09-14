@@ -122,7 +122,7 @@ export default function Page() {
       {THEMES.map((t) => (
         <MqSection key={t.kicker}>
           <div className="flex items-center gap-2.5 mb-5">
-            <span aria-hidden className="inline-flex items-center justify-center size-8 shrink-0 border border-line rounded-[2px] text-orange-deep">
+            <span aria-hidden className="inline-flex items-center justify-center size-8 shrink-0 border border-line rounded-none text-orange-deep">
               <CategoryIcon id={t.kicker} />
             </span>
             <p className="eyebrow">{t.kicker}</p>
@@ -132,7 +132,7 @@ export default function Page() {
       ))}
 
       <MqSection>
-        <p className="text-[0.82rem] text-muted max-w-3xl">
+        <p className="t-mini text-muted max-w-3xl">
           <strong className="text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
           les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et,
           lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et

@@ -20,8 +20,8 @@ export function StatsBand() {
                 <span className="display text-[clamp(2.6rem,5.5vw,4.3rem)] leading-none text-gradient tabular-nums">
                   <Counter value={stat.valeur} prefix={stat.prefixe} suffix={stat.suffixe} />
                 </span>
-                <span className="text-ivoire text-[0.98rem] font-medium">{stat.label}</span>
-                <span className="text-muted text-[0.85rem] leading-snug">{stat.detail}</span>
+                <span className="text-ivoire t-sec font-medium">{stat.label}</span>
+                <span className="text-muted t-petit leading-snug">{stat.detail}</span>
               </div>
             </Reveal>
           ))}

@@ -98,15 +98,6 @@ export default function AchatDirectMateriauxPage() {
         lead="ARCHI PILOTE RÉNOVATION fait acheter au client, en direct et sans marge d'intermédiation, tous les matériaux qui ne relèvent pas de la garantie décennale de l'entreprise : carrelage, robinetterie, parquet, cuisines équipées, façades et menuiseries sur mesure, luminaires. La pose reste intégralement assurée par les entreprises partenaires contractantes, couvertes par leur décennale. Ce modèle, issu de la pratique du chiffrage en foncière, sort les marges d'intermédiation du budget de ces postes et libère le choix des matériaux du catalogue d'une entreprise."
       />
 
-      <div className="container-site max-w-4xl pb-12 md:pb-16">
-        <MqFig entier
-          src="/photos/pedagogie/24-achat-direct-flatlay.jpeg"
-          alt="Échantillons de carrelage, bon de commande, facture et plan de pose disposés sur une table pour un chantier en préparation"
-          caption="Illustration éditoriale : échantillons de carrelage, devis et plan de calepinage posés sur une table — les pièces à réunir avant d'acheter un matériau en direct."
-          ratio="aspect-[3/2]"
-        />
-      </div>
-
       <MqSection
         kicker="Périmètre"
         title="Les six postes achetés en direct par le client"
@@ -115,9 +106,9 @@ export default function AchatDirectMateriauxPage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
           {POSTES.map((p) => (
             <div key={p.title} className="flex flex-col gap-2">
-              <span className="text-orange-deep font-semibold text-[0.78rem] tracking-wide uppercase">Hors décennale</span>
-              <h3 className="display text-[1.15rem] text-ivoire">{p.title}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{p.text}</p>
+              <span className="mq-mention mq-mention--accent">Hors décennale</span>
+              <h3 className="display t-haut text-ivoire">{p.title}</h3>
+              <p className="text-muted t-sec leading-relaxed">{p.text}</p>
             </div>
           ))}
         </div>
@@ -217,8 +208,8 @@ export default function AchatDirectMateriauxPage() {
       </MqSection>
 
       <section className="py-10 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="text-muted t-petit leading-relaxed max-w-2xl">
             {"Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées."}
           </p>
         </div>

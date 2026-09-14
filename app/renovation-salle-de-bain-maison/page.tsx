@@ -81,8 +81,8 @@ export default function Page() {
         lead={LEAD}
       />
 
-      <nav aria-label="Fil d'Ariane" className="container-site max-w-4xl mx-auto -mt-6 mb-8">
-        <ol className="flex flex-wrap items-center gap-2 font-mono text-[0.68rem] tracking-[0.12em] uppercase text-muted">
+      <nav aria-label="Fil d'Ariane" className="rf-wrap mq-mesure--large -mt-6 mb-8">
+        <ol className="flex flex-wrap items-center gap-2 mq-mention">
           <li><Link href="/" className="hover:text-orange transition-colors">Accueil</Link></li>
           <li aria-hidden>›</li>
           <li><Link href="/services" className="hover:text-orange transition-colors">{EYEBROW}</Link></li>
@@ -96,21 +96,13 @@ export default function Page() {
           site — l'une des scènes que le client voyait « partout ». Remplacée par une photo
           native paysage, inédite. chSdbCarreauxCiment reste publiée ailleurs. */}
       <section className="relative pb-10">
-        <div className="container-site max-w-4xl mx-auto">
-          <MqFig
-            src="/photos/chantiers/chSdbComblesVasquesPierre.jpeg"
-            alt="Salle de bain aménagée sous combles : meuble double vasque en bois clair à portes persiennées, deux vasques bol en pierre naturelle, faïence métro blanche biseautée, WC suspendu derrière un retour de cloison, poteau de charpente peint en blanc"
-            caption="Salle de bain aménagée sous combles : meuble double vasque en bois clair à portes persiennées, vasques bol en pierre naturelle et faïence métro biseautée posée en décalé. Le poteau et l'arbalétrier de charpente sont conservés et peints ; les poignées portent encore leur emballage. Chantier réel des équipes partenaires."
-            ratio="aspect-[3/2]"
-          />
-        </div>
       </section>
 
       <section className="relative pb-16 md:pb-24">
-        <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-7 text-ivoire/85 text-[1.02rem] leading-relaxed">
+        <div className="rf-wrap mq-mesure flex flex-col gap-7 text-ivoire/85 t-base leading-relaxed">
           {SECTIONS.map((s) => (
             <div key={s.titre} className="flex flex-col gap-2">
-              <h2 className="display text-2xl text-ivoire normal-case">{s.titre}</h2>
+              <h2 className="display t-titre text-ivoire normal-case">{s.titre}</h2>
               <p>{s.texte}</p>
             </div>
           ))}
@@ -175,7 +167,7 @@ export default function Page() {
             ratio="aspect-[3/4]"
           />
         </div>
-        <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mt-8">
+        <p className="text-muted t-petit leading-relaxed max-w-2xl mt-8">
           Ce qui ne se voit plus sur ces photos — étanchéité sous carrelage, pentes, évacuations —
           est détaillé sur la page{" "}
           <Link href="/detail-invisible" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
@@ -225,7 +217,7 @@ export default function Page() {
             ratio="aspect-[3/4]"
           />
         </div>
-        <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mt-8">
+        <p className="text-muted t-petit leading-relaxed max-w-2xl mt-8">
           Le détail de ces réseaux — diamètres, pentes, points de coupure — est repris sur la page{" "}
           <Link href="/electricite-plomberie-renovation" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
             électricité et plomberie
@@ -235,11 +227,11 @@ export default function Page() {
       </MqSection>
 
       <section className="relative py-16 md:py-24">
-        <div className="container-site max-w-3xl mx-auto flex flex-col gap-4">
+        <div className="rf-wrap mq-mesure flex flex-col gap-4">
           {FAQ_COMMUNE.map((f) => (
             <div key={f.q} className="card-e rounded-none p-6">
-              <h3 className="display text-[1.05rem] text-ivoire normal-case mb-1.5">{f.q}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{f.r}</p>
+              <h3 className="display t-base text-ivoire normal-case mb-1.5">{f.q}</h3>
+              <p className="text-muted t-sec leading-relaxed">{f.r}</p>
             </div>
           ))}
         </div>

@@ -1,7 +1,5 @@
-"use client";
-
-import { WordReveal } from "./word-reveal";
-import { motion } from "motion/react";
+import type { ReactNode } from "react";
+import { Tirage } from "./tirage";
 
 type Segment = { text: string; serif?: boolean; gradient?: boolean };
 
@@ -11,43 +9,46 @@ type PageHeaderProps = {
   lead?: string;
 };
 
-/** En-tête de page interne — eyebrow + titre géant mot-par-mot + lead. */
+/* ============================================================================
+   EN-TÊTE DE PAGE INTERNE — quatorze pages.
+
+   Ce qu’il était : un titre géant CENTRÉ, jusqu’à 89 px — plus gros que le
+   titre de la page d’accueil elle-même —, révélé mot par mot au chargement,
+   sur un halo flouté. Trois effets superposés pour annoncer un titre.
+
+   Le système de la refonte tient l’inverse : un titre se pose à gauche, à la
+   largeur de sa planche, et il n’a pas besoin d’être révélé pour être lu. Il
+   prend donc le degré de la manchette — un cran au-dessus d’un titre de
+   section, un cran en dessous du titre d’accueil — et le halo disparaît.
+
+   L’API ne change pas : les quatorze pages passent les mêmes props.
+   ============================================================================ */
+
 export function PageHeader({ eyebrow, segments, lead }: PageHeaderProps) {
   return (
-    <header className="relative pt-40 md:pt-48 pb-16 md:pb-20 overflow-hidden">
-      {/* Halo discret */}
-      <div
-        aria-hidden
-        className="absolute -top-40 left-1/2 -translate-x-1/2 w-[50rem] h-[26rem] rounded-full opacity-[0.09] blur-3xl pointer-events-none"
-        style={{ background: "radial-gradient(closest-side, #a9762c, transparent)" }}
-      />
-      <div className="container-site relative flex flex-col items-center text-center gap-6">
-        <motion.span
-          initial={{ opacity: 0, filter: "blur(8px)" }}
-          animate={{ opacity: 1, filter: "blur(0px)" }}
-          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="eyebrow"
-        >
-          {eyebrow}
-        </motion.span>
-        <WordReveal
-          as="h1"
-          immediate
-          delay={0.15}
-          stagger={0.08}
-          segments={segments}
-          className="display text-[clamp(2.6rem,7vw,5.6rem)] text-ivoire text-balance max-w-5xl"
-        />
-        {lead && (
-          <motion.p
-            initial={{ opacity: 0, filter: "blur(8px)", y: 16 }}
-            animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-            transition={{ duration: 0.9, delay: 0.65, ease: [0.25, 0.1, 0.25, 1] }}
-            className="lead max-w-2xl"
-          >
-            {lead}
-          </motion.p>
-        )}
+    <header className="rf-dossier mq-ouverture-bloc">
+      <Tirage className="rf-tirage--ouverture" />
+      <div className="rf-wrap pt-36 md:pt-44 pb-14 md:pb-20">
+        <p className="rf-repere">{eyebrow}</p>
+        <div className="mq-ouverture">
+          <h1 className="rf-titre rf-titre--manchette">
+            {segments.map((s, i): ReactNode => {
+              const espace = i > 0 ? " " : "";
+              return s.serif || s.gradient ? (
+                <span key={i}>
+                  {espace}
+                  <em className="serif-accent">{s.text}</em>
+                </span>
+              ) : (
+                <span key={i}>
+                  {espace}
+                  {s.text}
+                </span>
+              );
+            })}
+          </h1>
+          {lead && <p className="mq-chapo">{lead}</p>}
+        </div>
       </div>
     </header>
   );

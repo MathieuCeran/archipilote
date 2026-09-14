@@ -201,8 +201,8 @@ export default function Page() {
       >
         <div className="flex flex-col gap-12">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Cabine de douche en fin de pose</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Cabine de douche en fin de pose</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Cabine d&apos;angle carrelée en grand format effet pierre, parois coulissantes à profilés noirs,
               photographiée en fin de pose : la protection du siphon est encore en place.
             </p>
@@ -279,7 +279,7 @@ export default function Page() {
           camions retire les commandes chez les fournisseurs ». Si la logistique est bien celle
           des entreprises partenaires, la formulation du texte est à reprendre également.
         */}
-        <p className="text-muted text-[0.85rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
           Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon
           les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des
           architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les

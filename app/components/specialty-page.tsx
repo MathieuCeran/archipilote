@@ -32,6 +32,17 @@ function mentionProvenance(chemin: string) {
   return "Illustration, non contractuelle";
 }
 
+/* La mention n'est ajoutée que si le texte alternatif ne la porte pas déjà.
+   Plusieurs alt se terminent par « — chantier réel des équipes partenaires » :
+   la légende affichait alors la phrase deux fois de suite. Le défaut existait
+   avant, il ne se voyait pas tant que la légende courait sous l'image sur
+   toute sa largeur ; passée en colonne latérale, elle l'a mis au jour. */
+function legende(alt: string, chemin: string) {
+  const mention = mentionProvenance(chemin);
+  const normalise = (t: string) => t.toLowerCase().replace(/[^a-zà-ÿ ]/g, " ").replace(/\s+/g, " ");
+  return normalise(alt).includes(normalise(mention)) ? alt : `${alt} — ${mention}`;
+}
+
 export function SpecialtyPage({
   eyebrow,
   segments,
@@ -92,8 +103,8 @@ export function SpecialtyPage({
       <PageHeader eyebrow={eyebrow} segments={segments} lead={lead} />
 
       {slug && (
-        <nav aria-label="Fil d'Ariane" className="container-site max-w-4xl mx-auto -mt-6 mb-8">
-          <ol className="flex flex-wrap items-center gap-2 font-mono text-[0.68rem] tracking-[0.12em] uppercase text-muted">
+        <nav aria-label="Fil d'Ariane" className="rf-wrap mq-mesure--large -mt-6 mb-8">
+          <ol className="flex flex-wrap items-center gap-2 mq-mention">
             <li><Link href="/" className="hover:text-orange transition-colors">Accueil</Link></li>
             <li aria-hidden>›</li>
             <li><Link href="/services" className="hover:text-orange transition-colors">{eyebrow}</Link></li>
@@ -104,9 +115,15 @@ export function SpecialtyPage({
       )}
 
       <section className="relative pb-10">
-        <div className="container-site max-w-4xl mx-auto">
-          <figure>
-            <div className="relative aspect-[16/8] rounded-none overflow-hidden card-e">
+        <div className="rf-wrap">
+          {/* Cette figure était écrite à la main : elle échappait donc au
+              composant, et à la règle qui met la légende à côté quand la
+              place le permet. Bridée à 58 rem dans une planche de 1408, elle
+              laissait 382 px de vide à sa droite — une image seule de plus.
+              Elle passe par l'hôte du système. */}
+          <div className="mq-fig-hote">
+          <figure className="rf-fig mq-fig">
+            <div className="rf-cadre relative aspect-[16/8]">
               <img src={PHOTOS[photo]} srcSet={srcSetOf(PHOTOS[photo])} sizes="(min-width: 1024px) 896px, 100vw" alt={photoAlt} loading="lazy" className="absolute inset-0 size-full object-cover" />
             </div>
             {/* 07/09 : la mention de provenance était écrite en dur — « Illustration, non
@@ -116,18 +133,19 @@ export function SpecialtyPage({
                 contractuelle ». Elle se déduit maintenant du dossier d'origine du fichier,
                 qui est la seule source fiable : /chantiers = une vraie photo de chantier,
                 /pedagogie = un schéma, tout le reste = une illustration. */}
-            <figcaption className="mt-2 font-mono text-[0.66rem] tracking-[0.12em] uppercase text-muted">
-              {photoAlt} — {mentionProvenance(PHOTOS[photo])}
+            <figcaption>
+              {legende(photoAlt, PHOTOS[photo])}
             </figcaption>
           </figure>
+          </div>
         </div>
       </section>
 
       <section className="relative pb-16 md:pb-24">
-        <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-7 text-ivoire/85 text-[1.02rem] leading-relaxed">
+        <div className="rf-wrap mq-mesure flex flex-col gap-7 text-ivoire/85 t-base leading-relaxed">
           {sections.map((s) => (
             <div key={s.titre} className="flex flex-col gap-2">
-              <h2 className="display text-2xl text-ivoire normal-case">{s.titre}</h2>
+              <h2 className="display t-titre text-ivoire normal-case">{s.titre}</h2>
               <p>{s.texte}</p>
             </div>
           ))}
@@ -135,11 +153,11 @@ export function SpecialtyPage({
       </section>
 
       <section className="relative pb-16 md:pb-24">
-        <div className="container-site max-w-3xl mx-auto flex flex-col gap-4">
+        <div className="rf-wrap mq-mesure flex flex-col gap-4">
           {FAQ_COMMUNE.map((f) => (
             <div key={f.q} className="card-e rounded-none p-6">
-              <h3 className="display text-[1.05rem] text-ivoire normal-case mb-1.5">{f.q}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{f.r}</p>
+              <h3 className="display t-base text-ivoire normal-case mb-1.5">{f.q}</h3>
+              <p className="text-muted t-sec leading-relaxed">{f.r}</p>
             </div>
           ))}
         </div>

@@ -24,21 +24,21 @@ export default function GarantiesPage() {
       />
 
       <section className="relative pb-16 md:pb-24">
-        <div className="container-site grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        <div className="rf-wrap grid grid-cols-1 md:grid-cols-3 gap-5">
           {GARANTIES.map((g) => (
             <div key={g.titre} className="card-e rounded-none p-7 flex flex-col gap-2">
-              <span className="display text-2xl text-gradient normal-case">{g.duree}</span>
-              <h3 className="display text-[1.15rem] text-ivoire normal-case">{g.titre}</h3>
-              <p className="text-muted text-[0.9rem] leading-relaxed">{g.texte}</p>
+              <span className="display t-titre text-gradient normal-case">{g.duree}</span>
+              <h2 className="display t-haut text-ivoire normal-case">{g.titre}</h2>
+              <p className="text-muted t-petit leading-relaxed">{g.texte}</p>
             </div>
           ))}
         </div>
       </section>
 
       <section className="relative pb-20 md:pb-28">
-        <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-6 text-ivoire/85 text-[1.02rem] leading-relaxed">
+        <div className="rf-wrap mq-mesure flex flex-col gap-6 text-ivoire/85 t-base leading-relaxed">
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">Qui porte quoi</h2>
+            <h2 className="display t-titre text-ivoire normal-case">Qui porte quoi</h2>
             <p>
               ARCHI PILOTE RÉNOVATION ne porte aucune de ces garanties : nous n&apos;exécutons aucun lot. Chaque entreprise
               partenaire porte les assurances correspondant aux activités qu&apos;elle exécute chez vous, et reste
@@ -46,7 +46,7 @@ export default function GarantiesPage() {
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">Ce que nous vérifions avant le premier coup de marteau</h2>
+            <h2 className="display t-titre text-ivoire normal-case">Ce que nous vérifions avant le premier coup de marteau</h2>
             <p>
               Avant tout démarrage, chaque entreprise remet son attestation d&apos;assurance décennale en cours de
               validité. Nous vous indiquons quoi y vérifier : l&apos;activité réellement couverte, la période de
@@ -55,7 +55,7 @@ export default function GarantiesPage() {
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">En cas de malfaçon</h2>
+            <h2 className="display t-titre text-ivoire normal-case">En cas de malfaçon</h2>
             <p>
               Vous êtes en relation contractuelle directe avec l&apos;entreprise qui a exécuté le lot concerné, et
               c&apos;est son assurance qui joue. Nous vous accompagnons dans les constats, les échanges écrits et le

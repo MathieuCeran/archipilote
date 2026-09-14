@@ -33,7 +33,7 @@ export default function Page() {
           pas l'ordre des sept étapes de la page (ventilation AVANT menuiseries) — la mettre sous cette
           liste aurait affiché deux ordres contradictoires côte à côte. `entier`, jamais recadrée.
         */}
-        <div className="max-w-4xl mx-auto mb-10">
+        <div className="max-w-4xl mb-10">
           <MqFig
             src="/photos/pedagogie/infographie-passoire-energetique.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : Passoire énergétique : traiter les causes, pas seulement les symptômes"
@@ -49,8 +49,8 @@ export default function Page() {
             que le client reproche, et le sien est le meilleur des deux. */}
         <div className="mt-10 flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Classes F et G : ce que signifie réellement une passoire énergétique</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Classes F et G : ce que signifie réellement une passoire énergétique</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Une classe F ou G traduit une consommation énergétique estimée élevée, généralement due à un cumul
               de défauts d'isolation plutôt qu'à une seule cause isolée.
             </p>
@@ -75,8 +75,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Hiérarchie des postes de déperdition</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Hiérarchie des postes de déperdition</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Toiture, murs, menuiseries, planchers bas et renouvellement d'air ne représentent jamais un poids
               identique dans les déperditions d'un logement.
             </p>
@@ -110,8 +110,8 @@ export default function Page() {
       <MqSection title="Isolation par l'intérieur, par l'extérieur, et traitement des ponts thermiques">
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Isolation par l'intérieur</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Isolation par l'intérieur</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Plus simple à mettre en œuvre logement par logement, elle réduit légèrement la surface habitable et
               exige un traitement soigné des jonctions.
             </p>
@@ -128,8 +128,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Isolation par l'extérieur</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Isolation par l'extérieur</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Elle traite mieux les ponts thermiques en enveloppant le bâtiment, mais modifie l'aspect de façade
               et implique souvent une autorisation d'urbanisme.
             </p>
@@ -150,8 +150,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Ponts thermiques : les zones froides qui concentrent le risque</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Ponts thermiques : les zones froides qui concentrent le risque</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Un pont thermique est une zone de la paroi moins bien isolée que le reste, souvent au droit d'un
               plancher, d'un balcon ou d'une jonction de murs.
             </p>
@@ -243,8 +243,8 @@ export default function Page() {
         />
         <div className="mt-10 flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Menuiseries et vitrage : un choix qui affecte tout le système</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Menuiseries et vitrage : un choix qui affecte tout le système</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Une menuiserie neuve, plus étanche à l'air qu'une menuiserie ancienne, supprime une partie du
               renouvellement d'air naturel du logement.
             </p>
@@ -270,7 +270,7 @@ export default function Page() {
               ci-dessus) mais montre un autre ouvrage : ce n'est pas un doublon, et c'est le seul
               endroit de la page où l'on voit une menuiserie posée sur bâti existant.
             */}
-            <div className="mt-6 max-w-md mx-auto">
+            <div className="mt-6 max-w-md">
               <MqFig
                 src="/photos/chantiers/chFenetreToitChevetreRampant.jpeg"
                 alt="Fenêtre de toit posée dans un rampant de comble, chevêtre et embrasure en bois brut autour du dormant, isolant en fibres grises entre chevrons et ossature métallique de doublage"
@@ -280,8 +280,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Étanchéité à l'air : un objectif qui doit être piloté, pas subi</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Étanchéité à l'air : un objectif qui doit être piloté, pas subi</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Une bonne étanchéité à l'air améliore la performance énergétique, mais impose en contrepartie une
               ventilation dimensionnée en conséquence.
             </p>
@@ -337,8 +337,8 @@ export default function Page() {
         */}
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Simple flux autoréglable, hygroréglable, ou double flux</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Simple flux autoréglable, hygroréglable, ou double flux</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Le choix du système dépend du niveau d'isolation visé, de la configuration du logement et du budget
               disponible.
             </p>
@@ -360,8 +360,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Entrées d'air, transit et extraction : le circuit complet de l'air</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Entrées d'air, transit et extraction : le circuit complet de l'air</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               L'air neuf entre par les pièces de vie, transite sous les portes intérieures, puis est extrait en
               cuisine et salle de bain.
             </p>
@@ -390,8 +390,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Carottage de traversée pour l'amenée ou le rejet d'air</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Carottage de traversée pour l'amenée ou le rejet d'air</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Le passage des gaines de ventilation à travers un mur ou une toiture nécessite un carottage précis,
               réalisé avec soin pour préserver l'étanchéité de la paroi traversée.
             </p>
@@ -548,7 +548,7 @@ export default function Page() {
             "Négliger la démarche auprès du syndic pour une ventilation touchant des parties communes",
           ]}
         />
-        <p className="text-muted text-[0.92rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-sec leading-relaxed mt-8 max-w-2xl">
           Ces ordres de grandeur restent indicatifs et dépendent fortement de la surface, de l'état initial du
           bien et du niveau de performance visé ; ils sont toujours confrontés à l'état réel constaté lors de la
           visite technique avant tout engagement. Les dispositifs d'aide susceptibles d'alléger ce budget, et
@@ -615,8 +615,8 @@ export default function Page() {
         </div>
         <div className="flex flex-col gap-12 mt-12">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Combles : de l'isolant tassé à la double couche croisée</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Combles : de l'isolant tassé à la double couche croisée</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Dépose de l'ancien isolant, traitement des périphéries, deux couches croisées et pare-vapeur
               continu : le premier poste de déperdition d'une passoire énergétique.
             </p>
@@ -636,8 +636,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Salle d'eau : de la condensation chronique à la ventilation maîtrisée</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Salle d'eau : de la condensation chronique à la ventilation maîtrisée</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               La cause est traitée avant la finition : extraction VMC dimensionnée, étanchéité sous carrelage,
               puis pose du travertin et de la robinetterie.
             </p>
@@ -700,7 +700,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="text-muted text-[0.85rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
           Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon
           les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des
           architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les

@@ -55,7 +55,7 @@ export function FaqSection() {
                     aria-expanded={open}
                   >
                     <span
-                      className={`flex-1 min-w-0 text-[1.05rem] md:text-[1.15rem] font-medium transition-colors duration-300 ${
+                      className={`flex-1 min-w-0 t-base md:t-haut font-medium transition-colors duration-300 ${
                         open ? "text-orange" : "text-ivoire group-hover:text-orange/80"
                       }`}
                     >
@@ -80,7 +80,7 @@ export function FaqSection() {
                     transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
                     className="overflow-hidden"
                   >
-                    <p className="pb-6 pr-14 text-muted leading-relaxed text-[0.96rem]">
+                    <p className="pb-6 pr-14 text-muted leading-relaxed t-sec">
                       {item.reponse}
                     </p>
                   </motion.div>

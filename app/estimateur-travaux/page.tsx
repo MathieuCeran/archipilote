@@ -48,15 +48,15 @@ export default function EstimateurPage() {
         <div
           role="img"
           aria-label="Ce que la fourchette de budget inclut et n'inclut pas. Inclus : travaux et main-d'œuvre des entreprises partenaires, dépose et évacuation des gravats. Non inclus : mobilier, électroménager et décoration, honoraires d'architecte ou d'ingénieur, aléas structurels découverts après dépose."
-          className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-line border border-line rounded-[2px] overflow-hidden"
+          className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-line border border-line rounded-none overflow-hidden"
         >
           <div className="bg-surface p-6 flex flex-col gap-4">
-            <p className="text-[0.68rem] font-bold tracking-[0.2em] uppercase text-orange-deep">Inclus dans la fourchette</p>
+            <p className="mq-mention mq-mention--accent">Inclus dans la fourchette</p>
             <ul className="flex flex-col gap-3">
               {INCLUS.map((t) => (
-                <li key={t} className="flex items-start gap-3 text-[0.9rem] text-ivoire/85 leading-relaxed">
+                <li key={t} className="flex items-start gap-3 t-petit text-ivoire/85 leading-relaxed">
                   <span aria-hidden className="mt-0.5 shrink-0 size-4 rounded-full flex items-center justify-center" style={{ background: "oklch(54% 0.095 70 / 15%)" }}>
-                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="oklch(54% 0.095 70)" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
+                    <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#2d5c9c" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>
                   </span>
                   {t}
                 </li>
@@ -64,10 +64,10 @@ export default function EstimateurPage() {
             </ul>
           </div>
           <div className="bg-surface p-6 flex flex-col gap-4">
-            <p className="text-[0.68rem] font-bold tracking-[0.2em] uppercase text-muted">Non inclus</p>
+            <p className="mq-mention">Non inclus</p>
             <ul className="flex flex-col gap-3">
               {NON_INCLUS.map((t) => (
-                <li key={t} className="flex items-start gap-3 text-[0.9rem] text-ivoire/85 leading-relaxed">
+                <li key={t} className="flex items-start gap-3 t-petit text-ivoire/85 leading-relaxed">
                   <span aria-hidden className="mt-0.5 shrink-0 size-4 rounded-full border border-line-strong flex items-center justify-center text-muted">
                     <svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 6l12 12M18 6 6 18" /></svg>
                   </span>
@@ -77,7 +77,7 @@ export default function EstimateurPage() {
             </ul>
           </div>
         </div>
-        <p className="text-muted text-[0.82rem] mt-5 max-w-2xl leading-relaxed">
+        <p className="text-muted t-mini mt-5 max-w-2xl leading-relaxed">
           L&apos;achat direct des matériaux par le client s&apos;applique ensuite au budget travaux : sur les postes hors décennale, la fourniture est réglée au prix fournisseur, sans marge d&apos;intermédiation.
         </p>
 
@@ -106,7 +106,7 @@ export default function EstimateurPage() {
           { q: "Pourquoi l'estimation est-elle affichée sous forme de fourchette ?", a: "Parce que l'état des réseaux, la qualité des supports et le niveau de finition font varier le coût réel d'un même projet dans un rapport de un à deux. Afficher un montant unique donnerait une fausse précision." },
           { q: "L'effet de l'achat direct est-il inclus dans le calcul ?", a: "Non. La fourchette correspond à un budget travaux de marché. L'optimisation par achat direct des matériaux, réglés au prix fournisseur sur les postes qui s'y prêtent, s'applique ensuite lors du chiffrage détaillé." },
         ]} />
-        <p className="text-[0.82rem] text-muted mt-6 max-w-3xl border-t border-line pt-4">
+        <p className="t-mini text-muted mt-6 max-w-3xl border-t border-line pt-4">
           <strong className="text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
           les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et,
           lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et

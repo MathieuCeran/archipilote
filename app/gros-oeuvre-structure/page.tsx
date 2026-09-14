@@ -18,7 +18,7 @@ export default function Page() {
         lead="Avant de parler cloisons, cuisine ou peinture, tout projet de rénovation doit répondre à une question simple : quels murs portent le bâtiment, et que devient la descente de charges si on les modifie ? Le gros œuvre traite l'ouverture de murs porteurs, la création de trémies, les reprises de plancher et les désordres du bâti existant. ARCHI PILOTE RÉNOVATION structure ce diagnostic en amont et pilote l'intervention des entreprises partenaires contractantes et, pour les dossiers lourds, d'un ingénieur structure ou d'un architecte DPLG partenaire indépendant."
       />
 
-      <div className="container-site max-w-4xl pb-12 md:pb-16">
+      <div className="rf-wrap mq-mesure--large pb-12 md:pb-16 mq-planche-ouverture">
         <MqFig
           src="/photos/maquette/schema-mur-porteur.jpg"
           alt="Coupe technique d'une ouverture de mur porteur montrant la poutre de reprise, les poteaux d'appui aux extrémités, l'étaiement provisoire pendant les travaux et le principe de descente de charges vers les fondations."
@@ -33,8 +33,8 @@ export default function Page() {
       >
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Les indices à recouper, jamais un seul critère isolé</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Les indices à recouper, jamais un seul critère isolé</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Épaisseur, alignement vertical entre étages, sens des solives et matériau donnent une présomption, jamais une certitude absolue.
             </p>
             <div className="mt-4">
@@ -72,8 +72,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Sondages et plans manquants : comment lever le doute</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Sondages et plans manquants : comment lever le doute</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               En l'absence de plans d'origine fiables, un sondage ponctuel dans une cloison ou un doublage permet d'observer la structure réelle.
             </p>
             <div className="mt-4">
@@ -181,8 +181,8 @@ export default function Page() {
         </div>
         <div className="mt-12 flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Poutre métallique ou poutre bois : un choix technique, pas esthétique</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Poutre métallique ou poutre bois : un choix technique, pas esthétique</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Le choix du matériau de la poutre dépend de la portée à franchir, de la charge à reprendre et de la hauteur disponible sous plafond.
             </p>
             <div className="mt-4">
@@ -197,8 +197,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Poteaux, appuis et semelles : où va la charge reprise</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Poteaux, appuis et semelles : où va la charge reprise</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Une poutre ne vaut que par ses appuis : la charge reprise doit être transmise jusqu'aux fondations sans point faible intermédiaire.
             </p>
             <div className="mt-4">
@@ -213,8 +213,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Reprise en sous-œuvre : intervenir sous un ouvrage existant</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Reprise en sous-œuvre : intervenir sous un ouvrage existant</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               La reprise en sous-œuvre consiste à renforcer une fondation ou un appui existant sans interrompre la stabilité du bâtiment pendant les travaux.
             </p>
             <div className="mt-4">
@@ -350,8 +350,8 @@ export default function Page() {
         />
         <div className="mt-10 flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Quand une étude de sol est indispensable</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Quand une étude de sol est indispensable</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Extension, surélévation, reprise en sous-œuvre ou bâti ancien sur sols incertains : le dimensionnement repose sur des données réelles.
             </p>
             <div className="mt-4">
@@ -367,8 +367,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Un partenaire réactif et rigoureux</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Un partenaire réactif et rigoureux</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Geo2Mo se distingue par la qualité de ses dossiers, sa réactivité et sa capacité à mobiliser rapidement les bons intervenants.
             </p>
             <div className="mt-4">
@@ -388,8 +388,8 @@ export default function Page() {
       >
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Lecture d'une fissure avant tout ravalement esthétique</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Lecture d'une fissure avant tout ravalement esthétique</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Une fissure fine et stable diffère radicalement d'une fissure ouverte, évolutive ou traversante en termes de gravité.
             </p>
             <div className="mt-4">
@@ -404,8 +404,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Remontées capillaires et humidité en pied de mur</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Remontées capillaires et humidité en pied de mur</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Une humidité en pied de mur oriente vers une origine capillaire, une infiltration ou une condensation, chacune appelant un traitement différent.
             </p>
             <div className="mt-4">
@@ -525,8 +525,8 @@ export default function Page() {
             { title: "Protection du bâti conservé", text: "Bâchage, calage et protection des ouvrages voisins non concernés par l'intervention en cours." },
           ].map((g) => (
             <div key={g.title} className="flex flex-col gap-2 border-t border-line pt-4">
-              <h3 className="display text-[1.1rem] text-ivoire">{g.title}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{g.text}</p>
+              <h3 className="display t-base text-ivoire">{g.title}</h3>
+              <p className="text-muted t-sec leading-relaxed">{g.text}</p>
             </div>
           ))}
         </div>
@@ -675,8 +675,8 @@ export default function Page() {
             honnêtes sur ce que montrent réellement les images, plutôt que de parler d'un
             "escalier livré" non documenté par une photo réelle.
           */}
-          <h3 className="display text-[1.3rem] text-ivoire">Trémie d'escalier : du plancher ouvert à la structure posée</h3>
-          <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+          <h3 className="display t-fort text-ivoire">Trémie d'escalier : du plancher ouvert à la structure posée</h3>
+          <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
             Étaiement, découpe des solives puis chevêtre sur sabots métalliques : la structure d'escalier sur mesure n'est posée dans la trémie qu'après validation de la note de calcul.
           </p>
           <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-5 items-start">
@@ -729,7 +729,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="mt-8 max-w-2xl border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <p className="mt-8 max-w-2xl border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
           <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées.
         </p>
       </MqSection>

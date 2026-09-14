@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Postes, type Poste } from "../components/postes";
 import { MqHero, MqSection, MqProse, MqFig, MqNumbered, MqChecklist, MqDark, MqDarkSteps, MqFaq, MqCta, MqReadNext } from "../components/mq";
 
 /* 05/09/2026 — RÉÉCRITURE COMPLÈTE, sur directives du client (dossier transmis le 04/09).
@@ -105,6 +106,20 @@ export const metadata: Metadata = {
   alternates: { canonical: "/renovation-complete" },
 };
 
+/* Relevés mot pour mot sur l'infographie de marque fournie par le client
+   (public/photos/pedagogie/infographie-renovation-complete.jpg), dans l'ordre
+   de lecture de la planche : colonne de gauche, puis colonne de droite. */
+const POSTES: Poste[] = [
+  { cle: "agencement", titre: "Agencement & distribution", texte: "Optimisation des espaces et nouveaux usages." },
+  { cle: "menuiseries", titre: "Menuiseries sur-mesure", texte: "Fenêtres, portes, dressings, cuisines, rangements." },
+  { cle: "enveloppe", titre: "Isolation & confort énergétique", texte: "Isolation intérieure, combles, remplacement des menuiseries, VMC, climatisation." },
+  { cle: "finitions", titre: "Finitions haut de gamme", texte: "Peinture, revêtements, parquet, béton ciré, carrelage, moulures." },
+  { cle: "structure", titre: "Structure & gros œuvre", texte: "Ouvertures, IPN, maçonnerie, renforcement, surélévation." },
+  { cle: "reseaux", titre: "Réseaux techniques", texte: "Électricité, plomberie, chauffage, VMC, domotique." },
+  { cle: "bain", titre: "Salle de bains & cuisine", texte: "Conception, étanchéité, joints époxy, équipements haut de gamme." },
+  { cle: "suivi", titre: "Suivi & coordination", texte: "Planning, qualité, respect du budget, réception du chantier." },
+];
+
 const REPERES = [
   "Contraintes techniques identifiées",
   "Budget structuré par familles de postes",
@@ -176,32 +191,49 @@ export default function Page() {
         <Link href="/notre-methode" className="btn btn-ghost">Découvrir notre méthode</Link>
       </MqHero>
 
-      <section className="pb-10">
-        <div className="container-site max-w-4xl">
-          {/* 08/09 — Image d'ouverture : l'infographie de marque « Rénovation complète »,
-              fournie par le client, qui a demandé qu'elle « remplace la chambre » posée ici
-              le 07/09 (chHdgChambreDressingChevrons.jpeg).
+      {/* STRUCTURE D'OUVERTURE, alignée sur celle de la page d'accueil.
 
-              Planche composée : titre en haut, méthode en six étapes, bandeau de contact en
-              bas. Elle est donc affichée `entier`, dans un cadre calé sur son format natif
-              (1222 × 1287) — un recadrage 3/2 la décapiterait. C'est une infographie, pas une
-              photographie de chantier : la légende ne dit jamais « chantier réel ». */}
-          <div className="mb-8 max-w-3xl mx-auto">
-            <MqFig
-              src="/photos/pedagogie/infographie-renovation-complete.jpg"
-              alt="Infographie ARCHI PILOTE RÉNOVATION : Rénovation complète — un projet global, des experts pour chaque étape, une sérénité totale. Vue 3D d'un appartement entourée des huit postes d'une rénovation, méthode en six étapes, quatre engagements et coordonnées"
-              caption="Infographie ARCHI PILOTE RÉNOVATION — Rénovation complète. Un projet global, des experts pour chaque étape, une sérénité totale."
-              ratio="aspect-[1222/1287]"
-              entier
-            />
-          </div>
-          <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-line border border-line rounded-[2px] overflow-hidden">
+          L'accueil ouvre sur son héros, puis pose immédiatement une BANDE
+          SOMBRE de chiffres — le cartouche. C'est elle qui donne le premier
+          contraste de la page et qui empêche l'ouverture de se diluer.
+
+          Les pages internes n'avaient rien de tel : après le titre, on
+          enchaînait sur du papier, indéfiniment. Les quatre repères de cette
+          page tenaient dans une grille de cases grises, en bas d'un bloc
+          bridé à 58 rem. Ils prennent la bande sombre, sur toute la planche,
+          et jouent le rôle du cartouche.
+
+          Les huit postes deviennent une section à part entière, avec son
+          repère et son titre dans le rail — comme toutes les autres. */}
+      <section className="rf-dossier">
+        <div className="rf-wrap rf-section--serre">
+          <ul className="mq-reperes">
             {REPERES.map((r) => (
-              <li key={r} className="bg-surface px-5 py-4 text-[0.9rem] leading-snug text-ivoire/85">{r}</li>
+              <li key={r}>{r}</li>
             ))}
           </ul>
         </div>
       </section>
+
+      <MqSection
+        kicker="Périmètre"
+        title="Les huit postes d'une rénovation complète"
+        lead="Ce que « complète » recouvre exactement, poste par poste. Aucun ne se traite isolément : c'est leur enchaînement qui décide du budget et du calendrier."
+      >
+        {/* 08/09 — L'infographie de marque « Rénovation complète » était posée
+            ici, seule, en 1 222 × 1 287 px. Elle portait quatre choses : les
+            huit postes, la méthode en six étapes, quatre engagements et un
+            bandeau de contact. Trois sur quatre sont DÉJÀ sur cette page en
+            toutes lettres — la méthode a sa section « Six décisions dans le
+            bon ordre », les engagements leur bandeau, le contact sa clôture.
+
+            Seuls les huit postes n'y figuraient nulle part. Ils sont
+            transcrits mot pour mot, dans l'ordre de lecture de la planche. Le
+            texte devient sélectionnable, traduisible, lisible au téléphone, et
+            corrigible en une ligne le jour où un poste change — ce qu'une
+            image ne permet pas. */}
+        <Postes postes={POSTES} />
+      </MqSection>
 
       <MqSection
         title="Une rénovation complète se décide avant de se chiffrer"
@@ -270,7 +302,7 @@ export default function Page() {
             article du blog. La scène aurait atteint le plafond de trois pages. */}
         <div className="grid grid-cols-1 md:grid-cols-[1fr_17rem] gap-8 md:gap-10 items-start">
           <MqDarkSteps steps={METHODE} />
-          <figure className="rounded-[2px] overflow-hidden border" style={{ borderColor: "oklch(35% 0.012 60)" }}>
+          <figure className="rounded-none overflow-hidden border" style={{ borderColor: "#2b3338" }}>
             <div className="relative aspect-[3/4] overflow-hidden">
               <img
                 src="/photos/chantiers/chCouloirOssatureMetalliquePlaque.jpeg"
@@ -280,8 +312,8 @@ export default function Page() {
               />
             </div>
             <figcaption
-              className="px-4 py-3 text-[0.8rem] leading-snug border-t"
-              style={{ borderColor: "oklch(35% 0.012 60)", color: "oklch(72% 0.012 75)" }}
+              className="px-4 py-3 t-mini leading-snug border-t"
+              style={{ borderColor: "#2b3338", color: "#c3c0b6" }}
             >
               Couloir au stade des cloisons : ossature métallique dressée, plaques vissées sur une face,
               câble descendu avant fermeture, plafond déjà plaqué, sol encore brut. Chaque étape referme la
@@ -319,15 +351,15 @@ export default function Page() {
             { n: "03", r: "Entreprises partenaires", c: "exécutent et facturent", l: ["Établissent leurs devis", "Réalisent les travaux", "Facturent directement le client", "Portent leurs assurances"] },
             { n: "04", r: "Fournisseurs", c: "livrent", l: ["Fournissent les matériaux", "Facturent au prix fournisseur", "Achat direct possible"] },
           ].map((b) => (
-            <div key={b.n} className="flex flex-col gap-3 border border-line bg-surface rounded-[2px] p-5">
+            <div key={b.n} className="flex flex-col gap-3 border border-line bg-surface rounded-none p-5">
               <div className="flex items-baseline gap-2">
-                <span className="font-mono text-[0.7rem] tracking-[0.16em] text-orange-deep">{b.n}</span>
-                <span className="font-mono text-[0.62rem] tracking-[0.14em] uppercase text-muted">{b.c}</span>
+                <span className="font-mono t-micro tracking-[0.16em] text-orange-deep">{b.n}</span>
+                <span className="mq-mention">{b.c}</span>
               </div>
-              <h3 className="display text-[1.05rem] text-ivoire leading-tight">{b.r}</h3>
+              <h3 className="display t-base text-ivoire leading-tight">{b.r}</h3>
               <ul className="flex flex-col gap-1.5 mt-1">
                 {b.l.map((x) => (
-                  <li key={x} className="text-muted text-[0.85rem] leading-snug flex gap-2">
+                  <li key={x} className="text-muted t-petit leading-snug flex gap-2">
                     <span aria-hidden className="text-orange-deep shrink-0">·</span>
                     {x}
                   </li>
@@ -339,7 +371,7 @@ export default function Page() {
         {/* 08/09 — Infographie de marque fournie par le client, posée APRÈS le schéma HTML des
             quatre rôles (qu'elle complète sans le remplacer). Planche composée, affichée
             `entier` dans un cadre à son format natif (1491 × 1055). */}
-        <div className="max-w-4xl mx-auto mb-10">
+        <div className="max-w-4xl mb-10">
           <MqFig
             src="/photos/pedagogie/infographie-budget-lisible.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : Un budget lisible et des responsabilités séparées — honoraires identifiables, entreprises contractantes, achats directs possibles, devis réellement comparables, et lecture du budget par postes"
@@ -348,7 +380,7 @@ export default function Page() {
             entier
           />
         </div>
-        <p className="text-muted text-[0.82rem] leading-relaxed max-w-3xl mb-10">
+        <p className="text-muted t-mini leading-relaxed max-w-3xl mb-10">
           Les travaux sont exécutés et facturés par les entreprises partenaires contractantes, qui portent leurs
           propres assurances. ARCHI PILOTE RÉNOVATION n&apos;exécute aucun lot&nbsp;: son intervention porte sur la
           structuration du projet, le chiffrage, la sélection des intervenants et le suivi.
@@ -356,8 +388,8 @@ export default function Page() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
           {MODELE.map((m) => (
             <div key={m.title} className="flex flex-col gap-2 border-t border-line pt-4">
-              <h3 className="display text-[1.15rem] text-ivoire">{m.title}</h3>
-              <p className="text-muted text-[0.93rem] leading-relaxed">{m.text}</p>
+              <h3 className="display t-haut text-ivoire">{m.title}</h3>
+              <p className="text-muted t-sec leading-relaxed">{m.text}</p>
             </div>
           ))}
         </div>
@@ -392,7 +424,7 @@ export default function Page() {
       >
         {/* 08/09 — Infographie de marque fournie par le client, sous le titre de la section.
             Planche composée, affichée `entier` dans un cadre à son format natif (1491 × 1055). */}
-        <div className="max-w-4xl mx-auto mb-10">
+        <div className="max-w-4xl mb-10">
           <MqFig
             src="/photos/pedagogie/infographie-solution-complete.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : Une solution complète, des responsabilités claires — ce que fait ARCHI PILOTE RÉNOVATION, ce que font les entreprises partenaires contractantes, et les experts indépendants mobilisés selon les besoins du dossier"
@@ -403,7 +435,7 @@ export default function Page() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-4">ARCHI PILOTE RÉNOVATION</h3>
+            <h3 className="display t-haut text-ivoire mb-4">ARCHI PILOTE RÉNOVATION</h3>
             <MqChecklist
               cols={1}
               items={[
@@ -417,7 +449,7 @@ export default function Page() {
             />
           </div>
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-4">Les entreprises partenaires contractantes</h3>
+            <h3 className="display t-haut text-ivoire mb-4">Les entreprises partenaires contractantes</h3>
             <MqChecklist
               cols={1}
               items={[
@@ -437,7 +469,7 @@ export default function Page() {
             chPoutreAcierPlafondMurDegarni.jpeg disait mieux le sujet — trois corps de métier
             dans le même angle — mais sa scène est déjà servie sur trois pages (un article,
             gros-oeuvre-structure, realisations) : une quatrième dépassait le plafond. */}
-        <div className="mt-10 grid grid-cols-1 md:grid-cols-[1fr_14rem] gap-8 items-start">
+        <div className="mt-10 grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] gap-8 items-start">
           <MqProse>
             <p>
               Selon les besoins du dossier, un architecte DPLG, un architecte d&apos;intérieur, un ingénieur structure
@@ -464,7 +496,7 @@ export default function Page() {
       >
         {/* 08/09 — Infographie de marque fournie par le client, sous le titre de la section.
             Planche composée, affichée `entier` dans un cadre à son format natif (1222 × 1287). */}
-        <div className="max-w-3xl mx-auto mb-10">
+        <div className="max-w-3xl mb-10">
           <MqFig
             src="/photos/pedagogie/infographie-quatre-decisions.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : Quatre décisions à prendre avant de consulter les entreprises — vérifier la nature des murs, anticiper les démarches auprès du syndic, séparer le socle indispensable des options, prévoir la documentation du chantier"
@@ -476,10 +508,10 @@ export default function Page() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
           {DECISIONS.map((d, i) => (
             <div key={d.title} className="flex flex-col gap-2 border-t border-line pt-4">
-              <span className="font-mono text-[0.72rem] text-muted">{String(i + 1).padStart(2, "0")}</span>
-              <h3 className="display text-[1.15rem] text-ivoire">{d.title}</h3>
-              <p className="text-muted text-[0.93rem] leading-relaxed">{d.text}</p>
-              <Link href={d.href} className={`${lien} text-[0.88rem] mt-1`}>{d.lien} →</Link>
+              <span className="font-mono t-micro text-muted">{String(i + 1).padStart(2, "0")}</span>
+              <h3 className="display t-haut text-ivoire">{d.title}</h3>
+              <p className="text-muted t-sec leading-relaxed">{d.text}</p>
+              <Link href={d.href} className={`${lien} t-petit mt-1`}>{d.lien} →</Link>
             </div>
           ))}
         </div>
@@ -512,20 +544,20 @@ export default function Page() {
             ratio="aspect-[3/4]"
           />
         </div>
-        <p className="mt-4 text-[0.82rem] text-muted max-w-3xl">
+        <p className="mt-4 t-mini text-muted max-w-3xl">
           Ces deux photographies proviennent de chantiers réellement pilotés. D&apos;autres sont rassemblées dans nos{" "}
           <Link href="/realisations" className="text-orange hover:underline">réalisations</Link>, et le principe est
           détaillé sur la page <Link href="/detail-invisible" className="text-orange hover:underline">l&apos;ouvrage
           caché</Link>.
         </p>
 
-        <h3 className="display text-[1.3rem] text-ivoire mt-12">Quatre points de contrôle documentés avant réception</h3>
+        <h3 className="display t-fort text-ivoire mt-12">Quatre points de contrôle documentés avant réception</h3>
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-5">
           {CONTROLES.map((c) => (
             <MqFig key={c.src} entier ratio="aspect-[3/2]" src={c.src} alt={c.alt} caption={c.cap} />
           ))}
         </div>
-        <p className="text-[0.82rem] text-muted mt-4 max-w-3xl">
+        <p className="t-mini text-muted mt-4 max-w-3xl">
           Ces quatre illustrations sont des <strong className="text-ivoire/80">schémas pédagogiques</strong> : elles
           représentent les points observés lors des contrôles. Elles ne documentent pas un chantier particulier et
           n&apos;ont pas valeur de document d&apos;exécution.
@@ -571,7 +603,7 @@ export default function Page() {
         {/* 07/09 — L'image accompagne l'accordéon plutôt que de se poser sous lui : repliée,
             la FAQ fait à peu près la hauteur d'un portrait 9/16 en colonne de 14rem, les deux
             colonnes se terminent donc ensemble. */}
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_14rem] gap-8 md:gap-10 items-start">
+        <div className="grid grid-cols-1 md:grid-cols-[minmax(0,1fr)_minmax(0,22rem)] gap-8 md:gap-10 items-start">
           <MqFaq items={FAQ} />
           <MqFig
             src="/photos/chantiers/chCouloirPorteBoisModerne.jpeg"
@@ -589,7 +621,7 @@ export default function Page() {
             ]}
           />
         </div>
-        <p className="mt-8 max-w-2xl border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <p className="mt-8 max-w-2xl border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
           <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION
           structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises
           partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les

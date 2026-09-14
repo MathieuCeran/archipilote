@@ -18,7 +18,7 @@ export default function Page() {
       <MqSection kicker="Pourquoi une charte" title="Une charte sert à distinguer l'engagement du slogan" wide>
         <MqProse>
           <p>Beaucoup d&apos;acteurs du bâtiment promettent le sérieux et la qualité. Notre charte se veut vérifiable : chaque engagement correspond à un document, une action datée ou un contrôle réalisable par le client lui-même.</p>
-          <h3 className="display text-[1.15rem] text-ivoire mt-2">Un contrôle en amont, pas seulement en fin de chantier</h3>
+          <h3 className="display t-haut text-ivoire mt-2">Un contrôle en amont, pas seulement en fin de chantier</h3>
           <p className="font-medium text-ivoire/90">La qualité se joue majoritairement avant le premier coup de perceuse.</p>
           <p>
             Vérifier les assurances d&apos;une entreprise, formaliser les interfaces entre lots et détailler un chiffrage
@@ -73,9 +73,9 @@ export default function Page() {
 
       <MqSection kicker="Ce que cela change" title="Une charte vérifiable réduit le nombre de litiges, elle ne les supprime pas" wide>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div><h3 className="display text-[1.05rem] text-ivoire">Ce que la charte démontre</h3><p className="text-muted text-[0.92rem] mt-2 leading-relaxed">Un cadre de contrôle documenté à chaque étape, opposable en cas de désaccord.</p></div>
-          <div><h3 className="display text-[1.05rem] text-ivoire">Ce qu&apos;elle ne garantit pas</h3><p className="text-muted text-[0.92rem] mt-2 leading-relaxed">L&apos;absence totale d&apos;aléa technique, toujours possible sur un bâtiment existant.</p></div>
-          <div><h3 className="display text-[1.05rem] text-ivoire">Ce que le client y gagne</h3><p className="text-muted text-[0.92rem] mt-2 leading-relaxed">Une traçabilité complète, du choix de l&apos;entreprise partenaire à la levée de la dernière réserve.</p></div>
+          <div><h3 className="display t-base text-ivoire">Ce que la charte démontre</h3><p className="text-muted t-sec mt-2 leading-relaxed">Un cadre de contrôle documenté à chaque étape, opposable en cas de désaccord.</p></div>
+          <div><h3 className="display t-base text-ivoire">Ce qu&apos;elle ne garantit pas</h3><p className="text-muted t-sec mt-2 leading-relaxed">L&apos;absence totale d&apos;aléa technique, toujours possible sur un bâtiment existant.</p></div>
+          <div><h3 className="display t-base text-ivoire">Ce que le client y gagne</h3><p className="text-muted t-sec mt-2 leading-relaxed">Une traçabilité complète, du choix de l&apos;entreprise partenaire à la levée de la dernière réserve.</p></div>
         </div>
       </MqSection>
 
@@ -98,7 +98,7 @@ export default function Page() {
           <MqFig entier ratio="aspect-[3/2]" src="/photos/pedagogie/schema-detail-3-menuiseries-reglees.jpg" alt="Schéma de deux portes intérieures avec contrôle à la règle laser : aplomb, jeux réguliers autour de l'ouvrant, quincaillerie réglée et chants inspectés" caption="Détail 3 — menuiseries réglées : aplomb et alignement, jeux réguliers, ouverture sans contrainte, chants et finitions inspectés après retrait des protections." />
           <MqFig entier ratio="aspect-[3/2]" src="/photos/pedagogie/schema-detail-4-points-eau-testes.jpg" alt="Schéma d'un meuble de salle de bain ouvert montrant les raccordements sous vasque : siphon, robinets d'arrêt accessibles, évacuation et joint sanitaire continu" caption="Détail 4 — points d'eau testés : absence de fuite aux raccords, écoulement sans stagnation, joints sanitaires continus, accès au siphon et aux robinets d'arrêt. Les essais de plomberie sont réalisés par l'entreprise qualifiée." />
         </div>
-        <p className="text-[0.82rem] text-muted mt-4 max-w-3xl">
+        <p className="t-mini text-muted mt-4 max-w-3xl">
           Ces quatre illustrations sont des <strong className="text-ivoire/80">schémas pédagogiques</strong> : elles
           représentent les points observés lors des contrôles, elles ne documentent pas un chantier particulier et
           n&apos;ont pas valeur de document d&apos;exécution. Les photographies de chantiers réellement pilotés sont
@@ -115,7 +115,7 @@ export default function Page() {
           { q: "La charte qualité garantit-elle l'absence de tout désordre de chantier ?", a: "Non. Elle garantit un cadre de contrôle et de traçabilité rigoureux, pas l'absence totale d'aléa. Un aléa documenté et traité reste néanmoins très différent d'un désordre découvert tardivement sans suivi." },
           { q: "Les photos datées transmises quotidiennement font-elles partie du dossier final ?", a: "Oui, elles sont archivées et peuvent être intégrées au dossier de fin de chantier pour constituer un historique visuel complet du déroulement des travaux." },
         ]} />
-        <p className="text-[0.82rem] text-muted mt-6 max-w-3xl border-t border-line pt-4">
+        <p className="t-mini text-muted mt-6 max-w-3xl border-t border-line pt-4">
           <strong className="text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
           les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et,
           lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et

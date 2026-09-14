@@ -1,16 +1,47 @@
 import type { Metadata } from "next";
-import { Fraunces, Manrope } from "next/font/google";
+import { Bricolage_Grotesque, Newsreader } from "next/font/google";
 import "./globals.css";
+import "./systeme.css";
 import { LenisProvider } from "./components/lenis-provider";
-import { Nav } from "./components/nav";
-import { Footer } from "./components/footer";
+import { NavRefonte } from "./components/nav-systeme";
+import { PiedRefonte } from "./components/pied-systeme";
 import { WhatsappButton } from "./components/whatsapp-button";
 import { SITE_OFFLINE, EXPIRES_AT } from "./site-config";
 import { OfflineScreen } from "./components/offline-screen";
 
-const fraunces = Fraunces({ variable: "--font-dm-serif", subsets: ["latin"], weight: ["400", "500", "600"], style: ["normal", "italic"], display: "swap" });
-const manrope = Manrope({ variable: "--font-sora", subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], display: "swap" });
-const manropeMono = Manrope({ variable: "--font-space-mono", subsets: ["latin"], weight: ["500", "600", "700"], display: "swap" });
+/* PROMOTION DE LA REFONTE — étape 1 : le socle.
+
+   Les deux fontes du prototype montent au niveau racine, elles servent donc
+   les soixante-sept pages. Fraunces et Manrope sont déposées : deux familles
+   de moins à télécharger, et surtout les rôles s’inversent — le titrage passe
+   à la grotesque, la lecture à la sérif. C’est le changement le plus visible
+   du système, et il tient en deux déclarations.
+
+   Les noms de variable historiques (--font-dm-serif, --font-sora) sont
+   conservés : ils sont câblés dans `@theme` et dans les classes utilitaires
+   des pages. Les renommer obligerait à toucher les soixante-sept fichiers
+   pour un gain nul. */
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-sora",
+  subsets: ["latin"],
+  weight: "variable",
+  axes: ["opsz"],
+  display: "swap",
+});
+const newsreader = Newsreader({
+  variable: "--font-dm-serif",
+  subsets: ["latin"],
+  weight: "variable",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+/* PAS de troisième instance de Bricolage pour --font-space-mono.
+   Une seconde déclaration de la même famille, sans l’axe optique, prend le pas
+   sur la première : le titrage se retrouvait rendu au dessin de lettre par
+   défaut, plus large, et « Écrit et chiffré avant d’être un chantier » passait
+   de deux lignes à trois. Défaut constaté à l’écran, pas déduit.
+   L’alias est fait en CSS, dans globals.css, où --font-mono pointe sur la
+   même variable que le titrage. */
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.archipiloterenovation.com"),
@@ -74,7 +105,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       lang="fr"
       data-theme="pierre"
       suppressHydrationWarning
-      className={`${fraunces.variable} ${manrope.variable} ${manropeMono.variable}`}
+      className={`${bricolage.variable} ${newsreader.variable}`}
     >
       <head>
         <script
@@ -82,15 +113,18 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           dangerouslySetInnerHTML={{ __html: JSON.stringify(JSONLD_ORGANIZATION) }}
         />
       </head>
-      <body className="min-h-screen bg-carbone text-ivoire antialiased">
+      {/* `rf` porte les jetons et les composants du système de refonte. Elle
+          était sur un calque autour du seul prototype ; elle est ici, donc sur
+          les soixante-sept pages. */}
+      <body className="rf min-h-screen antialiased">
         {expired ? (
           <OfflineScreen />
         ) : (
           <>
             <LenisProvider>
-              <Nav />
+              <NavRefonte />
               {children}
-              <Footer />
+              <PiedRefonte />
             </LenisProvider>
             <WhatsappButton />
           </>

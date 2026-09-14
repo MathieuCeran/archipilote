@@ -484,15 +484,15 @@ export default function RealisationsPage() {
       <MqSection kicker="Cas documentés" title="Trois exemples représentatifs de projets accompagnés" wide>
         <div className="flex flex-col gap-6">
           {CAS.map((c) => (
-            <article key={c.titre} className="border border-line bg-surface rounded-[2px] p-6 md:p-8">
-              <h3 className="display text-[1.3rem] text-ivoire text-balance">{c.titre}</h3>
+            <article key={c.titre} className="border border-line bg-surface rounded-none p-6 md:p-8">
+              <h3 className="display t-fort text-ivoire text-balance">{c.titre}</h3>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-4 mt-5">
-                <div><p className="eyebrow !text-[0.66rem]">Contexte</p><p className="text-[0.95rem] text-ivoire/85 mt-1 leading-relaxed">{c.contexte}</p></div>
-                <div><p className="eyebrow !text-[0.66rem]">Contraintes</p><p className="text-[0.95rem] text-ivoire/85 mt-1 leading-relaxed">{c.contraintes}</p></div>
-                <div><p className="eyebrow !text-[0.66rem]">Décisions</p><p className="text-[0.95rem] text-ivoire/85 mt-1 leading-relaxed">{c.decisions}</p></div>
-                <div><p className="eyebrow !text-[0.66rem]">Résultat</p><p className="text-[0.95rem] text-ivoire/85 mt-1 leading-relaxed">{c.resultat}</p></div>
+                <div><p className="eyebrow !t-micro">Contexte</p><p className="t-sec text-ivoire/85 mt-1 leading-relaxed">{c.contexte}</p></div>
+                <div><p className="eyebrow !t-micro">Contraintes</p><p className="t-sec text-ivoire/85 mt-1 leading-relaxed">{c.contraintes}</p></div>
+                <div><p className="eyebrow !t-micro">Décisions</p><p className="t-sec text-ivoire/85 mt-1 leading-relaxed">{c.decisions}</p></div>
+                <div><p className="eyebrow !t-micro">Résultat</p><p className="t-sec text-ivoire/85 mt-1 leading-relaxed">{c.resultat}</p></div>
               </div>
-              <p className="text-muted text-[0.88rem] mt-5 pt-4 border-t border-line leading-relaxed">
+              <p className="text-muted t-petit mt-5 pt-4 border-t border-line leading-relaxed">
                 <strong className="text-ivoire/75">Ce que ce cas ne démontre pas :</strong> {c.limite}
               </p>
             </article>
@@ -543,10 +543,10 @@ export default function RealisationsPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-10">
           {COMPARAISONS.map((c) => (
             <div key={c.titre}>
-              <h3 className="display text-[1.1rem] text-ivoire text-balance">{c.titre}</h3>
-              <p className="text-muted text-[0.88rem] mt-1 mb-3 leading-relaxed">{c.texte}</p>
+              <h3 className="display t-base text-ivoire text-balance">{c.titre}</h3>
+              <p className="text-muted t-petit mt-1 mb-3 leading-relaxed">{c.texte}</p>
               <AvantApres standalone={false} titre={c.titre} avant={c.avant} apres={c.apres} avantLabel={c.avantLabel} apresLabel={c.apresLabel} />
-              <p className="mt-2 text-center font-mono text-[0.64rem] tracking-[0.16em] uppercase text-muted">{c.note}</p>
+              <p className="mt-2 text-center mq-mention">{c.note}</p>
             </div>
           ))}
         </div>
@@ -562,21 +562,21 @@ export default function RealisationsPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <Link
             href="/realisations/pavillon-annees-30-hauts-de-seine"
-            className="border border-line bg-surface rounded-[2px] p-6 flex flex-col gap-2 hover:border-orange-deep/40 transition-colors"
+            className="border border-line bg-surface rounded-none p-6 flex flex-col gap-2 hover:border-orange-deep/40 transition-colors"
           >
-            <span className="font-mono text-[0.68rem] tracking-[0.14em] uppercase text-muted">Hauts-de-Seine</span>
-            <span className="display text-[1.15rem] text-ivoire">Pavillon des années 30, rénovation complète</span>
-            <span className="text-muted text-[0.9rem] leading-relaxed">
+            <span className="mq-mention">Hauts-de-Seine</span>
+            <span className="display t-haut text-ivoire">Pavillon des années 30, rénovation complète</span>
+            <span className="text-muted t-petit leading-relaxed">
               118 m², douze lots pilotés en dix-neuf semaines, avec un calendrier imposé par une date de fin de bail.
             </span>
           </Link>
           <Link
             href="/realisations/extension-yvelines"
-            className="border border-line bg-surface rounded-[2px] p-6 flex flex-col gap-2 hover:border-orange-deep/40 transition-colors"
+            className="border border-line bg-surface rounded-none p-6 flex flex-col gap-2 hover:border-orange-deep/40 transition-colors"
           >
-            <span className="font-mono text-[0.68rem] tracking-[0.14em] uppercase text-muted">Yvelines</span>
-            <span className="display text-[1.15rem] text-ivoire">Extension de plain-pied, 28 m² gagnés</span>
-            <span className="text-muted text-[0.9rem] leading-relaxed">
+            <span className="mq-mention">Yvelines</span>
+            <span className="display t-haut text-ivoire">Extension de plain-pied, 28 m² gagnés</span>
+            <span className="text-muted t-petit leading-relaxed">
               Emprise au sol contrainte par le PLU, jardin en pente, vide sanitaire ventilé et raccordement de niveau avec le séjour existant.
             </span>
           </Link>
@@ -601,7 +601,7 @@ export default function RealisationsPage() {
           { q: "Ces exemples garantissent-ils un résultat identique sur mon projet ?", a: "Non. Chaque cas est présenté avec son contexte, ses contraintes et ses limites explicites. Un résultat obtenu sur un logement donné ne se transpose pas automatiquement à un autre bien, dont l'état, la structure et les contraintes diffèrent nécessairement." },
           { q: "Comment un nouveau projet est-il ajouté à cette page ?", a: "Un projet est ajouté lorsqu'il illustre un problème résolu de façon représentative, avec l'accord du client sur l'anonymisation retenue. Le quota de cas publiés reste volontairement limité pour privilégier la qualité de la démonstration." },
         ]} />
-        <p className="text-[0.82rem] text-muted mt-6 max-w-3xl border-t border-line pt-4">
+        <p className="t-mini text-muted mt-6 max-w-3xl border-t border-line pt-4">
           <strong className="text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
           les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et,
           lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et

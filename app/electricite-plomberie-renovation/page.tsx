@@ -90,8 +90,8 @@ export default function Page() {
         lead={LEAD}
       />
 
-      <nav aria-label="Fil d'Ariane" className="container-site max-w-4xl mx-auto -mt-6 mb-8">
-        <ol className="flex flex-wrap items-center gap-2 font-mono text-[0.68rem] tracking-[0.12em] uppercase text-muted">
+      <nav aria-label="Fil d'Ariane" className="rf-wrap mq-mesure--large -mt-6 mb-8">
+        <ol className="flex flex-wrap items-center gap-2 mq-mention">
           <li><Link href="/" className="hover:text-orange transition-colors">Accueil</Link></li>
           <li aria-hidden>›</li>
           <li><Link href="/services" className="hover:text-orange transition-colors">{EYEBROW}</Link></li>
@@ -105,7 +105,7 @@ export default function Page() {
           pour objet d'expliquer. C'est un DESSIN, pas une photographie : légende et prop
           `entier` le disent, et elle vit dans /photos/pedagogie/. */}
       <section className="relative pb-10">
-        <div className="container-site max-w-3xl mx-auto">
+        <div className="rf-wrap mq-mesure">
           <MqFig
             src="/photos/pedagogie/illustration-reseaux-encastres.jpg"
             alt="Écorché d'un mur et d'un sol montrant les réseaux avant fermeture : gaines annelées dans les saignées, boîtes d'encastrement, alimentations d'eau chaude et froide, évacuation posée en pente sous la chape"
@@ -117,7 +117,7 @@ export default function Page() {
       </section>
 
       <section className="relative pb-10">
-        <div className="container-site max-w-md mx-auto">
+        <div className="rf-wrap mq-mesure--etroite">
           <MqFig
             src="/photos/chantiers/chPlacardTableauElectriqueIntegre.jpeg"
             alt="Placard d'entrée en MDF brut, portes ouvertes : une colonne abrite un compteur ancien et deux tableaux de protection, l'autre reçoit des étagères"
@@ -128,9 +128,9 @@ export default function Page() {
       </section>
 
       <section className="relative pb-16 md:pb-24">
-        <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-12 text-ivoire/85 text-[1.02rem] leading-relaxed">
+        <div className="rf-wrap mq-mesure flex flex-col gap-12 text-ivoire/85 t-base leading-relaxed">
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">Diagnostic initial</h2>
+            <h2 className="display t-titre text-ivoire normal-case">Diagnostic initial</h2>
             <p>
               Tableau, circuits, mise à la terre, distribution d&apos;eau, évacuations, pression et
               production d&apos;eau chaude — l&apos;état réel avant toute décision.
@@ -146,7 +146,7 @@ export default function Page() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">Plans de réseaux</h2>
+            <h2 className="display t-titre text-ivoire normal-case">Plans de réseaux</h2>
             <p>
               Les plans évitent les décisions improvisées sur chantier, où une erreur coûte cher à
               corriger une fois les murs fermés.
@@ -169,7 +169,7 @@ export default function Page() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">Photos avant fermeture</h2>
+            <h2 className="display t-titre text-ivoire normal-case">Photos avant fermeture</h2>
             <p>
               Une bibliothèque de photos datées, prise avant chaque fermeture de cloison, facilite
               toute intervention future — sur ce chantier comme sur les suivants.
@@ -199,11 +199,11 @@ export default function Page() {
       </section>
 
       <section className="relative py-16 md:py-24">
-        <div className="container-site max-w-3xl mx-auto flex flex-col gap-4">
+        <div className="rf-wrap mq-mesure flex flex-col gap-4">
           {FAQ_COMMUNE.map((f) => (
             <div key={f.q} className="card-e rounded-none p-6">
-              <h3 className="display text-[1.05rem] text-ivoire normal-case mb-1.5">{f.q}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{f.r}</p>
+              <h3 className="display t-base text-ivoire normal-case mb-1.5">{f.q}</h3>
+              <p className="text-muted t-sec leading-relaxed">{f.r}</p>
             </div>
           ))}
         </div>

@@ -44,7 +44,7 @@ export default function ReseauPartenairesPage() {
         lead="ARCHI PILOTE RÉNOVATION mobilise un réseau d'entreprises partenaires contractantes sélectionnées sur des critères précis, ainsi que des architectes DPLG et ingénieurs structure partenaires indépendants pour les dossiers lourds. Les entreprises exécutent et facturent les travaux ; la marque structure et pilote le projet de A à Z."
       />
 
-      <div className="container-site max-w-4xl pb-12 md:pb-16">
+      <div className="rf-wrap mq-mesure--large pb-12 md:pb-16 mq-planche-ouverture">
         <MqFig entier
           src="/photos/pedagogie/29-reseau-partenaires-organigramme.jpeg"
           alt="Organigramme : Client relié à ARCHI PILOTE RÉNOVATION (pilotage), puis Entreprises partenaires, Architecte DPLG et Ingénieur structure"
@@ -113,14 +113,14 @@ export default function ReseauPartenairesPage() {
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Minh-Hoa Truong — architecte partenaire</h3>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Minh-Hoa Truong — architecte partenaire</h3>
+              <p className="t-sec text-ivoire/85 leading-relaxed">
                 {"Collaboration régulière sur les projets de redistribution, d'extension et de rénovation patrimoniale : conception, plans d'exécution et dossiers d'autorisation d'urbanisme déposés en mairie."}
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Igli Braho — ingénieur structure, bureau Tridenso</h3>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Igli Braho — ingénieur structure, bureau Tridenso</h3>
+              <p className="t-sec text-ivoire/85 leading-relaxed">
                 {"Collaboration régulière sur les dossiers structurels : notes de calcul d'ouverture de mur porteur, renforcement de plancher, création de trémie et reprise en sous-œuvre, validées avant exécution."}
               </p>
             </div>
@@ -141,20 +141,20 @@ export default function ReseauPartenairesPage() {
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Geo2Mo — bureau d&apos;études de sols et fondations</h3>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Geo2Mo — bureau d&apos;études de sols et fondations</h3>
+              <p className="t-sec text-ivoire/85 leading-relaxed">
                 {"Partenaire mobilisé sur les projets où la stabilité des fondations ou la nature des sols conditionne la faisabilité technique. L'étude géotechnique apporte les données nécessaires au dimensionnement des reprises en sous-œuvre, des extensions et des surélévations."}
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Sérieux et réactivité</h3>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Sérieux et réactivité</h3>
+              <p className="t-sec text-ivoire/85 leading-relaxed">
                 {"Geo2Mo fait preuve d'un grand sérieux dans la préparation des dossiers, d'une forte réactivité et d'une capacité à mobiliser rapidement les bons partenaires pour respecter les échéances des études."}
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Échanges réguliers et décisions techniques</h3>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Échanges réguliers et décisions techniques</h3>
+              <p className="t-sec text-ivoire/85 leading-relaxed">
                 {"Les équipes d'ARCHI PILOTE RÉNOVATION et de Geo2Mo maintiennent des échanges réguliers tout au long de l'étude pour valider ensemble les hypothèses de calcul et les décisions techniques complexes."}
               </p>
             </div>
@@ -175,20 +175,20 @@ export default function ReseauPartenairesPage() {
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Architecte partenaire</h3>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Architecte partenaire</h3>
+              <p className="t-sec text-ivoire/85 leading-relaxed">
                 {"Intervient sur les projets d'extension, de surélévation ou de modification de structure, en particulier lorsqu'une autorisation d'urbanisme l'impose."}
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Ingénieur structure</h3>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Ingénieur structure</h3>
+              <p className="t-sec text-ivoire/85 leading-relaxed">
                 {"Réalise les notes de calcul et valide les modifications touchant murs porteurs, planchers ou fondations avant exécution."}
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Entreprises par lot</h3>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Entreprises par lot</h3>
+              <p className="t-sec text-ivoire/85 leading-relaxed">
                 {"Exécutent les travaux (gros œuvre, second œuvre, énergie) et facturent directement le client selon leur devis."}
               </p>
             </div>
@@ -205,8 +205,8 @@ export default function ReseauPartenairesPage() {
       </MqSection>
 
       <section className="py-10 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="text-muted t-petit leading-relaxed max-w-2xl">
             {"Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées."}
           </p>
         </div>

@@ -32,7 +32,7 @@ export default function ContactPage() {
         échantillons."
         Une fois générée : <MqFig src="/photos/pedagogie/etude-projet-plans-echantillons.jpg"
         alt="Préparation d'une étude de projet de rénovation avec plans et échantillons"
-        ratio="aspect-[3/4]" /> dans un <div className="max-w-md mx-auto my-4">.
+        ratio="aspect-[3/4]" /> dans un <div className="max-w-md my-4">.
       */}
 
       <MqSection kicker="Ce qu'il faut préparer" title="Quatre informations suffisent pour démarrer">
@@ -48,17 +48,17 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-[7fr_4fr] gap-8 items-start">
           <ContactForm />
           <div className="flex flex-col gap-4">
-            <div className="border border-line bg-surface rounded-[2px] p-6">
+            <div className="border border-line bg-surface rounded-none p-6">
               <p className="eyebrow">Par téléphone</p>
-              <a href={`tel:${SITE.tel.replace(/\s/g, "")}`} className="display text-[1.35rem] text-ivoire hover:text-orange-deep transition-colors block mt-1">{SITE.telAffiche}</a>
-              <p className="text-muted text-[0.85rem] mt-1">Du lundi au vendredi, 8h30 – 19h</p>
+              <a href={`tel:${SITE.tel.replace(/\s/g, "")}`} className="display t-fort text-ivoire hover:text-orange-deep transition-colors block mt-1">{SITE.telAffiche}</a>
+              <p className="text-muted t-petit mt-1">Du lundi au vendredi, 8h30 – 19h</p>
             </div>
-            <a href={SITE.whatsapp} target="_blank" rel="noreferrer" className="border border-line bg-surface rounded-[2px] p-6 block group">
+            <a href={SITE.whatsapp} target="_blank" rel="noreferrer" className="border border-line bg-surface rounded-none p-6 block group">
               <p className="eyebrow">Le plus rapide</p>
-              <span className="display text-[1.2rem] text-ivoire group-hover:text-orange-deep transition-colors block mt-1">Écrire sur WhatsApp</span>
-              <p className="text-muted text-[0.85rem] mt-1">Photos du projet, réponse rapide</p>
+              <span className="display t-haut text-ivoire group-hover:text-orange-deep transition-colors block mt-1">Écrire sur WhatsApp</span>
+              <p className="text-muted t-petit mt-1">Photos du projet, réponse rapide</p>
             </a>
-            <div className="border border-line bg-surface rounded-[2px] p-6">
+            <div className="border border-line bg-surface rounded-none p-6">
               <p className="eyebrow">Siège</p>
               {/* 05/09 : « IA RENOV SASU » retiré de ce bloc. La règle du projet, écrite dans
                   app/layout.tsx, réserve la dénomination sociale aux mentions légales et à
@@ -66,7 +66,7 @@ export default function ContactPage() {
                   adresse, pas une raison sociale ; et faire apparaître la structure à côté
                   de la marque brouille précisément la séparation que le reste du site
                   s'attache à tenir. L'adresse, elle, est conservée telle quelle. */}
-              <p className="text-ivoire/85 text-[0.9rem] mt-1 leading-relaxed">8 bis rue Gabriel Péri<br />92250 La Garenne-Colombes</p>
+              <p className="text-ivoire/85 t-petit mt-1 leading-relaxed">8 bis rue Gabriel Péri<br />92250 La Garenne-Colombes</p>
             </div>
           </div>
         </div>
@@ -87,7 +87,7 @@ export default function ContactPage() {
           "Aucune donnée transmise sans votre accord",
           "Un interlocuteur identifié pour le suivi du dossier",
         ]} />
-        <p className="text-[0.82rem] text-muted mt-8 max-w-3xl border-t border-line pt-4">
+        <p className="t-mini text-muted mt-8 max-w-3xl border-t border-line pt-4">
           <strong className="text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
           les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et,
           lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et

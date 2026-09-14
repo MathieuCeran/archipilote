@@ -77,9 +77,9 @@ export function ContactForm() {
 
   if (done) {
     return (
-      <div className="border border-line bg-surface rounded-[2px] p-8 text-center flex flex-col items-center gap-3">
-        <h3 className="display text-[1.5rem] text-ivoire">Demande envoyée</h3>
-        <p className="text-muted text-[0.95rem] max-w-md">
+      <div className="border border-line bg-surface rounded-none p-8 text-center flex flex-col items-center gap-3">
+        <h3 className="display t-titre text-ivoire">Demande envoyée</h3>
+        <p className="text-muted t-sec max-w-md">
           {form.nom.split(" ")[0] || "Merci"}, votre demande d&apos;étude sans engagement est bien transmise. Retour sous
           48&nbsp;heures ouvrées avec une première lecture de votre projet à {form.commune || "votre commune"}.
         </p>
@@ -87,10 +87,10 @@ export function ContactForm() {
     );
   }
 
-  const labelCls = "flex flex-col gap-1.5 text-[0.85rem] font-semibold text-ivoire";
+  const labelCls = "flex flex-col gap-1.5 t-petit font-semibold text-ivoire";
 
   return (
-    <form onSubmit={submit} className="border border-line bg-surface rounded-[2px] p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
+    <form onSubmit={submit} className="border border-line bg-surface rounded-none p-6 md:p-8 grid grid-cols-1 sm:grid-cols-2 gap-5">
       <label className={labelCls}>Nom et prénom *
         <input required className="field" value={form.nom} onChange={set("nom")} autoComplete="name" />
       </label>
@@ -141,30 +141,30 @@ export function ContactForm() {
         </label>
       </div>
 
-      {error && <p className="sm:col-span-2 text-[0.9rem] leading-relaxed" style={{ color: "var(--c-orange-deep)" }}>{error}</p>}
+      {error && <p className="sm:col-span-2 t-petit leading-relaxed" style={{ color: "var(--c-orange-deep)" }}>{error}</p>}
 
       {secours && (
-        <div className="sm:col-span-2 border border-line bg-surface rounded-[2px] p-5 flex flex-col gap-3">
-          <p className="text-[0.9rem] text-ivoire font-semibold">Envoyer votre demande autrement</p>
-          <p className="text-muted text-[0.88rem] leading-relaxed">
+        <div className="sm:col-span-2 border border-line bg-surface rounded-none p-5 flex flex-col gap-3">
+          <p className="t-petit text-ivoire font-semibold">Envoyer votre demande autrement</p>
+          <p className="text-muted t-petit leading-relaxed">
             Votre message est déjà rédigé avec les informations saisies. Choisissez le moyen qui vous arrange.
           </p>
           <div className="flex flex-wrap gap-2.5">
             <a
-              className="btn btn-primary !py-2.5 !px-5 text-sm"
+              className="btn btn-primary !py-2.5 !px-5 t-petit"
               href={`mailto:${SITE.email}?subject=${encodeURIComponent(`Demande d'étude — ${form.projet || "projet"} à ${form.commune || ""}`)}&body=${encodeURIComponent(recapitulatif(form))}`}
             >
               Envoyer par e-mail
             </a>
             <a
-              className="btn btn-ghost !py-2.5 !px-5 text-sm"
+              className="btn btn-ghost !py-2.5 !px-5 t-petit"
               href={`${SITE.whatsapp}?text=${encodeURIComponent(recapitulatif(form))}`}
               target="_blank"
               rel="noopener noreferrer"
             >
               Envoyer sur WhatsApp
             </a>
-            <a className="btn btn-ghost !py-2.5 !px-5 text-sm" href={`tel:${SITE.tel.replace(/\s/g, "")}`}>
+            <a className="btn btn-ghost !py-2.5 !px-5 t-petit" href={`tel:${SITE.tel.replace(/\s/g, "")}`}>
               Appeler le {SITE.telAffiche}
             </a>
           </div>
@@ -174,7 +174,7 @@ export function ContactForm() {
         <button type="submit" disabled={sending} className={`btn btn-primary w-full sm:w-auto !whitespace-normal text-center leading-snug ${sending ? "opacity-50 pointer-events-none" : ""}`}>
           {sending ? "Envoi en cours…" : "Envoyer ma demande d'étude sans engagement"}
         </button>
-        <p className="text-muted text-[0.8rem]">
+        <p className="text-muted t-mini">
           Vos coordonnées servent uniquement à vous répondre au sujet de ce projet et ne sont transmises à des tiers
           qu&apos;en cas de mise en relation avec une entreprise partenaire pour l&apos;exécution des travaux. Vous
           disposez d&apos;un droit d&apos;accès, de rectification et de suppression : voir notre{" "}

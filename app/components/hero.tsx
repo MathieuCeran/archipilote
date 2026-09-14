@@ -48,8 +48,8 @@ export function Hero() {
       <motion.div className="absolute inset-0 overflow-hidden" style={{ y }}>
         <HeroBackdrop />
       </motion.div>
-      <div className="absolute inset-0 bg-[#20211d]/45" />
-      <div className="absolute inset-0 bg-gradient-to-b from-[#20211d]/60 via-transparent to-[#20211d]" />
+      <div className="absolute inset-0 bg-[#14181a]/45" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#14181a]/60 via-transparent to-[#14181a]" />
 
       <motion.div style={{ opacity: contentOpacity, y: contentY }} className="relative z-10 flex-1 flex items-center justify-center pt-16 pb-10 sm:pt-20 sm:pb-16">
         <div className="container-site flex flex-col items-center text-center gap-4 sm:gap-7">
@@ -63,7 +63,7 @@ export function Hero() {
               <span className="absolute inline-flex size-full rounded-full bg-orange opacity-70 animate-ping" />
               <span className="relative inline-flex size-2 rounded-full bg-orange" />
             </span>
-            <span className="text-[0.78rem] sm:text-[0.82rem] text-white/85">Travaux de rénovation tous corps d&apos;état — Île-de-France</span>
+            <span className="t-micro sm:t-mini text-white/85">Travaux de rénovation tous corps d&apos;état — Île-de-France</span>
           </motion.div>
 
           <WordReveal
@@ -82,7 +82,7 @@ export function Hero() {
             initial={{ opacity: 0, filter: "blur(10px)" }}
             animate={{ opacity: 1, filter: "blur(0px)" }}
             transition={{ duration: 1, delay: 0.85, ease: EASE }}
-            className="max-w-xl text-base sm:text-lg md:text-xl leading-snug text-white/75 text-balance"
+            className="max-w-xl t-base sm:t-haut md:t-haut leading-snug text-white/75 text-balance"
           >
             Second œuvre tous corps d&apos;état, cuisine sur-mesure, salle de bain étanche, isolation.{" "}
             <strong className="text-white font-semibold">Un seul interlocuteur</strong>, devis des entreprises sous 48&nbsp;heures ouvrées.
@@ -104,7 +104,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.5 }}
-            className="hidden sm:flex flex-wrap justify-center items-center gap-x-6 gap-y-2 mt-1 font-mono text-[0.68rem] tracking-[0.18em] uppercase text-white/45"
+            className="hidden sm:flex flex-wrap justify-center items-center gap-x-6 gap-y-2 mt-1 mq-mention mq-mention--clair"
           >
             <span>Entreprises partenaires assurées</span>
             <span className="size-1 rounded-full bg-orange/60" />
@@ -116,7 +116,7 @@ export function Hero() {
       </motion.div>
 
       <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6, duration: 1 }} className="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2">
-        <span className="font-mono text-[0.6rem] tracking-[0.3em] uppercase text-white/40">Découvrir</span>
+        <span className="mq-mention mq-mention--clair">Découvrir</span>
         <motion.span animate={{ y: [0, 6, 0] }} transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }} className="block h-8 w-px bg-gradient-to-b from-orange to-transparent" />
       </motion.div>
     </section>

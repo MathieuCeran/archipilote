@@ -128,17 +128,17 @@ export type Maillage = {
 export function MaillageInterne({ intro, titre, groupes }: Maillage) {
   return (
     <section className="relative pb-20 md:pb-28">
-      <div className="container-site max-w-3xl mx-auto border-t border-line pt-10 flex flex-col gap-8">
+      <div className="rf-wrap mq-mesure border-t border-line pt-10 flex flex-col gap-8">
         <div className="flex flex-col gap-2">
-          <h2 className="display text-2xl text-ivoire normal-case">{titre ?? "Poursuivre la lecture"}</h2>
-          <p className="text-muted text-[0.92rem] leading-relaxed">{intro}</p>
+          <h2 className="display t-titre text-ivoire normal-case">{titre ?? "Poursuivre la lecture"}</h2>
+          <p className="text-muted t-sec leading-relaxed">{intro}</p>
         </div>
         {groupes.map((g) => (
           <div key={g.titre} className="flex flex-col gap-3">
-            <h3 className="font-mono text-[0.68rem] tracking-[0.14em] uppercase text-muted">{g.titre}</h3>
+            <h3 className="mq-mention">{g.titre}</h3>
             <div className="flex flex-wrap gap-2.5">
               {g.liens.map((l) => (
-                <Link key={l.href} href={l.href} className="btn btn-ghost !py-2.5 !px-5 text-sm">
+                <Link key={l.href} href={l.href} className="btn btn-ghost !py-2.5 !px-5 t-petit">
                   {l.label}
                 </Link>
               ))}
@@ -194,12 +194,12 @@ export function LocalPage({
       <PageHeader eyebrow={eyebrow} segments={segments} lead={lead} />
 
       <section className="relative pb-10 md:pb-16">
-        <div className="container-site max-w-[42rem] mx-auto">
-          <p className="text-ivoire/85 text-[1.02rem] leading-relaxed">{intro}</p>
+        <div className="rf-wrap mq-mesure">
+          <p className="text-ivoire/85 t-base leading-relaxed">{intro}</p>
           {visuel ? (
             <div className="mt-8">
               <MqFig src={visuel.src} alt={visuel.alt} caption={visuel.caption} ratio={visuel.ratio ?? "aspect-[4/3]"} />
-              <p className="text-muted text-[0.8rem] leading-relaxed mt-2">
+              <p className="text-muted t-mini leading-relaxed mt-2">
                 Chantier accompagné par ARCHI PILOTE RÉNOVATION en Île-de-France. Cette photographie illustre le type
                 d&apos;ouvrage traité&nbsp;; elle n&apos;a pas été prise dans cette commune.
               </p>
@@ -209,11 +209,11 @@ export function LocalPage({
       </section>
 
       <section className="relative pb-16 md:pb-20">
-        <div className="container-site max-w-[42rem] mx-auto">
-          <h2 className="display text-2xl text-ivoire normal-case mb-4">{bulletsTitle}</h2>
+        <div className="rf-wrap mq-mesure">
+          <h2 className="display t-titre text-ivoire normal-case mb-4">{bulletsTitle}</h2>
           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {bullets.map((b) => (
-              <li key={b} className="flex items-start gap-2.5 text-ivoire/85 text-[0.95rem]">
+              <li key={b} className="flex items-start gap-2.5 text-ivoire/85 t-sec">
                 <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="var(--c-orange)" strokeWidth="2.6" strokeLinecap="round" strokeLinejoin="round" className="mt-1 shrink-0"><path d="M20 6 9 17l-5-5" /></svg>
                 {b}
               </li>
@@ -225,10 +225,10 @@ export function LocalPage({
       {variant === "ville" ? (
         <>
           <section className="relative pb-16 md:pb-20">
-            <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-6">
+            <div className="rf-wrap mq-mesure flex flex-col gap-6">
               <div className="flex flex-col gap-2">
-                <h2 className="display text-2xl text-ivoire normal-case">Notre méthode locale</h2>
-                <p className="text-ivoire/85 text-[1rem] leading-relaxed">
+                <h2 className="display t-titre text-ivoire normal-case">Notre méthode locale</h2>
+                <p className="text-ivoire/85 t-sec leading-relaxed">
                   Une page locale ne doit pas donner l&apos;illusion qu&apos;une commune change les règles techniques d&apos;un
                   chantier. À {ville}, notre méthode reste la même : comprendre le bien, vérifier les contraintes, définir
                   les études nécessaires, rendre le budget lisible, consulter les entreprises et documenter les jalons.
@@ -237,8 +237,8 @@ export function LocalPage({
                 </p>
               </div>
               <div className="card-e rounded-none p-6">
-                <h3 className="display text-[1.05rem] text-ivoire normal-case mb-1.5">Preuve locale à ajouter dès qu&apos;elle existe</h3>
-                <p className="text-muted text-[0.9rem] leading-relaxed">
+                <h3 className="display t-base text-ivoire normal-case mb-1.5">Preuve locale à ajouter dès qu&apos;elle existe</h3>
+                <p className="text-muted t-petit leading-relaxed">
                   Dès le premier projet documenté à {ville} ou à proximité immédiate, un bloc « Projet dans le secteur »
                   sera ajouté ici : type de bien, surface approximative, objectif, principale contrainte, décision
                   structurante et lien vers l&apos;étude de cas complète.
@@ -247,11 +247,11 @@ export function LocalPage({
             </div>
           </section>
           <section className="relative pb-20 md:pb-28">
-            <div className="container-site max-w-3xl mx-auto flex flex-col gap-4">
+            <div className="rf-wrap mq-mesure flex flex-col gap-4">
               {faq.map((f) => (
                 <div key={f.q} className="card-e rounded-none p-6">
-                  <h3 className="display text-[1.05rem] text-ivoire normal-case mb-1.5">{f.q}</h3>
-                  <p className="text-muted text-[0.92rem] leading-relaxed">{f.r}</p>
+                  <h3 className="display t-base text-ivoire normal-case mb-1.5">{f.q}</h3>
+                  <p className="text-muted t-sec leading-relaxed">{f.r}</p>
                 </div>
               ))}
             </div>
@@ -259,10 +259,10 @@ export function LocalPage({
         </>
       ) : (
         <section className="relative pb-20 md:pb-28">
-          <div className="container-site max-w-[42rem] mx-auto">
+          <div className="rf-wrap mq-mesure">
             <div className="card-e rounded-none p-6">
-              <h3 className="display text-[1.05rem] text-ivoire normal-case mb-1.5">Comment une future page ville sera autorisée</h3>
-              <p className="text-muted text-[0.9rem] leading-relaxed">{GATING_NOTE}</p>
+              <h3 className="display t-base text-ivoire normal-case mb-1.5">Comment une future page ville sera autorisée</h3>
+              <p className="text-muted t-petit leading-relaxed">{GATING_NOTE}</p>
             </div>
           </div>
         </section>

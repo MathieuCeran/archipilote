@@ -17,9 +17,9 @@ export default function PolitiqueConfidentialitePage() {
         segments={[{ text: "Politique de" }, { text: "confidentialité.", serif: true, gradient: true }]}
       />
       <section className="relative pb-24 md:pb-36">
-        <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-10 text-ivoire/85 text-[0.98rem] leading-relaxed">
+        <div className="rf-wrap mq-mesure flex flex-col gap-10 text-ivoire/85 t-sec leading-relaxed">
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Responsable du traitement</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Responsable du traitement</h2>
             <p>{SITE.structure}</p>
             <p>
               Contact pour toute question relative à vos données personnelles :{" "}
@@ -28,7 +28,7 @@ export default function PolitiqueConfidentialitePage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Données collectées</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Données collectées</h2>
             <p>
               Le formulaire de contact de ce site collecte : nom et prénom, coordonnées (téléphone, courriel
               facultatif), commune du bien, type de projet, surface, budget envisagé, horizon du projet et
@@ -45,7 +45,7 @@ export default function PolitiqueConfidentialitePage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Finalité et base légale</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Finalité et base légale</h2>
             <p>
               Les données transmises via les formulaires sont utilisées exclusivement pour traiter votre demande
               d&apos;étude de projet de rénovation : vous recontacter, qualifier le projet et, le cas échéant,
@@ -55,7 +55,7 @@ export default function PolitiqueConfidentialitePage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Destinataires</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Destinataires</h2>
             <p>
               Vos données sont destinées à IA RENOV (SASU) et, lorsque votre projet est confié à une entreprise
               partenaire contractante pour l&apos;exécution des travaux, aux seules coordonnées nécessaires à la mise
@@ -91,7 +91,7 @@ export default function PolitiqueConfidentialitePage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Durée de conservation</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Durée de conservation</h2>
             <p>
               Les données d&apos;une demande de contact sont conservées le temps nécessaire au traitement du projet,
               puis jusqu&apos;à trois ans à compter du dernier échange si le projet ne se concrétise pas, conformément
@@ -102,7 +102,7 @@ export default function PolitiqueConfidentialitePage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Vos droits</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Vos droits</h2>
             <p>
               Conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et
               Libertés, vous disposez d&apos;un droit d&apos;accès, de rectification, d&apos;effacement, de limitation et
@@ -121,7 +121,7 @@ export default function PolitiqueConfidentialitePage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Mise à jour</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Mise à jour</h2>
             <p>
               Cette politique peut être adaptée pour refléter une évolution du site ou de la réglementation. La
               version en ligne fait foi. Pour toute question, voir aussi les{" "}

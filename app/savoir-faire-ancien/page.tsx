@@ -117,7 +117,6 @@ const DEROULE = [
   },
 ];
 
-
 const FAQ = [
   {
     q: "Peut-on remplacer des fenêtres anciennes sans perdre le cachet du logement ?",
@@ -164,22 +163,6 @@ export default function SavoirFaireAncienPage() {
         }
       />
 
-      <div className="container-site max-w-4xl pb-12 md:pb-16">
-        {/*
-          Légende corrigée le 03/09/2026 après ouverture de l'image. Elle affirmait une fenêtre
-          « restaurée à l'identique » et un « double vitrage discret » : ni la restauration ni
-          l'épaisseur du vitrage ne se voient sur ce visuel, qui est de surcroît une image générée
-          de /photos/pedagogie/ (donc jamais la preuve d'un ouvrage exécuté). La légende ne décrit
-          plus que ce qui est effectivement visible.
-        */}
-        <MqFig entier
-          src="/photos/pedagogie/41-savoir-faire-fenetre-hero.jpeg"
-          alt="Fenêtre ancienne à petits bois vue de l'intérieur, crémone en laiton, ouvrant sur une façade parisienne en pierre de taille"
-          caption="Fenêtre à petits bois et crémone en laiton, vue depuis l'intérieur, face à une façade en pierre de taille. Image d'illustration."
-          ratio="aspect-[3/2]"
-        />
-      </div>
-
       <MqSection
         kicker="Ce que nous préservons"
         title="Les ouvrages qui font le cachet d'un logement ancien"
@@ -189,8 +172,8 @@ export default function SavoirFaireAncienPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
             {OUVRAGES.map((o) => (
               <div key={o.title} className="flex flex-col gap-2">
-                <h3 className="display text-[1.15rem] text-ivoire">{o.title}</h3>
-                <p className="text-muted text-[0.92rem] leading-relaxed">{o.text}</p>
+                <h3 className="display t-haut text-ivoire">{o.title}</h3>
+                <p className="text-muted t-sec leading-relaxed">{o.text}</p>
               </div>
             ))}
           </div>
@@ -400,7 +383,7 @@ export default function SavoirFaireAncienPage() {
             ratio="aspect-[3/2]"
           />
           <MqProse>
-            <h3 className="display text-[1.3rem] text-ivoire">Le relevé précède toujours la dépose</h3>
+            <h3 className="display t-fort text-ivoire">Le relevé précède toujours la dépose</h3>
             <p>Chaque châssis est mesuré et photographié avant démontage, quincaillerie comprise.</p>
             <p>
               Sont relevés : la section des montants et traverses, le dessin et l'épaisseur des petits bois, la profondeur de feuillure, la
@@ -410,13 +393,13 @@ export default function SavoirFaireAncienPage() {
               Sans ce relevé, la menuiserie neuve arrive avec des montants plus larges : la surface vitrée diminue, les proportions se
               déséquilibrent et le cachet disparaît, même avec un matériau noble.
             </p>
-            <h3 className="display text-[1.3rem] text-ivoire mt-4">Crémones et espagnolettes : réemploi avant remplacement</h3>
+            <h3 className="display t-fort text-ivoire mt-4">Crémones et espagnolettes : réemploi avant remplacement</h3>
             <p>La quincaillerie ancienne est remise en service chaque fois qu'elle est récupérable.</p>
             <p>
               Les crémones en laiton sont déposées, décapées, lubrifiées et reposées sur le châssis neuf après adaptation des gâches. Une
               pièce manquante est refaite sur modèle plutôt que remplacée par une poignée courante.
             </p>
-            <h3 className="display text-[1.3rem] text-ivoire mt-4">Performance sans dénaturation</h3>
+            <h3 className="display t-fort text-ivoire mt-4">Performance sans dénaturation</h3>
             <p>Double vitrage feuilleté, joints d'étanchéité et calfeutrement se logent dans un profil traditionnel.</p>
             <p>
               Le gain acoustique est souvent le premier bénéfice ressenti en front de rue. Le gain thermique n'a de sens que combiné à la
@@ -643,8 +626,8 @@ export default function SavoirFaireAncienPage() {
       </MqSection>
 
       <section className="py-8 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
             <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
             les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque
             nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises

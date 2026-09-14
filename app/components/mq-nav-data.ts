@@ -7,7 +7,7 @@ export const NAV_GROUPS = [
       { href: "/notre-methode", label: "Notre méthode" },
       { href: "/parcours-expertise", label: "Parcours & expertise" },
       { href: "/chantiers-complexes", label: "Chantiers complexes" },
-      { href: "/savoir-faire-ancien", label: "Charme de l'ancien" },
+      { href: "/savoir-faire-ancien", label: "Charme de l’ancien" },
       { href: "/tendances-materiaux-francais", label: "Tendances & matières" },
       { href: "/tendances-2026-2027", label: "Tendances 2026-2027" },
       { href: "/charte-qualite", label: "Charte qualité" },
@@ -17,7 +17,7 @@ export const NAV_GROUPS = [
     label: "Travaux",
     links: [
       { href: "/renovation-complete", label: "Rénovation complète" },
-      { href: "/renovation-appartement", label: "Rénovation d'appartement" },
+      { href: "/renovation-appartement", label: "Rénovation d’appartement" },
       { href: "/renovation-maison-pavillon", label: "Rénovation de maison" },
       { href: "/gros-oeuvre-structure", label: "Gros œuvre & structure" },
       { href: "/second-oeuvre", label: "Second œuvre technique" },

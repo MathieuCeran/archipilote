@@ -45,15 +45,6 @@ export default function ParcoursExpertisePage() {
         lead="Avant de structurer des projets pour particuliers et professionnels, cette méthode s'est construite au contact de foncières, de marchands de biens et d'agences immobilières, sur des dossiers où un mauvais chiffrage pouvait bloquer une décision d'acquisition. Le point commun : lire les devis, identifier les écarts, comprendre les postes réellement nécessaires et remettre les coûts dans un ordre cohérent avant toute négociation."
       />
 
-      <div className="container-site max-w-4xl pb-12 md:pb-16">
-        <MqFig entier
-          src="/photos/pedagogie/39-parcours-expertise-hero.jpeg"
-          alt="Ancien expert en chiffrage examinant un devis de rénovation ligne à ligne, plans d'appartement dépliés à côté"
-          caption="Lecture ligne à ligne d'un devis de rénovation : quantités, unités, hypothèses, exclusions. Document fictif et anonymisé."
-          ratio="aspect-[3/2]"
-        />
-      </div>
-
       <MqSection
         kicker="Un parcours d'ancien expert en chiffrage"
         title="Décortiquer avant de négocier"
@@ -61,7 +52,7 @@ export default function ParcoursExpertisePage() {
       >
         <div className="flex flex-col gap-8">
           <MqProse>
-            <h3 className="display text-[1.3rem] text-ivoire">Le secteur des foncières comme école de rigueur</h3>
+            <h3 className="display t-fort text-ivoire">Le secteur des foncières comme école de rigueur</h3>
             <p>Un chiffrage d'acquisition ou de cession ne tolère pas l'approximation : chaque poste engage une décision d'investissement.</p>
             <p>
               Dans une foncière, un chiffrage erroné se répercute directement sur la rentabilité d'un actif. Cette contrainte impose une
@@ -80,7 +71,7 @@ export default function ParcoursExpertisePage() {
             ratio="aspect-[3/2]"
           />
           <MqProse>
-            <h3 className="display text-[1.3rem] text-ivoire">Transformer cette méthode pour les particuliers</h3>
+            <h3 className="display t-fort text-ivoire">Transformer cette méthode pour les particuliers</h3>
             <p>Un particulier n'a pas besoin d'un discours de professionnel : il a besoin d'un projet lisible.</p>
             <p>
               Notre rôle consiste à traduire les enjeux techniques en décisions concrètes : conserver, remplacer, déplacer, renforcer,
@@ -137,29 +128,29 @@ export default function ParcoursExpertisePage() {
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Architectes DPLG partenaires</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Architectes DPLG partenaires</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Mobilisés pour les dossiers lourds : dépôt de permis, extension, surélévation ou exigences architecturales spécifiques, sous
               leur propre responsabilité professionnelle.
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Ingénieurs structure partenaires</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Ingénieurs structure partenaires</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Calcul de descente de charges, note de calcul pour ouverture de mur porteur ou reprise en sous-œuvre, indépendants et engagés
               sur leur mission.
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Géotechnicien partenaire — Geo2Mo</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Géotechnicien partenaire — Geo2Mo</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Études de sols et diagnostics de fondation indispensables aux reprises structurelles, extensions et surélévations. Sérieux,
               réactivité et échanges réguliers pour valider les hypothèses techniques.
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Entreprises partenaires contractantes</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Entreprises partenaires contractantes</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Sélectionnées selon leurs assurances, leurs références et leur adéquation au projet ; elles exécutent et facturent les travaux
               qui leur sont confiés.
             </p>
@@ -173,8 +164,8 @@ export default function ParcoursExpertisePage() {
         lead="La confiance ne doit pas reposer sur des slogans mais sur des critères vérifiables. Voici ceux que nous appliquons à notre propre organisation et que nous recommandons d'exiger de tout interlocuteur de chantier."
       >
         <div className="flex flex-col gap-8">
-          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8 border border-line bg-surface rounded-[2px] p-6 sm:p-8">
-            <div className="shrink-0 w-40 sm:w-48 aspect-[3/4] border border-orange-deep/30 rounded-[2px] overflow-hidden">
+          <div className="flex flex-col sm:flex-row items-center sm:items-start gap-8 border border-line bg-surface rounded-none p-6 sm:p-8">
+            <div className="shrink-0 w-40 sm:w-48 aspect-[3/4] border border-orange-deep/30 rounded-none overflow-hidden">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/photos/equipe/ilann-atlan.jpg"
@@ -183,9 +174,9 @@ export default function ParcoursExpertisePage() {
               />
             </div>
             <div className="text-center sm:text-left">
-              <p className="text-[0.75rem] uppercase tracking-wide text-muted mb-1">Votre interlocuteur</p>
-              <h3 className="display text-[1.5rem] text-ivoire">Ilann Atlan</h3>
-              <p className="mt-3 text-muted text-[0.95rem] leading-relaxed max-w-xl">
+              <p className="mb-1 mq-mention">Votre interlocuteur</p>
+              <h3 className="display t-titre text-ivoire">Ilann Atlan</h3>
+              <p className="mt-3 text-muted t-sec leading-relaxed max-w-xl">
                 C&apos;est lui qui pilote votre dossier, du premier rendez-vous à la réception des travaux : un interlocuteur identifié et
                 joignable, qui porte personnellement le suivi de votre projet plutôt qu&apos;une adresse générique.
               </p>
@@ -209,8 +200,8 @@ export default function ParcoursExpertisePage() {
       </MqSection>
 
       <section className="py-8 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
             <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
             les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque
             nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises
@@ -233,7 +224,7 @@ export default function ParcoursExpertisePage() {
       />
 
       <section className="py-8 border-t border-line">
-        <div className="container-site max-w-4xl text-[0.9rem] text-muted">
+        <div className="rf-wrap mq-mesure--large t-petit text-muted">
           <Link href="/clinique-du-devis" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
             Faire analyser un devis existant
           </Link>

@@ -38,7 +38,7 @@ export function ProcessTimeline() {
                 <div key={step.numero} className="relative grid grid-cols-[2.5rem_1fr] md:grid-cols-[1fr_4rem_1fr] items-center gap-4 md:gap-0">
                   <div className="md:col-start-2 md:row-start-1 flex justify-start md:justify-center">
                     <Reveal variant="scale">
-                      <span className="relative size-10 bg-carbone border-2 border-orange flex items-center justify-center font-mono text-[0.72rem] text-orange font-bold shadow-[0_0_0_6px_rgba(169,118,44,0.1)]">{step.numero}</span>
+                      <span className="relative size-10 bg-carbone border-2 border-orange flex items-center justify-center font-mono t-micro text-orange font-bold shadow-[0_0_0_6px_rgba(45,92,156,0.12)]">{step.numero}</span>
                     </Reveal>
                   </div>
                   <Reveal variant="slide-up" delay={0.1} className={`md:row-start-1 ${left ? "md:col-start-1 md:pr-14" : "md:col-start-3 md:pl-14"}`}>
@@ -48,9 +48,9 @@ export function ProcessTimeline() {
                         <span className="absolute top-3 left-3 display text-4xl italic text-white/80 leading-none [text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">{step.numero}</span>
                       </div>
                       <div className="p-6 md:p-7 flex flex-col gap-2 flex-1">
-                        <span className="serif-accent text-[1.05rem] text-orange">{step.accroche}</span>
-                        <h3 className="display text-[1.5rem] text-ivoire leading-tight">{step.titre}</h3>
-                        <p className="text-muted text-[0.93rem] leading-relaxed">{step.texte}</p>
+                        <span className="serif-accent t-base text-orange">{step.accroche}</span>
+                        <h3 className="display t-titre text-ivoire leading-tight">{step.titre}</h3>
+                        <p className="text-muted t-sec leading-relaxed">{step.texte}</p>
                       </div>
                     </article>
                   </Reveal>

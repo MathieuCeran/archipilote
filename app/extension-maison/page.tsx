@@ -18,7 +18,7 @@ export default function Page() {
         lead="Une extension réussie n'est pas seulement une surface supplémentaire : elle doit fonctionner avec la maison existante sur le plan de la circulation, de la structure, de la lumière, des réseaux, de l'isolation et de l'esthétique. ARCHI PILOTE RÉNOVATION cadre la faisabilité, structure le budget et pilote le projet de A à Z, tandis que les entreprises partenaires contractantes exécutent les travaux et les architectes ou ingénieurs indépendants interviennent sur les dossiers qui l'exigent."
       />
 
-      <div className="container-site max-w-4xl pb-4">
+      <div className="rf-wrap mq-mesure--large pb-4 mq-planche-ouverture">
         <MqFig
           src="/photos/pedagogie/20-extension-interface.jpeg"
           alt="Coupe technique de l'interface entre une maison ancienne et son extension : fondations, rupture de pont thermique, isolation continue, jonction de toiture, réseaux"
@@ -33,8 +33,8 @@ export default function Page() {
       >
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Règles d'urbanisme et emprise au sol</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Règles d'urbanisme et emprise au sol</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Le plan local d'urbanisme fixe des règles de distance, de hauteur et d'emprise qui déterminent la
               forme même de l'extension possible.
             </p>
@@ -55,8 +55,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Accès chantier et structure existante</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Accès chantier et structure existante</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               L'accès pour les engins et matériaux, ainsi que la nature de la structure existante, conditionnent
               la méthode constructive retenue.
             </p>
@@ -215,7 +215,7 @@ export default function Page() {
       >
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Tableau électrique et chauffage</h3>
+            <h3 className="display t-haut text-ivoire">Tableau électrique et chauffage</h3>
             <div className="mt-4">
               <MqProse>
                 <p>
@@ -227,7 +227,7 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Ventilation, eau et évacuations</h3>
+            <h3 className="display t-haut text-ivoire">Ventilation, eau et évacuations</h3>
             <div className="mt-4">
               <MqProse>
                 <p>
@@ -431,7 +431,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="text-muted text-[0.85rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
           Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon
           les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des
           architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les

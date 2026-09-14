@@ -1,67 +1,192 @@
 import Link from "next/link";
+import { Tirage } from "./tirage";
 
-/* ============================================================
-   Kit de composants « maquette Lovable » (batir-optimale, 29/08).
-   Éditorial calme : crème, Fraunces, encadrés à filet, sections
-   sombres ponctuelles. Composants serveur, contenu 100 % dans le
-   HTML initial (recette V3).
-   ============================================================ */
+/* ============================================================================
+   LE KIT — réécrit sur le système de la refonte.
+
+   Quatorze primitives, employées 950 fois par les soixante-sept pages :
+   MqFig 322, MqSection 235, MqProse 93, MqChecklist 39, MqReadNext 37,
+   MqHero 35, MqFaq 33, MqCta 32, MqNumbered 22. Les toucher ici, c’est les
+   toucher partout — aucune page n’est ouverte.
+
+   CE QUI N’ALLAIT PAS, mesuré sur /renovation-complete avant réécriture :
+
+   · 896 px de contenu dans une planche de 1408. Un `max-w-4xl` posé sur
+     chaque section enfermait tout le site dans une colonne calée à gauche,
+     et laissait CINQ CENT DOUZE PIXELS DE VIDE à droite, sur toute la
+     hauteur de chaque page. C’est le défaut dominant, et il tenait en une
+     classe utilitaire ;
+   · 17 865 px de haut pour une page interne, parce que tout s’empile dans
+     cette colonne unique ;
+   · 235 sections, dont SIX en registre sombre. Aucune alternance, donc aucun
+     rythme : onze bandes de papier à la suite.
+
+   CE QUI CHANGE. La section prend toute la planche, et chaque primitive
+   décide de sa propre justification : la prose se répartit en colonnes de
+   journal, les grilles et les figures occupent la largeur. Le texte reste
+   lisible — il n’est jamais tiré à 1408 px — mais la page cesse d’être une
+   colonne posée dans un vide.
+   ============================================================================ */
 
 export function MqKicker({ children }: { children: React.ReactNode }) {
-  return <p className="eyebrow">{children}</p>;
+  return <p className="rf-repere">{children}</p>;
 }
 
 export function MqHero({ kicker, title, lead, children }: { kicker?: string; title: React.ReactNode; lead?: React.ReactNode; children?: React.ReactNode }) {
+  /* L’OUVERTURE DE PAGE — trente-cinq pages passent par ici.
+
+     Elle était en registre clair : un titre, un chapô, et rien qui distingue
+     le haut de la page du reste. Sur des pages qui enchaînent ensuite huit
+     sections de papier, l’ouverture ne s’ouvrait sur rien.
+
+     Elle passe sur ENCRE. C’est la couverture du dossier : le calque de
+     tirage en filigrane, le repère en bleu clair, le titre en craie. Trois
+     conséquences, toutes voulues :
+
+     · la page a un début, et il se voit avant d’avoir lu un mot ;
+     · la barre de navigation bascule d’elle-même en tenue claire — elle
+       détecte le registre sombre derrière elle — et retrouve exactement
+       l’allure qu’elle a sur l’accueil ;
+     · la première section claire qui suit se lit comme une page qui
+       commence, pas comme la suite d’un flux.
+
+     Le tirage n’est pas un ornement : c’est le même dessin d’élévation que
+     l’accueil, et c’est ce qui rattache visuellement les soixante-sept pages
+     à la même maison. */
   return (
-    <header className="pt-36 md:pt-44 pb-12 md:pb-16">
-      <div className="container-site max-w-4xl">
+    <header className="rf-dossier mq-ouverture-bloc">
+      <Tirage className="rf-tirage--ouverture" />
+      <div className="rf-wrap pt-36 md:pt-44 pb-14 md:pb-20">
         {kicker && <MqKicker>{kicker}</MqKicker>}
-        <h1 className="display text-[clamp(2.4rem,5.4vw,4rem)] text-ivoire text-balance mt-4">{title}</h1>
-        {lead && <div className="lead mt-6 max-w-2xl">{lead}</div>}
-        {children && <div className="mt-8 flex flex-wrap gap-3">{children}</div>}
+        <div className="mq-ouverture">
+          <div>
+            {/* Le même volet que l’accueil (§ 62) : la manchette sort de son
+                bord au lieu d’apparaître. Le texte est présent dès le premier
+                rendu — il n’est pas en opacité nulle, seulement derrière
+                l’arête, ce qui laisse le LCP intact. */}
+            <h1 className="rf-titre rf-titre--manchette">
+              <span className="rf-volet" style={{ "--d": "0.18s" } as React.CSSProperties}>
+                <span>{title}</span>
+              </span>
+            </h1>
+            {children && <div className="mt-9 flex flex-wrap gap-3">{children}</div>}
+          </div>
+          {lead && <div className="mq-chapo">{lead}</div>}
+        </div>
       </div>
     </header>
   );
 }
 
-export function MqSection({ kicker, title, lead, children, wide }: { kicker?: string; title?: React.ReactNode; lead?: React.ReactNode; children: React.ReactNode; wide?: boolean }) {
+export function MqSection({
+  kicker,
+  title,
+  lead,
+  children,
+  fond = "matiere",
+}: {
+  kicker?: string;
+  title?: React.ReactNode;
+  lead?: React.ReactNode;
+  children: React.ReactNode;
+  /* `wide` existait pour libérer une section du `max-w-4xl`. Toutes le sont
+     désormais ; la prop est conservée et ignorée, le temps que les quelques
+     appels qui la passent soient nettoyés. */
+  wide?: boolean;
+  fond?: "matiere" | "dossier";
+}) {
+  /* LE TITRE PASSE DANS UNE COLONNE DE GAUCHE.
+
+     Le défaut d’origine n’était pas la colonne étroite : c’était une colonne
+     étroite CALÉE À GAUCHE dans une planche large. 896 px de contenu, 512 px
+     de vide, toujours du même côté, sur toute la hauteur de chaque page.
+
+     Une première tentative devinait la composition à partir des enfants —
+     « une prose et une figure, donc en vis-à-vis ». Elle ne se déclenchait
+     jamais : les pages emballent leurs figures dans des div, et le type de
+     l’enfant n’est plus MqFig. Deviner la mise en page à partir du contenu
+     d’autrui est fragile par construction ; abandonné.
+
+     Le repère et le titre occupent donc un rail de gauche, le contenu la
+     colonne de droite. La planche est remplie, la lecture reste sur une seule
+     colonne, et rien ne dépend de la façon dont chaque page écrit ses
+     enfants. Sous 1100 px, tout se remet en pile. */
   return (
-    <section className="py-12 md:py-16 border-t border-line">
-      <div className={`container-site ${wide ? "" : "max-w-4xl"}`}>
-        {kicker && <MqKicker>{kicker}</MqKicker>}
-        {title && <h2 className="display text-[clamp(1.7rem,3.2vw,2.6rem)] text-ivoire text-balance mt-3">{title}</h2>}
-        {lead && <p className="lead mt-4 max-w-2xl">{lead}</p>}
-        <div className="mt-8">{children}</div>
+    <section className={fond === "dossier" ? "rf-dossier" : "rf-matiere"}>
+      <div className="rf-wrap rf-section">
+        <div className="mq-grille">
+          <div className="mq-grille-rail">
+            {kicker && <MqKicker>{kicker}</MqKicker>}
+            {title && <h2 className="rf-titre rf-titre--petit">{title}</h2>}
+            {lead && <p className="rf-chapo mt-4">{lead}</p>}
+          </div>
+          <div className="mq-grille-corps">{children}</div>
+        </div>
       </div>
     </section>
   );
 }
 
+/* Colonne unique, à sa mesure. Deux colonnes de journal avaient été
+   essayées : dans une section dont l’en-tête pose déjà le chapô à droite,
+   elles créaient un troisième saut de lecture. C’est le vis-à-vis de
+   MqSection qui remplit la planche, pas la prose elle-même. */
 export function MqProse({ children }: { children: React.ReactNode }) {
-  return <div className="flex flex-col gap-4 text-[1.02rem] leading-relaxed text-ivoire/85 max-w-2xl [&_strong]:font-semibold [&_strong]:text-ivoire">{children}</div>;
+  return <div className="mq-prose">{children}</div>;
 }
 
-/* `entier` : affiche l'image en entier au lieu de la recadrer au format du cadre.
-   Réservé aux schémas et infographies, dont le texte touche les bords : recadrés
-   comme une photo, ils perdent leur titre ou leur légende. */
+/* LA FIGURE N’EST JAMAIS SEULE.
+
+   Recensement fait sur les quatre-vingt-une pages : 491 figures, dont 131
+   POSÉES SEULES dans leur bloc, sur 55 pages, avec jusqu’à 862 pixels de vide
+   à côté. Une image avec sa légende dessous et rien autour n’est pas une
+   composition, c’est une affiche déposée au milieu du texte.
+
+   Dès que la place le permet, la légende passe DONC À CÔTÉ : l’image à
+   gauche, la légende en colonne à droite, sous son filet. C’est la planche
+   documentée — le même dispositif que le relevé de l’accueil, appliqué
+   partout sans qu’une page soit touchée.
+
+   Le seuil est mesuré sur l’hôte, pas sur l’écran : une figure logée dans une
+   demi-colonne garde sa légende dessous, une figure qui occupe la planche
+   prend la légende de côté. C’est ce que fait une requête de conteneur, et
+   c’est la seule façon de le décider sans savoir où la page l’a mise.
+
+   `entier` : affiche l’image en entier au lieu de la recadrer au format du
+   cadre. Réservé aux schémas et infographies, dont le texte touche les bords :
+   recadrés comme une photo, ils perdent leur titre ou leur légende. */
 export function MqFig({ src, alt, caption, ratio = "aspect-[4/3]", entier = false }: { src: string; alt: string; caption?: string; ratio?: string; entier?: boolean }) {
   return (
-    <figure className="border border-line bg-surface rounded-[2px] overflow-hidden">
-      <div className={`relative ${ratio} overflow-hidden`}>
-        <img src={src} alt={alt} loading="lazy" className={`absolute inset-0 size-full ${entier ? "object-contain" : "object-cover"}`} />
-      </div>
-      {caption && <figcaption className="px-3 py-2.5 text-[0.74rem] sm:px-4 sm:py-3 sm:text-[0.82rem] leading-snug text-muted border-t border-line">{caption}</figcaption>}
-    </figure>
+    <div className="mq-fig-hote">
+      <figure className={`rf-fig mq-fig ${entier ? "mq-fig--schema" : ""}`}>
+        <div className={`rf-cadre relative ${ratio}`}>
+          <img src={src} alt={alt} loading="lazy" className={`absolute inset-0 size-full ${entier ? "object-contain" : "object-cover"}`} />
+        </div>
+        {caption && <figcaption>{caption}</figcaption>}
+      </figure>
+    </div>
   );
 }
 
+/* Le cartouche du prototype : le chiffre au grand corps, l’unité détachée,
+   et un filet entre les cases. */
 export function MqStats({ items }: { items: { dt: string; dd: string }[] }) {
+  /* ⚠️ CE CARTOUCHE N’EST PAS TOUJOURS UN CARTOUCHE DE CHIFFRES.
+
+     Il a été dessiné pour l’accueil, où les quatre valeurs sont des nombres
+     courts — 5 j, 48 h, 8, 12 mois — posés au grand corps. Les pages internes
+     lui passent aussi des PHRASES : « Prix fournisseur », « Documents
+     attendus ». Rendues à 46 px dans une piste de 170, elles débordaient la
+     page de quarante-quatre pixels sur mobile. Défaut mesuré, pas supposé.
+
+     La valeur choisit donc son corps : le grand chiffre tant qu’elle tient en
+     six signes, le degré d’accroche au-delà. Rien à changer dans les pages. */
   return (
-    <dl className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-line border border-line rounded-[2px] overflow-hidden">
+    <dl className="rf-cartouche mq-cartouche">
       {items.map((s) => (
-        <div key={s.dd} className="bg-surface px-5 py-4">
-          <dt className="display text-[1.8rem] text-ivoire">{s.dt}</dt>
-          <dd className="text-muted text-[0.85rem] leading-snug mt-1">{s.dd}</dd>
+        <div key={s.dd} className="rf-cartouche-case">
+          <dt className={s.dt.length <= 6 ? "rf-cartouche-chiffre" : "mq-cartouche-mot"}>{s.dt}</dt>
+          <dd className="rf-cartouche-label">{s.dd}</dd>
         </div>
       ))}
     </dl>
@@ -70,59 +195,52 @@ export function MqStats({ items }: { items: { dt: string; dd: string }[] }) {
 
 export function MqNumbered({ items, cols = 3 }: { items: { title: string; text: string }[]; cols?: 2 | 3 }) {
   return (
-    <div className={`grid grid-cols-1 ${cols === 3 ? "md:grid-cols-3" : "md:grid-cols-2"} gap-x-10 gap-y-8`}>
+    <ol className="mq-numerote" data-cols={cols}>
       {items.map((it, i) => (
-        <div key={it.title} className="flex flex-col gap-2">
-          <span className="text-orange-deep font-semibold text-[0.85rem] tracking-wide">{String(i + 1).padStart(2, "0")}</span>
-          <h3 className="display text-[1.15rem] text-ivoire">{it.title}</h3>
-          <p className="text-muted text-[0.92rem] leading-relaxed">{it.text}</p>
-        </div>
+        <li key={it.title}>
+          <span className="mq-numerote-num">{String(i + 1).padStart(2, "0")}</span>
+          <h3 className="rf-h3">{it.title}</h3>
+          <p className="rf-secondaire mt-2">{it.text}</p>
+        </li>
       ))}
-    </div>
+    </ol>
   );
 }
 
 export function MqChecklist({ items, cols = 2 }: { items: string[]; cols?: 1 | 2 }) {
   return (
-    <ul className={`grid grid-cols-1 ${cols === 2 ? "md:grid-cols-2" : ""} gap-x-10 gap-y-3`}>
+    <ul className="mq-liste" data-cols={cols}>
       {items.map((t) => (
-        <li key={t} className="flex items-start gap-3 text-[0.95rem] text-ivoire/85 leading-relaxed">
-          <span aria-hidden className="mt-[0.55em] size-1.5 shrink-0 bg-orange-deep" />
-          {t}
-        </li>
+        <li key={t}>{t}</li>
       ))}
     </ul>
   );
 }
 
-/* Section sombre — « les huit étapes », listes numérotées sur encre. */
+/* Section sombre. Elle n’était employée que six fois sur deux cent
+   trente-cinq — c’est la raison du manque de rythme des pages internes. */
 export function MqDark({ kicker, title, lead, children, cta }: { kicker?: string; title: React.ReactNode; lead?: React.ReactNode; children: React.ReactNode; cta?: { href: string; label: string } }) {
   return (
-    <section className="py-14 md:py-20" style={{ background: "var(--mq-dark)" }}>
-      <div className="container-site max-w-4xl">
-        {kicker && <p className="eyebrow" style={{ color: "oklch(75% 0.09 74)" }}>{kicker}</p>}
-        <h2 className="display text-[clamp(1.7rem,3.2vw,2.6rem)] text-balance mt-3" style={{ color: "var(--mq-primary-fg)" }}>{title}</h2>
-        {lead && <p className="mt-4 max-w-2xl text-[1.02rem] leading-relaxed" style={{ color: "oklch(80% 0.01 80)" }}>{lead}</p>}
-        <div className="mt-8">{children}</div>
-        {cta && (
-          <div className="mt-10">
-            <Link href={cta.href} className="btn" style={{ background: "var(--mq-primary-fg)", color: "var(--mq-dark)" }}>{cta.label}</Link>
-          </div>
-        )}
-      </div>
-    </section>
+    <MqSection kicker={kicker} title={title} lead={lead} fond="dossier">
+      {children}
+      {cta && (
+        <div className="mt-10">
+          <Link href={cta.href} className="rf-btn rf-btn--clair">{cta.label}</Link>
+        </div>
+      )}
+    </MqSection>
   );
 }
 
 export function MqDarkSteps({ steps }: { steps: { title: string; text: string }[] }) {
   return (
-    <ol className="flex flex-col divide-y" style={{ borderColor: "oklch(35% 0.012 60)" }}>
+    <ol className="mq-etapes">
       {steps.map((s, i) => (
-        <li key={s.title} className="grid grid-cols-[3rem_1fr] gap-4 py-5" style={{ borderColor: "oklch(35% 0.012 60)" }}>
-          <span className="display text-[1.3rem]" style={{ color: "oklch(66% 0.106 74)" }}>{String(i + 1).padStart(2, "0")}</span>
+        <li key={s.title}>
+          <span className="mq-etapes-num">{String(i + 1).padStart(2, "0")}</span>
           <div>
-            <h3 className="font-semibold text-[1.02rem]" style={{ color: "var(--mq-primary-fg)" }}>{s.title}</h3>
-            <p className="text-[0.92rem] leading-relaxed mt-1" style={{ color: "oklch(72% 0.012 75)" }}>{s.text}</p>
+            <h3 className="rf-h3">{s.title}</h3>
+            <p className="rf-secondaire mt-1.5">{s.text}</p>
           </div>
         </li>
       ))}
@@ -132,11 +250,11 @@ export function MqDarkSteps({ steps }: { steps: { title: string; text: string }[
 
 export function MqQuotes({ items }: { items: { quote: string; author: string }[] }) {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+    <div className="mq-citations">
       {items.map((q) => (
-        <blockquote key={q.author} className="border border-line bg-surface rounded-[2px] p-6 flex flex-col gap-4">
-          <p className="text-[0.95rem] leading-relaxed text-ivoire/90">« {q.quote} »</p>
-          <footer className="text-muted text-[0.82rem] mt-auto">{q.author}</footer>
+        <blockquote key={q.author}>
+          <p>{q.quote}</p>
+          <footer>{q.author}</footer>
         </blockquote>
       ))}
     </div>
@@ -146,14 +264,14 @@ export function MqQuotes({ items }: { items: { quote: string; author: string }[]
 /* FAQ en <details> natifs — réponses présentes dans le HTML initial. */
 export function MqFaq({ items }: { items: { q: string; a: string }[] }) {
   return (
-    <div className="flex flex-col border-t border-line">
+    <div className="rf-faq">
       {items.map((f) => (
-        <details key={f.q} className="group border-b border-line py-1">
-          <summary className="flex items-baseline justify-between gap-6 py-4 cursor-pointer list-none text-[1.02rem] font-medium text-ivoire hover:text-orange-deep transition-colors [&::-webkit-details-marker]:hidden">
+        <details key={f.q}>
+          <summary>
             {f.q}
-            <span aria-hidden className="text-orange-deep shrink-0 group-open:rotate-45 transition-transform text-xl leading-none">+</span>
+            <span aria-hidden>+</span>
           </summary>
-          <p className="pb-5 pr-10 text-muted text-[0.95rem] leading-relaxed">{f.a}</p>
+          <div className="rf-secondaire">{f.a}</div>
         </details>
       ))}
     </div>
@@ -162,13 +280,26 @@ export function MqFaq({ items }: { items: { q: string; a: string }[] }) {
 
 export function MqCta({ title = "Décrivez votre projet, nous le structurons", lead }: { title?: string; lead?: string }) {
   return (
-    <section className="py-16 md:py-24" style={{ background: "var(--mq-dark)" }}>
-      <div className="container-site max-w-3xl text-center flex flex-col items-center gap-6">
-        <h2 className="display text-[clamp(1.9rem,4vw,3rem)] text-balance" style={{ color: "var(--mq-primary-fg)" }}>{title}</h2>
-        {lead && <p className="max-w-xl text-[1rem] leading-relaxed" style={{ color: "oklch(78% 0.012 78)" }}>{lead}</p>}
-        <div className="flex flex-wrap justify-center gap-3">
-          <Link href="/contact" className="btn" style={{ background: "var(--mq-primary-fg)", color: "var(--mq-dark)" }}>Décrire mon projet</Link>
-          <Link href="/estimateur-travaux" className="btn" style={{ border: "1px solid oklch(45% 0.014 70)", color: "var(--mq-primary-fg)" }}>Faire estimer un devis</Link>
+    <section className="rf-dossier">
+      <div className="rf-wrap rf-section">
+        {/* Le même bloc de clôture que l’accueil : un nom, un numéro, des
+            heures, puis les actions. Pas deux boutons centrés en l’air. */}
+        <div className="mq-cloture">
+          <div>
+            <h2 className="rf-titre" style={{ fontSize: "var(--t-h2-l)" }}>{title}</h2>
+            {lead && <p className="rf-chapo mt-6" style={{ color: "#c3c0b6", maxWidth: "34rem" }}>{lead}</p>}
+          </div>
+          <div className="rf-contact-carte">
+            <p className="rf-contact-libelle">De vive voix</p>
+            <p className="rf-contact-numero">
+              <a href="tel:+33667117975">06 67 11 79 75</a>
+            </p>
+            <p className="rf-contact-heures">Lundi — vendredi, 08h30 – 19h00 · Samedi, sur rendez-vous</p>
+            <div className="rf-contact-actions">
+              <Link href="/contact" className="rf-btn rf-btn--clair">Décrire mon projet</Link>
+              <Link href="/estimateur-travaux" className="rf-btn rf-btn--fantome">Faire estimer un devis</Link>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -177,14 +308,14 @@ export function MqCta({ title = "Décrivez votre projet, nous le structurons", l
 
 export function MqReadNext({ items }: { items: { href: string; label: string; sub: string }[] }) {
   return (
-    <section className="py-12 md:py-16 border-t border-line">
-      <div className="container-site max-w-4xl">
-        <h2 className="display text-[1.6rem] text-ivoire">À lire ensuite</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+    <section className="rf-matiere">
+      <div className="rf-wrap rf-section--serre">
+        <p className="rf-repere">À lire ensuite</p>
+        <div className="mq-suite">
           {items.map((l) => (
-            <Link key={l.href} href={l.href} className="border border-line bg-surface rounded-[2px] p-5 group hover:border-line-strong transition-colors">
-              <span className="font-semibold text-ivoire group-hover:text-orange-deep transition-colors text-[0.98rem]">{l.label}</span>
-              <p className="text-muted text-[0.85rem] mt-1 leading-snug">{l.sub}</p>
+            <Link key={l.href} href={l.href}>
+              <span className="mq-suite-titre">{l.label}</span>
+              <span className="mq-suite-sous">{l.sub}</span>
             </Link>
           ))}
         </div>

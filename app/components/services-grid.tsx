@@ -23,9 +23,9 @@ export function ServicesGrid() {
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent transition-opacity duration-500" />
                 <span aria-hidden className="absolute top-5 right-6 font-serif text-5xl md:text-6xl leading-none text-white/25 group-hover:text-orange/70 transition-colors duration-500" style={{ fontFamily: "var(--font-serif)" }}>{m.marque}</span>
                 <div className="relative p-7 md:p-8 flex flex-col gap-2.5">
-                  <span className="serif-accent text-lg text-ambre/95">{m.accroche}</span>
-                  <h3 className="display text-[1.7rem] md:text-[2rem] text-white normal-case">{m.titre}</h3>
-                  <p className="text-white/70 text-[0.95rem] leading-relaxed max-w-md">{m.texte}</p>
+                  <span className="serif-accent t-haut text-ambre/95">{m.accroche}</span>
+                  <h3 className="display t-titre text-white normal-case">{m.titre}</h3>
+                  <p className="text-white/70 t-sec leading-relaxed max-w-md">{m.texte}</p>
                 </div>
               </article>
             </Reveal>

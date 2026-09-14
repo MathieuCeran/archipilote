@@ -32,15 +32,15 @@ export default function Page() {
         lead="ARCHI PILOTE RÉNOVATION étudie les projets à Paris, dans les Hauts-de-Seine et plus largement en Île-de-France. La distance n'est pas le seul critère : plus un projet est complet, technique ou structurant, plus un déplacement régulier peut être justifié."
       />
       <section className="relative pb-20 md:pb-28">
-        <div className="container-site max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div className="rf-wrap mq-mesure--large grid grid-cols-1 md:grid-cols-2 gap-5">
           {DEPARTEMENTS.map((d) => (
             <Link key={d.nom} href={d.href} className="card-e rounded-none p-6 flex flex-col gap-2 group hover:-translate-y-1 transition-transform duration-300">
-              <h2 className="display text-[1.15rem] text-ivoire group-hover:text-orange transition-colors normal-case">{d.nom}</h2>
-              <p className="text-muted text-[0.9rem] leading-relaxed">{d.texte}</p>
+              <h2 className="display t-haut text-ivoire group-hover:text-orange transition-colors normal-case">{d.nom}</h2>
+              <p className="text-muted t-petit leading-relaxed">{d.texte}</p>
             </Link>
           ))}
         </div>
-        <p className="text-center text-muted text-[0.85rem] mt-8 max-w-xl mx-auto">
+        <p className="text-center text-muted t-petit mt-8 max-w-xl">
           Votre commune n&apos;est pas citée ? Envoyez l&apos;adresse ou la commune, le type de bien, la surface et votre
           projet. Nous vous indiquons si le dossier entre dans notre zone et notre niveau d&apos;intervention.
         </p>

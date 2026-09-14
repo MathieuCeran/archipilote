@@ -119,15 +119,6 @@ export default function InvestisseursProfessionnelsPage() {
         }
       />
 
-      <div className="container-site max-w-4xl pb-12 md:pb-16">
-        <MqFig
-          src="/photos/pedagogie/23-investisseurs-flatlay.jpeg"
-          alt="Plan d'architecte, étiquette DPE, devis et échéancier réunis sur une table pour une analyse avant acquisition"
-          caption="Analyse travaux avant acquisition d'un actif immobilier. Illustration éditoriale."
-          ratio="aspect-[16/9]"
-        />
-      </div>
-
       <MqSection
         kicker="Avant l'acquisition"
         title="Estimer les travaux au moment où cela change le prix"
@@ -138,26 +129,26 @@ export default function InvestisseursProfessionnelsPage() {
             <div
               role="img"
               aria-label="Arbre de décision pour intégrer les travaux dans une acquisition."
-              className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 border border-line rounded-[2px] bg-surface p-6"
+              className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8 border border-line rounded-none bg-surface p-6"
             >
               {DECISION.map((d) => (
                 <div key={d.title} className="flex flex-col gap-2">
-                  <span className="text-orange-deep font-semibold text-[0.78rem] tracking-wide uppercase">{d.title}</span>
-                  <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">{d.resume}</p>
-                  <p className="text-muted text-[0.85rem] leading-relaxed">{d.body}</p>
+                  <span className="mq-mention mq-mention--accent">{d.title}</span>
+                  <p className="t-sec text-ivoire/85 leading-relaxed">{d.resume}</p>
+                  <p className="text-muted t-petit leading-relaxed">{d.body}</p>
                 </div>
               ))}
             </div>
-            <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+            <p className="text-muted t-petit leading-relaxed max-w-2xl">
               {"Quatre issues possibles selon les travaux identifiés et le risque qu'ils représentent : acheter, renégocier, différer ou abandonner le dossier."}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
             {AVANT_ACQUISITION.map((b) => (
               <div key={b.title} className="flex flex-col gap-2">
-                <h3 className="display text-[1.15rem] text-ivoire">{b.title}</h3>
-                <p className="text-muted text-[0.92rem] leading-relaxed">{b.resume}</p>
-                <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">{b.body}</p>
+                <h3 className="display t-haut text-ivoire">{b.title}</h3>
+                <p className="text-muted t-sec leading-relaxed">{b.resume}</p>
+                <p className="t-sec text-ivoire/85 leading-relaxed">{b.body}</p>
               </div>
             ))}
           </div>
@@ -174,8 +165,8 @@ export default function InvestisseursProfessionnelsPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
             {PRISE_EN_CHARGE.map((b) => (
               <div key={b.title} className="flex flex-col gap-2">
-                <h3 className="display text-[1.15rem] text-ivoire">{b.title}</h3>
-                <p className="text-muted text-[0.92rem] leading-relaxed">{b.text}</p>
+                <h3 className="display t-haut text-ivoire">{b.title}</h3>
+                <p className="text-muted t-sec leading-relaxed">{b.text}</p>
               </div>
             ))}
           </div>
@@ -197,24 +188,24 @@ export default function InvestisseursProfessionnelsPage() {
             Alt prévu : "Cas réel anonymisé de chiffrage avant rénovation d'un actif."
           */}
           <div className="flex flex-col gap-3 max-w-2xl">
-            <h3 className="display text-[1.15rem] text-ivoire">Un mini cas, à partir d&apos;un chantier réel</h3>
-            <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Un mini cas, à partir d&apos;un chantier réel</h3>
+            <p className="t-sec text-ivoire/85 leading-relaxed">
               <span className="text-orange-deep font-semibold">{"État constaté — "}</span>
               {"un actif ancien présentant les postes lourds classiques identifiés au diagnostic : réseaux vétustes, ventilation absente, menuiseries à reprendre."}
             </p>
-            <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+            <p className="t-sec text-ivoire/85 leading-relaxed">
               <span className="text-orange-deep font-semibold">{"Budget engagé — "}</span>
               {"chaque poste a été chiffré et arrêté sur plan avant la signature, à partir de ce type de plans annotés directement sur chantier."}
             </p>
-            <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+            <p className="t-sec text-ivoire/85 leading-relaxed">
               <span className="text-orange-deep font-semibold">{"Arbitrage — "}</span>
               {"répartition entre postes traités immédiatement et postes différés, en fonction du rendement locatif visé pour le bien."}
             </p>
-            <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+            <p className="t-sec text-ivoire/85 leading-relaxed">
               <span className="text-orange-deep font-semibold">{"Résultat — "}</span>
               {"un chantier démarré sur un budget déjà arrêté, sans avenant lié à un poste découvert en cours de travaux."}
             </p>
-            <p className="text-muted text-[0.85rem] leading-relaxed">
+            <p className="text-muted t-petit leading-relaxed">
               {"Illustration à partir d'un chantier réel piloté pour un investisseur ; les montants précis relèvent de la confidentialité du dossier client et ne sont pas publiés ici."}
             </p>
           </div>
@@ -236,8 +227,8 @@ export default function InvestisseursProfessionnelsPage() {
       </MqSection>
 
       <section className="py-10 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="text-muted t-petit leading-relaxed max-w-2xl">
             {"Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées."}
           </p>
         </div>

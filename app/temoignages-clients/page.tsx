@@ -96,9 +96,9 @@ export default function TemoignagesClientsPage() {
           {QUOTES.map((q) => (
             <div key={q.author} className="flex flex-col gap-4">
               <MqFig src={q.photo.src} alt={q.photo.alt} caption={q.photo.caption} />
-              <blockquote className="border border-line bg-surface rounded-[2px] p-6 flex flex-col gap-4">
-                <p className="text-[0.95rem] leading-relaxed text-ivoire/90">« {q.quote} »</p>
-                <footer className="text-muted text-[0.82rem] mt-auto">{q.author}</footer>
+              <blockquote className="border border-line bg-surface rounded-none p-6 flex flex-col gap-4">
+                <p className="t-sec leading-relaxed text-ivoire/90">« {q.quote} »</p>
+                <footer className="text-muted t-mini mt-auto">{q.author}</footer>
               </blockquote>
             </div>
           ))}
@@ -112,20 +112,20 @@ export default function TemoignagesClientsPage() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Un recueil après livraison, pas à chaud</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Un recueil après livraison, pas à chaud</h3>
+            <p className="text-muted t-sec leading-relaxed">
               {"Le retour est sollicité une fois le chantier terminé et le recul suffisant pour juger du résultat dans la durée."}
             </p>
-            <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+            <p className="t-sec text-ivoire/85 leading-relaxed">
               {"Solliciter un avis le jour de la réception favorise l'enthousiasme immédiat plutôt que le jugement sur la durée. Le recueil intervient donc après un délai permettant au client de juger de la tenue des ouvrages dans l'usage quotidien."}
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Une validation du client avant publication</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Une validation du client avant publication</h3>
+            <p className="text-muted t-sec leading-relaxed">
               {"Le client relit et valide le contenu ainsi que le niveau d'anonymisation retenu avant toute mise en ligne."}
             </p>
-            <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+            <p className="t-sec text-ivoire/85 leading-relaxed">
               {"Aucun témoignage n'est publié sans l'accord explicite du client sur sa formulation et sur les éléments de contexte conservés. Le client peut demander le retrait de son retour à tout moment."}
             </p>
           </div>
@@ -139,7 +139,7 @@ export default function TemoignagesClientsPage() {
           capture serait une preuve inventée : à ne jamais faire. Demander à Yanis
           / au client d'exporter une capture réelle (nom masqué, note visible,
           date visible), puis l'intégrer ainsi :
-          <div className="max-w-md mx-auto mt-8">
+          <div className="max-w-md mt-8">
             <MqFig src="/photos/chantiers/[capture-avis-anonymisee].jpg"
               alt="Exemple anonymisé d'un témoignage client publié et vérifiable"
               ratio="aspect-[3/2]" />
@@ -181,8 +181,8 @@ export default function TemoignagesClientsPage() {
       </MqSection>
 
       <section className="py-10 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="text-muted t-petit leading-relaxed max-w-2xl">
             {"Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées."}
           </p>
         </div>

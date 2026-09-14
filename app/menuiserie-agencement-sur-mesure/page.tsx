@@ -90,7 +90,7 @@ export default function Page() {
           ]}
         />
         <div className="mt-10">
-          <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mb-5">
+          <p className="text-muted t-petit leading-relaxed max-w-2xl mb-5">
             Cinq photos d'un même chantier de dressing sur mesure, de la matière première à la livraison.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
@@ -162,8 +162,8 @@ export default function Page() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Dressings et suites parentales</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Dressings et suites parentales</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Dressings toute hauteur en chêne huilé, îlots à tiroirs, façades cannelées, éclairage intégré et
               penderies dimensionnées sur les usages réels du foyer.
             </p>
@@ -177,8 +177,8 @@ export default function Page() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Cuisines et façades sur mesure</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Cuisines et façades sur mesure</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Caissons standards optimisés, façades en chêne massif, en placage ou en laqué, plinthes ajustées,
               joues d'habillage et plans en pierre naturelle ou en stratifié compact.
             </p>
@@ -192,8 +192,8 @@ export default function Page() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Bibliothèques et rangements de couloir</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Bibliothèques et rangements de couloir</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Rangements intégrés du sol au plafond dans les circulations et les retours de cheminée : de la
               surface récupérée sans réduire visuellement le volume.
             </p>
@@ -207,8 +207,8 @@ export default function Page() {
             </div>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Menuiseries patrimoniales</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Menuiseries patrimoniales</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Portes à panneaux, chambranles profilés, plinthes hautes, fenêtres reproduites à l'identique avec
               crémones en laiton et moulures en plâtre traditionnel de la maison Guimier.
             </p>
@@ -232,7 +232,7 @@ export default function Page() {
       >
         <div className="flex flex-col gap-12">
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Cuisines sur mesure</h3>
+            <h3 className="display t-haut text-ivoire mb-5">Cuisines sur mesure</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <MqFig
                 src="/photos/chantiers/chCuisineBlancheFinieIlot.jpeg"
@@ -271,7 +271,7 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Dressings sur mesure</h3>
+            <h3 className="display t-haut text-ivoire mb-5">Dressings sur mesure</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <MqFig
                 src="/photos/chantiers/chDressingLaqueBlancCouloirPlans.jpeg"
@@ -306,7 +306,7 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Bibliothèques sur mesure</h3>
+            <h3 className="display t-haut text-ivoire mb-5">Bibliothèques sur mesure</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <MqFig
                 src="/photos/chantiers/chBibliotheque.jpeg"
@@ -354,8 +354,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Chambres d&apos;enfant sur mesure</h3>
-            <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mb-5">
+            <h3 className="display t-haut text-ivoire mb-5">Chambres d&apos;enfant sur mesure</h3>
+            <p className="text-muted t-petit leading-relaxed max-w-2xl mb-5">
               Lits mezzanine, lits-cabane, escaliers intégrés et bureaux dessinés dans le même
               ouvrage que les rangements : trois vues prises avant la pose des sols et le
               raccordement de l&apos;électricité.
@@ -416,8 +416,8 @@ export default function Page() {
               identifiable en gros plan.
           */}
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Sous pente et sous escalier</h3>
-            <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mb-5">
+            <h3 className="display t-haut text-ivoire mb-5">Sous pente et sous escalier</h3>
+            <p className="text-muted t-petit leading-relaxed max-w-2xl mb-5">
               Deux volumes qu&apos;aucun meuble du commerce ne sait occuper : la pente d&apos;un
               comble et la volée d&apos;un escalier. L&apos;ouvrage est recoupé sur la ligne
               réelle, relevée sur place.
@@ -438,8 +438,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Carcasses et façades en panneau brut, avant peinture</h3>
-            <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mb-5">
+            <h3 className="display t-haut text-ivoire mb-5">Carcasses et façades en panneau brut, avant peinture</h3>
+            <p className="text-muted t-petit leading-relaxed max-w-2xl mb-5">
               L&apos;état dans lequel un agencement quitte l&apos;atelier et arrive sur le
               chantier : les volumes sont justes, les jeux sont réglés, mais rien n&apos;est
               peint. C&apos;est le moment où les reprises coûtent encore peu.
@@ -472,8 +472,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Placards de couloir et circulations</h3>
-            <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mb-5">
+            <h3 className="display t-haut text-ivoire mb-5">Placards de couloir et circulations</h3>
+            <p className="text-muted t-petit leading-relaxed max-w-2xl mb-5">
               Le couloir est la surface la moins exploitée d&apos;un logement : montés du sol au
               plafond et affleurés au doublage, ces placards ne se lisent plus comme des meubles.
             </p>
@@ -493,8 +493,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Habillages muraux et niches menuisées</h3>
-            <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mb-5">
+            <h3 className="display t-haut text-ivoire mb-5">Habillages muraux et niches menuisées</h3>
+            <p className="text-muted t-petit leading-relaxed max-w-2xl mb-5">
               Quand la menuiserie ne se contente plus du meuble et prend tout le mur : panneaux
               plaqués du sol au plafond, niches et bureaux dessinés dans la continuité du parement.
             </p>
@@ -520,7 +520,7 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Espaces commerciaux</h3>
+            <h3 className="display t-haut text-ivoire mb-5">Espaces commerciaux</h3>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               <MqFig
                 src="/photos/chantiers/chOptiqueComptoirCarcasseBrute.jpeg"
@@ -552,8 +552,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Agencements d'un appartement ancien parisien</h3>
-            <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mb-5">
+            <h3 className="display t-haut text-ivoire mb-5">Agencements d'un appartement ancien parisien</h3>
+            <p className="text-muted t-petit leading-relaxed max-w-2xl mb-5">
               Trois ouvrages d'un appartement ancien parisien livré : rangements toute hauteur, niche menuisée et
               détails d'exécution, tous dessinés sur le relevé de volumes anciens jamais d'équerre.
             </p>
@@ -579,8 +579,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.15rem] text-ivoire mb-5">Habillages bois et cache-radiateurs</h3>
-            <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mb-5">
+            <h3 className="display t-haut text-ivoire mb-5">Habillages bois et cache-radiateurs</h3>
+            <p className="text-muted t-petit leading-relaxed max-w-2xl mb-5">
               Deux vues d'un autre chantier : là où le radiateur et l'écran ne peuvent pas être déplacés, c'est
               l'habillage qui est fabriqué sur mesure autour d'eux.
             </p>
@@ -616,7 +616,7 @@ export default function Page() {
             "Nettoyage professionnel de fin de chantier systématique, hérité de nos standards de conciergerie.",
           ]}
         />
-        <p className="text-muted text-[0.92rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-sec leading-relaxed mt-8 max-w-2xl">
           Le fonctionnement de ces commandes est décrit sur la page{" "}
           <Link href="/achat-direct-materiaux" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
             achat direct des matériaux
@@ -657,7 +657,7 @@ export default function Page() {
             ratio="aspect-[10/7]"
           />
         </div>
-        <p className="text-muted text-[0.85rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
           Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon
           les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des
           architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les

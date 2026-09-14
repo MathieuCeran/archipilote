@@ -1,56 +1,59 @@
-"use client";
-
-import { useRef } from "react";
 import Link from "next/link";
-import { motion, useScroll, useTransform } from "motion/react";
-import { WordReveal } from "./word-reveal";
-import { Reveal } from "./reveal";
-import { PHOTOS } from "../lib-photos";
 import { SITE } from "../data";
 
-/* 05/09 : « se déplace sous 5 jours » retiré. Ce composant est monté par une trentaine de
-   pages (les 16 pages locales via local-page, 5 pages de spécialité via specialty-page, et
-   une dizaine de pages directes) : la phrase engageait donc un délai de déplacement sur
-   presque tout le site, sans qu'aucun processus ne le garantisse — et un délai écrit sur une
-   page commerciale s'oppose au professionnel en cas de litige. La prise de contact est
-   maintenue, la promesse chiffrée ne l'est pas. */
+/* ============================================================================
+   LA CLÔTURE — montée par une trentaine de pages.
+
+   Ce qu’elle était : une photographie en parallaxe sous un voile, du grain,
+   un titre géant centré révélé mot par mot, et deux boutons au centre. Quatre
+   effets pour dire « appelez-nous ».
+
+   Ce qu’elle devient : le bloc de clôture de l’accueil. Un titre à gauche,
+   et à droite une carte qui donne un nom, un numéro, des heures, puis les
+   actions. Une maison ne termine pas sur deux boutons en l’air.
+
+   05/09 : « se déplace sous 5 jours » avait été retiré, et le reste ici. Ce
+   composant est monté par une trentaine de pages : la phrase engageait un
+   délai de déplacement sur presque tout le site sans qu’aucun processus ne le
+   garantisse — et un délai écrit sur une page commerciale s’oppose au
+   professionnel en cas de litige. La prise de contact est maintenue, la
+   promesse chiffrée ne l’est pas.
+   ============================================================================ */
+
 export function CtaFinal() {
-  const ref = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["-12%", "12%"]);
-
   return (
-    <section ref={ref} className="relative py-32 md:py-44 overflow-hidden grain">
-      <motion.div className="absolute inset-0 scale-[1.25]" style={{ y }}>
-        <img src={PHOTOS.detailMoulure} alt="" aria-hidden className="absolute inset-0 size-full object-cover opacity-30" loading="lazy" />
-      </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-b from-carbone via-carbone/70 to-carbone" />
-
-      <div className="container-site relative z-10 flex flex-col items-center text-center gap-8">
-        <Reveal variant="fade-blur"><span className="eyebrow">Visite technique sans engagement</span></Reveal>
-        <WordReveal
-          as="h2"
-          segments={[{ text: "Votre maison mérite" }, { text: "un vrai chantier, pas un chantier vague.", serif: true, gradient: true }]}
-          className="display text-[clamp(2.3rem,6vw,5rem)] text-ivoire text-balance max-w-5xl"
-        />
-        <Reveal variant="slide-up" delay={0.2}>
-          <p className="lead max-w-xl">
-            Racontez-nous votre projet — surface, budget, commune. Un chargé de projet vous
-            rappelle pour convenir d&apos;une visite du bien.
-          </p>
-        </Reveal>
-        <Reveal variant="scale" delay={0.3}>
-          <div className="flex flex-wrap justify-center gap-3">
-            <Link href="/estimateur-travaux" className="btn btn-primary !px-9 !py-4 text-base">
-              Estimer mon budget
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            </Link>
-            <a href={`tel:${SITE.tel.replace(/\s/g, "")}`} className="btn btn-ghost !px-9 !py-4 text-base">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92Z" /></svg>
-              {SITE.telAffiche}
-            </a>
+    <section className="rf-dossier">
+      <div className="rf-wrap rf-section">
+        <div className="mq-cloture">
+          <div>
+            <p className="rf-repere">Visite technique sans engagement</p>
+            <h2 className="rf-titre" style={{ fontSize: "var(--t-h2-l)" }}>
+              Votre maison mérite un vrai chantier, pas un chantier vague.
+            </h2>
+            <p className="rf-chapo mt-6" style={{ color: "#c3c0b6", maxWidth: "34rem" }}>
+              Racontez-nous votre projet — surface, budget, commune. Un chargé de projet vous rappelle pour convenir
+              d’une visite du bien.
+            </p>
           </div>
-        </Reveal>
+
+          <div className="rf-contact-carte">
+            <p className="rf-contact-libelle">De vive voix</p>
+            <p className="rf-contact-numero">
+              <a href={`tel:${SITE.tel.replace(/\s/g, "")}`}>{SITE.telAffiche}</a>
+            </p>
+            <p className="rf-contact-heures">
+              {SITE.horaires.map((h) => `${h.jours}, ${h.heures.toLowerCase()}`).join(" · ")}
+            </p>
+            <div className="rf-contact-actions">
+              <Link href="/contact" className="rf-btn rf-btn--clair">
+                Décrire mon projet
+              </Link>
+              <Link href="/estimateur-travaux" className="rf-btn rf-btn--fantome">
+                Estimer mon budget
+              </Link>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );

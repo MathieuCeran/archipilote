@@ -20,7 +20,7 @@ export function Marquee({ items, speed = 40, className = "" }: MarqueeProps) {
       >
         {content.map((item, i) => (
           <div key={i} className="flex items-center gap-14 md:gap-20 shrink-0">
-            <span className="display text-2xl md:text-3xl text-ivoire/25 uppercase tracking-tight whitespace-nowrap">
+            <span className="display t-titre md:t-titre text-ivoire/25 whitespace-nowrap mq-mention">
               {item}
             </span>
             <span className="size-1.5 rounded-full bg-orange/50 shrink-0" />

@@ -172,7 +172,7 @@ export default function NotreMethodePage() {
         lead="Un chantier dérive rarement à cause d'une seule erreur spectaculaire. Il dérive par accumulation : un devis incomplet, une option validée trop vite, un lot oublié, un changement tardif ou une responsabilité mal comprise. Notre méthode transforme chaque projet en une suite de huit décisions vérifiables, chacune assortie d'un livrable écrit, de documents précis et d'une durée indicative, du premier rendez-vous jusqu'au dossier de fin de chantier."
       />
 
-      <div className="container-site max-w-4xl pb-12 md:pb-16">
+      <div className="rf-wrap mq-mesure--large pb-12 md:pb-16 mq-planche-ouverture">
         <MqFig entier
           src="/photos/pedagogie/06-huit-etapes.jpeg"
           alt="Schéma pédagogique des huit étapes du pilotage : comprendre le besoin, lire le bâti, prioriser, chiffrer, sélectionner, vérifier les interfaces, suivre le chantier, dossier final"
@@ -187,7 +187,7 @@ export default function NotreMethodePage() {
         lead="Les litiges de chantier naissent rarement d'une malfaçon isolée. Ils naissent d'une somme de petites approximations : un devis mal lu, une interface oubliée entre deux corps de métier, une décision prise oralement et jamais tracée."
       >
         <MqProse>
-          <h3 className="display text-[1.3rem] text-ivoire">Une suite de décisions, pas une promesse de perfection</h3>
+          <h3 className="display t-fort text-ivoire">Une suite de décisions, pas une promesse de perfection</h3>
           <p>Notre objectif n'est pas d'annoncer un chantier sans imprévu, mais d'éviter que l'imprévu devienne une improvisation.</p>
           <p>
             Chaque étape du pilotage produit un document daté : note de cadrage, rapport de visite, grille de hiérarchisation, chiffrage
@@ -224,23 +224,23 @@ export default function NotreMethodePage() {
       <MqSection>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {STEP_DETAILS.map((d) => (
-            <div key={d.title} className="border border-line bg-surface rounded-[2px] p-5 flex flex-col gap-2">
-              <h3 className="display text-[1.05rem] text-ivoire">{d.title}</h3>
-              <p className="text-muted text-[0.88rem] leading-relaxed">
+            <div key={d.title} className="border border-line bg-surface rounded-none p-5 flex flex-col gap-2">
+              <h3 className="display t-base text-ivoire">{d.title}</h3>
+              <p className="text-muted t-petit leading-relaxed">
                 <strong className="font-semibold text-ivoire/80">Livrable :</strong> {d.livrable}
               </p>
-              <p className="text-muted text-[0.88rem] leading-relaxed">
+              <p className="text-muted t-petit leading-relaxed">
                 <strong className="font-semibold text-ivoire/80">Documents mobilisés :</strong> {d.documents}
               </p>
-              <p className="text-muted text-[0.88rem] leading-relaxed">
+              <p className="text-muted t-petit leading-relaxed">
                 <strong className="font-semibold text-ivoire/80">Durée indicative :</strong> {d.duree}
               </p>
               <div className="mt-1 pt-3 border-t border-line">
-                <span className="text-muted text-[0.72rem] font-semibold tracking-[0.1em] uppercase">Le détail sur le site</span>
+                <span className="mq-mention">Le détail sur le site</span>
                 <ul className="flex flex-col gap-1.5 mt-2">
                   {d.liens.map((l) => (
                     <li key={l.href}>
-                      <Link href={l.href} className="text-orange-deep text-[0.85rem] leading-snug hover:underline">
+                      <Link href={l.href} className="text-orange-deep t-petit leading-snug hover:underline">
                         {l.label}
                       </Link>
                     </li>
@@ -310,8 +310,8 @@ export default function NotreMethodePage() {
       </MqSection>
 
       <section className="py-8 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
             <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
             les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque
             nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises
@@ -321,16 +321,16 @@ export default function NotreMethodePage() {
       </section>
 
       <MqSection kicker="Zone d'intervention" title="Où cette méthode est appliquée">
-        <p className="text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+        <p className="text-muted t-sec leading-relaxed max-w-2xl">
           Le pilotage suppose des visites régulières sur le chantier. ARCHI PILOTE RÉNOVATION intervient donc en
           priorité dans les Hauts-de-Seine et, selon l&apos;ampleur et la technicité du projet, plus largement en
           Île-de-France.
         </p>
         <ul className="flex flex-col gap-2 mt-4">
-          <li><Link href="/renovation-hauts-de-seine-92" className="text-orange-deep hover:underline text-[0.95rem]">Rénovation dans les Hauts-de-Seine (92)</Link></li>
-          <li><Link href="/renovation-ile-de-france" className="text-orange-deep hover:underline text-[0.95rem]">La zone d&apos;intervention en Île-de-France</Link></li>
-          <li><Link href="/services" className="text-orange-deep hover:underline text-[0.95rem]">L&apos;index complet des prestations pilotées</Link></li>
-          <li><Link href="/guides" className="text-orange-deep hover:underline text-[0.95rem]">Les guides et articles classés par sujet</Link></li>
+          <li><Link href="/renovation-hauts-de-seine-92" className="text-orange-deep hover:underline t-sec">Rénovation dans les Hauts-de-Seine (92)</Link></li>
+          <li><Link href="/renovation-ile-de-france" className="text-orange-deep hover:underline t-sec">La zone d&apos;intervention en Île-de-France</Link></li>
+          <li><Link href="/services" className="text-orange-deep hover:underline t-sec">L&apos;index complet des prestations pilotées</Link></li>
+          <li><Link href="/guides" className="text-orange-deep hover:underline t-sec">Les guides et articles classés par sujet</Link></li>
         </ul>
       </MqSection>
 
@@ -351,7 +351,7 @@ export default function NotreMethodePage() {
       />
 
       <section className="py-8 border-t border-line">
-        <div className="container-site max-w-4xl text-[0.9rem] text-muted">
+        <div className="rf-wrap mq-mesure--large t-petit text-muted">
           <Link href="/gros-oeuvre-structure" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
             Voir l'application de cette méthode au gros œuvre et à la structure
           </Link>

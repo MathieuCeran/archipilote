@@ -17,7 +17,7 @@ export default function MentionsLegalesPage() {
         segments={[{ text: "Qui édite" }, { text: "ce site.", serif: true, gradient: true }]}
       />
       <section className="relative pb-24 md:pb-36">
-        <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-10 text-ivoire/85 text-[0.98rem] leading-relaxed">
+        <div className="rf-wrap mq-mesure flex flex-col gap-10 text-ivoire/85 t-sec leading-relaxed">
           {/* MANQUE ENCORE, à réclamer au client — volontairement NON inventé ici :
               · le capital social d'IA RENOV (mention obligatoire pour une société commerciale,
                 art. R123-237 du code de commerce) ;
@@ -26,7 +26,7 @@ export default function MentionsLegalesPage() {
               Ces deux informations n'existent nulle part dans le dépôt : les ajouter dès
               réception, sur les deux lignes correspondantes ci-dessous. */}
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Éditeur du site</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Éditeur du site</h2>
             <p>{SITE.structure}</p>
             {/* Numéro de TVA intracommunautaire CALCULÉ par la formule légale française
                 appliquée au SIREN 889 976 387 : clé = (12 + 3 × (SIREN mod 97)) mod 97,
@@ -42,7 +42,7 @@ export default function MentionsLegalesPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Ce que la marque est, et n&apos;est pas</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Ce que la marque est, et n&apos;est pas</h2>
             <p>
               ARCHI PILOTE RÉNOVATION est une marque de pilotage de projets de rénovation, exploitée par IA RENOV (SASU).
               ARCHI PILOTE RÉNOVATION n&apos;est pas une entreprise de travaux, n&apos;exécute aucun lot et ne facture aucun
@@ -53,7 +53,7 @@ export default function MentionsLegalesPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Hébergement</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Hébergement</h2>
             <p>
               Ce site est hébergé par Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789,
               États-Unis —{" "}
@@ -62,7 +62,7 @@ export default function MentionsLegalesPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Propriété intellectuelle</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Propriété intellectuelle</h2>
             <p>
               L&apos;ensemble des éléments de ce site (textes, structure, charte graphique) est protégé au titre du
               droit d&apos;auteur. Les photographies présentées comme chantiers réels et légendées « chantier réel des
@@ -73,7 +73,7 @@ export default function MentionsLegalesPage() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-xl text-ivoire normal-case">Données personnelles et cookies</h2>
+            <h2 className="display t-haut text-ivoire normal-case">Données personnelles et cookies</h2>
             <p>
               Les informations transmises via le formulaire de contact de ce site sont utilisées
               uniquement pour traiter votre demande de projet. Ce site ne dépose aucun cookie de mesure d&apos;audience

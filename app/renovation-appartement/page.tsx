@@ -25,15 +25,6 @@ export default function Page() {
         }
       />
 
-      <div className="container-site max-w-4xl pb-4">
-        <MqFig
-          src="/photos/chantiers/chCuisineNoireSejourFinie.jpeg"
-          alt="Séjour et cuisine ouverte livrés après rénovation d'appartement, parquet posé à chevrons, cuisine sombre sur mesure"
-          caption="Appartement rénové : les finitions visibles dépendent d'arbitrages techniques décidés plusieurs semaines plus tôt. Chantier réel des équipes partenaires."
-          ratio="aspect-[16/9]"
-        />
-      </div>
-
       <MqSection
         kicker="Contraintes"
         title="Ce qui décide réellement du plan"
@@ -58,14 +49,14 @@ export default function Page() {
             },
           ].map((c) => (
             <div key={c.title} className="flex flex-col gap-2 border-t border-line pt-4">
-              <h3 className="display text-[1.2rem] text-ivoire">{c.title}</h3>
-              <p className="text-ivoire/90 font-medium text-[0.92rem] leading-relaxed">{c.dek}</p>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{c.text}</p>
+              <h3 className="display t-haut text-ivoire">{c.title}</h3>
+              <p className="text-ivoire/90 font-medium t-sec leading-relaxed">{c.dek}</p>
+              <p className="text-muted t-sec leading-relaxed">{c.text}</p>
             </div>
           ))}
         </div>
 
-        <p className="mt-8 max-w-2xl text-[0.95rem] leading-relaxed text-ivoire/85">
+        <p className="mt-8 max-w-2xl t-sec leading-relaxed text-ivoire/85">
           Lorsque l'ouverture envisagée relève d'une reprise de charges et non d'une simple cloison, la
           démarche complète — étude, étaiement, portique, réception — est décrite sur la page{" "}
           <Link href="/ouverture-mur-porteur" className="text-orange-deep underline underline-offset-4 hover:text-orange transition-colors">ouverture de mur porteur</Link>.
@@ -157,7 +148,7 @@ export default function Page() {
           mêmes sept étapes que la liste ci-dessous. Planche composée (logo, légendes, pied) :
           `entier`, jamais recadrée, jamais légendée « chantier réel ».
         */}
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className="max-w-4xl mb-12">
           <MqFig
             src="/photos/pedagogie/infographie-sept-etapes-appartement.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : Les sept étapes d'une rénovation d'appartement"
@@ -199,7 +190,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="mt-8 max-w-2xl text-[0.95rem] leading-relaxed text-ivoire/85">
+        <p className="mt-8 max-w-2xl t-sec leading-relaxed text-ivoire/85">
           Ce déroulé ne change pas d'un immeuble à l'autre : il s'applique de la même manière sur toute
           notre zone d'intervention, dont les{" "}
           <Link href="/renovation-hauts-de-seine-92" className="text-orange-deep underline underline-offset-4 hover:text-orange transition-colors">Hauts-de-Seine (92)</Link>.
@@ -379,7 +370,7 @@ export default function Page() {
             ratio="aspect-[3/4]"
           />
         </div>
-        <p className="mt-8 max-w-2xl text-[0.95rem] leading-relaxed text-ivoire/85">
+        <p className="mt-8 max-w-2xl t-sec leading-relaxed text-ivoire/85">
           Le dessin de ces rangements, l&apos;arbitrage entre sur-mesure intégral et façades sur
           caissons standards et les fourchettes constatées au mètre linéaire sont détaillés sur la
           page{" "}
@@ -397,7 +388,7 @@ export default function Page() {
           titre imprimé « Où se gagnent les économies », kicker « Budget », sous-titre identique au
           lead de cette section, mêmes trois leviers que la liste ci-dessous. `entier`, jamais recadrée.
         */}
-        <div className="max-w-4xl mx-auto mb-12">
+        <div className="max-w-4xl mb-12">
           <MqFig
             src="/photos/pedagogie/infographie-ou-se-gagnent-les-economies.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : Où se gagnent les économies"
@@ -406,7 +397,7 @@ export default function Page() {
             entier
           />
         </div>
-        <p className="mb-8 max-w-2xl text-[0.95rem] leading-relaxed text-ivoire/85">
+        <p className="mb-8 max-w-2xl t-sec leading-relaxed text-ivoire/85">
           Le premier de ces trois leviers,{" "}
           <Link href="/achat-direct-materiaux" className="text-orange-deep underline underline-offset-4 hover:text-orange transition-colors">l'achat direct des matériaux</Link>,
           est détaillé poste par poste sur sa propre page.
@@ -459,7 +450,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="mt-8 max-w-2xl border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <p className="mt-8 max-w-2xl border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
           <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées.
         </p>
       </MqSection>

@@ -28,7 +28,7 @@ export default function Page() {
           cohérent avec cette section. Planche composée (titre, légendes, logo) :
           `entier` obligatoire, un recadrage la décapiterait. 1448x1086 = 4/3 exact.
         */}
-        <div className="max-w-4xl mx-auto mb-10">
+        <div className="max-w-4xl mb-10">
           <MqFig
             src="/photos/pedagogie/infographie-renovation-maison.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : « Rénovation de maison : lire le bâtiment du sol à la toiture »"
@@ -39,8 +39,8 @@ export default function Page() {
         </div>
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Une lecture globale plutôt qu'une liste de travaux</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Une lecture globale plutôt qu'une liste de travaux</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Traiter chaque pièce indépendamment conduit fréquemment à corriger un symptôme sans supprimer sa cause.
             </p>
             <div className="mt-4">
@@ -55,8 +55,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Points singuliers de toiture et de façade</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Points singuliers de toiture et de façade</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Un point singulier localisé, jonction de toiture ou fissure de façade, peut expliquer un problème apparemment global de confort ou d'humidité.
             </p>
             <div className="mt-4">
@@ -160,7 +160,7 @@ export default function Page() {
           diagnostic sous-estimé pour une rénovation réussie », cohérent avec cette
           section. Planche composée : `entier` obligatoire. 1223x1286, quasi carrée.
         */}
-        <div className="max-w-3xl mx-auto mb-10">
+        <div className="max-w-3xl mb-10">
           <MqFig
             src="/photos/pedagogie/infographie-carottage.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : « Le carottage : voir avant de décider »"
@@ -170,7 +170,7 @@ export default function Page() {
           />
         </div>
         <div>
-          <h3 className="display text-[1.3rem] text-ivoire">À quoi sert le carottage en rénovation</h3>
+          <h3 className="display t-fort text-ivoire">À quoi sert le carottage en rénovation</h3>
           <div className="mt-4">
             <MqProse>
               <p>
@@ -196,7 +196,7 @@ export default function Page() {
         title="Construire le budget par familles de postes"
         lead="Le budget d'une rénovation de maison se décompose en familles homogènes, avec une réserve pour aléas systématiquement prévue."
       >
-        <p className="mb-8 max-w-2xl text-[0.95rem] leading-relaxed text-ivoire/85">
+        <p className="mb-8 max-w-2xl t-sec leading-relaxed text-ivoire/85">
           Pour situer chaque famille avant même la visite technique, les fourchettes indicatives et datées
           poste par poste sont publiées dans{" "}
           <Link href="/observatoire-prix-renovation" className="text-orange-deep underline underline-offset-4 hover:text-orange transition-colors">l'observatoire des prix de rénovation</Link>.
@@ -211,8 +211,8 @@ export default function Page() {
             { title: "Finitions", text: "Peintures, sols, équipements et derniers ajustements avant livraison." },
           ].map((f) => (
             <div key={f.title} className="flex flex-col gap-2 border-t border-line pt-4">
-              <h3 className="display text-[1.1rem] text-ivoire">{f.title}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{f.text}</p>
+              <h3 className="display t-base text-ivoire">{f.title}</h3>
+              <p className="text-muted t-sec leading-relaxed">{f.text}</p>
             </div>
           ))}
         </div>
@@ -228,7 +228,7 @@ export default function Page() {
           travaux », cohérent avec cette section. Planche composée : `entier`
           obligatoire. 1448x1086 = 4/3 exact.
         */}
-        <div className="max-w-4xl mx-auto mb-10">
+        <div className="max-w-4xl mb-10">
           <MqFig
             src="/photos/pedagogie/infographie-documents-demarches.jpg"
             alt="Infographie ARCHI PILOTE RÉNOVATION : « Documents et démarches anticipés : préparer le projet avant les travaux »"
@@ -255,8 +255,8 @@ export default function Page() {
       >
         <div className="flex flex-col gap-12">
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Pavillon francilien : de la façade fatiguée à l'enveloppe performante</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Pavillon francilien : de la façade fatiguée à l'enveloppe performante</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Isolation thermique par l'extérieur, remplacement des menuiseries, reprise de couverture et traitement des abords : l'enveloppe est traitée comme un ensemble cohérent. Ce type de pavillon est courant sur notre zone d'intervention en{" "}
               <Link href="/renovation-ile-de-france" className="text-orange-deep underline underline-offset-4 hover:text-orange transition-colors">Île-de-France</Link>.
             </p>
@@ -290,8 +290,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.3rem] text-ivoire">Combles : de l'isolant tassé à la double couche croisée</h3>
-            <p className="mt-2 text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+            <h3 className="display t-fort text-ivoire">Combles : de l'isolant tassé à la double couche croisée</h3>
+            <p className="mt-2 text-muted t-sec leading-relaxed max-w-2xl">
               Dépose de l'ancien isolant, traitement des périphéries, deux couches croisées et pare-vapeur continu : le premier poste de déperdition d'une passoire énergétique.
             </p>
             {/*
@@ -361,7 +361,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="mt-8 max-w-2xl border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <p className="mt-8 max-w-2xl border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
           <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées.
         </p>
       </MqSection>

@@ -18,7 +18,7 @@ export default function Page() {
         lead="Une surélévation ajoute une charge nouvelle sur des fondations et des murs porteurs qui n'ont pas été conçus pour cela à l'origine. La question centrale n'est donc pas esthétique mais structurelle : la maison ou l'immeuble peut-il supporter ce poids supplémentaire ? ARCHI PILOTE RÉNOVATION cadre la faisabilité, mobilise les ingénieurs structure et architectes DPLG partenaires indépendants nécessaires, et pilote le projet de A à Z jusqu'à la livraison."
       />
 
-      <div className="container-site max-w-4xl pb-4">
+      <div className="rf-wrap mq-mesure--large pb-4 mq-planche-ouverture">
         <MqFig
           src="/photos/pedagogie/21-surelevation-coupe.jpeg"
           alt="Coupe technique d'une surélévation légère à ossature bois : reprise de charges, trémie d'escalier, structure de toiture"
@@ -33,8 +33,8 @@ export default function Page() {
       >
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Étude de structure : une étape non négociable</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Étude de structure : une étape non négociable</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Aucun budget fiable ne peut être établi tant que l'étude de structure n'a pas déterminé la charge
               admissible réelle du bâtiment.
             </p>
@@ -59,8 +59,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Structure légère ou structure lourde</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Structure légère ou structure lourde</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Le choix entre ossature bois, structure métallique ou maçonnerie traditionnelle dépend directement
               de la capacité portante réelle du bâtiment existant.
             </p>
@@ -110,7 +110,7 @@ export default function Page() {
       >
         <div className="flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Permis de construire et architecte</h3>
+            <h3 className="display t-haut text-ivoire">Permis de construire et architecte</h3>
             <div className="mt-4">
               <MqProse>
                 <p>
@@ -123,7 +123,7 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Démarches auprès du syndic en copropriété</h3>
+            <h3 className="display t-haut text-ivoire">Démarches auprès du syndic en copropriété</h3>
             <div className="mt-4">
               <MqProse>
                 <p>
@@ -271,7 +271,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="text-muted text-[0.92rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-sec leading-relaxed mt-8 max-w-2xl">
           Ces projets de surélévation sont pilotés dans notre zone d'intervention, présentée sur la page{" "}
           <Link href="/renovation-hauts-de-seine-92" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
             rénovation en Hauts-de-Seine
@@ -359,7 +359,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="text-muted text-[0.85rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
           Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon
           les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des
           architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les

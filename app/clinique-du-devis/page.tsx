@@ -61,7 +61,7 @@ export default function Page() {
         lead="Un devis de rénovation ne se juge pas sur son total mais sur ce qu'il décrit ligne à ligne. Notre clinique du devis applique une méthode issue du chiffrage en foncière : vérification des quantités, des unités, des hypothèses, des exclusions et des interfaces entre lots. Objectif : transformer un document commercial en outil de décision comparable, avant tout engagement financier."
       />
 
-      <div className="container-site max-w-4xl pb-4">
+      <div className="rf-wrap mq-mesure--large pb-4 mq-planche-ouverture">
         <MqFig entier
           src="/photos/pedagogie/13-clinique-devis-hero.jpeg"
           alt="Devis de rénovation anonymisé avec six zones mises en évidence : quantité, unité, fourniture, pose, exclusion, hypothèse"
@@ -84,8 +84,8 @@ export default function Page() {
         */}
         <div className="mt-10 flex flex-col gap-10">
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Le montant total est une addition, pas une preuve</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Le montant total est une addition, pas une preuve</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Un total identique peut cacher des écarts de quantités, de qualité ou de prestations incluses.
             </p>
             <div className="mt-4">
@@ -100,8 +100,8 @@ export default function Page() {
             </div>
           </div>
           <div>
-            <h3 className="display text-[1.25rem] text-ivoire">Le risque se loge entre les lots, pas dans les lots</h3>
-            <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+            <h3 className="display t-haut text-ivoire">Le risque se loge entre les lots, pas dans les lots</h3>
+            <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
               Les prestations qui manquent ou qui se répètent se trouvent aux interfaces entre corps de métier.
             </p>
             <div className="mt-4">
@@ -183,8 +183,8 @@ export default function Page() {
         title="Les points à vérifier avant de signer un devis"
         lead="Cette grille sert de check-list rapide pour une première lecture, avant l'analyse détaillée."
       >
-        <div className="overflow-x-auto border border-line rounded-[2px]">
-          <table className="w-full min-w-[40rem] text-left text-[0.92rem]">
+        <div className="overflow-x-auto border border-line rounded-none">
+          <table className="w-full min-w-[40rem] text-left t-sec">
             <thead>
               <tr className="border-b border-line">
                 <th className="px-4 py-3 font-semibold text-ivoire">Critère</th>
@@ -280,28 +280,28 @@ export default function Page() {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
           <div>
-            <h3 className="display text-[1.05rem] text-ivoire">Chiffrer et comparer</h3>
+            <h3 className="display t-base text-ivoire">Chiffrer et comparer</h3>
             <ul className="flex flex-col gap-2 mt-3">
-              <li><Link href="/estimateur-travaux" className="text-orange-deep hover:underline text-[0.92rem]">Estimer une enveloppe de travaux en quelques questions</Link></li>
-              <li><Link href="/observatoire-prix-renovation" className="text-orange-deep hover:underline text-[0.92rem]">Les fourchettes de prix par poste de travaux en Île-de-France</Link></li>
-              <li><Link href="/modele-economique-transparence" className="text-orange-deep hover:underline text-[0.92rem]">Qui facture quoi : le modèle économique détaillé</Link></li>
-              <li><Link href="/achat-direct-materiaux" className="text-orange-deep hover:underline text-[0.92rem]">Acheter les matériaux en direct, à votre nom</Link></li>
-              <li><Link href="/glossaire-renovation" className="text-orange-deep hover:underline text-[0.92rem]">Le vocabulaire employé dans les devis et les diagnostics</Link></li>
+              <li><Link href="/estimateur-travaux" className="text-orange-deep hover:underline t-sec">Estimer une enveloppe de travaux en quelques questions</Link></li>
+              <li><Link href="/observatoire-prix-renovation" className="text-orange-deep hover:underline t-sec">Les fourchettes de prix par poste de travaux en Île-de-France</Link></li>
+              <li><Link href="/modele-economique-transparence" className="text-orange-deep hover:underline t-sec">Qui facture quoi : le modèle économique détaillé</Link></li>
+              <li><Link href="/achat-direct-materiaux" className="text-orange-deep hover:underline t-sec">Acheter les matériaux en direct, à votre nom</Link></li>
+              <li><Link href="/glossaire-renovation" className="text-orange-deep hover:underline t-sec">Le vocabulaire employé dans les devis et les diagnostics</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="display text-[1.05rem] text-ivoire">Articles du blog sur le devis et le budget</h3>
+            <h3 className="display t-base text-ivoire">Articles du blog sur le devis et le budget</h3>
             <ul className="flex flex-col gap-2 mt-3">
-              <li><Link href="/blog/devis-travaux-lignes-a-verifier" className="text-orange-deep hover:underline text-[0.92rem]">Les lignes d&apos;un devis à vérifier avant de signer</Link></li>
-              <li><Link href="/blog/prix-renovation-maison-2026" className="text-orange-deep hover:underline text-[0.92rem]">Ce que coûtent des travaux de rénovation de maison en 2026</Link></li>
-              <li><Link href="/blog/cuisine-sur-mesure-ou-caissons-standards" className="text-orange-deep hover:underline text-[0.92rem]">Cuisine sur mesure ou caissons standards : où se joue l&apos;économie</Link></li>
-              <li><Link href="/blog/maprimerenov-cee-2026" className="text-orange-deep hover:underline text-[0.92rem]">MaPrimeRénov&apos; et CEE : ce qu&apos;il faut vérifier avant de compter sur une aide</Link></li>
-              <li><Link href="/blog/planning-chantier-commandes-a-lancer-en-premier" className="text-orange-deep hover:underline text-[0.92rem]">Quelles commandes lancer en premier pour tenir le planning</Link></li>
-              <li><Link href="/blog/ordre-intervention-lots-renovation-complete" className="text-orange-deep hover:underline text-[0.92rem]">Dans quel ordre faire intervenir les lots d&apos;une rénovation complète</Link></li>
+              <li><Link href="/blog/devis-travaux-lignes-a-verifier" className="text-orange-deep hover:underline t-sec">Les lignes d&apos;un devis à vérifier avant de signer</Link></li>
+              <li><Link href="/blog/prix-renovation-maison-2026" className="text-orange-deep hover:underline t-sec">Ce que coûtent des travaux de rénovation de maison en 2026</Link></li>
+              <li><Link href="/blog/cuisine-sur-mesure-ou-caissons-standards" className="text-orange-deep hover:underline t-sec">Cuisine sur mesure ou caissons standards : où se joue l&apos;économie</Link></li>
+              <li><Link href="/blog/maprimerenov-cee-2026" className="text-orange-deep hover:underline t-sec">MaPrimeRénov&apos; et CEE : ce qu&apos;il faut vérifier avant de compter sur une aide</Link></li>
+              <li><Link href="/blog/planning-chantier-commandes-a-lancer-en-premier" className="text-orange-deep hover:underline t-sec">Quelles commandes lancer en premier pour tenir le planning</Link></li>
+              <li><Link href="/blog/ordre-intervention-lots-renovation-complete" className="text-orange-deep hover:underline t-sec">Dans quel ordre faire intervenir les lots d&apos;une rénovation complète</Link></li>
             </ul>
           </div>
         </div>
-        <p className="text-muted text-[0.9rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
           Les devis analysés portent sur des projets situés dans notre zone d&apos;intervention :{" "}
           <Link href="/renovation-hauts-de-seine-92" className="text-orange-deep hover:underline">les Hauts-de-Seine (92)</Link>
           {" "}en priorité et, selon l&apos;ampleur du chantier,{" "}
@@ -340,7 +340,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="text-muted text-[0.85rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
           Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon
           les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des
           architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les

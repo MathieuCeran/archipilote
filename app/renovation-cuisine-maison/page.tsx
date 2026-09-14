@@ -113,8 +113,8 @@ export default function Page() {
         lead={LEAD}
       />
 
-      <nav aria-label="Fil d'Ariane" className="container-site max-w-4xl mx-auto -mt-6 mb-8">
-        <ol className="flex flex-wrap items-center gap-2 font-mono text-[0.68rem] tracking-[0.12em] uppercase text-muted">
+      <nav aria-label="Fil d'Ariane" className="rf-wrap mq-mesure--large -mt-6 mb-8">
+        <ol className="flex flex-wrap items-center gap-2 mq-mention">
           <li><Link href="/" className="hover:text-orange transition-colors">Accueil</Link></li>
           <li aria-hidden>›</li>
           <li><Link href="/services" className="hover:text-orange transition-colors">{EYEBROW}</Link></li>
@@ -128,21 +128,13 @@ export default function Page() {
           photo native paysage, dans un cadre 3/2 qui la recoupe à peine. chCuisineSauge reste
           publiée dans la galerie de /realisations. */}
       <section className="relative pb-10">
-        <div className="container-site max-w-4xl mx-auto">
-          <MqFig
-            src="/photos/chantiers/chCuisineNoirMatIlotStratifie.jpeg"
-            alt="Cuisine ouverte sur séjour en fin de second œuvre : caissons bas et îlot noir mat, meubles hauts et plans de travail en décor bois, parquet à chevrons côté séjour et carrelage effet marbre noir côté cuisine"
-            caption="Cuisine ouverte sur le séjour, en fin de second œuvre : caissons et îlot noir mat, meubles hauts et plans en décor bois, bandeau noir cintré en tête de meubles. La plaque et le four sont posés mais non raccordés, les robinets d'arrêt restent apparents et l'ampoule pend au bout de son fil. Chantier réel des équipes partenaires."
-            ratio="aspect-[3/2]"
-          />
-        </div>
       </section>
 
       <section className="relative pb-16 md:pb-24">
-        <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-12 text-ivoire/85 text-[1.02rem] leading-relaxed">
+        <div className="rf-wrap mq-mesure flex flex-col gap-12 text-ivoire/85 t-base leading-relaxed">
           {SECTIONS.map((s) => (
             <div key={s.titre} className="flex flex-col gap-2">
-              <h2 className="display text-2xl text-ivoire normal-case">{s.titre}</h2>
+              <h2 className="display t-titre text-ivoire normal-case">{s.titre}</h2>
               <p>{s.texte}</p>
               <div className={`mt-4 ${s.photo.cadre}`}>
                 <MqFig src={s.photo.src} alt={s.photo.alt} caption={s.photo.caption} ratio={s.photo.ratio} />
@@ -218,7 +210,7 @@ export default function Page() {
             ratio="aspect-[4/3]"
           />
         </div>
-        <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl mt-8">
+        <p className="text-muted t-petit leading-relaxed max-w-2xl mt-8">
           Les façades, les plans de travail et l&apos;électroménager visibles sur ces photos ont été
           choisis chantier par chantier : les modalités d&apos;achat sont décrites sur la page{" "}
           <Link href="/achat-direct-materiaux" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
@@ -233,11 +225,11 @@ export default function Page() {
       </MqSection>
 
       <section className="relative py-16 md:py-24">
-        <div className="container-site max-w-3xl mx-auto flex flex-col gap-4">
+        <div className="rf-wrap mq-mesure flex flex-col gap-4">
           {FAQ_COMMUNE.map((f) => (
             <div key={f.q} className="card-e rounded-none p-6">
-              <h3 className="display text-[1.05rem] text-ivoire normal-case mb-1.5">{f.q}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{f.r}</p>
+              <h3 className="display t-base text-ivoire normal-case mb-1.5">{f.q}</h3>
+              <p className="text-muted t-sec leading-relaxed">{f.r}</p>
             </div>
           ))}
         </div>

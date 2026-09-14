@@ -50,7 +50,7 @@ export function ConceptSplit() {
                 ].map((item) => (
                   <li key={item} className="flex items-start gap-3 text-ivoire/85">
                     <span className="mt-[7px] size-1.5 rounded-full bg-orange shrink-0" />
-                    <span className="text-[0.98rem] leading-snug">{item}</span>
+                    <span className="t-sec leading-snug">{item}</span>
                   </li>
                 ))}
               </ul>
@@ -69,13 +69,13 @@ export function ConceptSplit() {
             </motion.div>
             <motion.div style={{ y: yFront }} className="absolute bottom-0 left-0 w-[52%] h-[58%] rounded-none overflow-hidden card-e z-10">
               <img src={PHOTOS.detailParquet} alt="Détail de parquet point de Hongrie posé" className="size-full object-cover" loading="lazy" />
-              <span className="absolute bottom-3 left-3 bg-black/45 border border-white/25 px-3 py-1.5 text-[0.72rem] font-medium text-white/90">Parquet point de Hongrie</span>
+              <span className="absolute bottom-3 left-3 bg-black/45 border border-white/25 px-3 py-1.5 t-micro font-medium text-white/90">Parquet point de Hongrie</span>
             </motion.div>
 
             <Reveal variant="scale" delay={0.4} className="absolute -bottom-5 right-6 md:right-14 z-20">
               <div className="card-e rounded-none px-5 py-4 flex items-center gap-4">
-                <span className="display text-3xl text-gradient leading-none">48h</span>
-                <span className="text-[0.82rem] text-muted leading-tight">pour les devis<br />des entreprises</span>
+                <span className="display t-titre text-gradient leading-none">48h</span>
+                <span className="t-mini text-muted leading-tight">pour les devis<br />des entreprises</span>
               </div>
             </Reveal>
           </div>

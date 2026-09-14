@@ -18,106 +18,198 @@
   --color-line: var(--c-line);
   --color-line-strong: var(--c-line-strong);
 
-  --font-display: var(--font-dm-serif), Georgia, serif;
+  /* Les rôles s'inversent : titrage à la grotesque, lecture à la sérif.
+     --font-display pointait sur la sérif, --font-body sur la grotesque. */
+  --font-display: var(--font-sora), "Helvetica Neue", Arial, sans-serif;
   --font-serif: var(--font-dm-serif), Georgia, serif;
-  --font-body: var(--font-sora), system-ui, sans-serif;
-  --font-mono: var(--font-space-mono), ui-monospace, monospace;
+  --font-body: var(--font-dm-serif), Georgia, serif;
+  --font-mono: var(--font-sora), "Helvetica Neue", Arial, sans-serif;
 
-  --ease-lux: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-lux: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ─── Palette maquette Lovable (batir-optimale) — crème chaud, encre, ocre.
-   Thème unique : les anciens thèmes ardoise/sauge sont retirés, le sélecteur aussi. */
+/* ══════════════════════════════════════════════════════════════════════════
+   PROMOTION DE LA REFONTE — ÉTAPE 1 : LE SOCLE
+
+   Les soixante-sept pages sont bâties sur le même vocabulaire : onze jetons de
+   couleur, trois de police, et une poignée de classes sémantiques. Aucune page
+   n'écrit une couleur en dur — c'est vérifié, pas supposé : `text-ivoire`
+   apparaît 431 fois, `border-line` 162, `.lead` 604, et pas une valeur libre.
+
+   Conséquence : remapper ces jetons change les soixante-sept pages d'un coup,
+   sans en ouvrir une seule. C'est ce que fait ce bloc.
+
+   Les NOMS sont conservés (--c-ivoire, --c-orange…) alors même qu'ils ne
+   décrivent plus ce qu'ils valent — l'« orange » est devenu le bleu de tirage.
+   Les renommer imposerait de reprendre deux mille trois cents occurrences dans
+   soixante-sept fichiers, pour un gain purement cosmétique et un risque réel.
+   La correspondance est donnée ici, une fois, en toutes lettres.
+   ══════════════════════════════════════════════════════════════════════════ */
+
 :root,
 [data-theme="pierre"],
 [data-theme="ardoise"],
 [data-theme="sauge"] {
-  --c-carbone: oklch(98.5% 0.008 85);
-  --c-surface: oklch(100% 0.003 85);
-  --c-surface-2: oklch(94.8% 0.01 85);
-  --c-ivoire: oklch(24% 0.012 60);
-  --c-muted: oklch(50% 0.016 65);
-  --c-ambre: oklch(66% 0.106 74);
-  --c-orange: oklch(66% 0.106 74);
-  --c-orange-deep: oklch(54% 0.095 70);
-  --c-vert: oklch(40% 0.04 150);
-  --c-line: oklch(90% 0.014 82);
-  --c-line-strong: oklch(84% 0.016 80);
-  --glass: oklch(98.5% 0.008 85 / 0.92);
-  --glass-border: oklch(90% 0.014 82);
-  --shadow-tint: 60, 50, 35;
-  /* Tokens propres à la maquette */
-  --mq-dark: oklch(22% 0.012 60);
-  --mq-dark-2: oklch(26% 0.013 60);
-  --mq-primary: oklch(26% 0.013 60);
-  --mq-primary-fg: oklch(98% 0.008 85);
+  /* ── Fonds ──────────────────────────────────────────────────────────── */
+  --c-carbone: #e7e3d9;        /* le papier des axonométries */
+  --c-surface: #f4f1ea;        /* craie — surface surélevée */
+  --c-surface-2: #ebe7dd;      /* craie sourde — champs de saisie */
+
+  /* ── Encres ─────────────────────────────────────────────────────────── */
+  --c-ivoire: #14181a;         /* encre — texte principal */
+  --c-muted: #4b5256;          /* encre seconde — texte secondaire */
+
+  /* ── Filets ─────────────────────────────────────────────────────────── */
+  --c-line: #cfc9bb;
+  --c-line-strong: #b3ab99;
+
+  /* ── Accent ─────────────────────────────────────────────────────────────
+     L'ocre de l'ancien système devient le BLEU DE TIRAGE. C'est le
+     déplacement le plus lourd de conséquences : cet accent portait les
+     surtitres, les liens, le focus des champs, le soulignement de la
+     navigation et les puces des articles. Il change partout d'un seul coup.
+
+     L'orange de repérage est conservé sous son propre nom : il ne sert plus
+     qu'à cercler le point critique, une fois par écran. */
+  --c-ambre: #2d5c9c;
+  --c-orange: #2d5c9c;
+  --c-orange-deep: #24497c;
+  --c-reperage: #c4501d;
+  --c-vert: #2f5d43;
+
+  --glass: rgba(231, 227, 217, 0.92);
+  --glass-border: #cfc9bb;
+  --shadow-tint: 20, 24, 26;
+
+  /* Registre sombre — le « dossier » de la refonte. */
+  --mq-dark: #14181a;
+  --mq-dark-2: #1c2225;
+  --mq-primary: #14181a;
+  --mq-primary-fg: #f4f1ea;
+
+  /* ── Échelle typographique ──────────────────────────────────────────────
+     Reprise telle quelle du prototype. Sept corps, et rien entre eux : c'est
+     ce qui empêche les 0,97 et 0,98 rem de revenir s'installer. */
+  --t-micro: 0.75rem;
+  --t-mini: 0.8125rem;
+  --t-petit: 0.875rem;
+  --t-sec: 0.9375rem;
+  --t-base: 1.0625rem;
+  --t-haut: 1.1875rem;
+  --t-fort: 1.375rem;
+
+  --t-h1: clamp(2.6rem, 6.2vw, 5.25rem);
+  --t-h2-l: clamp(2rem, 3.7vw, 3.1rem);
+  --t-h2: clamp(1.75rem, 3.1vw, 2.6rem);
+  --t-h2-s: clamp(1.4rem, 2.2vw, 1.85rem);
 }
 
 * { box-sizing: border-box; }
 html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
 body { background: var(--c-carbone); color: var(--c-ivoire); font-family: var(--font-body); overflow-x: clip; }
-::selection { background: var(--c-orange); color: #fff; }
+::selection { background: var(--c-orange); color: var(--c-surface); }
 
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
 .lenis.lenis-stopped { overflow: hidden; }
 
-.container-site { width: min(100% - 2.5rem, 82rem); margin-inline: auto; }
-@media (min-width: 1024px) { .container-site { width: min(100% - 6rem, 82rem); } }
+/* La largeur de planche du prototype : 88 rem, gouttière de 2,5 rem à toutes
+   les tailles. L'ancienne gouttière de 6 rem au-delà de 1024 px creusait des
+   marges que rien ne venait occuper. */
+/* `.container-site` n'a plus de définition propre : elle est déclarée avec
+   `.rf-wrap` dans systeme.css. Les deux avaient dérivé — 2,5 rem de gouttière
+   ici, 5 rem là-bas au-delà de 1024 px — et toute page qui mélangeait les
+   deux affichait vingt pixels de décalage entre son titre et son contenu.
+   Deux noms, une seule règle : elles ne peuvent plus diverger. */
 
 /* ---------- Type ---------- */
+/* Le titrage passe à la grotesque. Graisse 600, approche resserrée et
+   interligne court : le dessin du prototype. L'axe optique de la fonte
+   accorde le tracé au corps rendu, sans qu'on ait à l'écrire. */
 .display {
   font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 1.1;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  line-height: 1.06;
+  text-wrap: balance;
 }
-.serif-accent { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: 0; }
-.text-gradient { color: var(--c-orange-deep); font-style: italic; }
-.eyebrow { font-family: var(--font-body); font-size: 0.74rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c-orange-deep); }
-.lead { font-size: clamp(1.05rem, 1.5vw, 1.25rem); line-height: 1.6; color: var(--c-muted); font-weight: 400; }
+/* L'accent sérif garde son rôle, mais le contraste s'inverse : il détache
+   maintenant un mot de sérif dans un titre de grotesque. */
+.serif-accent { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: -0.01em; }
+/* L'accent dans un titre : la sérif en italique, à l'encre du titre. Il était
+   dans l'accent de la marque — un mot bleu au milieu d'un titre noir, ce qui
+   est le tic le plus répandu des titres de gabarit. Le contraste de dessin
+   suffit à détacher le mot ; la couleur n'y ajoutait que du bruit. */
+.text-gradient { color: inherit; font-family: var(--font-serif); font-style: italic; font-weight: 400; }
+/* LE SURTITRE CHANGE DE GRAMMAIRE — c'est le second changement le plus
+   visible après les polices, et il touche soixante-treize emplacements.
 
-/* ---------- MOTIF SIGNATURE : parquet point de Hongrie (chevron) ----------
-   Deux planches en V, motif du parquet haussmannien décliné en filigrane. */
+   Il était en capitales, approche 0,18 em, graisse 700 : le surtitre traqué
+   au-dessus de chaque titre, exactement ce que produit n'importe quel gabarit.
+   Il devient le REPÈRE du prototype : un filet court, puis le mot en bas de
+   casse. Le filet dit « nouvelle section » mieux que des capitales. */
+.eyebrow {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+  font-family: var(--font-display);
+  font-size: var(--t-mini);
+  font-weight: 600;
+  letter-spacing: 0.005em;
+  line-height: 1.3;
+  text-transform: none;
+  color: var(--c-orange-deep);
+}
+.eyebrow::before {
+  content: "";
+  flex: none;
+  width: 1.5rem;
+  height: 1px;
+  background: currentColor;
+  transform: translateY(-0.3em);
+}
+
+/* Le chapô passe à la sérif de lecture, au degré au-dessus du texte courant. */
+.lead { font-family: var(--font-serif); font-size: var(--t-haut); line-height: 1.6; color: var(--c-muted); font-weight: 400; text-wrap: pretty; }
+
+/* ---------- MOTIF DE FOND ----------
+   Le parquet en point de Hongrie était la signature de l'ancien système. Le
+   nouveau en a une autre, et elle dit le métier plus directement : la TRAME DE
+   CALQUE, la grille millimétrée du fond de plan. Les huit emplacements qui
+   portaient le chevron reçoivent la trame sans être touchés — seule la règle
+   change. */
 .herringbone-ghost {
-  position: absolute; pointer-events: none; user-select: none; opacity: 0.075;
+  position: absolute; pointer-events: none; user-select: none; opacity: 0.06;
   background-image:
-    repeating-linear-gradient(45deg, var(--c-ivoire) 0 3px, transparent 3px 34px),
-    repeating-linear-gradient(-45deg, var(--c-ivoire) 0 3px, transparent 3px 34px);
-  background-size: 68px 68px;
+    linear-gradient(var(--c-ivoire) 1px, transparent 1px),
+    linear-gradient(90deg, var(--c-ivoire) 1px, transparent 1px);
+  background-size: 5.5rem 5.5rem;
 }
 .herringbone-divider {
-  height: 2.4rem; width: 100%;
-  background-image:
-    repeating-linear-gradient(45deg, var(--c-orange) 0 2px, transparent 2px 18px),
-    repeating-linear-gradient(-45deg, var(--c-orange) 0 2px, transparent 2px 18px);
-  background-size: 36px 36px;
-  opacity: 0.35;
-  -webkit-mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
-  mask-image: linear-gradient(90deg, transparent, #000 15%, #000 85%, transparent);
+  height: 1px; width: 100%;
+  background: var(--c-line-strong);
+  opacity: 1;
 }
-.chevron-mark { display: inline-flex; align-items: center; gap: 2px; }
-.chevron-mark i { display: block; width: 0.55em; height: 0.9em; border-left: 2px solid currentColor; transform: skewY(28deg); }
-.chevron-mark i:nth-child(even) { transform: skewY(-28deg); margin-left: -0.28em; }
 
 /* ---------- Cards ---------- */
+/* LA CARTE PERD SON OMBRE — quarante-six emplacements.
+
+   Elle portait six ombres empilées, de 0,7 à 30 px de flou. C'est la carte de
+   tableau de bord : un objet qui flotte au-dessus de la page. Le système de la
+   refonte n'a pas d'objets flottants — il a des surfaces et des filets, comme
+   un document. Une surface de craie et un filet d'un pixel disent la même
+   chose, en pesant ce que pèse un trait. */
 .card-e {
   background: var(--c-surface);
   border: 1px solid var(--c-line);
-  box-shadow:
-    rgba(var(--shadow-tint), 0.14) 0px 0.7px 0.7px -0.66px,
-    rgba(var(--shadow-tint), 0.13) 0px 1.8px 1.8px -1.33px,
-    rgba(var(--shadow-tint), 0.12) 0px 3.6px 3.6px -2px,
-    rgba(var(--shadow-tint), 0.1) 0px 6.9px 6.9px -2.66px,
-    rgba(var(--shadow-tint), 0.08) 0px 13.6px 13.6px -3.33px,
-    rgba(var(--shadow-tint), 0.05) 0px 30px 30px -4px;
+  box-shadow: none;
 }
 
 /* ---------- Boutons — grammaire maquette Lovable : encre pleine / contour fin, radius 2px ---------- */
 .btn {
   position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 0.6rem;
-  padding: 0.75rem 1.5rem; border-radius: 2px;
-  font-family: var(--font-body); font-size: 0.875rem; font-weight: 600; letter-spacing: 0.01em;
+  padding: 1rem 1.85rem; border-radius: 0;
+  font-family: var(--font-display); font-size: var(--t-sec); font-weight: 500; letter-spacing: 0.01em;
   cursor: pointer; white-space: nowrap;
   border: 1px solid transparent;
   transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, opacity 0.25s ease;
@@ -128,7 +220,7 @@ html.lenis, html.lenis body { height: auto; }
   border-color: var(--mq-primary);
   color: var(--mq-primary-fg);
 }
-.btn-primary:hover { opacity: 0.9; }
+.btn-primary:hover { background: var(--c-orange-deep); border-color: var(--c-orange-deep); }
 .btn-ghost { background: transparent; border: 1px solid var(--c-line-strong); color: var(--c-ivoire); }
 .btn-ghost:hover { border-color: var(--c-ivoire); }
 
@@ -156,9 +248,9 @@ html.lenis, html.lenis body { height: auto; }
 
 /* ---------- Inputs ---------- */
 .field {
-  width: 100%; padding: 1rem 1.15rem; border-radius: 2px;
-  background: var(--c-surface-2); border: 1px solid var(--c-line); color: var(--c-ivoire);
-  font-size: 0.98rem; font-family: var(--font-body); outline: none;
+  width: 100%; padding: 1rem 1.15rem; border-radius: 0;
+  background: var(--c-surface); border: 1px solid var(--c-line-strong); color: var(--c-ivoire);
+  font-size: var(--t-base); font-family: var(--font-display); outline: none;
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
 }
 .field::placeholder { color: var(--c-muted); }
@@ -181,19 +273,23 @@ html.lenis, html.lenis body { height: auto; }
 /* ---------- Scrollbar ---------- */
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--c-carbone); }
-::-webkit-scrollbar-thumb { background: var(--c-surface-2); border-radius: 999px; border: 2px solid var(--c-carbone); }
-::-webkit-scrollbar-thumb:hover { background: var(--c-orange-deep); }
+::-webkit-scrollbar-thumb { background: var(--c-line-strong); border-radius: 999px; border: 2px solid var(--c-carbone); }
+::-webkit-scrollbar-thumb:hover { background: var(--c-muted); }
 
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
 /* ---------- Corps d'article importé depuis Sedestral ----------
-   Le HTML vient de l'API : il n'a pas de classes utilitaires, on le
-   stylise ici pour rester dans la grammaire typographique du site. */
-.prose-article { color: color-mix(in oklab, var(--c-ivoire) 85%, transparent); font-size: 1.05rem; line-height: 1.75; }
+   Le HTML vient de l'API : il n'a pas de classes utilitaires, on le stylise
+   ici pour rester dans la grammaire typographique du site.
+
+   Ses titres portaient encore leurs propres `clamp`, hors de l'échelle —
+   23 et 18 px mesurés à 390 px de large. Ramenés sur les degrés du système,
+   c'était le dernier endroit du site à choisir ses corps tout seul. */
+.prose-article { font-family: var(--font-serif); color: var(--c-muted); font-size: var(--t-base); line-height: 1.75; text-wrap: pretty; }
 .prose-article > * + * { margin-top: 1.35rem; }
-.prose-article h2 { font-family: var(--font-display); font-weight: 500; letter-spacing: -0.015em; line-height: 1.15; font-size: clamp(1.45rem, 2.6vw, 1.9rem); color: var(--c-ivoire); margin-top: 2.6rem; }
-.prose-article h3 { font-family: var(--font-display); font-weight: 500; line-height: 1.2; font-size: clamp(1.15rem, 2vw, 1.4rem); color: var(--c-ivoire); margin-top: 2.1rem; }
-.prose-article h4 { font-weight: 600; font-size: 1.05rem; color: var(--c-ivoire); margin-top: 1.8rem; }
+.prose-article h2 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.025em; line-height: 1.15; font-size: var(--t-h2-s); color: var(--c-ivoire); margin-top: 2.6rem; }
+.prose-article h3 { font-family: var(--font-display); font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; font-size: var(--t-fort); color: var(--c-ivoire); margin-top: 2.1rem; }
+.prose-article h4 { font-family: var(--font-display); font-weight: 600; font-size: var(--t-haut); color: var(--c-ivoire); margin-top: 1.8rem; }
 .prose-article strong { color: var(--c-ivoire); font-weight: 600; }
 .prose-article a { color: var(--c-orange-deep); text-decoration: underline; text-underline-offset: 3px; }
 .prose-article a:hover { color: var(--c-orange); }
@@ -202,10 +298,10 @@ html.lenis, html.lenis body { height: auto; }
 .prose-article ul > li { position: relative; padding-left: 1rem; }
 .prose-article ul > li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 0.4rem; height: 1px; background: var(--c-orange); }
 .prose-article ol { list-style: decimal; }
-.prose-article blockquote { border-left: 2px solid var(--c-orange); padding-left: 1.25rem; font-family: var(--font-serif); font-style: italic; color: var(--c-ivoire); }
+.prose-article blockquote { border-left: 2px solid var(--c-orange); padding-left: 1.25rem; font-style: italic; color: var(--c-ivoire); }
 .prose-article img { width: 100%; height: auto; display: block; border: 1px solid var(--c-line); }
 .prose-article figure { margin-inline: 0; }
-.prose-article figcaption { margin-top: 0.6rem; font-family: var(--font-body); font-size: 0.8rem; color: var(--c-muted); }
+.prose-article figcaption { margin-top: 0.6rem; font-family: var(--font-display); font-size: var(--t-mini); color: var(--c-muted); }
 .prose-article table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
 .prose-article th, .prose-article td { border: 1px solid var(--c-line); padding: 0.6rem 0.8rem; text-align: left; }
 .prose-article th { background: var(--c-surface); color: var(--c-ivoire); font-weight: 600; }

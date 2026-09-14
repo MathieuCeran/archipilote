@@ -80,13 +80,6 @@ export default function TendancesMateriauxFrancaisPage() {
         lead="Les trois matières qui structurent aujourd'hui l'esthétique française — travertin, zellige et béton ciré — sont exigeantes sur le support, jamais sur le style. Chacune impose une préparation précise : planéité, étanchéité, charge admissible, traitement de protection. ARCHI PILOTE RÉNOVATION conçoit ces finitions avec l'architecte partenaire Minh-Hoa Truong, les valide avec l'ingénieur structure Igli Braho du bureau Tridenso lorsque la structure est concernée, et les fait exécuter par des entreprises partenaires contractantes, sous notre pilotage et notre accompagnement de A à Z."
       />
 
-      <MqFig
-        src="/photos/pedagogie/30-tendances-materiaux-planche.jpeg"
-        alt="Planche matière : échantillons de travertin, zellige, béton ciré, chêne massif, chaux et laiton"
-        caption="Palette de matériaux français pour une rénovation intérieure haut de gamme."
-        ratio="aspect-[3/2]"
-      />
-
       <MqSection
         kicker="Panorama"
         title="Chaque matière, sa logique de mise en œuvre"
@@ -216,22 +209,22 @@ export default function TendancesMateriauxFrancaisPage() {
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Minh-Hoa Truong — architecte partenaire</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Minh-Hoa Truong — architecte partenaire</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Collaboration régulière sur les projets de redistribution et de rénovation patrimoniale : partis pris de conception, cohérence
               des matières, dossiers d'autorisation d'urbanisme.
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Igli Braho — ingénieur structure, Tridenso</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Igli Braho — ingénieur structure, Tridenso</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Collaboration régulière sur les dossiers structurels : notes de calcul d'ouverture de mur porteur, renforcement de plancher,
               création de trémie et vérification des charges admissibles avant finition.
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Entreprises partenaires contractantes</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Entreprises partenaires contractantes</h3>
+            <p className="text-muted t-sec leading-relaxed">
               Exécutent et facturent les lots concernés : pierre, faïence, béton ciré, menuiserie et plâtrerie traditionnelle, sous notre
               pilotage et notre accompagnement du diagnostic à la réception.
             </p>
@@ -240,8 +233,8 @@ export default function TendancesMateriauxFrancaisPage() {
       </MqSection>
 
       <section className="py-8 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
             <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
             les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque
             nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises

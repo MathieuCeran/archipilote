@@ -80,7 +80,7 @@ export default function ChantiersComplexesPage() {
         bas de chaque schéma, c'est-à-dire précisément le titre et les mentions de bas de page.
         Chaque figure reprend désormais son ratio natif et s'affiche en entier.
       */}
-      <div className="container-site max-w-4xl pb-12 md:pb-16">
+      <div className="rf-wrap mq-mesure--large pb-12 md:pb-16 mq-planche-ouverture">
         <MqFig entier
           src="/photos/pedagogie/10-chantiers-complexes-hero.jpeg"
           alt="Coupe d'un immeuble haussmannien occupé pendant des travaux lourds : mur porteur ouvert, réseaux déviés, protections de chantier, accord du syndic, phasage"
@@ -97,11 +97,11 @@ export default function ChantiersComplexesPage() {
         <div className="flex flex-col gap-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Contraintes de structure</h3>
-              <p className="text-ivoire/85 text-[0.95rem] leading-relaxed font-medium">
+              <h3 className="display t-haut text-ivoire">Contraintes de structure</h3>
+              <p className="text-ivoire/85 t-sec leading-relaxed font-medium">
                 Ouverture de mur porteur, reprise en sous-œuvre, poutre, poteaux, descente de charges.
               </p>
-              <p className="text-muted text-[0.92rem] leading-relaxed">
+              <p className="text-muted t-sec leading-relaxed">
                 Chaque décision engage la stabilité de l'ouvrage. Un ingénieur structure partenaire indépendant réalise la note de calcul
                 nécessaire avant toute exécution, sous sa propre responsabilité professionnelle. Le cas le plus fréquent est détaillé sur
                 la page{" "}
@@ -112,11 +112,11 @@ export default function ChantiersComplexesPage() {
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Contraintes de copropriété</h3>
-              <p className="text-ivoire/85 text-[0.95rem] leading-relaxed font-medium">
+              <h3 className="display t-haut text-ivoire">Contraintes de copropriété</h3>
+              <p className="text-ivoire/85 t-sec leading-relaxed font-medium">
                 Parties communes, façade, distribution des colonnes techniques, règlement de copropriété.
               </p>
-              <p className="text-muted text-[0.92rem] leading-relaxed">
+              <p className="text-muted t-sec leading-relaxed">
                 Le dossier technique doit être présenté au syndic et, souvent, voté en assemblée générale avant tout démarrage sur une partie
                 commune ou un élément visible depuis l'extérieur de l'immeuble. La chronologie complète figure sur la page{" "}
                 <Link href="/demarches-administratives-renovation" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
@@ -126,21 +126,21 @@ export default function ChantiersComplexesPage() {
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Immeuble occupé pendant les travaux</h3>
-              <p className="text-ivoire/85 text-[0.95rem] leading-relaxed font-medium">
+              <h3 className="display t-haut text-ivoire">Immeuble occupé pendant les travaux</h3>
+              <p className="text-ivoire/85 t-sec leading-relaxed font-medium">
                 Voisins, locataires ou occupants du bien lui-même présents durant tout ou partie du chantier.
               </p>
-              <p className="text-muted text-[0.92rem] leading-relaxed">
+              <p className="text-muted t-sec leading-relaxed">
                 Le phasage doit limiter les nuisances, organiser les accès et prévoir une information préalable claire des personnes
                 concernées par les zones de travail successives.
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Aléas techniques probables</h3>
-              <p className="text-ivoire/85 text-[0.95rem] leading-relaxed font-medium">
+              <h3 className="display t-haut text-ivoire">Aléas techniques probables</h3>
+              <p className="text-ivoire/85 t-sec leading-relaxed font-medium">
                 Réseau caché, désordre non visible au diagnostic initial, matériau amianté à traiter.
               </p>
-              <p className="text-muted text-[0.92rem] leading-relaxed">
+              <p className="text-muted t-sec leading-relaxed">
                 Sur un bâti ancien, une part d'incertitude subsiste malgré un diagnostic approfondi. La méthode consiste à documenter chaque
                 découverte pour la transformer en décision, pas en improvisation.
               </p>
@@ -165,27 +165,27 @@ export default function ChantiersComplexesPage() {
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Ingénieur structure partenaire</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Ingénieur structure partenaire</h3>
+              <p className="text-muted t-sec leading-relaxed">
                 Note de calcul, descente de charges, dimensionnement des reprises, sous sa propre responsabilité professionnelle.
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Architecte DPLG partenaire</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Architecte DPLG partenaire</h3>
+              <p className="text-muted t-sec leading-relaxed">
                 Dépôt de permis, conception d'ensemble et interface avec les règles d'urbanisme lorsque le dossier l'exige.
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Géotechnicien partenaire — Geo2Mo</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Géotechnicien partenaire — Geo2Mo</h3>
+              <p className="text-muted t-sec leading-relaxed">
                 Études de sols et diagnostics de fondation pour les reprises structurelles, extensions et surélévations. Sérieux, réactivité
                 et échanges réguliers pour valider les décisions techniques complexes.
               </p>
             </div>
             <div className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">Entreprises partenaires spécialisées</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">
+              <h3 className="display t-haut text-ivoire">Entreprises partenaires spécialisées</h3>
+              <p className="text-muted t-sec leading-relaxed">
                 Gros œuvre, désamiantage ou reprise en sous-œuvre confiés à des entreprises qualifiées et assurées pour ce type
                 d'intervention.
               </p>
@@ -224,7 +224,7 @@ export default function ChantiersComplexesPage() {
               "Archivage de l'incident dans le dossier de fin de chantier.",
             ]}
           />
-          <p className="text-muted text-[0.92rem] leading-relaxed max-w-2xl">
+          <p className="text-muted t-sec leading-relaxed max-w-2xl">
             Le chiffrage d'une reprise se lit comme n'importe quel devis de travaux : la page{" "}
             <Link href="/clinique-du-devis" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
               clinique du devis
@@ -239,8 +239,8 @@ export default function ChantiersComplexesPage() {
       </MqSection>
 
       <section className="py-8 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
             <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
             les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque
             nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises
@@ -266,7 +266,7 @@ export default function ChantiersComplexesPage() {
       />
 
       <section className="py-8 border-t border-line">
-        <div className="container-site max-w-4xl text-[0.9rem] text-muted">
+        <div className="rf-wrap mq-mesure--large t-petit text-muted">
           <Link href="/notre-methode" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
             Voir les huit étapes appliquées aux dossiers lourds
           </Link>

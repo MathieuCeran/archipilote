@@ -57,7 +57,7 @@ function MarqueTrustpilot({ taille = 20 }: { taille?: number }) {
     <span className="inline-flex items-center gap-2 shrink-0">
       <span
         aria-hidden
-        className="inline-flex items-center justify-center rounded-[3px]"
+        className="inline-flex items-center justify-center rounded-none"
         style={{ background: VERT_TRUSTPILOT, width: taille, height: taille }}
       >
         <svg width={taille * 0.72} height={taille * 0.72} viewBox="0 0 24 24" fill="#fff" focusable="false">
@@ -95,7 +95,7 @@ export function TrustpilotBouton({ variante = "principal" }: { variante?: "princ
     >
       <span
         aria-hidden
-        className="inline-flex items-center justify-center rounded-[3px]"
+        className="inline-flex items-center justify-center rounded-none"
         style={{ background: VERT_TRUSTPILOT, width: 18, height: 18 }}
       >
         <svg width="13" height="13" viewBox="0 0 24 24" fill="#fff" focusable="false">
@@ -163,11 +163,11 @@ export function TrustpilotLigne() {
       href={SITE.trustpilotFiche}
       target="_blank"
       rel="noopener noreferrer"
-      className="group inline-flex items-center gap-3 border border-line bg-surface rounded-[2px] pl-3 pr-4 py-2.5 hover:border-line-strong transition-colors"
+      className="group inline-flex items-center gap-3 border border-line bg-surface rounded-none pl-3 pr-4 py-2.5 hover:border-line-strong transition-colors"
     >
       <span
         aria-hidden
-        className="inline-flex items-center justify-center rounded-[3px] shrink-0"
+        className="inline-flex items-center justify-center rounded-none shrink-0"
         style={{ background: VERT_TRUSTPILOT, width: 22, height: 22 }}
       >
         <svg width="16" height="16" viewBox="0 0 24 24" fill="#fff" focusable="false">
@@ -175,10 +175,10 @@ export function TrustpilotLigne() {
         </svg>
       </span>
       <span className="flex flex-col leading-tight">
-        <span className="text-ivoire font-semibold text-[0.9rem] group-hover:text-orange-deep transition-colors">
+        <span className="text-ivoire font-semibold t-petit group-hover:text-orange-deep transition-colors">
           Nos avis sur Trustpilot
         </span>
-        <span className="text-muted text-[0.78rem]">
+        <span className="text-muted t-micro">
           Plateforme indépendante — nous ne pouvons ni modifier ni supprimer un avis
         </span>
       </span>
@@ -192,15 +192,15 @@ export function TrustpilotLigne() {
    laisser croire que les retours seraient filtrés avant publication. */
 export function TrustpilotEncart() {
   return (
-    <div className="border border-line bg-surface rounded-[2px] overflow-hidden">
+    <div className="border border-line bg-surface rounded-none overflow-hidden">
       <div aria-hidden style={{ background: VERT_TRUSTPILOT, height: 3 }} />
       <div className="p-6 md:p-8 flex flex-col gap-5">
         <div className="flex items-center gap-3 text-ivoire">
           <MarqueTrustpilot taille={26} />
         </div>
         <div className="flex flex-col gap-2">
-          <h3 className="display text-[1.35rem] text-ivoire">Vous avez fait appel à nous&nbsp;?</h3>
-          <p className="text-muted text-[0.95rem] leading-relaxed max-w-2xl">
+          <h3 className="display t-fort text-ivoire">Vous avez fait appel à nous&nbsp;?</h3>
+          <p className="text-muted t-sec leading-relaxed max-w-2xl">
             Votre retour aide les prochains propriétaires à savoir à qui ils confient leur chantier. L&apos;avis est
             déposé et publié sur Trustpilot, une plateforme indépendante&nbsp;: nous n&apos;avons pas la main sur son
             contenu, et nous ne pouvons ni le modifier ni le supprimer.
@@ -211,7 +211,7 @@ export function TrustpilotEncart() {
         </div>
         {/* Dit franchement où en est la fiche. Un badge sans note fait naître la question ;
             mieux vaut y répondre que laisser le visiteur supposer qu'on cache une note. */}
-        <p className="text-muted text-[0.8rem] leading-relaxed border-t border-line pt-4">
+        <p className="text-muted t-mini leading-relaxed border-t border-line pt-4">
           Notre fiche vient d&apos;être ouverte et ne comporte pas encore d&apos;avis. Aucune note n&apos;est donc
           affichée&nbsp;: nous préférons une page vide à une réputation empruntée.
         </p>

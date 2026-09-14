@@ -71,16 +71,16 @@ export function Estimateur() {
 
   const toggle = (id: string) => setOpts((p) => (p.includes(id) ? p.filter((x) => x !== id) : [...p, id]));
 
-  const groupCls = "border border-line bg-surface rounded-[2px] p-5";
-  const radioCls = (on: boolean) => `text-left border rounded-[2px] px-4 py-3 transition-colors cursor-pointer ${on ? "border-ivoire bg-surface-2" : "border-line hover:border-line-strong"}`;
+  const groupCls = "border border-line bg-surface rounded-none p-5";
+  const radioCls = (on: boolean) => `text-left border rounded-none px-4 py-3 transition-colors cursor-pointer ${on ? "border-ivoire bg-surface-2" : "border-line hover:border-line-strong"}`;
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-[7fr_5fr] gap-8 items-start">
       <div className="flex flex-col gap-5">
         <div className={groupCls}>
           <div className="flex items-center justify-between">
-            <span className="font-semibold text-[0.9rem] text-ivoire">Surface du logement</span>
-            <span className="display text-[1.4rem] text-ivoire tabular-nums">{surface}&nbsp;m²</span>
+            <span className="font-semibold t-petit text-ivoire">Surface du logement</span>
+            <span className="display t-fort text-ivoire tabular-nums">{surface}&nbsp;m²</span>
           </div>
           {/* 05/09 : aria-label ajouté. Le libellé « Surface du logement » est un <span> voisin,
               il n'est associé à aucun champ : un lecteur d'écran annonçait donc « curseur,
@@ -90,58 +90,58 @@ export function Estimateur() {
             aria-label="Surface du logement en mètres carrés"
             aria-valuetext={`${surface} mètres carrés`}
             onChange={(e) => setSurface(Number(e.target.value))} className="w-full mt-3 accent-[oklch(26%_0.013_60)] cursor-pointer" />
-          <div className="flex justify-between text-[0.75rem] text-muted mt-1"><span>15 m²</span><span>250 m²</span></div>
+          <div className="flex justify-between t-micro text-muted mt-1"><span>15 m²</span><span>250 m²</span></div>
         </div>
 
         <div className={groupCls}>
-          <p className="font-semibold text-[0.9rem] text-ivoire mb-3">Niveau de rénovation</p>
+          <p className="font-semibold t-petit text-ivoire mb-3">Niveau de rénovation</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
             {NIVEAUX.map((n) => (
               <button key={n.id} onClick={() => setNiveauId(n.id)} className={radioCls(niveauId === n.id)}>
-                <span className="block font-semibold text-[0.92rem] text-ivoire">{n.nom}</span>
-                <span className="block text-muted text-[0.8rem] mt-0.5">{n.detail}</span>
+                <span className="block font-semibold t-sec text-ivoire">{n.nom}</span>
+                <span className="block text-muted t-mini mt-0.5">{n.detail}</span>
               </button>
             ))}
           </div>
         </div>
 
         <div className={groupCls}>
-          <p className="font-semibold text-[0.9rem] text-ivoire mb-3">Type de bien</p>
+          <p className="font-semibold t-petit text-ivoire mb-3">Type de bien</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
             {BIENS.map((b) => (
               <button key={b.id} onClick={() => setBienId(b.id)} className={radioCls(bienId === b.id)}>
-                <span className="block font-medium text-[0.88rem] text-ivoire leading-snug">{b.nom}</span>
+                <span className="block font-medium t-petit text-ivoire leading-snug">{b.nom}</span>
               </button>
             ))}
           </div>
         </div>
 
         <div className={groupCls}>
-          <p className="font-semibold text-[0.9rem] text-ivoire mb-3">Niveau de finition</p>
+          <p className="font-semibold t-petit text-ivoire mb-3">Niveau de finition</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
             {FINITIONS.map((f) => (
               <button key={f.id} onClick={() => setFinitionId(f.id)} className={radioCls(finitionId === f.id)}>
-                <span className="block font-semibold text-[0.9rem] text-ivoire">{f.nom}</span>
-                <span className="block text-muted text-[0.78rem] mt-0.5">{f.detail}</span>
+                <span className="block font-semibold t-petit text-ivoire">{f.nom}</span>
+                <span className="block text-muted t-micro mt-0.5">{f.detail}</span>
               </button>
             ))}
           </div>
         </div>
 
         <div className={groupCls}>
-          <p className="font-semibold text-[0.9rem] text-ivoire mb-3">Postes techniques structurants</p>
+          <p className="font-semibold t-petit text-ivoire mb-3">Postes techniques structurants</p>
           <div className="grid grid-cols-1 gap-2">
             {OPTIONS.map((o) => {
               const on = opts.includes(o.id);
               return (
-                <button key={o.id} onClick={() => toggle(o.id)} className={`flex items-center justify-between gap-3 border rounded-[2px] px-4 py-2.5 text-left transition-colors cursor-pointer ${on ? "border-ivoire bg-surface-2" : "border-line hover:border-line-strong"}`}>
+                <button key={o.id} onClick={() => toggle(o.id)} className={`flex items-center justify-between gap-3 border rounded-none px-4 py-2.5 text-left transition-colors cursor-pointer ${on ? "border-ivoire bg-surface-2" : "border-line hover:border-line-strong"}`}>
                   <span className="flex items-center gap-3">
-                    <span className={`size-4 border rounded-[2px] flex items-center justify-center ${on ? "bg-ivoire border-ivoire" : "border-line-strong"}`}>
+                    <span className={`size-4 border rounded-none flex items-center justify-center ${on ? "bg-ivoire border-ivoire" : "border-line-strong"}`}>
                       {on && <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="oklch(98.5% 0.008 85)" strokeWidth="3.5" strokeLinecap="round" strokeLinejoin="round"><path d="M20 6 9 17l-5-5" /></svg>}
                     </span>
-                    <span className="text-[0.88rem] text-ivoire leading-snug">{o.nom}</span>
+                    <span className="t-petit text-ivoire leading-snug">{o.nom}</span>
                   </span>
-                  <span className="text-muted text-[0.8rem] tabular-nums shrink-0">+{o.montant.toLocaleString("fr-FR")}&nbsp;€</span>
+                  <span className="text-muted t-mini tabular-nums shrink-0">+{o.montant.toLocaleString("fr-FR")}&nbsp;€</span>
                 </button>
               );
             })}
@@ -150,34 +150,34 @@ export function Estimateur() {
       </div>
 
       <div className="lg:sticky lg:top-24 flex flex-col gap-4">
-        <div className="rounded-[2px] p-6 md:p-7" style={{ background: "var(--mq-dark)" }}>
-          <p className="text-[0.68rem] font-bold tracking-[0.2em] uppercase" style={{ color: "oklch(66% 0.106 74)" }}>Fourchette indicative</p>
-          <p className="display text-[clamp(1.7rem,3vw,2.3rem)] mt-2 tabular-nums" style={{ color: "var(--mq-primary-fg)" }}>
+        <div className="rf-dossier rf-estimation">
+          <p className="mq-mention mq-mention--accent">Fourchette indicative</p>
+          <p className="rf-estimation-chiffre">
             {fmt(min)}&nbsp;€ – {fmt(max)}&nbsp;€
           </p>
-          <p className="text-[0.85rem] mt-2 leading-relaxed" style={{ color: "oklch(72% 0.012 75)" }}>
+          <p className="t-petit mt-2 leading-relaxed" style={{ color: "var(--papier-2)" }}>
             Budget travaux hors mobilier, hors électroménager et hors honoraires éventuels d&apos;architecte ou d&apos;ingénieur partenaire.
           </p>
-          <p className="text-[0.85rem] mt-1" style={{ color: "oklch(80% 0.05 74)" }}>
+          <p className="t-petit mt-1" style={{ color: "var(--tirage-clair)" }}>
             Soit environ {Math.round(min / surface / 50) * 50} € à {Math.round(max / surface / 50) * 50} € par mètre carré.
           </p>
-          <dl className="grid grid-cols-2 gap-4 mt-5 pt-4 border-t" style={{ borderColor: "oklch(35% 0.012 60)" }}>
+          <dl className="rf-estimation-pied">
             <div>
-              <dt className="text-[0.72rem] uppercase tracking-wider" style={{ color: "oklch(60% 0.012 70)" }}>Durée de chantier indicative</dt>
-              <dd className="font-semibold mt-0.5" style={{ color: "var(--mq-primary-fg)" }}>{semaines} semaines</dd>
+              <dt className="mq-mention">Durée de chantier indicative</dt>
+              <dd className="font-semibold mt-0.5" style={{ color: "var(--craie)" }}>{semaines} semaines</dd>
             </div>
             <div>
-              <dt className="text-[0.72rem] uppercase tracking-wider" style={{ color: "oklch(60% 0.012 70)" }}>Achat direct des matériaux</dt>
-              <dd className="font-semibold mt-0.5" style={{ color: "var(--mq-primary-fg)" }}>Prix fournisseur sur les postes hors décennale</dd>
+              <dt className="mq-mention">Achat direct des matériaux</dt>
+              <dd className="font-semibold mt-0.5" style={{ color: "var(--craie)" }}>Prix fournisseur sur les postes hors décennale</dd>
             </div>
           </dl>
         </div>
 
-        <div className="border border-line bg-surface rounded-[2px] p-6">
-          <p className="text-[0.68rem] font-bold tracking-[0.2em] uppercase text-orange-deep">Répartition indicative par lot</p>
+        <div className="border border-line bg-surface rounded-none p-6">
+          <p className="mq-mention mq-mention--accent">Répartition indicative par lot</p>
           <ul className="mt-3 flex flex-col divide-y divide-line">
             {LOTS.map((l) => (
-              <li key={l.nom} className="flex items-baseline justify-between gap-4 py-2 text-[0.88rem]">
+              <li key={l.nom} className="flex items-baseline justify-between gap-4 py-2 t-petit">
                 <span className="text-ivoire/85">{l.nom}</span>
                 <span className="text-muted tabular-nums shrink-0">{fmt(mid * l.part)} €</span>
               </li>

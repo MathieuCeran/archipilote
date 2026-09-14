@@ -25,7 +25,7 @@ export default function Page() {
         lead="Les dispositifs changent. Cette page renvoie vers les sources officielles, précise sa date de mise à jour et évite toute promesse d'éligibilité avant étude du dossier."
       />
       <section className="relative pb-16 md:pb-24">
-        <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-6 text-ivoire/85 text-[1.02rem] leading-relaxed">
+        <div className="rf-wrap mq-mesure flex flex-col gap-6 text-ivoire/85 t-base leading-relaxed">
           <p>
             Deux dispositifs concernent la plupart des projets de rénovation énergétique : MaPrimeRénov&apos;,
             calculée selon vos revenus et le gain énergétique obtenu, et les Certificats d&apos;Économie
@@ -53,15 +53,15 @@ export default function Page() {
             </Link>
             .
           </p>
-          <p className="text-muted text-[0.85rem] font-mono uppercase tracking-wider">Page mise à jour — août 2026</p>
+          <p className="mq-mention">Page mise à jour — août 2026</p>
         </div>
       </section>
       <section className="relative pb-20 md:pb-28">
-        <div className="container-site max-w-3xl mx-auto flex flex-col gap-4">
+        <div className="rf-wrap mq-mesure flex flex-col gap-4">
           {FAQ.map((f) => (
             <div key={f.q} className="card-e rounded-none p-6">
-              <h3 className="display text-[1.05rem] text-ivoire normal-case mb-1.5">{f.q}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{f.r}</p>
+              <h2 className="display t-base text-ivoire normal-case mb-1.5">{f.q}</h2>
+              <p className="text-muted t-sec leading-relaxed">{f.r}</p>
             </div>
           ))}
         </div>

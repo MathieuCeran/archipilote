@@ -121,15 +121,15 @@ export default function DemarchesAdministrativesPage() {
         Arbre simple : la nature des travaux détermine le niveau d'autorisation.
       */}
       <section className="pb-8 md:pb-12">
-        <div className="container-site max-w-4xl">
+        <div className="rf-wrap mq-mesure--large">
           <div className="flex flex-col gap-3">
             <div
               role="img"
               aria-label="Autorisations possibles selon la nature des travaux de rénovation."
               className="flex flex-col items-center"
             >
-              <div className="border border-line rounded-[2px] bg-surface px-5 py-3 text-center">
-                <span className="text-ivoire font-semibold text-[0.95rem]">Nature des travaux envisagés</span>
+              <div className="border border-line rounded-none bg-surface px-5 py-3 text-center">
+                <span className="text-ivoire font-semibold t-sec">Nature des travaux envisagés</span>
               </div>
               <div className="w-px h-6 bg-line" aria-hidden />
               <div className="w-full h-px bg-line" aria-hidden />
@@ -137,15 +137,15 @@ export default function DemarchesAdministrativesPage() {
                 {ARBRE_AUTORISATIONS.map((a) => (
                   <div key={a.title} className="flex flex-col items-center gap-2 text-center">
                     <div className="w-px h-4 bg-line" aria-hidden />
-                    <div className="flex flex-col gap-1.5 border border-line rounded-[2px] bg-surface p-4 w-full">
-                      <span className="text-orange-deep font-semibold text-[0.78rem] tracking-wide uppercase">{a.title}</span>
-                      <p className="text-[0.88rem] text-ivoire/85 leading-relaxed">{a.body}</p>
+                    <div className="flex flex-col gap-1.5 border border-line rounded-none bg-surface p-4 w-full">
+                      <span className="mq-mention mq-mention--accent">{a.title}</span>
+                      <p className="t-petit text-ivoire/85 leading-relaxed">{a.body}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
-            <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+            <p className="text-muted t-petit leading-relaxed max-w-2xl">
               {"Six familles de travaux, du strictement privatif à la surélévation, chacune avec le niveau d'autorisation qui lui est généralement associé."}
             </p>
           </div>
@@ -165,9 +165,9 @@ export default function DemarchesAdministrativesPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
             {AUTORISATIONS.map((a) => (
               <div key={a.title} className="flex flex-col gap-2">
-                <h3 className="display text-[1.15rem] text-ivoire">{a.title}</h3>
-                <p className="text-muted text-[0.92rem] leading-relaxed">{a.resume}</p>
-                <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">{a.body}</p>
+                <h3 className="display t-haut text-ivoire">{a.title}</h3>
+                <p className="text-muted t-sec leading-relaxed">{a.resume}</p>
+                <p className="t-sec text-ivoire/85 leading-relaxed">{a.body}</p>
               </div>
             ))}
           </div>
@@ -268,8 +268,8 @@ export default function DemarchesAdministrativesPage() {
       </MqSection>
 
       <section className="py-10 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="text-muted t-petit leading-relaxed max-w-2xl">
             {"Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées."}
           </p>
         </div>

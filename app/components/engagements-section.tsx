@@ -31,13 +31,13 @@ export function EngagementsSection() {
           />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto w-full">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl w-full">
           {ENGAGEMENTS.map((e, i) => (
             <Reveal key={e.titre} variant="slide-up" delay={i * 0.1}>
               <div className="card-e rounded-none p-7 h-full flex flex-col gap-3">
-                <span className="font-mono text-[0.72rem] text-orange">0{i + 1}</span>
-                <h3 className="display text-[1.25rem] text-ivoire leading-tight normal-case">{e.titre}</h3>
-                <p className="text-muted text-[0.92rem] leading-relaxed">{e.texte}</p>
+                <span className="font-mono t-micro text-orange">0{i + 1}</span>
+                <h3 className="display t-haut text-ivoire leading-tight normal-case">{e.titre}</h3>
+                <p className="text-muted t-sec leading-relaxed">{e.texte}</p>
               </div>
             </Reveal>
           ))}

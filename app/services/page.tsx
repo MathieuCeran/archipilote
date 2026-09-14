@@ -93,8 +93,8 @@ export default function ServicesPage() {
           {FAMILLES.map((f) => (
             <div key={f.titre} className="flex flex-col gap-5">
               <div className="flex flex-col gap-2 max-w-2xl">
-                <h3 className="display text-[1.35rem] text-ivoire normal-case">{f.titre}</h3>
-                <p className="text-muted text-[0.95rem] leading-relaxed">{f.intro}</p>
+                <h3 className="display t-fort text-ivoire normal-case">{f.titre}</h3>
+                <p className="text-muted t-sec leading-relaxed">{f.intro}</p>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {f.liens.map((l) => (
@@ -103,10 +103,10 @@ export default function ServicesPage() {
                     href={l.href}
                     className="card-e rounded-none p-5 group hover:-translate-y-1 transition-transform duration-300"
                   >
-                    <h4 className="display text-[1.02rem] text-orange group-hover:text-ivoire transition-colors normal-case mb-1">
+                    <h4 className="display t-base text-orange group-hover:text-ivoire transition-colors normal-case mb-1">
                       → {l.label}
                     </h4>
-                    <p className="text-muted text-[0.85rem] leading-relaxed">{l.texte}</p>
+                    <p className="text-muted t-petit leading-relaxed">{l.texte}</p>
                   </Link>
                 ))}
               </div>
@@ -118,68 +118,68 @@ export default function ServicesPage() {
       <section className="relative pb-16 md:pb-24">
         <div className="container-site grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="card-e rounded-none p-7 flex flex-col gap-3">
-            <h2 className="display text-[1.2rem] text-ivoire normal-case">Avant de choisir une prestation</h2>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h2 className="display t-haut text-ivoire normal-case">Avant de choisir une prestation</h2>
+            <p className="text-muted t-sec leading-relaxed">
               Trois pages aident à cadrer le projet avant d&apos;entrer dans le détail d&apos;un lot : la manière dont
               un chantier est piloté, la façon dont un devis se lit et les repères de prix par poste.
             </p>
             <ul className="flex flex-col gap-2 mt-1">
               <li>
-                <Link href="/notre-methode" className="text-orange hover:underline text-[0.92rem]">
+                <Link href="/notre-methode" className="text-orange hover:underline t-sec">
                   Les huit étapes de la méthode de pilotage
                 </Link>
               </li>
               <li>
-                <Link href="/clinique-du-devis" className="text-orange hover:underline text-[0.92rem]">
+                <Link href="/clinique-du-devis" className="text-orange hover:underline t-sec">
                   Lire un devis de travaux ligne à ligne
                 </Link>
               </li>
               <li>
-                <Link href="/observatoire-prix-renovation" className="text-orange hover:underline text-[0.92rem]">
+                <Link href="/observatoire-prix-renovation" className="text-orange hover:underline t-sec">
                   Les fourchettes de prix par poste de travaux
                 </Link>
               </li>
               <li>
-                <Link href="/estimateur-travaux" className="text-orange hover:underline text-[0.92rem]">
+                <Link href="/estimateur-travaux" className="text-orange hover:underline t-sec">
                   Estimer une enveloppe de travaux en quelques questions
                 </Link>
               </li>
               <li>
-                <Link href="/glossaire-renovation" className="text-orange hover:underline text-[0.92rem]">
+                <Link href="/glossaire-renovation" className="text-orange hover:underline t-sec">
                   Le glossaire des termes employés dans les devis
                 </Link>
               </li>
             </ul>
           </div>
           <div className="card-e rounded-none p-7 flex flex-col gap-3">
-            <h2 className="display text-[1.2rem] text-ivoire normal-case">Où ces prestations sont étudiées</h2>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h2 className="display t-haut text-ivoire normal-case">Où ces prestations sont étudiées</h2>
+            <p className="text-muted t-sec leading-relaxed">
               Ces travaux sont pilotés depuis La Garenne-Colombes. La zone d&apos;intervention couvre les
               Hauts-de-Seine en priorité et, selon l&apos;ampleur du projet, le reste de l&apos;Île-de-France.
             </p>
             <ul className="flex flex-col gap-2 mt-1">
               <li>
-                <Link href="/renovation-hauts-de-seine-92" className="text-orange hover:underline text-[0.92rem]">
+                <Link href="/renovation-hauts-de-seine-92" className="text-orange hover:underline t-sec">
                   Rénovation dans les Hauts-de-Seine (92)
                 </Link>
               </li>
               <li>
-                <Link href="/renovation-ile-de-france" className="text-orange hover:underline text-[0.92rem]">
+                <Link href="/renovation-ile-de-france" className="text-orange hover:underline t-sec">
                   La zone d&apos;intervention en Île-de-France
                 </Link>
               </li>
               <li>
-                <Link href="/nos-specialites" className="text-orange hover:underline text-[0.92rem]">
+                <Link href="/nos-specialites" className="text-orange hover:underline t-sec">
                   Nos spécialités, de la structure aux finitions
                 </Link>
               </li>
               <li>
-                <Link href="/reseau-partenaires" className="text-orange hover:underline text-[0.92rem]">
+                <Link href="/reseau-partenaires" className="text-orange hover:underline t-sec">
                   Les entreprises et compétences mobilisées
                 </Link>
               </li>
               <li>
-                <Link href="/guides" className="text-orange hover:underline text-[0.92rem]">
+                <Link href="/guides" className="text-orange hover:underline t-sec">
                   Les guides et articles classés par sujet
                 </Link>
               </li>

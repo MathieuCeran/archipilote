@@ -41,13 +41,13 @@ export function ServicesList() {
                   onMouseEnter={() => setActive(i)}
                   onFocus={() => setActive(i)}
                 >
-                  <span className={`font-mono text-[0.78rem] transition-colors ${active === i ? "text-orange" : "text-muted"}`}>0{i + 1}</span>
+                  <span className={`font-mono t-micro transition-colors ${active === i ? "text-orange" : "text-muted"}`}>0{i + 1}</span>
                   <div className="flex flex-col gap-1 min-w-0">
                     <span className={`display text-[clamp(1.3rem,2.6vw,2rem)] leading-none transition-colors duration-300 ${active === i ? "text-ivoire" : "text-ivoire/65 group-hover:text-ivoire"}`}>{service.titre}</span>
-                    <span className="text-muted text-[0.86rem] truncate">{service.accroche}</span>
+                    <span className="text-muted t-petit truncate">{service.accroche}</span>
                     {/* Le panneau photo qui porte ce texte est masqué sous lg — on le rend
                         ici pour que le mobile ait le même contenu que le desktop (V3). */}
-                    <span className="text-muted text-[0.84rem] leading-snug lg:hidden">{service.texte}</span>
+                    <span className="text-muted t-mini leading-snug lg:hidden">{service.texte}</span>
                   </div>
                   <span className={`size-9 border flex items-center justify-center transition-all duration-500 ${active === i ? "border-orange bg-orange text-white" : "border-line-strong text-muted"}`}>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"><path d="M7 17 17 7M8 7h9v9" /></svg>
@@ -62,13 +62,13 @@ export function ServicesList() {
               <AnimatePresence mode="popLayout">
                 <motion.img key={s.slug} src={PHOTOS[s.photo as keyof typeof PHOTOS]} alt={s.titre} initial={{ opacity: 0, scale: 1.08 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0 size-full object-cover" />
               </AnimatePresence>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#20211d]/90 via-[#20211d]/15 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#14181a]/90 via-[#14181a]/15 to-transparent" />
               <div className="herringbone-divider absolute top-0 inset-x-0 opacity-60" />
               <div className="absolute bottom-0 inset-x-0 p-7">
                 <AnimatePresence mode="wait">
                   <motion.div key={s.slug} initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.4 }} className="flex flex-col gap-2">
-                    <span className="serif-accent text-[1.15rem] text-ambre">{s.accroche}</span>
-                    <p className="text-white/85 text-[0.92rem] leading-relaxed">{s.texte}</p>
+                    <span className="serif-accent t-haut text-ambre">{s.accroche}</span>
+                    <p className="text-white/85 t-sec leading-relaxed">{s.texte}</p>
                   </motion.div>
                 </AnimatePresence>
               </div>

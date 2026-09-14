@@ -77,11 +77,11 @@ export default function Page() {
         <div
           role="img"
           aria-label="Fourchettes de prix de rénovation observées en Île-de-France, par poste de travaux, premier semestre 2024."
-          className="border border-line bg-surface rounded-[2px] overflow-hidden"
+          className="border border-line bg-surface rounded-none overflow-hidden"
         >
           <div className="px-5 pt-5 pb-1 flex items-baseline justify-between gap-4 flex-wrap">
-            <h3 className="display text-[1.05rem] text-ivoire">Fourchettes de prix par poste (échelle logarithmique)</h3>
-            <span className="text-muted text-[0.78rem] whitespace-nowrap">Île-de-France · 1er semestre 2024</span>
+            <h3 className="display t-base text-ivoire">Fourchettes de prix par poste (échelle logarithmique)</h3>
+            <span className="text-muted t-micro whitespace-nowrap">Île-de-France · 1er semestre 2024</span>
           </div>
           <div className="px-5 pt-4 pb-2 flex flex-col gap-3">
             {FOURCHETTES.map((r) => {
@@ -89,20 +89,20 @@ export default function Page() {
               const right = prixToPercent(r.max);
               return (
                 <div key={r.poste} className="grid grid-cols-[8rem_1fr_6.5rem] sm:grid-cols-[13rem_1fr_7rem] items-center gap-3">
-                  <span className="text-[0.78rem] text-ivoire/85 leading-snug">{r.poste}</span>
+                  <span className="t-micro text-ivoire/85 leading-snug">{r.poste}</span>
                   <div className="relative h-2 bg-line/50 rounded-full overflow-hidden">
                     <div
                       className="absolute inset-y-0 bg-orange-deep/75 rounded-full"
                       style={{ left: `${left}%`, width: `${Math.max(right - left, 1.2)}%` }}
                     />
                   </div>
-                  <span className="text-[0.76rem] text-muted text-right whitespace-nowrap">{r.prix}</span>
+                  <span className="t-micro text-muted text-right whitespace-nowrap">{r.prix}</span>
                 </div>
               );
             })}
             <div className="grid grid-cols-[8rem_1fr_6.5rem] sm:grid-cols-[13rem_1fr_7rem] gap-3 mt-1">
               <span aria-hidden />
-              <div className="relative h-4 text-[0.68rem] text-muted">
+              <div className="relative h-4 t-micro text-muted">
                 <span className="absolute" style={{ left: `${prixToPercent(100)}%` }}>100 €</span>
                 <span className="absolute" style={{ left: `${prixToPercent(1000)}%` }}>1 000 €</span>
                 <span className="absolute" style={{ left: `${prixToPercent(9000)}%`, transform: "translateX(-100%)" }}>9 000 €</span>
@@ -110,15 +110,15 @@ export default function Page() {
               <span aria-hidden />
             </div>
           </div>
-          <p className="px-5 pb-5 pt-2 text-[0.78rem] text-muted leading-snug border-t border-line mt-2">
+          <p className="px-5 pb-5 pt-2 t-micro text-muted leading-snug border-t border-line mt-2">
             Fourchettes de prix de rénovation observées en Île-de-France, par poste de travaux — premier semestre 2024,
             à partir d&apos;exemples représentatifs de projets accompagnés. Échelle logarithmique commune : l&apos;unité de
             référence diffère selon le poste (m², point, unité posée, logement, ouverture, forage — voir le tableau
             ci-dessous).
           </p>
         </div>
-        <div className="overflow-x-auto border border-line rounded-[2px] mt-8">
-          <table className="w-full min-w-[40rem] text-left text-[0.92rem]">
+        <div className="overflow-x-auto border border-line rounded-none mt-8">
+          <table className="w-full min-w-[40rem] text-left t-sec">
             <thead>
               <tr className="border-b border-line">
                 <th className="px-4 py-3 font-semibold text-ivoire">Poste de travaux</th>
@@ -141,7 +141,7 @@ export default function Page() {
             </tbody>
           </table>
         </div>
-        <p className="text-muted text-[0.85rem] leading-relaxed mt-4 max-w-2xl">
+        <p className="text-muted t-petit leading-relaxed mt-4 max-w-2xl">
           Données indicatives, Île-de-France, premier semestre 2024. Fourchettes établies à partir d'un ensemble
           d'exemples représentatifs de projets accompagnés, hors matériaux achetés en direct par le client.
           Chaque intitulé de poste renvoie vers la page qui décrit les travaux correspondants.
@@ -156,29 +156,29 @@ export default function Page() {
         <div
           role="img"
           aria-label="Facteurs qui font varier le prix d'un même poste de rénovation."
-          className="border border-line bg-surface rounded-[2px] overflow-hidden"
+          className="border border-line bg-surface rounded-none overflow-hidden"
         >
           <div className="px-5 pt-5 pb-1">
-            <h3 className="display text-[1.05rem] text-ivoire">Six curseurs qui font bouger le prix d&apos;un même poste</h3>
+            <h3 className="display t-base text-ivoire">Six curseurs qui font bouger le prix d&apos;un même poste</h3>
           </div>
           <div className="px-5 pt-3 pb-2 flex flex-col gap-5">
             {FACTEURS_PRIX.map((f) => (
               <div key={f.label} className="flex flex-col gap-1.5">
-                <span className="text-[0.85rem] font-medium text-ivoire">{f.label}</span>
+                <span className="t-petit font-medium text-ivoire">{f.label}</span>
                 <div className="relative h-1.5 bg-line rounded-full">
                   <div
                     aria-hidden
                     className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-3 rounded-full bg-orange-deep border-2 border-surface"
                   />
                 </div>
-                <div className="flex justify-between text-[0.72rem] text-muted">
+                <div className="flex justify-between t-micro text-muted">
                   <span>{f.bas}</span>
                   <span>{f.haut}</span>
                 </div>
               </div>
             ))}
           </div>
-          <p className="px-5 pb-5 pt-2 text-[0.78rem] text-muted leading-snug border-t border-line mt-2">
+          <p className="px-5 pb-5 pt-2 t-micro text-muted leading-snug border-t border-line mt-2">
             Position illustrative : chaque projet se situe différemment sur ces six curseurs, dans un sens ou dans
             l&apos;autre selon la configuration réelle du logement — voir le détail de chaque facteur ci-dessous.
           </p>
@@ -234,8 +234,8 @@ export default function Page() {
         title="Un point de données, son contexte"
         lead="Chaque fourchette repose sur des cas dont le périmètre est connu, jamais sur des moyennes anonymes sans contexte."
       >
-        <h3 className="display text-[1.25rem] text-ivoire">Exemple représentatif : ouverture de mur porteur en appartement parisien</h3>
-        <p className="text-muted text-[0.95rem] leading-relaxed mt-2 max-w-2xl">
+        <h3 className="display t-haut text-ivoire">Exemple représentatif : ouverture de mur porteur en appartement parisien</h3>
+        <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
           Un cas type illustre comment un montant s'intègre dans l'observatoire, sans valeur de preuve
           individuelle.
         </p>
@@ -276,29 +276,29 @@ export default function Page() {
       >
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
           <div>
-            <h3 className="display text-[1.05rem] text-ivoire">Chiffrer et vérifier</h3>
+            <h3 className="display t-base text-ivoire">Chiffrer et vérifier</h3>
             <ul className="flex flex-col gap-2 mt-3">
-              <li><Link href="/estimateur-travaux" className="text-orange-deep hover:underline text-[0.92rem]">Estimer une enveloppe de travaux en quelques questions</Link></li>
-              <li><Link href="/clinique-du-devis" className="text-orange-deep hover:underline text-[0.92rem]">Lire un devis de travaux ligne à ligne</Link></li>
-              <li><Link href="/modele-economique-transparence" className="text-orange-deep hover:underline text-[0.92rem]">Qui facture quoi : le modèle économique détaillé</Link></li>
-              <li><Link href="/achat-direct-materiaux" className="text-orange-deep hover:underline text-[0.92rem]">Acheter les matériaux en direct, à votre nom</Link></li>
-              <li><Link href="/aides-renovation-energetique" className="text-orange-deep hover:underline text-[0.92rem]">Les aides mobilisables sur les travaux énergétiques</Link></li>
-              <li><Link href="/services" className="text-orange-deep hover:underline text-[0.92rem]">L&apos;index complet des prestations pilotées</Link></li>
+              <li><Link href="/estimateur-travaux" className="text-orange-deep hover:underline t-sec">Estimer une enveloppe de travaux en quelques questions</Link></li>
+              <li><Link href="/clinique-du-devis" className="text-orange-deep hover:underline t-sec">Lire un devis de travaux ligne à ligne</Link></li>
+              <li><Link href="/modele-economique-transparence" className="text-orange-deep hover:underline t-sec">Qui facture quoi : le modèle économique détaillé</Link></li>
+              <li><Link href="/achat-direct-materiaux" className="text-orange-deep hover:underline t-sec">Acheter les matériaux en direct, à votre nom</Link></li>
+              <li><Link href="/aides-renovation-energetique" className="text-orange-deep hover:underline t-sec">Les aides mobilisables sur les travaux énergétiques</Link></li>
+              <li><Link href="/services" className="text-orange-deep hover:underline t-sec">L&apos;index complet des prestations pilotées</Link></li>
             </ul>
           </div>
           <div>
-            <h3 className="display text-[1.05rem] text-ivoire">Articles du blog sur le budget et le devis</h3>
+            <h3 className="display t-base text-ivoire">Articles du blog sur le budget et le devis</h3>
             <ul className="flex flex-col gap-2 mt-3">
-              <li><Link href="/blog/prix-renovation-maison-2026" className="text-orange-deep hover:underline text-[0.92rem]">Ce que coûtent des travaux de rénovation de maison en 2026</Link></li>
-              <li><Link href="/blog/devis-travaux-lignes-a-verifier" className="text-orange-deep hover:underline text-[0.92rem]">Les lignes d&apos;un devis à vérifier avant de signer</Link></li>
-              <li><Link href="/blog/cuisine-sur-mesure-ou-caissons-standards" className="text-orange-deep hover:underline text-[0.92rem]">Cuisine sur mesure ou caissons standards : où se joue l&apos;économie</Link></li>
-              <li><Link href="/blog/parquet-massif-contrecolle-stratifie" className="text-orange-deep hover:underline text-[0.92rem]">Parquet massif, contrecollé ou stratifié : quel revêtement pour quel usage</Link></li>
-              <li><Link href="/blog/maprimerenov-cee-2026" className="text-orange-deep hover:underline text-[0.92rem]">MaPrimeRénov&apos; et CEE : ce qu&apos;il faut vérifier avant de compter sur une aide</Link></li>
-              <li><Link href="/blog/ipn-hea-heb-choix-profile" className="text-orange-deep hover:underline text-[0.92rem]">IPN, HEA ou HEB : ce que change le choix du profilé</Link></li>
+              <li><Link href="/blog/prix-renovation-maison-2026" className="text-orange-deep hover:underline t-sec">Ce que coûtent des travaux de rénovation de maison en 2026</Link></li>
+              <li><Link href="/blog/devis-travaux-lignes-a-verifier" className="text-orange-deep hover:underline t-sec">Les lignes d&apos;un devis à vérifier avant de signer</Link></li>
+              <li><Link href="/blog/cuisine-sur-mesure-ou-caissons-standards" className="text-orange-deep hover:underline t-sec">Cuisine sur mesure ou caissons standards : où se joue l&apos;économie</Link></li>
+              <li><Link href="/blog/parquet-massif-contrecolle-stratifie" className="text-orange-deep hover:underline t-sec">Parquet massif, contrecollé ou stratifié : quel revêtement pour quel usage</Link></li>
+              <li><Link href="/blog/maprimerenov-cee-2026" className="text-orange-deep hover:underline t-sec">MaPrimeRénov&apos; et CEE : ce qu&apos;il faut vérifier avant de compter sur une aide</Link></li>
+              <li><Link href="/blog/ipn-hea-heb-choix-profile" className="text-orange-deep hover:underline t-sec">IPN, HEA ou HEB : ce que change le choix du profilé</Link></li>
             </ul>
           </div>
         </div>
-        <p className="text-muted text-[0.9rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
           Ces repères valent pour la zone dans laquelle les projets sont accompagnés :{" "}
           <Link href="/renovation-hauts-de-seine-92" className="text-orange-deep hover:underline">les Hauts-de-Seine (92)</Link>
           {" "}en priorité et, selon l&apos;ampleur du chantier,{" "}
@@ -333,7 +333,7 @@ export default function Page() {
             },
           ]}
         />
-        <p className="text-muted text-[0.85rem] leading-relaxed mt-8 max-w-2xl">
+        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
           Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon
           les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des
           architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les

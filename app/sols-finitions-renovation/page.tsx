@@ -81,8 +81,8 @@ export default function Page() {
         lead={LEAD}
       />
 
-      <nav aria-label="Fil d'Ariane" className="container-site max-w-4xl mx-auto -mt-6 mb-8">
-        <ol className="flex flex-wrap items-center gap-2 font-mono text-[0.68rem] tracking-[0.12em] uppercase text-muted">
+      <nav aria-label="Fil d'Ariane" className="rf-wrap mq-mesure--large -mt-6 mb-8">
+        <ol className="flex flex-wrap items-center gap-2 mq-mention">
           <li><Link href="/" className="hover:text-orange transition-colors">Accueil</Link></li>
           <li aria-hidden>›</li>
           <li><Link href="/services" className="hover:text-orange transition-colors">{EYEBROW}</Link></li>
@@ -92,20 +92,12 @@ export default function Page() {
       </nav>
 
       <section className="relative pb-10">
-        <div className="container-site max-w-md mx-auto">
-          <MqFig
-            src="/photos/chantiers/chParquetVitrifie.jpeg"
-            alt="Pièce vide d'un logement ancien, parquet à lames droites poncé puis vitrifié, cheminée en marbre et radiateurs conservés sous les fenêtres"
-            caption="Parquet ancien à lames droites, poncé puis vitrifié : la finition est encore fraîche et renvoie la lumière des fenêtres. La cheminée en marbre, les radiateurs et les plinthes d'origine sont restés en place, un balai est resté appuyé dans le foyer de la cheminée. Chantier réel des équipes partenaires."
-            ratio="aspect-[3/4]"
-          />
-        </div>
       </section>
 
       <section className="relative pb-16 md:pb-24">
-        <div className="container-site max-w-[42rem] mx-auto flex flex-col gap-12 text-ivoire/85 text-[1.02rem] leading-relaxed">
+        <div className="rf-wrap mq-mesure flex flex-col gap-12 text-ivoire/85 t-base leading-relaxed">
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">Planéité et humidité</h2>
+            <h2 className="display t-titre text-ivoire normal-case">Planéité et humidité</h2>
             <p>
               Mesurer avant de choisir la finition — un support mal préparé se rappelle toujours au
               bout de quelques mois.
@@ -126,7 +118,7 @@ export default function Page() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">Compatibilité des systèmes</h2>
+            <h2 className="display t-titre text-ivoire normal-case">Compatibilité des systèmes</h2>
             <p>
               Primaire, colle, ragréage, support et finition doivent fonctionner ensemble, pas être
               choisis indépendamment les uns des autres.
@@ -141,7 +133,7 @@ export default function Page() {
           </div>
 
           <div className="flex flex-col gap-2">
-            <h2 className="display text-2xl text-ivoire normal-case">Protection en fin de chantier</h2>
+            <h2 className="display t-titre text-ivoire normal-case">Protection en fin de chantier</h2>
             <p>
               Les finitions posées trop tôt sont souvent abîmées par les derniers lots — le
               séquencement protège aussi le travail déjà fait.
@@ -172,11 +164,11 @@ export default function Page() {
       </section>
 
       <section className="relative py-16 md:py-24">
-        <div className="container-site max-w-3xl mx-auto flex flex-col gap-4">
+        <div className="rf-wrap mq-mesure flex flex-col gap-4">
           {FAQ_COMMUNE.map((f) => (
             <div key={f.q} className="card-e rounded-none p-6">
-              <h3 className="display text-[1.05rem] text-ivoire normal-case mb-1.5">{f.q}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{f.r}</p>
+              <h3 className="display t-base text-ivoire normal-case mb-1.5">{f.q}</h3>
+              <p className="text-muted t-sec leading-relaxed">{f.r}</p>
             </div>
           ))}
         </div>

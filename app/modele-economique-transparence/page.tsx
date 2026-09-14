@@ -71,16 +71,14 @@ export default function ModeleEconomiquePage() {
         lead="Une rénovation devient opaque lorsque le client ne sait plus qui facture le pilotage, qui exécute les travaux, qui fournit les matériaux et où se loge la marge. Notre modèle, inspiré du secteur des foncières, rend ces flux lisibles : achat des matériaux en direct par le client, missions de pilotage, d'accompagnement et d'apport d'affaires distinguées, et travaux exécutés et facturés par les entreprises partenaires contractantes elles-mêmes."
       />
 
-      <section className="pb-4">
-        <div className="container-site max-w-4xl">
+      <div className="rf-wrap mq-mesure--large pb-4 mq-planche-ouverture">
           <MqFig entier
             src="/photos/pedagogie/07-modele-economique.jpeg"
             alt="Schéma pédagogique des trois flux de facturation : honoraires de pilotage, travaux facturés par les entreprises partenaires, matériaux achetés en direct par le client"
             caption="Schéma pédagogique : trois flux de facturation distincts et séparés, chacun rattaché à un interlocuteur identifiable."
             ratio="aspect-square"
           />
-        </div>
-      </section>
+      </div>
 
       <MqSection
         kicker="Le problème posé"
@@ -88,14 +86,14 @@ export default function ModeleEconomiquePage() {
         lead="Dans un montage classique, un artisan sous-traite parfois une partie du chantier, les matériaux transitent par plusieurs intermédiaires et la marge de pilotage se dilue dans le prix global. Le client ne voit plus ce qu'il paie réellement."
       >
         <div className="flex flex-col gap-2 max-w-2xl">
-          <h3 className="display text-[1.15rem] text-ivoire">Trois flux financiers à distinguer systématiquement</h3>
-          <p className="text-muted text-[0.92rem] leading-relaxed">
+          <h3 className="display t-haut text-ivoire">Trois flux financiers à distinguer systématiquement</h3>
+          <p className="text-muted t-sec leading-relaxed">
             {"Matériaux, main-d'œuvre et pilotage ne doivent jamais être fondus dans un seul chiffre global."}
           </p>
-          <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+          <p className="t-sec text-ivoire/85 leading-relaxed">
             {"Un devis global qui mélange fourniture et pose empêche toute vérification. Le client ne peut ni comparer un prix de matériau au marché, ni évaluer si le coût de main-d'œuvre est cohérent avec la prestation réellement fournie."}
           </p>
-          <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">
+          <p className="t-sec text-ivoire/85 leading-relaxed">
             {"Notre approche sépare ces trois flux dès le chiffrage initial, afin que chaque ligne du budget puisse être expliquée et, si besoin, discutée séparément."}
           </p>
         </div>
@@ -108,20 +106,20 @@ export default function ModeleEconomiquePage() {
       >
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Le rôle d&apos;ARCHI PILOTE RÉNOVATION</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Le rôle d&apos;ARCHI PILOTE RÉNOVATION</h3>
+            <p className="text-muted t-sec leading-relaxed">
               {"Structuration du projet, analyse du chiffrage, aide à la sélection des entreprises, pilotage d'ensemble et, selon les dossiers, apport d'affaires clairement distingué du pilotage."}
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Le rôle des entreprises partenaires</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Le rôle des entreprises partenaires</h3>
+            <p className="text-muted t-sec leading-relaxed">
               {"Exécution technique des lots, facturation directe de leur prestation, engagement de leurs propres assurances et garanties."}
             </p>
           </div>
           <div className="flex flex-col gap-2">
-            <h3 className="display text-[1.15rem] text-ivoire">Le rôle des professionnels indépendants</h3>
-            <p className="text-muted text-[0.92rem] leading-relaxed">
+            <h3 className="display t-haut text-ivoire">Le rôle des professionnels indépendants</h3>
+            <p className="text-muted t-sec leading-relaxed">
               {"Architectes DPLG et ingénieurs structure interviennent, lorsque nécessaire, sous leur propre responsabilité professionnelle et facturent leur mission séparément."}
             </p>
           </div>
@@ -138,46 +136,46 @@ export default function ModeleEconomiquePage() {
             <div
               role="img"
               aria-label="Comparaison entre achat traditionnel et achat direct des matériaux."
-              className="grid grid-cols-1 md:grid-cols-2 gap-6 border border-line rounded-[2px] bg-surface p-6"
+              className="grid grid-cols-1 md:grid-cols-2 gap-6 border border-line rounded-none bg-surface p-6"
             >
               <div className="flex flex-col gap-3">
-                <span className="text-[0.78rem] font-semibold tracking-wide uppercase text-muted">Achat classique</span>
+                <span className="mq-mention">Achat classique</span>
                 <div className="flex flex-col gap-1.5">
                   {["Fabricant", "Grossiste", "Négoce ou distributeur", "Entreprise", "Client"].map((step, i, arr) => (
                     <div key={step} className="flex items-center gap-2">
-                      <span className="flex-1 border border-line rounded-[2px] px-3 py-2 text-[0.85rem] text-ivoire/85">{step}</span>
-                      {i < arr.length - 1 && <span className="text-muted text-[0.75rem] whitespace-nowrap">+ marge ↓</span>}
+                      <span className="flex-1 border border-line rounded-none px-3 py-2 t-petit text-ivoire/85">{step}</span>
+                      {i < arr.length - 1 && <span className="text-muted t-micro whitespace-nowrap">+ marge ↓</span>}
                     </div>
                   ))}
                 </div>
-                <p className="text-muted text-[0.8rem] leading-relaxed">
+                <p className="text-muted t-mini leading-relaxed">
                   {"Chaque intermédiaire ajoute sa propre marge avant que le matériau n'atteigne le chantier."}
                 </p>
               </div>
               <div className="flex flex-col gap-3">
-                <span className="text-[0.78rem] font-semibold tracking-wide uppercase text-orange-deep">Achat direct</span>
+                <span className="mq-mention mq-mention--accent">Achat direct</span>
                 <div className="flex flex-col gap-1.5">
                   <div className="flex items-center gap-2">
-                    <span className="flex-1 border border-orange-deep/40 rounded-[2px] px-3 py-2 text-[0.85rem] text-ivoire/85">
+                    <span className="flex-1 border border-orange-deep/40 rounded-none px-3 py-2 t-petit text-ivoire/85">
                       {"Fournisseur (ex. Saint-Gobain, Guimier)"}
                     </span>
-                    <span className="text-orange-deep text-[0.75rem] whitespace-nowrap">prix fournisseur ↓</span>
+                    <span className="text-orange-deep t-micro whitespace-nowrap">prix fournisseur ↓</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="flex-1 border border-orange-deep/40 rounded-[2px] px-3 py-2 text-[0.85rem] text-ivoire/85">Client</span>
+                    <span className="flex-1 border border-orange-deep/40 rounded-none px-3 py-2 t-petit text-ivoire/85">Client</span>
                   </div>
                 </div>
-                <p className="text-muted text-[0.8rem] leading-relaxed">
+                <p className="text-muted t-mini leading-relaxed">
                   {"Le client règle directement le fournisseur, sur des références validées techniquement par l'entreprise partenaire."}
                 </p>
               </div>
             </div>
-            <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+            <p className="text-muted t-petit leading-relaxed max-w-2xl">
               {"Comparaison de principe entre un circuit d'achat classique et l'achat direct par le client : c'est le nombre d'intermédiaires qui diminue, pas un pourcentage garanti sur chaque projet."}
             </p>
           </div>
-          <div className="overflow-x-auto border border-line rounded-[2px] bg-surface">
-            <table className="w-full text-left text-[0.92rem]">
+          <div className="overflow-x-auto border border-line rounded-none bg-surface">
+            <table className="w-full text-left t-sec">
               <thead>
                 <tr className="border-b border-line">
                   <th className="px-4 py-3 font-semibold text-ivoire">Poste de dépense</th>
@@ -196,7 +194,7 @@ export default function ModeleEconomiquePage() {
               </tbody>
             </table>
           </div>
-          <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+          <p className="text-muted t-petit leading-relaxed max-w-2xl">
             {"Les effets décrits ci-dessus dépendent de la nature du bien, des postes concernés et du niveau de finition retenu. Ils se constatent devis en main, ligne à ligne, et ne font l'objet d'aucune promesse chiffrée en amont."}
           </p>
         </div>
@@ -275,9 +273,9 @@ export default function ModeleEconomiquePage() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
           {MISSIONS.map((m) => (
             <div key={m.title} className="flex flex-col gap-2">
-              <h3 className="display text-[1.15rem] text-ivoire">{m.title}</h3>
-              <p className="text-muted text-[0.92rem] leading-relaxed">{m.resume}</p>
-              <p className="text-[0.95rem] text-ivoire/85 leading-relaxed">{m.body}</p>
+              <h3 className="display t-haut text-ivoire">{m.title}</h3>
+              <p className="text-muted t-sec leading-relaxed">{m.resume}</p>
+              <p className="t-sec text-ivoire/85 leading-relaxed">{m.body}</p>
             </div>
           ))}
         </div>
@@ -288,8 +286,8 @@ export default function ModeleEconomiquePage() {
       </MqSection>
 
       <section className="py-10 border-t border-line">
-        <div className="container-site max-w-4xl">
-          <p className="text-muted text-[0.85rem] leading-relaxed max-w-2xl">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="text-muted t-petit leading-relaxed max-w-2xl">
             {"Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées."}
           </p>
         </div>
@@ -309,8 +307,8 @@ export default function ModeleEconomiquePage() {
       />
 
       <section className="pb-16">
-        <div className="container-site max-w-4xl">
-          <p className="text-[0.9rem]">
+        <div className="rf-wrap mq-mesure--large">
+          <p className="t-petit">
             <Link href="/clinique-du-devis" className="font-semibold text-orange-deep underline underline-offset-4">
               Faire analyser un devis existant
             </Link>

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MqHero, MqSection, MqProse, MqFig, MqNumbered, MqChecklist, MqFaq, MqCta, MqReadNext } from "../components/mq";
+import { MqHero, MqSection, MqProse, MqNumbered, MqChecklist, MqFaq, MqCta, MqReadNext } from "../components/mq";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/travaux-perimetre-abf" },
@@ -129,15 +129,6 @@ export default function TravauxPerimetreAbfPage() {
         lead="En périmètre de protection, la faisabilité d'un projet ne se joue pas sur la technique mais sur l'autorisation. Toute modification de l'aspect extérieur passe devant l'architecte des Bâtiments de France, et le sens de son avis décide de ce qui est possible. ARCHI PILOTE RÉNOVATION prend ces dossiers par cet endroit-là : le régime applicable d'abord, le calendrier ensuite, le chiffrage après."
       />
 
-      <div className="container-site max-w-4xl pb-4">
-        <MqFig
-          src="/photos/chantiers/chFacadeRavalementVillage.jpeg"
-          alt="Immeuble ancien de centre-bourg ceinturé d'un échafaudage bâché pendant un ravalement, vu depuis la rue"
-          caption="Un ravalement modifie l'aspect extérieur d'un bâtiment : c'est précisément le type d'intervention examiné lorsque le bien se situe en périmètre de protection. Chantier réel des équipes partenaires ; le régime applicable à ce bâtiment n'est pas celui d'une autre parcelle et se vérifie au cas par cas."
-          ratio="aspect-[4/3]"
-        />
-      </div>
-
       <MqSection
         title="Ce qu'est un périmètre de protection, et comment savoir si vous êtes dedans"
         lead="Un périmètre de protection n'est pas une zone floue autour d'un monument : c'est une servitude qui s'attache à une parcelle et qui conditionne les autorisations d'urbanisme délivrées sur cette parcelle."
@@ -164,7 +155,7 @@ export default function TravauxPerimetreAbfPage() {
         </MqProse>
 
         <div className="mt-8">
-          <h3 className="display text-[1.15rem] text-ivoire">Où la réponse se trouve</h3>
+          <h3 className="display t-haut text-ivoire">Où la réponse se trouve</h3>
           <div className="mt-4">
             <MqChecklist cols={1} items={REPERAGE} />
           </div>
@@ -176,7 +167,7 @@ export default function TravauxPerimetreAbfPage() {
         lead="La règle de lecture est simple, et elle explique la plupart des mauvaises surprises : ce n'est pas l'ampleur des travaux qui déclenche l'examen, c'est le fait que le résultat se voie."
       >
         <MqChecklist cols={1} items={SOUMIS} />
-        <p className="mt-8 max-w-2xl text-muted text-[0.92rem] leading-relaxed">
+        <p className="mt-8 max-w-2xl text-muted t-sec leading-relaxed">
           {"Un propriétaire qui remplace ses fenêtres à l'identique, dans le même matériau et la même teinte, considère rarement qu'il modifie l'aspect extérieur. Du point de vue du dossier, il le modifie : le profil d'un châssis contemporain n'est pas celui d'un châssis ancien, et c'est ce détail-là qui est regardé. La façon de reproduire une fenêtre ancienne, elle, relève d'un autre sujet — celui du "}
           <Link href="/savoir-faire-ancien" className={lien}>savoir-faire sur le bâti ancien</Link>
           {"."}
@@ -190,7 +181,7 @@ export default function TravauxPerimetreAbfPage() {
         wide
       >
         <div className="overflow-x-auto">
-          <table className="w-full border-collapse text-[0.92rem]">
+          <table className="w-full border-collapse t-sec">
             <thead>
               <tr>
                 <th className="border border-line bg-surface px-4 py-3 text-left font-semibold text-ivoire">&nbsp;</th>
@@ -309,15 +300,15 @@ export default function TravauxPerimetreAbfPage() {
       </MqSection>
 
       <section className="py-10 border-t border-line">
-        <div className="container-site max-w-4xl flex flex-col gap-5">
-          <p className="max-w-3xl border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+        <div className="rf-wrap mq-mesure--large flex flex-col gap-5">
+          <p className="max-w-3xl border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
             <strong className="font-semibold text-ivoire/80">Portée de ces informations.</strong> Les régimes,
             procédures et délais décrits sur cette page sont ceux du régime général. Ils comportent des exceptions
             locales et évoluent. Ils se vérifient au cas par cas auprès du service urbanisme de la commune et de
             l&apos;architecte partenaire indépendant, avant tout engagement. Cette page ne remplace ni une consultation
             du service instructeur, ni l&apos;avis d&apos;un professionnel compétent sur un dossier précis.
           </p>
-          <p className="max-w-3xl border border-line bg-surface rounded-[2px] px-5 py-4 text-[0.85rem] leading-relaxed text-muted">
+          <p className="max-w-3xl border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
             <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION
             structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises
             partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants.

@@ -19,13 +19,6 @@ export default function Page() {
         lead="Les intérieurs français 2026-2027 se construisent autour de six matières : chêne massif huilé, zellige émaillé, pierre naturelle française, enduit à la chaux, laiton patiné et volumes courbes maçonnés. Ces partis pris ne sont pas décoratifs : chacun engage un support, une charge, une étanchéité et un savoir-faire. ARCHI PILOTE RÉNOVATION conçoit ces intérieurs avec l'architecte partenaire Minh-Hoa Truong, les valide avec l'ingénieur structure Igli Braho du bureau Tridenso et les fait exécuter par des entreprises partenaires contractantes, sous un pilotage et un accompagnement de A à Z."
       />
 
-      <MqFig
-        src="/photos/chantiers/chHdgSalonBoucleAppliquesBronze.jpeg"
-        alt="Séjour d'un appartement ancien parisien : murs entièrement panneautés, corniche moulurée, grand miroir à cadre sculpté blanc, appliques en métal doré patiné, canapé courbe et parquet chêne en point de Hongrie"
-        caption="Le minimalisme chaleureux en situation : murs panneautés et corniche conservés, grand miroir à cadre sculpté, appliques en métal doré patiné, mobilier aux lignes courbes et parquet chêne en point de Hongrie. Chantier réel des équipes partenaires."
-        ratio="aspect-[16/9]"
-      />
-
       <MqSection kicker="Panorama" title="Six matières qui définissent l'intérieur français 2026-2027" lead="Le minimalisme chaleureux remplace le minimalisme froid : moins d'objets, plus de matière." wide>
         <MqNumbered cols={3} items={[
           { title: "Chêne massif huilé", text: "Point de Hongrie, bâtons rompus, larges lames : le chêne massif français revient au sol, en boiserie et en menuiserie intégrée. Huilé plutôt que verni, il vieillit au lieu de s'user." },
@@ -97,8 +90,8 @@ export default function Page() {
           "Arches et niches maçonnées : chiffrées au cas par cas selon la nature du support.",
         ]} /></div>
 
-        <h3 className="display text-[1.15rem] text-ivoire mt-12 mb-2">Quatre pierres différentes, de la paroi au détail</h3>
-        <p className="text-muted text-[0.9rem] mb-6 max-w-2xl">
+        <h3 className="display t-haut text-ivoire mt-12 mb-2">Quatre pierres différentes, de la paroi au détail</h3>
+        <p className="text-muted t-petit mb-6 max-w-2xl">
           Quatre vues d&apos;un même appartement ancien parisien livré par les équipes partenaires. Quatre pierres distinctes —
           marbre sombre veiné, pierre claire à inclusions, marbre gris veiné, onyx rubané — posées en dalles de grand format
           sur les parois, puis reprises dans les ouvrages : vasques, tablettes et encadrements assemblés à coupe d&apos;onglet
@@ -129,7 +122,7 @@ export default function Page() {
       </MqSection>
 
       <MqSection kicker="Preuve visuelle" title="La pierre et le laiton avant la dépose des protections" lead="La matière noble se joue à la pose, pas à la mise en scène. Une salle d'eau photographiée avant réception, protections encore en place." wide>
-        <p className="text-muted text-[0.9rem] mb-6 max-w-2xl">Le laiton n&apos;est pas un accessoire de fin de chantier : les profilés se posent en même temps que la pierre, arête par arête, et conditionnent la précision des découpes. Ces deux vues montrent le même ouvrage inachevé — la vasque n&apos;est pas encore encastrée dans son plan.</p>
+        <p className="text-muted t-petit mb-6 max-w-2xl">Le laiton n&apos;est pas un accessoire de fin de chantier : les profilés se posent en même temps que la pierre, arête par arête, et conditionnent la précision des découpes. Ces deux vues montrent le même ouvrage inachevé — la vasque n&apos;est pas encore encastrée dans son plan.</p>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-3xl">
           <MqFig
             src="/photos/chantiers/chHdgSdbMarbreProfilesLaitonPose.jpeg"
@@ -155,7 +148,7 @@ export default function Page() {
           { q: "Qui conçoit et valide ces partis pris chez ARCHI PILOTE RÉNOVATION ?", a: "La conception est menée avec l'architecte partenaire Minh-Hoa Truong, la validation technique avec l'ingénieur structure Igli Braho du bureau Tridenso, et l'exécution par des entreprises partenaires contractantes sous notre pilotage." },
           { q: "Ces finitions haut de gamme font-elles exploser le budget ?", a: "Pas nécessairement : l'achat direct des matériaux par le client, au prix fournisseur et sans marge d'intermédiation, allège précisément ces postes (hors décennale), ce qui rend accessibles des matières qu'un devis classique aurait orientées vers un équivalent industriel." },
         ]} />
-        <p className="text-[0.82rem] text-muted mt-6 max-w-3xl border-t border-line pt-4">
+        <p className="t-mini text-muted mt-6 max-w-3xl border-t border-line pt-4">
           <strong className="text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
           les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et,
           lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et
