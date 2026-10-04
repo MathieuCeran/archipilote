@@ -101,19 +101,23 @@ const DEROULE = [
     caption: "Décors en plâtre d'un salon en cours de travaux : corniche à modillons, rosace de plafond et panneaux moulurés, échafaudage roulant en place et sols protégés.",
   },
   {
-    src: "entree-galerie-boiseries",
-    alt: "Entrée-galerie aux murs entièrement panneautés et moulurés, banquette encastrée dans la boiserie, quincaillerie en laiton et sol en damier noir et blanc posé en diagonale",
-    caption: "Entrée-galerie : murs panneautés et moulurés du sol au plafond, banquette encastrée dans la boiserie, patère et quincaillerie en laiton, sol en damier noir et blanc posé en diagonale.",
+    /* 04/10/2026 : les trois dernières vignettes (entrée-galerie, plateau livré, séjour)
+       étaient des images générées. Elles sont remplacées par des photos réelles d'un
+       appartement haussmannien rénové, fournies par le client (public/photos/chantiers2/),
+       légendées d'après ce que montre chaque photo. */
+    src: "/photos/chantiers2/chambre-salle-de-bain-ouverte-marbre-cheminee.jpeg",
+    alt: "Chambre d'un appartement haussmannien rénové : cheminée en marbre sculpté et grand miroir à cadre mouluré conservés, corniche ornée, placards à portes moulurées, baignoire îlot devant un habillage en marbre gris veiné",
+    caption: "L'ancien conservé, le neuf inséré : cheminée en marbre, miroir à cadre mouluré et corniche ornée gardés en place, baignoire îlot et vasques posées devant un habillage en marbre gris veiné.",
   },
   {
-    src: "plateau-livre-parquet-chene",
-    alt: "Grand plateau livré après rénovation avec parquet chêne à lames droites, éclairage sur rails et embrasures de fenêtres cintrées habillées de bois",
-    caption: "Plateau livré : parquet chêne à lames droites, rails d'éclairage fixés au plafond et embrasures de fenêtres cintrées habillées de bois.",
+    src: "/photos/chantiers2/piece-de-vie-cuisine-parquet-versailles.jpeg",
+    alt: "Pièce de vie livrée : parquet chêne en panneaux Versailles, corniches au plafond, cuisine aux façades bois toute hauteur avec crédence en pierre veinée, table ronde et banquette, double porte d'entrée moulurée",
+    caption: "Pièce livrée : parquet chêne posé en panneaux Versailles, corniches conservées au plafond, cuisine intégrée en façades bois toute hauteur et crédence en pierre veinée.",
   },
   {
-    src: "sejour-haussmannien-renove",
-    alt: "Séjour haussmannien livré : corniche sculptée, murs à panneaux moulurés, cheminée en marbre blanc surmontée d'une glace à cadre doré, parquet chêne à chevrons et enfilade vers la salle à manger",
-    caption: "Séjour livré : corniche sculptée courant sur tout le pourtour, murs à panneaux moulurés, cheminée en marbre blanc surmontée d'une grande glace à cadre doré, parquet chêne posé à chevrons et enfilade ouverte sur la salle à manger.",
+    src: "/photos/chantiers2/salon-trumeau-moulures-appliques.jpeg",
+    alt: "Salon haussmannien livré : corniche et rosace ornées, murs à panneaux moulurés, grand miroir à cadre sculpté encastré dans le panneautage, portes à moulures et parquet chêne en point de Hongrie",
+    caption: "Salon livré : corniche et rosace ornées, murs à panneaux moulurés, grand miroir à cadre sculpté pris dans le panneautage, portes moulurées et parquet chêne posé en point de Hongrie.",
   },
 ];
 
@@ -573,7 +577,7 @@ export default function SavoirFaireAncienPage() {
         */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
           {DEROULE.map((f) => (
-            <MqFig key={f.caption} src={`/photos/maquette/${f.src}.jpg`} alt={f.alt} caption={f.caption} />
+            <MqFig key={f.caption} src={f.src.startsWith("/") ? f.src : `/photos/maquette/${f.src}.jpg`} alt={f.alt} caption={f.caption} />
           ))}
         </div>
       </MqSection>

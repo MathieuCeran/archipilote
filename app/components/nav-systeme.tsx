@@ -43,8 +43,8 @@ const VEDETTES: Record<string, { href: string; titre: string; ligne: string; img
     href: "/renovation-complete",
     titre: "Rénovation complète",
     ligne: "Du gros œuvre aux finitions, un seul interlocuteur.",
-    img: "/photos/maquette/sejour-haussmannien-renove.jpg",
-    alt: "Séjour haussmannien livré, moulures conservées et parquet chêne",
+    img: "/photos/chantiers2/enfilade-cuisine-parquet-versailles.jpeg",
+    alt: "Appartement haussmannien rénové : pièce de vie en parquet Versailles, cuisine intégrée en enfilade et banquette ronde",
   },
   Preuves: {
     href: "/realisations",

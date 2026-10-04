@@ -57,9 +57,16 @@ type Etiquette = {
    (372 et 404) donnaient un bandeau 43 unités trop large pour le premier, et
    25 trop court pour le second, dont la dernière lettre sortait du verre.
    Si l'on change un libellé, il faut relever la nouvelle largeur. */
+/* 04/10/2026 : la photographie est désormais une vraie pièce livrée (salon et salle
+   à manger d'un appartement haussmannien, public/photos/chantiers2/), en 1600 × 1066.
+   Le viewBox vaut 1920 × 1279 — l'image à l'échelle 1,2 — pour que les libellés gardent
+   la même taille à l'écran qu'avec l'ancienne image. Les coordonnées sont relevées à la
+   grille dans le navigateur, comme indiqué plus haut.
+   Il n'y a pas de fenêtre dans ce cadre : le repère « garde-corps / ABF » n'avait plus
+   rien à désigner. Le point critique porte sur la cheminée en marbre, à droite. */
 const ETIQUETTES: Etiquette[] = [
-  { x: 1122, y: 252, w: 329, texte: "Corniche et panneautage conservés", delai: 1.25 },
-  { x: 1265, y: 662, w: 429, texte: "Menuiseries et garde-corps : avis ABF à obtenir", critique: true, delai: 1.7 },
+  { x: 1300, y: 300, w: 329, texte: "Corniche et panneautage conservés", delai: 1.25 },
+  { x: 1300, y: 1010, w: 395, texte: "Cheminée marbre : conduit à faire contrôler", critique: true, delai: 1.7 },
 ];
 
 export function HeroRefonte() {
@@ -68,11 +75,11 @@ export function HeroRefonte() {
 
       <div className="rf-hero-media">
       <img
-        src="/photos/maquette/hero-renovation.jpg"
-        alt="Séjour d’un appartement haussmannien livré : panneautage mouluré, corniche ornée, parquet chêne à chevrons et hautes fenêtres ouvrant sur balcon"
+        src="/photos/chantiers2/salon-salle-a-manger-moulures-parquet-chevrons.jpeg"
+        alt="Salon et salle à manger d’un appartement haussmannien rénové : corniche et rosace ornées, murs à panneaux moulurés, grand miroir encadré, parquet chêne en point de Hongrie, table en marbre et cheminée en marbre"
         fetchPriority="high"
-        width={1920}
-        height={1088}
+        width={1600}
+        height={1066}
         className="rf-hero-photo"
       />
       <div className="rf-hero-voile" aria-hidden />
@@ -86,7 +93,7 @@ export function HeroRefonte() {
            cinq largeurs de 1024 à 2560 ; à partir de 1280 la gouttière droite
            est assez large pour les deux bandeaux. */
         className="rf-calque hidden xl:block"
-        viewBox="0 0 1920 1088"
+        viewBox="0 0 1920 1279"
         preserveAspectRatio="xMidYMid slice"
         aria-hidden
         focusable="false"
@@ -103,20 +110,20 @@ export function HeroRefonte() {
         </defs>
 
         {/* A · Corniche et panneautage — ce qui se conserve */}
-        <circle className="rf-cible" cx={1122} cy={184} r={9} style={{ "--d": "1.1s" } as React.CSSProperties} />
+        <circle className="rf-cible" cx={1416} cy={246} r={9} style={{ "--d": "1.1s" } as React.CSSProperties} />
         <path
           className="rf-trait"
           pathLength={1}
-          d="M1122 193 L1122 250"
+          d="M1416 255 L1416 298"
           style={{ "--d": "1.1s" } as React.CSSProperties}
         />
 
         {/* B · Garde-corps et menuiseries — le point critique, cerclé */}
-        <circle className="rf-critique" cx={1265} cy={546} r={46} style={{ "--d": "1.55s" } as React.CSSProperties} />
+        <circle className="rf-critique" cx={1850} cy={960} r={46} style={{ "--d": "1.55s" } as React.CSSProperties} />
         <path
           className="rf-trait"
           pathLength={1}
-          d="M1265 592 L1265 660"
+          d="M1850 1006 L1850 1037 L1713 1037"
           style={{ "--d": "1.55s" } as React.CSSProperties}
         />
 

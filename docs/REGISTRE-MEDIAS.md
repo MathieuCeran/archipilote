@@ -59,3 +59,17 @@ Fournies par Ilann (WhatsApp) comme réalisations des équipes partenaires du gr
 | R-16 | chCuisineBlancheU | Cuisine blanche en U, plans bois | PUBLIÉ | galerie |
 
 Écartées volontairement : rendus 3D/inspiration (WC pierre, WC plantes, sdb tasseaux, escalier), photos « Pinterest » (salons beige, cuisine US à poutres), photos avec visage reconnaissable (plombier au lavabo), terrasses/piscines (hors territoire ARCHI PILOTE RÉNOVATION), intérieurs haussmanniens premium supplémentaires (territoire éditorial ARCHI RENOV, V3 §5).
+
+## Appartement haussmannien rénové — reçu du client le 04/10/2026 (`public/photos/chantiers2/`)
+
+16 photos (une 17ᵉ, copie à l'octet près, supprimée). Fichiers renommés d'après ce qu'ils montrent ; légendes et textes alternatifs rédigés image par image. Elles remplacent des images générées de `/photos/maquette/`.
+
+| Fichier | Sujet vérifié | Usage |
+|---|---|---|
+| salon-salle-a-manger-moulures-parquet-chevrons | Salon + salle à manger, corniche, cheminée marbre | Accueil (héros) |
+| enfilade-cuisine-parquet-versailles | Pièce de vie, parquet Versailles, cuisine en enfilade | Menu « Rénovation complète » |
+| chambre-salle-de-bain-ouverte-marbre-cheminee | Chambre, cheminée marbre, baignoire, marbre gris | /savoir-faire-ancien |
+| piece-de-vie-cuisine-parquet-versailles | Pièce de vie, cuisine bois, crédence pierre | /savoir-faire-ancien |
+| salon-trumeau-moulures-appliques | Salon, moulures, miroir à cadre sculpté | /savoir-faire-ancien |
+| salle-eau-pierre-claire-douche-italienne | Salle d'eau pierre claire, douche à l'italienne | /expertise-carrelage-zellige-travertin |
+| sdb-marbre-noir-baignoire-cheminee(-2), sdb-granit-clair-baignoire(-2), chambre-baignoire-ouverte-granit-lustre, chambre-moulures-parquet-chevrons-armoire-chene, sejour-table-marbre-balcon-rue, salle-a-manger-table-onyx-lustre, salle-eau-marbre-gris-vers-chambre, wc-suspendu-pierre-beige | — | Disponibles (les « -2 » sont des recadrages quasi identiques ; les deux salles de bain marbre noir montrent un trépied photo dans le miroir) |

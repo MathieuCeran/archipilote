@@ -156,7 +156,7 @@ export default function Page() {
       <MqSection
         kicker="GALERIE TECHNIQUE"
         title="Matières et finitions de pièce d'eau"
-        lead="Une photo de chantier des équipes partenaires et deux images d'illustration, pour situer le rendu des matières dont parlent les sections précédentes."
+        lead="Deux photographies de réalisations et une image d'illustration, pour situer le rendu des matières dont parlent les sections précédentes."
         wide
       >
         {/*
@@ -179,9 +179,9 @@ export default function Page() {
             ratio="aspect-[3/4]"
           />
           <MqFig
-            src="/photos/maquette/tendance-travertin-salle-bain.jpg"
-            alt="Salle d'eau beige : plan-vasque monolithe taillé dans la pierre, murs en enduit minéral ton pierre sans joint apparent, robinetterie et barre de laiton"
-            caption="Pierre claire en salle d'eau : plan-vasque monolithe taillé dans la masse, murs en enduit minéral ton pierre et robinetterie en laiton. Une pierre poreuse exige un hydrofuge avant mise en service. Image d'illustration."
+            src="/photos/chantiers2/salle-eau-pierre-claire-douche-italienne.jpeg"
+            alt="Salle d'eau en pierre claire : plan-vasque monolithe en pierre veinée, murs et douche à l'italienne en grands formats ton pierre, robinetterie murale et pommeau de plafond cuivrés"
+            caption="Pierre claire en salle d'eau : plan-vasque monolithe, murs et douche à l'italienne en grands formats ton pierre, robinetterie murale cuivrée. Une pierre poreuse exige un hydrofuge avant mise en service."
             ratio="aspect-[4/3]"
           />
           <MqFig
