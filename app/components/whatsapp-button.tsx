@@ -39,7 +39,7 @@ export function WhatsappButton() {
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.85, y: 12 }}
           transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="fixed bottom-4 left-4 sm:bottom-5 sm:left-5 z-50 flex items-center gap-2.5 rounded-full pl-2.5 pr-3 py-2 sm:pl-3 sm:pr-4 sm:py-2.5 group"
+          className="rf-whatsapp fixed bottom-4 left-4 sm:bottom-5 sm:left-5 z-50 flex items-center gap-2.5 rounded-full pl-2.5 pr-3 py-2 sm:pl-3 sm:pr-4 sm:py-2.5 group"
           style={{
             background: "linear-gradient(180deg, #2fce65 -30%, #1faa4f 95%)",
             boxShadow:

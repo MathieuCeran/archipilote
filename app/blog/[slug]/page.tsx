@@ -6,6 +6,7 @@ import { ALL_ARTICLES, photoSrc, type BlogArticle } from "../../lib-articles";
 import { CtaFinal } from "../../components/cta-final";
 import { preparerArticle } from "../article-html";
 import { SommaireSuivi, BarreLecture } from "./suivi-lecture";
+import { BarreProjet } from "./barre-projet";
 
 export function generateStaticParams() {
   return ALL_ARTICLES.map((a) => ({ slug: a.slug }));
@@ -207,7 +208,10 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         </section>
       )}
 
+      {/* Repère de fin : la barre projet s'efface quand le contact arrive. */}
+      <div id="note-fin" aria-hidden />
       <CtaFinal />
+      <BarreProjet />
     </main>
   );
 }

@@ -6435,3 +6435,144 @@ body > section.rf-matiere:nth-of-type(2n) .mq-fig--schema .rf-cadre {
 .note-tableau table:not(:has(th)) tr:first-child td + td {
   border-left-color: var(--graphite-3);
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   66 · LA BARRE « PROJET » DES ARTICLES — 04/10/2026
+   Fixée en bas d'écran pendant la lecture : accroche, téléphone, appel.
+   C'est le seul repérage orange de l'écran quand elle est là.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.note-projet {
+  position: fixed;
+  left: 50%;
+  bottom: 1rem;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: min(calc(100% - 2rem), 52rem);
+  padding: 0.5rem 0.5rem 0.5rem 1.5rem;
+  background: var(--graphite);
+  border: 1px solid var(--graphite-3);
+  box-shadow: 0 18px 40px -18px rgba(20, 24, 26, 0.55);
+  font-family: var(--f-display);
+  transform: translate(-50%, calc(100% + 1.5rem));
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s var(--ease), opacity 0.3s var(--ease);
+}
+
+.note-projet.is-visible {
+  transform: translate(-50%, 0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.note-projet-texte {
+  margin: 0 auto 0 0;
+  font-size: var(--t-sec);
+  font-weight: 500;
+  color: var(--craie);
+  white-space: nowrap;
+}
+
+.note-projet-texte em {
+  font-family: var(--f-read);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--tirage-clair);
+}
+
+.note-projet-tel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 1.1rem;
+  border: 1px solid var(--graphite-4);
+  font-size: var(--t-sec);
+  font-variant-numeric: tabular-nums;
+  color: var(--papier);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease);
+}
+
+.note-projet-tel:hover {
+  border-color: var(--papier-2);
+  color: var(--craie);
+}
+
+.note-projet-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  padding: 0.4rem 0.4rem 0.4rem 1.3rem;
+  background: var(--reperage);
+  color: #fff;
+  font-size: var(--t-sec);
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s var(--ease);
+}
+
+.note-projet-cta span {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  background: var(--craie);
+  color: var(--graphite);
+  transition: transform 0.25s var(--ease);
+}
+
+.note-projet-cta:hover {
+  background: var(--reperage-texte);
+}
+
+.note-projet-cta:hover span {
+  transform: translateX(2px);
+}
+
+.note-projet a:focus-visible {
+  outline: 2px solid var(--tirage-clair);
+  outline-offset: 2px;
+}
+
+/* Téléphone : l'accroche saute, le numéro et l'appel se partagent la barre. */
+@media (max-width: 699px) {
+  .note-projet {
+    bottom: 0.6rem;
+    width: calc(100% - 1.2rem);
+    padding: 0.4rem;
+    gap: 0.4rem;
+  }
+
+  .note-projet-texte {
+    display: none;
+  }
+
+  .note-projet-tel {
+    padding: 0.7rem 0.8rem;
+    font-size: var(--t-petit);
+  }
+
+  .note-projet-cta {
+    flex: 1;
+    justify-content: space-between;
+    font-size: var(--t-petit);
+  }
+}
+
+/* Le bouton WhatsApp flottant se retire tant que la barre est là : ils se
+   chevauchaient en bas à gauche. */
+body:has(.note-projet.is-visible) .rf-whatsapp {
+  opacity: 0 !important;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .note-projet {
+    transition: opacity 0.2s linear;
+  }
+}
