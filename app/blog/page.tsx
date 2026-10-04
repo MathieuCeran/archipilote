@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MqHero, MqSection, MqFig, MqReadNext } from "../components/mq";
-import { BlogGrid } from "./blog-grid";
+import { BlogGrid, type Fiche } from "./blog-grid";
+import { ALL_ARTICLES, photoSrc } from "../lib-articles";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/blog" },
@@ -8,6 +9,18 @@ export const metadata: Metadata = {
   description:
     "Prix au m², matériaux, isolation, DPE : nos guides pratiques pour comprendre et réussir votre projet de rénovation en Île-de-France.",
 };
+
+const fiches: Fiche[] = ALL_ARTICLES.map((a) => ({
+  slug: a.slug,
+  titre: a.titre,
+  excerpt: a.excerpt,
+  categorie: a.categorie,
+  date: a.date,
+  dateISO: a.dateISO,
+  minutes: a.minutes,
+  image: photoSrc(a.photo),
+  schema: Boolean(a.schema),
+}));
 
 export default function BlogPage() {
   return (
@@ -17,6 +30,7 @@ export default function BlogPage() {
         title="Tout savoir avant de rénover"
         lead="Prix, matériaux, isolation : nos analyses techniques pour aborder votre projet avec des chiffres réels, pas des estimations vagues."
       />
+      <BlogGrid articles={fiches} />
       <MqSection
         kicker="Avant de commencer"
         title="Les six étapes clés pour préparer votre projet"
@@ -30,7 +44,6 @@ export default function BlogPage() {
           ratio="aspect-[16/9]"
         />
       </MqSection>
-      <BlogGrid />
       <MqReadNext items={[
         { href: "/observatoire-prix-renovation", label: "Observatoire des prix réels", sub: "Fourchettes indicatives par poste" },
         { href: "/glossaire-renovation", label: "Glossaire technique", sub: "Le vocabulaire du bâtiment" },

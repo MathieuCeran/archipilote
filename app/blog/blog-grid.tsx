@@ -1,41 +1,105 @@
-import Link from "next/link";
-import { ALL_ARTICLES, photoSrc } from "../lib-articles";
+"use client";
 
-/** Grille magazine des articles — carte photo + catégorie + titre + extrait. */
-export function BlogGrid() {
+import Link from "next/link";
+import { useMemo, useState } from "react";
+/** Ce que la liste affiche — rien de plus ne part dans le navigateur (le corps
+    des articles reste côté serveur). */
+export type Fiche = {
+  slug: string;
+  titre: string;
+  excerpt: string;
+  categorie: string;
+  date: string;
+  dateISO: string;
+  minutes: number;
+  image: string;
+  schema: boolean;
+};
+
+/* ============================================================================
+   L'INDEX DU BLOG — 04/10/2026.
+
+   Avant : trente-quatre cartes identiques, photo assombrie d'un voile noir,
+   rubrique illisible dans une pastille grise. Aucune hiérarchie, aucun moyen
+   de trouver un sujet sans tout faire défiler.
+
+   Maintenant : la note la plus récente en tête, en grand ; puis un filtre par
+   rubrique (les rubriques sont celles des articles, comptées) ; puis la
+   liste, en cartes plus légères — photo nette, rubrique en clair au-dessus du
+   titre, durée de lecture.
+   ============================================================================ */
+
+function Carte({ a }: { a: Fiche }) {
   return (
-    <section className="py-12 md:py-16">
-      <div className="container-site">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {ALL_ARTICLES.map((a) => (
-              <Link key={a.slug} href={`/blog/${a.slug}`} className="group border border-line bg-surface rounded-none overflow-hidden flex flex-col h-full block">
-                {/* 05/09 : les vignettes de schéma sont affichées entières et sans zoom au
-                    survol. Recadrées et agrandies comme des photos, elles perdaient leur
-                    titre ; le voile sombre du bas est également retiré, il noircissait le
-                    pied du dessin. La pastille de catégorie porte son propre fond, elle
-                    reste lisible sans ce voile. */}
-                <div className="relative aspect-[16/10] overflow-hidden bg-surface">
-                  <img
-                    src={photoSrc(a.photo)}
-                    alt={a.titre}
-                    className={`absolute inset-0 size-full ${a.schema ? "object-contain" : "object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"}`}
-                    loading="lazy"
-                  />
-                  {!a.schema && <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />}
-                  <span className="absolute top-3 left-3 bg-black/45 border border-white/25 px-3 py-1 mq-mention mq-mention--clair">{a.categorie}</span>
-                </div>
-                <div className="flex flex-col gap-2.5 p-6 flex-1">
-                  <span className="font-mono t-micro text-muted">{a.date}</span>
-                  <h3 className="display t-fort leading-tight text-ivoire normal-case group-hover:text-orange transition-colors">{a.titre}</h3>
-                  <p className="text-muted t-petit leading-relaxed line-clamp-3">{a.excerpt}</p>
-                  <span className="mt-auto pt-2 text-orange-deep t-petit font-medium inline-flex items-center gap-1.5">
-                    Lire l&apos;article
-                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" className="transition-transform duration-300 group-hover:translate-x-1"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" /></svg>
-                  </span>
-                </div>
-              </Link>
+    <Link href={`/blog/${a.slug}`} className="blog-carte">
+      <span className={`blog-carte-image${a.image ? "" : " is-vide"}`}>
+        {a.image && <img src={a.image} alt="" loading="lazy" className={a.schema ? "is-schema" : undefined} />}
+      </span>
+      <span className="blog-carte-rubrique">{a.categorie}</span>
+      <span className="blog-carte-titre">{a.titre}</span>
+      <span className="blog-carte-extrait">{a.excerpt}</span>
+      <span className="blog-carte-meta">
+        <time dateTime={a.dateISO}>{a.date}</time>
+        <span>{a.minutes} min de lecture</span>
+      </span>
+    </Link>
+  );
+}
+
+export function BlogGrid({ articles }: { articles: Fiche[] }) {
+  const [une, ...suite] = articles;
+  const [filtre, setFiltre] = useState<string | null>(null);
+
+  const rubriques = useMemo(() => {
+    const n = new Map<string, number>();
+    for (const a of articles.slice(1)) n.set(a.categorie, (n.get(a.categorie) ?? 0) + 1);
+    // Une rubrique d'un seul article ne mérite pas un filtre : « Toutes » la montre.
+    return [...n.entries()].filter(([, c]) => c > 1).sort((x, y) => y[1] - x[1]);
+  }, [articles]);
+
+  const visibles = filtre ? suite.filter((a) => a.categorie === filtre) : suite;
+
+  return (
+    <section className="blog-index">
+      <div className="rf-wrap">
+        {une && (
+          <Link href={`/blog/${une.slug}`} className={`blog-une${une.image ? "" : " blog-une--texte"}`}>
+            {une.image && (
+              <span className="blog-une-image">
+                <img src={une.image} alt="" className={une.schema ? "is-schema" : undefined} />
+              </span>
+            )}
+            <span className="blog-une-texte">
+              <span className="blog-carte-rubrique">{une.categorie}</span>
+              <span className="blog-une-titre">{une.titre}</span>
+              <span className="blog-une-extrait">{une.excerpt}</span>
+              <span className="blog-carte-meta">
+                <time dateTime={une.dateISO}>{une.date}</time>
+                <span>{une.minutes} min de lecture</span>
+              </span>
+              <span className="blog-une-lien">Lire la note</span>
+            </span>
+          </Link>
+        )}
+
+        <div className="blog-filtres" role="group" aria-label="Filtrer par rubrique">
+          <button type="button" aria-pressed={filtre === null} onClick={() => setFiltre(null)}>
+            Toutes <span>{suite.length}</span>
+          </button>
+          {rubriques.map(([r, n]) => (
+            <button key={r} type="button" aria-pressed={filtre === r} onClick={() => setFiltre(r)}>
+              {r} <span>{n}</span>
+            </button>
           ))}
         </div>
+
+        <ul className="blog-liste">
+          {visibles.map((a) => (
+            <li key={a.slug}>
+              <Carte a={a} />
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

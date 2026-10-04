@@ -16,6 +16,7 @@
 import { ARTICLES, type Article } from "./data";
 import { PHOTOS } from "./lib-photos";
 import generatedRaw from "../content/blog/generated.json";
+import { minutesDeLecture } from "./blog/article-html";
 
 export type GeneratedArticle = {
   /** Identifiant WhatsWrong — garantit qu'un article n'est jamais importé deux fois. */
@@ -43,15 +44,20 @@ export type BlogArticle = Article & {
   photoAlt?: string;
   whatswrongId?: string;
   sedestralId?: string;
+  /** Temps de lecture estimé, en minutes. */
+  minutes: number;
 };
 
 const generated: BlogArticle[] = (generatedRaw as unknown as GeneratedArticle[]).map((a) => ({
   ...a,
   corps: [],
+  minutes: minutesDeLecture(a.bodyHtml),
 }));
 
+const editoriaux: BlogArticle[] = ARTICLES.map((a) => ({ ...a, minutes: minutesDeLecture(a.corps.join(" ")) }));
+
 /** Tous les articles, du plus récent au plus ancien. */
-export const ALL_ARTICLES: BlogArticle[] = [...ARTICLES, ...generated].sort((a, b) =>
+export const ALL_ARTICLES: BlogArticle[] = [...editoriaux, ...generated].sort((a, b) =>
   b.dateISO.localeCompare(a.dateISO),
 );
 

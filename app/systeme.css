@@ -5541,3 +5541,897 @@ body > section.rf-matiere:nth-of-type(2n) .mq-fig--schema .rf-cadre {
   max-width: 46rem;
   margin-inline: auto;
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   64 · LA NOTE TECHNIQUE (page article) — 04/10/2026
+
+   Un article se lit comme une note du dossier de l'agence. Une seule chose
+   appuyée : le CARTOUCHE, bloc-titre de plan collé à gauche, qui porte la
+   fiche (rubrique, date, durée), le sommaire qui suit la lecture et l'appel à
+   estimer. Le reste se tait : prose à 44 rem, intertitres sur filet,
+   tableaux à filets horizontaux, FAQ dépliable.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.note-ouverture-wrap {
+  padding-top: clamp(8.5rem, 14vw, 11rem);
+  padding-bottom: calc(var(--chevauchement) + clamp(2.5rem, 4vw, 3.5rem));
+}
+
+/* Ouverture sur photo : l'image en fond, le titre posé dessus, en bas. */
+.note-ouverture--photo {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: clamp(30rem, 72svh, 44rem);
+}
+
+.note-ouverture--photo::before {
+  display: none; /* la trame de calque n'a rien à faire sur une photo */
+}
+
+.note-ouverture--photo .note-ouverture-wrap {
+  padding-bottom: clamp(3rem, 6vw, 5rem);
+}
+
+.note-ouverture-image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Le voile : dense sous le texte (gauche et bas), plus léger à droite pour que
+   la photo se lise encore. Contraste du titre et du chapô ≥ 7:1 partout. */
+.note-ouverture-voile {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    linear-gradient(90deg, rgba(20, 24, 26, 0.9) 0%, rgba(20, 24, 26, 0.78) 45%, rgba(20, 24, 26, 0.45) 100%),
+    linear-gradient(to top, rgba(20, 24, 26, 0.85) 0%, rgba(20, 24, 26, 0) 60%),
+    linear-gradient(to bottom, rgba(20, 24, 26, 0.6) 0%, rgba(20, 24, 26, 0) 25%);
+}
+
+@media (max-width: 899px) {
+  .note-ouverture-voile {
+    background: rgba(20, 24, 26, 0.78);
+  }
+}
+
+.note-ouverture--photo .note-chapo {
+  color: var(--craie);
+}
+
+.note-titre {
+  font-size: var(--t-h2-l);
+  max-width: 22em;
+  text-wrap: balance;
+}
+
+.note-chapo {
+  margin-top: 1.4rem;
+  max-width: 40rem;
+  font-family: var(--f-read);
+  font-size: var(--t-haut);
+  line-height: 1.6;
+  color: var(--papier);
+  text-wrap: pretty;
+}
+
+/* La couverture chevauche l'ouverture : le passage du sombre au clair se fait
+   à travers l'image, pas sur une ligne droite. */
+.note-couverture-wrap {
+  position: relative;
+  z-index: 1;
+  margin-top: calc(-1 * var(--chevauchement));
+}
+
+.note-couverture {
+  margin: 0;
+  aspect-ratio: 3 / 2;
+  max-height: 34rem;
+  width: 100%;
+  overflow: hidden;
+  background: var(--craie);
+  border: 1px solid var(--filet);
+}
+
+@media (min-width: 900px) {
+  .note-couverture {
+    aspect-ratio: 21 / 9;
+  }
+}
+
+.note-couverture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.note-couverture--schema {
+  aspect-ratio: 2 / 1;
+  position: relative;
+}
+
+.note-couverture--schema img {
+  object-fit: contain;
+}
+
+.note-couverture--schema figcaption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 0.4rem 0.75rem;
+  background: var(--craie);
+  font-family: var(--f-display);
+  font-size: var(--t-micro);
+  color: var(--cote);
+}
+
+/* ── Grille : cartouche + prose ─────────────────────────────────────────── */
+.note-grille {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2rem;
+  padding-top: clamp(2.5rem, 5vw, 4rem);
+  padding-bottom: clamp(4rem, 8vw, 7rem);
+}
+
+@media (min-width: 1100px) {
+  .note-grille {
+    /* La prose prend toute la place restante : la colonne de 44 rem laissait
+       un tiers de l'écran vide à droite. */
+    grid-template-columns: 17rem minmax(0, 1fr);
+    gap: clamp(2.5rem, 4vw, 4.5rem);
+    align-items: start;
+  }
+}
+
+/* ── Le cartouche ───────────────────────────────────────────────────────── */
+.note-cartouche {
+  font-family: var(--f-display);
+}
+
+.note-fiche {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--filet);
+}
+
+.note-fiche dt {
+  font-size: var(--t-micro);
+  color: var(--cote);
+}
+
+.note-fiche dd {
+  margin: 0.15rem 0 0;
+  font-size: var(--t-petit);
+  font-weight: 600;
+  color: var(--encre);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.note-sommaire,
+.note-cartouche-cta {
+  display: none;
+}
+
+@media (min-width: 1100px) {
+  .note-cartouche {
+    position: sticky;
+    top: 7.5rem;
+    border: 1px solid var(--filet-fort);
+    background: var(--craie);
+  }
+
+  .note-fiche {
+    display: block;
+    padding: 0;
+  }
+
+  .note-fiche > div {
+    display: grid;
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+    align-items: baseline;
+    padding: 0.7rem 1rem;
+    border-bottom: 1px solid var(--filet);
+  }
+
+  .note-fiche dd {
+    margin: 0;
+  }
+
+  .note-sommaire {
+    display: block;
+    position: relative;
+    padding: 0.9rem 1rem 0.9rem 2rem;
+    max-height: calc(100svh - 22rem);
+    overflow-y: auto;
+    border-bottom: 1px solid var(--filet);
+  }
+
+  .note-cartouche-cta {
+    display: flex;
+  }
+}
+
+/* La jauge : un filet vertical qui se remplit au fil de la lecture. */
+.note-sommaire-jauge {
+  position: absolute;
+  left: 1rem;
+  top: 1.1rem;
+  bottom: 1.1rem;
+  width: 2px;
+  background: var(--filet);
+}
+
+.note-sommaire-jauge span {
+  display: block;
+  height: 100%;
+  background: var(--tirage);
+  transform-origin: top;
+  transition: transform 0.12s linear;
+}
+
+.note-sommaire ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.note-sommaire a {
+  display: block;
+  padding: 0.4rem 0;
+  font-size: var(--t-mini);
+  line-height: 1.4;
+  color: var(--encre-2);
+  text-decoration: none;
+  transition: color 0.18s var(--ease);
+}
+
+.note-sommaire a:hover {
+  color: var(--tirage);
+}
+
+.note-sommaire a[aria-current] {
+  color: var(--encre);
+  font-weight: 600;
+}
+
+.note-cartouche-cta {
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.95rem 1rem;
+  background: var(--graphite);
+  color: var(--craie);
+  font-size: var(--t-petit);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s var(--ease);
+}
+
+.note-cartouche-cta:hover {
+  background: var(--tirage);
+}
+
+/* Sous 1100 px, la jauge passe en barre fine en haut d'écran. */
+.note-barre {
+  position: fixed;
+  inset: 0 0 auto;
+  height: 3px;
+  z-index: 80;
+  pointer-events: none;
+}
+
+.note-barre span {
+  display: block;
+  height: 100%;
+  background: var(--tirage);
+  transform-origin: left;
+}
+
+@media (min-width: 1100px) {
+  .note-barre {
+    display: none;
+  }
+}
+
+/* ── La prose ───────────────────────────────────────────────────────────── */
+.note-prose {
+  min-width: 0;
+  /* Pas de mesure maximale : la prose va jusqu'au bord droit de la grille, à
+     l'aplomb du bouton « Décrire mon projet » de la barre (choix du client). */
+  font-family: var(--f-read);
+  font-size: var(--t-haut);
+  line-height: 1.75;
+  color: var(--encre);
+  text-wrap: pretty;
+}
+
+.note-prose > div > * + *,
+.note-bloc > * + *,
+.note-bloc + .note-bloc {
+  margin-top: 1.3em;
+}
+
+/* Le premier paragraphe ouvre la note : un degré au-dessus. */
+.note-prose > div > p:first-child,
+.note-prose > .note-bloc:first-child > p {
+  font-size: var(--t-fort);
+  line-height: 1.6;
+}
+
+.note-prose h2 {
+  margin-top: 3.2rem;
+  padding-top: 1.6rem;
+  border-top: 1px solid var(--filet);
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: var(--t-h2-s);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--encre);
+  text-wrap: balance;
+  scroll-margin-top: 7rem;
+}
+
+.note-prose h3 {
+  margin-top: 2.2rem;
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: var(--t-haut);
+  line-height: 1.3;
+  color: var(--encre);
+  scroll-margin-top: 7rem;
+}
+
+.note-prose h4 {
+  margin-top: 1.8rem;
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: var(--t-base);
+  color: var(--encre);
+}
+
+.note-prose h2 + *,
+.note-prose h3 + * {
+  margin-top: 0.8em;
+}
+
+.note-prose strong {
+  font-weight: 600;
+  color: var(--encre);
+}
+
+.note-prose a {
+  color: var(--tirage);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.note-prose a:hover {
+  color: var(--reperage-texte);
+}
+
+.note-prose ul,
+.note-prose ol {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.note-prose ul {
+  list-style: none;
+}
+
+.note-prose ul > li {
+  position: relative;
+}
+
+.note-prose ul > li::before {
+  content: "";
+  position: absolute;
+  left: -1.1rem;
+  top: 0.85em;
+  width: 0.5rem;
+  height: 1px;
+  background: var(--encre-2);
+}
+
+.note-prose ol {
+  list-style: decimal;
+}
+
+.note-prose ol > li::marker {
+  font-family: var(--f-display);
+  font-size: var(--t-petit);
+  font-weight: 600;
+  color: var(--cote);
+}
+
+.note-prose blockquote {
+  margin-inline: 0;
+  padding-left: 1.25rem;
+  border-left: 2px solid var(--tirage);
+  font-style: italic;
+  color: var(--encre);
+}
+
+.note-prose figure {
+  margin: 2.2rem 0;
+}
+
+.note-prose img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 30rem;
+  object-fit: cover;
+  margin-block: 2.2rem;
+  background: var(--craie);
+}
+
+.note-prose figure img {
+  margin: 0;
+}
+
+.note-prose figcaption {
+  margin-top: 0.6rem;
+  font-family: var(--f-display);
+  font-size: var(--t-mini);
+  line-height: 1.45;
+  color: var(--cote);
+}
+
+.note-prose hr {
+  border: 0;
+  border-top: 1px solid var(--filet);
+  margin-block: 2.5rem;
+}
+
+/* L'essentiel : ce qu'on retient si on ne lit que ça. */
+.note-essentiel {
+  margin-block: 2rem;
+  padding: 1.3rem 1.5rem 1.4rem;
+  background: var(--craie);
+  border-left: 3px solid var(--tirage);
+}
+
+.note-essentiel-titre {
+  margin: 0 0 0.7rem;
+  font-family: var(--f-display);
+  font-size: var(--t-petit);
+  font-weight: 600;
+  color: var(--tirage);
+}
+
+.note-essentiel ul {
+  margin: 0;
+  font-size: var(--t-base);
+  line-height: 1.65;
+}
+
+/* Tableaux : en-tête sur encre, lignes alternées, cadre net — un tableau se
+   consulte, il doit se repérer d'un coup d'œil en faisant défiler. */
+.note-tableau {
+  margin-block: 2.2rem;
+  overflow-x: auto;
+  border: 1px solid var(--filet-fort);
+  background: var(--craie-2);
+}
+
+.note-tableau table {
+  width: 100%;
+  min-width: 34rem;
+  border-collapse: collapse;
+  font-family: var(--f-display);
+  font-size: var(--t-sec);
+  line-height: 1.5;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.note-tableau th {
+  padding: 0.85rem 1rem;
+  text-align: left;
+  font-weight: 600;
+  background: var(--graphite);
+  color: var(--craie);
+}
+
+.note-tableau td {
+  padding: 0.85rem 1rem;
+  vertical-align: top;
+  color: var(--encre);
+  border-top: 1px solid var(--filet);
+}
+
+.note-tableau tr:nth-child(even) td {
+  background: var(--craie);
+}
+
+.note-tableau td:first-child {
+  font-weight: 600;
+}
+
+.note-tableau td + td,
+.note-tableau th + th {
+  border-left: 1px solid var(--filet);
+}
+
+.note-tableau th + th {
+  border-left-color: var(--graphite-3);
+}
+
+/* FAQ : une question par ligne, la réponse s'ouvre sous elle. */
+.note-faq {
+  margin-top: 1.2rem;
+  border-top: 1px solid var(--filet-fort);
+}
+
+.note-faq-item {
+  border-bottom: 1px solid var(--filet);
+}
+
+.note-faq-item summary {
+  list-style: none;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.1rem 0;
+  cursor: pointer;
+  font-family: var(--f-display);
+  font-size: var(--t-base);
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--encre);
+}
+
+.note-faq-item summary::-webkit-details-marker {
+  display: none;
+}
+
+.note-faq-item summary::after {
+  content: "+";
+  flex: none;
+  width: 1.5rem;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 1;
+  color: var(--tirage);
+  transition: transform 0.25s var(--ease);
+}
+
+.note-faq-item[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.note-faq-item summary:hover {
+  color: var(--tirage);
+}
+
+.note-faq-item summary:focus-visible {
+  outline: 2px solid var(--tirage);
+  outline-offset: 3px;
+}
+
+.note-faq-reponse {
+  padding: 0 2.5rem 1.3rem 0;
+  font-size: var(--t-base);
+  line-height: 1.7;
+}
+
+.note-faq-reponse > * + * {
+  margin-top: 0.8em;
+}
+
+/* ── À lire ensuite ─────────────────────────────────────────────────────── */
+.note-suite {
+  padding-block: clamp(3.5rem, 6vw, 5rem);
+  border-top: 1px solid var(--filet);
+}
+
+.note-suite-liste {
+  list-style: none;
+  margin: 2rem 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 2.5rem 2rem;
+}
+
+@media (min-width: 800px) {
+  .note-suite-liste {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   65 · L'INDEX DU BLOG — 04/10/2026
+   La dernière note en grand, un filtre par rubrique, puis des cartes nettes :
+   photo sans voile, rubrique en clair, titre, extrait, date et durée.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.blog-index {
+  padding-block: clamp(3rem, 6vw, 5rem);
+}
+
+.blog-une {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-bottom: clamp(3rem, 5vw, 4.5rem);
+  border: 1px solid var(--filet-fort);
+  background: var(--craie);
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (min-width: 900px) {
+  .blog-une {
+    grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+  }
+}
+
+.blog-une-image {
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--papier);
+}
+
+.blog-une-texte {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.85rem;
+  padding: clamp(1.5rem, 3vw, 3rem);
+}
+
+.blog-une-titre {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: var(--t-h2-s);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--encre);
+  text-wrap: balance;
+  transition: color 0.2s var(--ease);
+}
+
+.blog-une-extrait {
+  font-family: var(--f-read);
+  font-size: var(--t-base);
+  line-height: 1.65;
+  color: var(--encre-2);
+}
+
+.blog-une-lien {
+  margin-top: 0.4rem;
+  font-family: var(--f-display);
+  font-size: var(--t-petit);
+  font-weight: 600;
+  color: var(--tirage);
+}
+
+.blog-une:hover .blog-une-titre {
+  color: var(--tirage);
+}
+
+.blog-une:hover .blog-une-lien {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.blog-filtres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 2.25rem;
+}
+
+.blog-filtres button {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.45rem;
+  padding: 0.5rem 0.9rem;
+  border: 1px solid var(--filet-fort);
+  background: transparent;
+  font-family: var(--f-display);
+  font-size: var(--t-petit);
+  color: var(--encre-2);
+  cursor: pointer;
+  transition: border-color 0.18s var(--ease), background-color 0.18s var(--ease), color 0.18s var(--ease);
+}
+
+.blog-filtres button span {
+  font-size: var(--t-micro);
+  color: var(--cote);
+  font-variant-numeric: tabular-nums;
+}
+
+.blog-filtres button:hover {
+  border-color: var(--encre);
+  color: var(--encre);
+}
+
+.blog-filtres button[aria-pressed="true"] {
+  background: var(--graphite);
+  border-color: var(--graphite);
+  color: var(--craie);
+}
+
+.blog-filtres button[aria-pressed="true"] span {
+  color: var(--papier-2);
+}
+
+.blog-filtres button:focus-visible,
+.blog-carte:focus-visible,
+.blog-une:focus-visible,
+.note-carte:focus-visible {
+  outline: 2px solid var(--tirage);
+  outline-offset: 3px;
+}
+
+.blog-liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr));
+  gap: 3rem 2rem;
+}
+
+/* Cartes de l'index et de « À lire ensuite » : même dessin. */
+.blog-carte,
+.note-carte {
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+  color: inherit;
+  text-decoration: none;
+}
+
+.blog-carte-image,
+.note-carte-image {
+  display: block;
+  aspect-ratio: 3 / 2;
+  overflow: hidden;
+  margin-bottom: 0.45rem;
+  background: var(--craie);
+}
+
+.blog-carte-image img,
+.note-carte-image img,
+.blog-une-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s var(--ease);
+}
+
+.blog-carte-image img.is-schema,
+.note-carte-image img.is-schema,
+.blog-une-image img.is-schema {
+  object-fit: contain;
+}
+
+.blog-carte:hover img:not(.is-schema),
+.note-carte:hover img:not(.is-schema),
+.blog-une:hover img:not(.is-schema) {
+  transform: scale(1.03);
+}
+
+.blog-carte-rubrique,
+.note-carte-rubrique {
+  font-family: var(--f-display);
+  font-size: var(--t-mini);
+  font-weight: 600;
+  color: var(--tirage);
+}
+
+.blog-carte-titre,
+.note-carte-titre {
+  font-family: var(--f-display);
+  font-weight: 600;
+  font-size: var(--t-haut);
+  line-height: 1.3;
+  color: var(--encre);
+  text-wrap: balance;
+  transition: color 0.2s var(--ease);
+}
+
+.blog-carte:hover .blog-carte-titre,
+.note-carte:hover .note-carte-titre {
+  color: var(--tirage);
+}
+
+.blog-carte-extrait {
+  font-family: var(--f-read);
+  font-size: var(--t-sec);
+  line-height: 1.6;
+  color: var(--encre-2);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-carte-meta,
+.note-carte-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--f-display);
+  font-size: var(--t-micro);
+  color: var(--cote);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+
+.blog-carte-meta > * + *::before {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 0.8em;
+  margin-right: 0.75rem;
+  vertical-align: -0.1em;
+  background: var(--filet-fort);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .note-sommaire-jauge span,
+  .blog-carte-image img,
+  .note-carte-image img,
+  .blog-une-image img,
+  .note-faq-item summary::after {
+    transition: none;
+  }
+}
+
+/* Pas d'image fournie : pas d'image inventée. Le cadre garde sa place (la
+   grille reste alignée) et porte la trame de calque du site, rien d'autre. */
+.blog-carte-image.is-vide,
+.note-carte-image.is-vide,
+.blog-une-image.is-vide {
+  background-color: var(--graphite);
+  background-image:
+    linear-gradient(rgba(130, 169, 220, 0.16) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(130, 169, 220, 0.16) 1px, transparent 1px);
+  background-size: 2.75rem 2.75rem;
+}
+
+/* La dernière note sans image : une carte de texte sur toute la largeur, pas
+   un grand cadre vide. */
+@media (min-width: 900px) {
+  .blog-une--texte {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .blog-une--texte .blog-une-texte {
+    max-width: 52rem;
+  }
+}
+
+/* Certains tableaux importés n'ont pas de <th> : leur première ligne EST
+   l'en-tête, elle en prend donc l'apparence. */
+.note-tableau table:not(:has(th)) tr:first-child td {
+  background: var(--graphite);
+  color: var(--craie);
+  font-weight: 600;
+  border-top: 0;
+}
+
+.note-tableau table:not(:has(th)) tr:first-child td + td {
+  border-left-color: var(--graphite-3);
+}

@@ -47,8 +47,6 @@ const SITE_ORIGIN = (process.env.SITE_ORIGIN || "https://www.archipiloterenovati
 
 const BLOG_PREFIX = "/blog"; // structure d'URL existante : /blog/<slug>
 const DEFAULT_CATEGORY = "Rénovation";
-// Couverture de repli si Léa n'en fournit pas : photo illustrative, pas un chantier réel.
-const FALLBACK_COVER = "heroHaussmannien";
 
 const GENERATED_FILE = path.join(ROOT, "content/blog/generated.json");
 const STATE_FILE = path.join(ROOT, "content/blog/_whatswrong-state.json");
@@ -320,16 +318,17 @@ async function main() {
       while (taken.has(slug)) slug = `${base}-${n++}`;
 
       log(`→ import « ${d.title} » (${id}) → ${BLOG_PREFIX}/${slug}`);
-      let photo = FALLBACK_COVER;
+      // Pas de couverture fournie : pas d'image. On n'en invente jamais une.
+      let photo = "";
       if (d.cover?.url) {
         try {
           photo = await downloadImage(d.cover.url, slug, "cover");
           log(`    couverture → ${photo}`);
         } catch (e) {
-          warn(`[${slug}] couverture non téléchargée (${e.message}) — image de repli`);
+          warn(`[${slug}] couverture non téléchargée (${e.message}) — article publié sans image`);
         }
       } else {
-        warn(`[${slug}] pas de couverture fournie — image de repli`);
+        log(`    pas de couverture fournie — article publié sans image`);
       }
       const body = sanitizeHtml(await internalizeBodyImages(withFaq(d.body, d.faq), slug));
 
