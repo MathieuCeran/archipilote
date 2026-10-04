@@ -1,296 +1,247 @@
 import type { Metadata } from "next";
-import { MqHero, MqSection, MqProse, MqFig, MqNumbered, MqChecklist, MqFaq, MqCta, MqReadNext } from "../components/mq";
+import { CtaFinal } from "../components/cta-final";
+import { BarreProjet } from "../blog/[slug]/barre-projet";
+import {
+  PageHero,
+  PageIntro,
+  PageChiffres,
+  PageSection,
+  PageAppel,
+  PageCartes,
+  PageEtapes,
+  PageCoches,
+  PageTableau,
+  PageFaq,
+  PageLiens,
+  JsonLdPage,
+} from "../components/page-kit";
+
+/* Intention unique : savoir quelle autorisation obtenir avant des travaux, en copropriété
+   d'abord (syndic, assemblée générale), puis en mairie et en secteur protégé.
+   Mot-clé principal : « autorisation travaux copropriété ».
+   Contenu fusionné : /travaux-perimetre-abf (avis simple / conforme, ce qui est soumis,
+   calendrier, refus), page redirigée ici.
+   Retirés : schémas /photos/maquette et /photos/pedagogie (images générées), lien vers
+   /reseau-partenaires et /savoir-faire-ancien (pages redirigées). */
+
+const CHEMIN = "/demarches-administratives-renovation";
+const TITRE = "Autorisation de travaux en copropriété, en mairie et en secteur ABF";
+const DESCRIPTION =
+  "Autorisation travaux copropriété : quand saisir le syndic et l'assemblée générale, déclaration préalable ou permis en mairie, secteur ABF et calendrier.";
+const FIL = [{ nom: "Démarches administratives", href: CHEMIN }];
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/demarches-administratives-renovation" },
-  title: "Démarches administratives de la rénovation | ARCHI PILOTE RÉNOVATION",
-  description:
-    "Déclaration préalable, permis de construire, copropriété, assemblée générale, dossier syndic pour la ventilation : repères génériques pour orienter votre projet.",
+  title: "Autorisation travaux copropriété : syndic, AG, mairie, ABF | ARCHI PILOTE RÉNOVATION",
+  description: DESCRIPTION,
+  alternates: { canonical: CHEMIN },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Autorisation travaux copropriété : syndic, AG, mairie, ABF | ARCHI PILOTE RÉNOVATION",
+    description: DESCRIPTION,
+    url: CHEMIN,
+    images: [{ url: "/photos/chantiers/chFacadeRavalementVillage.jpeg" }],
+  },
 };
-
-const ARBRE_AUTORISATIONS = [
-  {
-    title: "Intérieur privatif",
-    body: "Généralement aucune autorisation d'urbanisme n'est nécessaire, sauf en secteur protégé.",
-  },
-  {
-    title: "Partie commune",
-    body: "Accord du syndic, avec vote en assemblée générale si le sujet le nécessite.",
-  },
-  {
-    title: "Façade",
-    body: "Déclaration préalable de travaux, et accord de la copropriété si la façade est une partie commune.",
-  },
-  {
-    title: "Structure",
-    body: "Avis technique et accord du syndic dès qu'une partie commune ou une dalle est concernée.",
-  },
-  {
-    title: "Extension",
-    body: "Permis de construire au-delà de certains seuils de surface, selon le plan local d'urbanisme.",
-  },
-  {
-    title: "Surélévation",
-    body: "Permis de construire, avec reprise des charges jusqu'aux fondations et accord de la copropriété si la structure de l'immeuble est concernée.",
-  },
-];
-
-const AUTORISATIONS = [
-  {
-    title: "Déclaration préalable de travaux",
-    resume: "Autorisation simplifiée pour les projets limités.",
-    body: "Requise pour certains travaux modifiant l'aspect extérieur ou créant une surface de plancher limitée. Le dossier est déposé en mairie.",
-  },
-  {
-    title: "Permis de construire",
-    resume: "Autorisation complète pour les projets d'ampleur.",
-    body: "Nécessaire au-delà de certains seuils de surface, notamment pour une extension ou une surélévation. L'instruction dépend du plan local d'urbanisme.",
-  },
-  {
-    title: "Secteur protégé",
-    resume: "Des règles renforcées peuvent s'appliquer.",
-    body: "Aux abords d'un monument historique ou dans un site patrimonial, des règles complémentaires peuvent conditionner la nature des travaux autorisés.",
-  },
-];
-
-const ETAPES_SYNDIC = [
-  {
-    title: "Identifier la nature exacte de l'intervention",
-    text: "Vérifier si le projet touche une partie commune (gaine de ventilation, réseau collectif, façade) ou reste strictement privatif.",
-  },
-  {
-    title: "Consulter le règlement de copropriété",
-    text: "Relire les clauses concernant les parties communes et les travaux affectant l'aspect ou le fonctionnement de l'immeuble.",
-  },
-  {
-    title: "Constituer un dossier technique",
-    text: "Rassembler un descriptif de l'intervention, un schéma ou un plan, et si nécessaire l'avis d'un professionnel compétent sur l'état de la ventilation ou du réseau concerné.",
-  },
-  {
-    title: "Transmettre le dossier au syndic",
-    text: "Adresser le dossier au syndic par écrit, en demandant son inscription à l'ordre du jour de la prochaine assemblée générale si un vote est nécessaire.",
-  },
-  {
-    title: "Présenter le dossier en assemblée générale",
-    text: "Si le sujet nécessite un vote (par exemple une intervention sur une VMC collective défaillante), présenter le dossier aux copropriétaires avec les éléments techniques réunis.",
-  },
-  {
-    title: "Suivre la décision et les suites",
-    text: "Une fois la décision votée, organiser le passage des entreprises partenaires et informer le voisinage concerné du calendrier d'intervention.",
-  },
-];
 
 const FAQ = [
   {
-    q: "Faut-il toujours une déclaration préalable pour des travaux intérieurs ?",
-    a: "Non. Les travaux strictement intérieurs qui ne modifient ni l'aspect extérieur ni la surface de plancher ne nécessitent généralement pas d'autorisation d'urbanisme, sauf en secteur protégé.",
+    question: "Quels travaux en copropriété demandent l'accord de l'assemblée générale ?",
+    reponse:
+      "Les travaux qui touchent les parties communes, l'aspect extérieur de l'immeuble ou des réseaux collectifs demandent généralement un vote en assemblée générale. Les travaux strictement privatifs n'en ont en principe pas besoin, sauf clause contraire du règlement de copropriété.",
   },
   {
-    q: "Quand un permis de construire est-il nécessaire ?",
-    a: "Un permis de construire est généralement requis au-delà de certains seuils de surface créée, notamment pour une extension ou une surélévation. Le seuil exact dépend du projet et de la zone d'urbanisme.",
+    question: "Faut-il une autorisation pour des travaux intérieurs ?",
+    reponse:
+      "Des travaux strictement intérieurs, qui ne modifient ni l'aspect extérieur ni la surface de plancher, ne demandent généralement pas d'autorisation d'urbanisme, sauf en secteur protégé. En copropriété, toucher un mur porteur ou une dalle reste soumis à l'accord du syndicat.",
   },
   {
-    q: "Le syndic peut-il refuser un dossier de ventilation défaillante ?",
-    a: "Le syndic transmet le dossier à l'assemblée générale qui vote. Un dossier technique complet et argumenté facilite l'instruction et la décision des copropriétaires.",
+    question: "Un carottage dans une dalle nécessite-t-il un accord ?",
+    reponse:
+      "Si la dalle est une partie commune ou si le carottage affecte la structure, une information au syndic, voire une autorisation en assemblée générale, est généralement nécessaire avant d'intervenir.",
   },
   {
-    q: "Un carottage traversant une dalle nécessite-t-il un accord ?",
-    a: "Si la dalle est une partie commune ou si le carottage affecte la structure, une information au syndic, voire une autorisation en assemblée générale, est généralement nécessaire avant intervention.",
+    question: "Comment savoir si mon logement est en périmètre ABF ?",
+    reponse:
+      "Demandez-le au service urbanisme de la commune, sur la parcelle précise : sa réponse fait foi. Les servitudes annexées au plan local d'urbanisme, l'acte de vente et la note de renseignements d'urbanisme donnent une première indication.",
   },
   {
-    q: "Comment limiter les nuisances de voisinage pendant le chantier ?",
-    a: "Une information préalable des voisins, le respect des horaires autorisés et une planification des interventions bruyantes limitent les tensions et les réclamations.",
-  },
-  {
-    q: "Ces informations remplacent-elles un conseil juridique ?",
-    a: "Non. Ces éléments restent génériques et prudents. Chaque projet doit être vérifié au regard du règlement de copropriété, du code de la construction et, si nécessaire, d'un professionnel compétent.",
+    question: "Ces informations remplacent-elles un conseil juridique ?",
+    reponse:
+      "Non. Elles restent générales. Chaque projet se vérifie au regard du règlement de copropriété, du plan local d'urbanisme et, si besoin, avec un professionnel compétent.",
   },
 ];
 
-export default function DemarchesAdministrativesPage() {
+export default function Page() {
   return (
-    <main className="relative z-10 bg-carbone">
-      <MqHero
-        kicker="Démarches administratives"
-        title="Identifier les validations possibles avant de lancer un projet"
-        lead="Selon la nature du projet, une déclaration préalable, un permis de construire ou une autorisation de la copropriété peuvent être nécessaires. Cette page présente des repères génériques et prudents pour orienter la réflexion : ils ne remplacent jamais l'avis d'un professionnel compétent sur un dossier précis."
+    <main className="relative z-10">
+      <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
+
+      <PageHero
+        fil={FIL}
+        titre="Autorisation de travaux en copropriété : syndic, mairie et ABF"
+        chapo="Avant un chantier en immeuble, trois accords peuvent être nécessaires : celui de la copropriété, celui de la mairie et, en secteur protégé, l'avis de l'architecte des Bâtiments de France. Nous les identifions dès la visite technique."
+        image="/photos/chantiers/chFacadeRavalementVillage.jpeg"
+        alt="Immeuble ancien à toiture d'ardoise entièrement échafaudé pour un ravalement de façade, dans une rue de centre-bourg"
       />
 
-      {/*
-        Visuel 1 (hero) — infographie déterministe, pas une image générée.
-        Arbre simple : la nature des travaux détermine le niveau d'autorisation.
-      */}
-      <section className="pb-8 md:pb-12">
-        <div className="rf-wrap mq-mesure--large">
-          <div className="flex flex-col gap-3">
-            <div
-              role="img"
-              aria-label="Autorisations possibles selon la nature des travaux de rénovation."
-              className="flex flex-col items-center"
-            >
-              <div className="border border-line rounded-none bg-surface px-5 py-3 text-center">
-                <span className="text-ivoire font-semibold t-sec">Nature des travaux envisagés</span>
-              </div>
-              <div className="w-px h-6 bg-line" aria-hidden />
-              <div className="w-full h-px bg-line" aria-hidden />
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-6 w-full pt-6">
-                {ARBRE_AUTORISATIONS.map((a) => (
-                  <div key={a.title} className="flex flex-col items-center gap-2 text-center">
-                    <div className="w-px h-4 bg-line" aria-hidden />
-                    <div className="flex flex-col gap-1.5 border border-line rounded-none bg-surface p-4 w-full">
-                      <span className="mq-mention mq-mention--accent">{a.title}</span>
-                      <p className="t-petit text-ivoire/85 leading-relaxed">{a.body}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <p className="text-muted t-petit leading-relaxed max-w-2xl">
-              {"Six familles de travaux, du strictement privatif à la surélévation, chacune avec le niveau d'autorisation qui lui est généralement associé."}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <MqSection
-        title="Autorisations d'urbanisme"
-        lead="Le seuil d'autorisation dépend de la surface créée et de la zone d'urbanisme."
+      <PageIntro
+        titreCarte="Ce que nous prenons en charge"
+        points={[
+          "Repérage des autorisations nécessaires à la visite technique",
+          "Dossier technique pour le syndic et l'assemblée générale",
+          "Montage et suivi des dossiers de déclaration préalable",
+          "Calendrier copropriété et urbanisme préparé ensemble",
+          "Un seul interlocuteur jusqu'à la réception",
+        ]}
       >
-        <div className="flex flex-col gap-8">
-          <MqFig
-            src="/photos/maquette/schema-extension-surelevation.jpg"
-            alt="Coupe technique d'une maison avec extension de plain-pied et surélévation, reprise de charges et chaînage"
-            caption="Extension et surélévation : reprise des charges jusqu'aux fondations, chaînage et raccords d'étanchéité entre l'existant et le neuf."
-          />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-10 gap-y-8">
-            {AUTORISATIONS.map((a) => (
-              <div key={a.title} className="flex flex-col gap-2">
-                <h3 className="display t-haut text-ivoire">{a.title}</h3>
-                <p className="text-muted t-sec leading-relaxed">{a.resume}</p>
-                <p className="t-sec text-ivoire/85 leading-relaxed">{a.body}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </MqSection>
+        <p>
+          En copropriété, l'autorisation de travaux dépend de ce que vous touchez. Les parties privatives restent
+          libres en principe. Les parties communes, l'aspect extérieur ou une modification structurelle demandent
+          l'accord du syndicat des copropriétaires, voté en assemblée générale.
+        </p>
+        <p>
+          Nous plaçons la question administrative avant le chiffrage des finitions. Lorsque la loi impose un
+          architecte, le dossier est signé par un architecte partenaire, qui intervient en son nom.
+        </p>
+      </PageIntro>
 
-      <MqSection
-        title="Copropriété et assemblée générale"
-        lead="Les parties communes relèvent d'une décision collective."
-      >
-        <div className="flex flex-col gap-8">
-          <MqFig
-            src="/photos/maquette/schema-demarches-copropriete.jpg"
-            alt="Parcours administratif d'un chantier en copropriété : syndic, assemblée générale, autorisation, déclaration en mairie"
-            caption="Parcours administratif en copropriété : demande au syndic, passage en assemblée générale, puis déclaration préalable en mairie si nécessaire."
-          />
-
-          <MqFig
-            src="/photos/pedagogie/26-demarches-copropriete.jpeg"
-            alt="Chronologie en 6 étapes d'une demande d'autorisation en copropriété : préparation, inscription, assemblée générale, accord, affichage, travaux"
-            caption="Étapes d'une demande d'autorisation en copropriété. Schéma pédagogique."
-            ratio="aspect-[16/9]"
-          />
-
-          <MqChecklist
-            cols={1}
-            items={[
-              "Le règlement de copropriété doit être consulté avant tout projet touchant les communs",
-              "Les travaux sur façade, toiture ou réseaux collectifs nécessitent généralement un vote en assemblée générale",
-              "Le syndic transmet le dossier technique aux copropriétaires pour instruction",
-              "Un dossier complet (descriptif, plan, avis technique) facilite la décision",
-            ]}
-          />
-        </div>
-      </MqSection>
-
-      <MqSection
-        title="Dossier au syndic pour une ventilation absente ou défaillante"
-        lead="Procédure détaillée, étape par étape."
-      >
-        {/*
-          Visuel 3 — limitation honnête. Le cahier des charges demande ici une photo
-          RÉELLE anonymisée montrant la composition d'un dossier technique transmis au
-          syndic (sommaire, plan, notice, assurance, devis), alt prévu :
-          "Composition d'un dossier technique transmis au syndic."
-          Aucun candidat honnête dans /public/photos/chantiers/ : ce dossier ne contient
-          que des photos de chantier (cuisines, dressings, démolition, façades, escaliers,
-          plomberie, charpente...), aucune ne montre un document, un plan papier, une
-          notice ou un devis. Faute d'une vraie photo disponible, aucune image n'est
-          insérée ici plutôt que d'en fabriquer une fausse. Il faudra qu'une vraie photo
-          anonymisée d'un dossier technique (chantier réel) soit fournie avant de compléter
-          cette section, suivie du pattern <MqFig> déjà en place ailleurs sur cette page.
-        */}
-        <MqNumbered items={ETAPES_SYNDIC} />
-      </MqSection>
-
-      <MqSection
-        title="Carottage et traversée de parties communes"
-        lead="Une intervention structurelle sur du commun se prépare en amont."
-      >
-        <div className="flex flex-col gap-8">
-          <MqFig
-            src="/photos/maquette/schema-carottage-ventilation.jpg"
-            alt="Schéma de carottage d'un mur de façade pour la pose d'une gaine et d'une bouche d'extraction en copropriété"
-            caption="Carottage de façade pour ventilation : diamètre, gaine et bouche d'extraction, avec accord préalable du syndic lorsque la façade est concernée."
-          />
-          <MqProse>
-            <p>
-              {"Un carottage ou une traversée de dalle qui touche une partie commune doit être signalé au syndic. Selon l'ampleur, une simple information suffit ou un vote en assemblée générale est nécessaire. Un avis technique sur la nature de la dalle est recommandé avant toute intervention."}
-            </p>
-          </MqProse>
-        </div>
-      </MqSection>
-
-      <MqSection title="Voisinage et nuisances" lead="Anticiper limite les tensions pendant le chantier.">
-        {/* 05/09 — EMPLACEMENT PHOTO VOLONTAIREMENT LAISSÉ VIDE.
-            chDemolitionCloisonBoisPlatre a été retirée : cette prise de vue était affichée
-            sur cinq pages (cf. scripts/surexposition.py) et a été ramenée aux deux où elle
-            est la plus justifiée. Aucune photo de la photothèque ne peut la remplacer ici
-            sans redevenir un doublon : les quatre seules scènes de démolition disponibles
-            sont déjà employées deux à trois fois chacune ailleurs.
-            Aucun substitut n'a été forcé — mettre une photo hors sujet (la photothèque
-            contient surtout de la menuiserie) aurait été pire que pas de photo.
-            À POURVOIR avec les photos que le client doit fournir. Le sujet exact attendu
-            par cette section n'est d'ailleurs pas la démolition mais le VOISINAGE :
-            protections des parties communes, escalier bâché, affichage d'information dans
-            le hall, benne ou zone de stockage sur la voirie.
-            Cf. docs/EMPLACEMENTS-PHOTO-A-POURVOIR.md */}
-        <MqChecklist
-          cols={1}
-          items={[
-            "Informer le voisinage avant le démarrage des travaux bruyants",
-            "Respecter les horaires de chantier fixés par la commune ou le règlement de copropriété",
-            "Protéger les parties communes utilisées pour l'accès au chantier",
-            "Prévoir un interlocuteur identifié en cas de réclamation",
-          ]}
-        />
-      </MqSection>
-
-      <section className="py-10 border-t border-line">
-        <div className="rf-wrap mq-mesure--large">
-          <p className="text-muted t-petit leading-relaxed max-w-2xl">
-            {"Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises concernées."}
-          </p>
-        </div>
-      </section>
-
-      <MqSection title="Questions fréquentes">
-        <MqFaq items={FAQ} />
-      </MqSection>
-
-      <MqCta
-        title="Décrivez votre projet, nous le structurons"
-        lead="Étude de projet sans engagement, sous 48 heures ouvrées : lecture du bien, hiérarchisation des travaux, points de vigilance et budget réaliste."
-      />
-
-      <MqReadNext
+      <PageChiffres
         items={[
-          { href: "/reseau-partenaires", label: "Réseau de partenaires", sub: "Architectes et ingénieurs partenaires" },
-          { href: "/renovation-energetique", label: "Rénovation énergétique", sub: "Ventilation et isolation" },
-          { href: "/glossaire-renovation", label: "Glossaire technique", sub: "Comprendre le vocabulaire administratif" },
+          { valeur: "1", label: "interlocuteur pour tout le chantier" },
+          { valeur: "48 h", label: "pour l'étude de projet (ouvrées)" },
+          { valeur: "≈ 1 mois", label: "d'instruction en plus en secteur ABF" },
+          { valeur: "1", label: "interlocuteur pour tous les dossiers" },
         ]}
       />
+
+      <PageSection
+        titre="Quelle autorisation pour quels travaux ?"
+        accroche="La nature des travaux décide du niveau d'autorisation. Repères généraux, à vérifier sur chaque dossier."
+      >
+        <PageTableau
+          colonnes={["Travaux envisagés", "Autorisation généralement nécessaire"]}
+          lignes={[
+            ["Parties privatives (intérieur du logement)", "Aucune autorisation d'urbanisme en principe, sauf secteur protégé ou clause du règlement de copropriété."],
+            ["Partie commune (gaine, réseau collectif)", "Accord du syndic, avec vote en assemblée générale si le sujet le nécessite."],
+            ["Façade", "Déclaration préalable en mairie, et accord de la copropriété si la façade est une partie commune."],
+            ["Modification structurelle (mur porteur, dalle, ouverture de plancher)", "Étude de structure et accord de l'assemblée générale dès qu'une partie commune ou une dalle est concernée."],
+            ["Extension", "Permis de construire au-delà de certains seuils de surface, selon le plan local d'urbanisme."],
+            ["Surélévation", "Permis de construire, et accord de la copropriété si la structure de l'immeuble est concernée."],
+          ]}
+        />
+      </PageSection>
+
+      <PageSection
+        titre="L'autorisation de la copropriété : syndic et assemblée générale"
+        accroche="Les parties communes relèvent d'une décision collective. Une autorisation de travaux en copropriété s'obtient par un vote, à la majorité prévue par la loi selon la nature des travaux."
+      >
+        <PageEtapes
+          items={[
+            { titre: "Qualifier les travaux", texte: "Vérifier si le projet touche une partie commune (gaine, réseau, façade, dalle) ou reste privatif." },
+            { titre: "Lire le règlement de copropriété", texte: "Il peut restreindre certains travaux, sur les façades, les sols ou l'usage des lots." },
+            { titre: "Constituer le dossier technique", texte: "Descriptif, plan ou schéma, avis d'un ingénieur si besoin, attestations d'assurance des entreprises qui portent les garanties travaux." },
+            { titre: "Saisir le syndic", texte: "Par lettre recommandée, avec demande d'inscription à l'ordre du jour de la prochaine assemblée générale." },
+            { titre: "Présenter le dossier en AG", texte: "Les copropriétaires votent sur les éléments techniques réunis. La décision figure au procès-verbal." },
+            { titre: "Organiser le chantier", texte: "Après le vote : passage des entreprises, protection des parties communes, information des voisins." },
+          ]}
+        />
+      </PageSection>
+
+      <PageSection
+        titre="L'autorisation de la mairie : déclaration préalable ou permis"
+        accroche="Dès que l'aspect extérieur change ou qu'une surface est créée, une autorisation d'urbanisme s'ajoute à celle de la copropriété."
+      >
+        <PageCartes
+          colonnes={2}
+          items={[
+            {
+              titre: "Déclaration préalable de travaux",
+              texte: "Autorisation simplifiée pour les projets limités : modification de façade, menuiseries extérieures, petite surface créée. Le dossier est déposé en mairie.",
+            },
+            {
+              titre: "Permis de construire",
+              texte: "Nécessaire au-delà de certains seuils de surface, notamment pour une extension ou une surélévation. L'instruction dépend du plan local d'urbanisme.",
+              href: "/surelevation",
+            },
+          ]}
+        />
+      </PageSection>
+
+      <PageSection
+        titre="Travaux en secteur ABF"
+        accroche="Aux abords d'un monument historique ou dans un site patrimonial remarquable, tout ce qui modifie l'aspect extérieur passe devant l'architecte des Bâtiments de France."
+      >
+        <PageCoches
+          items={[
+            "Menuiseries extérieures : matériau, profil, teinte, découpage des vitrages, même pour un remplacement « à l'identique »",
+            "Volets, persiennes, garde-corps et ferronneries",
+            "Ravalement : nature de l'enduit, finition, teinte, modénatures",
+            "Verrière, châssis de toit, lucarne, sortie de toiture, climatiseur ou pompe à chaleur visible",
+            "L'intérieur du logement n'est en principe pas concerné, sauf protection particulière du bâtiment",
+          ]}
+        />
+        <PageTableau
+          colonnes={["", "Avis simple", "Avis conforme"]}
+          lignes={[
+            ["Portée", "L'autorité qui délivre l'autorisation le consulte, mais peut s'en écarter.", "Il s'impose à l'autorité qui délivre l'autorisation."],
+            ["Si l'avis est défavorable", "L'autorisation reste possible.", "La demande est en principe refusée."],
+            ["Ce que ça change", "Le dossier se défend d'abord devant la commune.", "L'essentiel se joue avant le dépôt, avec le service du patrimoine."],
+          ]}
+          note="Le régime applicable dépend de la protection en cause. Il se vérifie au cas par cas auprès du service urbanisme de la commune."
+        />
+      </PageSection>
+
+      <PageSection
+        titre="Le calendrier des autorisations"
+        accroche="Les autorisations ne rendent pas un projet impossible. Elles le rendent plus long, et moins tolérant à l'improvisation."
+      >
+        <PageCoches
+          items={[
+            "La copropriété suit le rythme des assemblées générales : le dossier se prépare bien avant le chantier",
+            "Conservez le procès-verbal de l'assemblée : c'est la preuve de votre autorisation de travaux en copropriété",
+            "En secteur ABF, comptez en pratique environ un mois d'instruction de plus qu'un dossier ordinaire",
+            "Le vrai risque est une pièce manquante ou un refus : le délai repart alors de zéro",
+            "Un refus porte le plus souvent sur des points précis ; on les reprend, puis on redépose",
+            "Aucun travaux avant l'autorisation : en secteur protégé, ils exposent à une remise en état",
+            "Informez les voisins et respectez les horaires fixés par la commune ou le règlement de copropriété",
+          ]}
+        />
+      </PageSection>
+
+      <PageAppel
+
+        titre="Vos autorisations, préparées avant les travaux"
+
+        texte="Décrivez votre projet en quelques lignes : nous revenons vers vous sous 48 h ouvrées avec une première lecture et un budget indicatif, sans engagement."
+
+        image="/photos/chantiers/chFacadeRavalementVillage.jpeg"
+
+        alt="Immeuble ancien à toiture d'ardoise entièrement échafaudé pour un ravalement de façade, dans une rue de centre-bourg"
+
+        secondaire={{ href: "/estimateur-travaux", label: "Estimer mon budget" }}
+
+      />
+
+
+      <PageSection titre="Questions fréquentes sur l'autorisation de travaux en copropriété">
+        <PageFaq items={FAQ} />
+      </PageSection>
+
+      <PageSection titre="Pour aller plus loin">
+        <PageLiens
+          items={[
+            { href: "/ouverture-mur-porteur", titre: "Ouverture de mur porteur", texte: "Étude de structure et accord de la copropriété." },
+            { href: "/surelevation", titre: "Surélévation", texte: "Permis, plan local d'urbanisme et copropriété." },
+            { href: "/renovation-appartement", titre: "Rénovation d'appartement", texte: "Un chantier en immeuble, piloté de bout en bout." },
+          ]}
+        />
+      </PageSection>
+
+      <div id="note-fin" aria-hidden />
+      <CtaFinal />
+      <BarreProjet />
     </main>
   );
 }

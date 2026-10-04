@@ -6,7 +6,16 @@ export const metadata: Metadata = {
   // Doctrine V3 : page locale sans preuve locale reelle = noindex jusqu'a preuve documentee.
   robots: { index: false, follow: true },
   title: "Rénovation dans les Hauts-de-Seine (92) | ARCHI PILOTE RÉNOVATION",
-  description: "Rénovation complète, structure, maison, appartement et projets complexes en Hauts-de-Seine. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  description: "Rénovation complète, structure, maison, appartement et projets complexes dans les Hauts-de-Seine. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation dans les Hauts-de-Seine (92) | ARCHI PILOTE RÉNOVATION",
+    description: "Rénovation complète, structure, maison, appartement et projets complexes dans les Hauts-de-Seine. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+    url: "/renovation-hauts-de-seine-92",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -14,7 +23,7 @@ export default function Page() {
     <LocalPage
       variant="departement"
       eyebrow="Hauts-de-Seine (92)"
-      segments={[{ text: "Rénovation en Hauts-de-Seine :" }, { text: "projets complets et transformations complexes.", serif: true, gradient: true }]}
+      segments={[{ text: "Rénovation dans les Hauts-de-Seine :" }, { text: "projets complets et transformations complexes.", serif: true, gradient: true }]}
       intro="Le 92 est le territoire prioritaire d'ARCHI PILOTE RÉNOVATION. Il concentre des projets de maison, d'appartement en copropriété et de transformation complexe : rénovation complète, structure, extension, surélévation, énergie et lots techniques. La proximité avec La Garenne-Colombes permet une forte réactivité sur les communes du premier cercle."
       bulletsTitle="Projets prioritaires"
       bullets={["Rénovation complète", "Maison et appartement", "Structure / mur porteur", "Énergie", "Réseaux et second œuvre technique", "Copropriété selon le secteur"]}
@@ -42,8 +51,8 @@ export default function Page() {
               { href: "/renovation-appartement", label: "Rénovation d'appartement en copropriété" },
               { href: "/renovation-maison-pavillon", label: "Rénovation de maison et de pavillon" },
               { href: "/ouverture-mur-porteur", label: "Ouverture de mur porteur" },
-              { href: "/gros-oeuvre-structure", label: "Gros œuvre et structure" },
-              { href: "/second-oeuvre", label: "Lots de second œuvre" },
+              { href: "/ouverture-mur-porteur", label: "Gros œuvre et structure" },
+              { href: "/renovation-complete", label: "Lots de second œuvre" },
               { href: "/renovation-energetique", label: "Rénovation énergétique" },
             ],
           },
@@ -58,8 +67,8 @@ export default function Page() {
           {
             titre: "Avant de lancer une consultation",
             liens: [
-              { href: "/parcours-expertise", label: "Les étapes du parcours d'expertise" },
-              { href: "/charte-qualite", label: "Les engagements tenus sur chaque projet" },
+              { href: "/notre-methode", label: "Les étapes du parcours d'expertise" },
+              { href: "/notre-methode", label: "Les engagements tenus sur chaque projet" },
               { href: "/estimateur-travaux", label: "Estimer un budget travaux" },
             ],
           },

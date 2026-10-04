@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Rénovation à Asnières-sur-Seine : appartement et maison | ARCHI PILOTE RÉNOVATION",
   description: "Projet de rénovation à Asnières-sur-Seine : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation à Asnières-sur-Seine : appartement et maison | ARCHI PILOTE RÉNOVATION",
+    description: "Projet de rénovation à Asnières-sur-Seine : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+    url: "/renovation-asnieres-sur-seine",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -28,8 +37,8 @@ export default function Page() {
             liens: [
               { href: "/renovation-complete", label: "Rénovation complète d'un logement" },
               { href: "/renovation-appartement", label: "Rénovation d'appartement en copropriété" },
-              { href: "/gros-oeuvre-structure", label: "Structure et ouvertures porteuses" },
-              { href: "/electricite-plomberie-renovation", label: "Réseaux : électricité et plomberie" },
+              { href: "/ouverture-mur-porteur", label: "Structure et ouvertures porteuses" },
+              { href: "/renovation-electrique", label: "Réseaux : électricité et plomberie" },
               { href: "/renovation-energetique", label: "Rénovation énergétique" },
               { href: "/extension-maison", label: "Extension de maison" },
             ],

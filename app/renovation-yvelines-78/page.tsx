@@ -6,7 +6,16 @@ export const metadata: Metadata = {
   // Doctrine V3 : page locale sans preuve locale reelle = noindex jusqu'a preuve documentee.
   robots: { index: false, follow: true },
   title: "Rénovation de maison dans les Yvelines (78) | ARCHI PILOTE RÉNOVATION",
-  description: "Rénovation complète, structure, maison, appartement et projets complexes en Yvelines. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  description: "Rénovation complète, structure, maison, appartement et projets complexes dans les Yvelines. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation de maison dans les Yvelines (78) | ARCHI PILOTE RÉNOVATION",
+    description: "Rénovation complète, structure, maison, appartement et projets complexes dans les Yvelines. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+    url: "/renovation-yvelines-78",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -14,7 +23,7 @@ export default function Page() {
     <LocalPage
       variant="departement"
       eyebrow="Yvelines (78)"
-      segments={[{ text: "Rénovation en Yvelines :" }, { text: "projets complets et transformations complexes.", serif: true, gradient: true }]}
+      segments={[{ text: "Rénovation dans les Yvelines :" }, { text: "projets complets et transformations complexes.", serif: true, gradient: true }]}
       intro="Dans les Yvelines, ARCHI PILOTE RÉNOVATION cible en priorité les maisons et projets suffisamment structurants : rénovation complète, extension, surélévation, toiture, charpente, redistribution intérieure et rénovation énergétique. La page met davantage l'accent sur la maison et le pavillon que sur l'appartement."
       bulletsTitle="Projets prioritaires"
       bullets={["Rénovation complète de maison", "Extension", "Surélévation selon faisabilité", "Toiture / charpente", "Rénovation énergétique", "Redistribution et réseaux"]}
@@ -30,15 +39,15 @@ export default function Page() {
               { href: "/surelevation", label: "Surélévation d'une maison" },
               { href: "/renovation-maison-pavillon", label: "Rénovation de maison et de pavillon" },
               { href: "/demarches-administratives-renovation", label: "Permis et déclaration préalable" },
-              { href: "/travaux-perimetre-abf", label: "Si le bien est en périmètre protégé" },
+              { href: "/demarches-administratives-renovation", label: "Si le bien est en périmètre protégé" },
             ],
           },
           {
             titre: "Enveloppe et lots techniques",
             liens: [
-              { href: "/renovation-toiture-charpente", label: "Toiture et charpente" },
+              { href: "/renovation-maison-pavillon", label: "Toiture et charpente" },
               { href: "/renovation-energetique", label: "Rénovation énergétique" },
-              { href: "/electricite-plomberie-renovation", label: "Redistribution et réseaux" },
+              { href: "/renovation-electrique", label: "Redistribution et réseaux" },
               { href: "/renovation-complete", label: "Rénovation complète de maison" },
             ],
           },

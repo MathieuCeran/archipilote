@@ -81,7 +81,7 @@ export function SpecialtyPage({
       "@type": "BreadcrumbList",
       itemListElement: [
         { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.archipiloterenovation.com/" },
-        { "@type": "ListItem", position: 2, name: eyebrow, item: "https://www.archipiloterenovation.com/services" },
+        { "@type": "ListItem", position: 2, name: eyebrow, item: "https://www.archipiloterenovation.com/renovation-complete" },
         { "@type": "ListItem", position: 3, name: pageTitle, item: `https://www.archipiloterenovation.com${slug}` },
       ],
     },
@@ -107,7 +107,7 @@ export function SpecialtyPage({
           <ol className="flex flex-wrap items-center gap-2 mq-mention">
             <li><Link href="/" className="hover:text-orange transition-colors">Accueil</Link></li>
             <li aria-hidden>›</li>
-            <li><Link href="/services" className="hover:text-orange transition-colors">{eyebrow}</Link></li>
+            <li><Link href="/renovation-complete" className="hover:text-orange transition-colors">{eyebrow}</Link></li>
             <li aria-hidden>›</li>
             <li className="text-ivoire/70">{pageTitle}</li>
           </ol>

@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Rénovation à Bois-Colombes : maison et projets complexes | ARCHI PILOTE RÉNOVATION",
   description: "Projet de rénovation à Bois-Colombes : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation à Bois-Colombes : maison et projets complexes | ARCHI PILOTE RÉNOVATION",
+    description: "Projet de rénovation à Bois-Colombes : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+    url: "/renovation-bois-colombes",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -27,7 +36,7 @@ export default function Page() {
             titre: "Lire l'existant, lot par lot",
             liens: [
               { href: "/renovation-maison-pavillon", label: "Rénovation de maison et de pavillon" },
-              { href: "/gros-oeuvre-structure", label: "Reprise de structure et gros œuvre" },
+              { href: "/ouverture-mur-porteur", label: "Reprise de structure et gros œuvre" },
               { href: "/renovation-energetique", label: "Enveloppe et performance énergétique" },
               { href: "/renovation-complete", label: "Rénover un logement de fond en comble" },
               { href: "/extension-maison", label: "Extension de maison" },

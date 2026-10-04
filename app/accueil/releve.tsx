@@ -127,7 +127,7 @@ export function Releve({ chute }: { chute: string }) {
             corps du texte : ici, il tombe là où le visiteur se pose la
             question. */}
         <p className="rf-releve-suite">
-          <Link href="/savoir-faire-ancien" className="rf-lien">
+          <Link href="/renovation-appartement" className="rf-lien">
             Ce qui se conserve dans un appartement ancien
           </Link>
         </p>

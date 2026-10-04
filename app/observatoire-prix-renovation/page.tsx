@@ -1,361 +1,269 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MqHero, MqSection, MqProse, MqFig, MqChecklist, MqNumbered, MqFaq, MqCta, MqReadNext } from "../components/mq";
+import { CtaFinal } from "../components/cta-final";
+import { BarreProjet } from "../blog/[slug]/barre-projet";
+import { GAMMES, PIECES_OPTIONS } from "../data";
+import {
+  PageHero,
+  PageIntro,
+  PageChiffres,
+  PageSection,
+  PageAppel,
+  PageCartes,
+  PageEtapes,
+  PageCoches,
+  PageTableau,
+  PageImage,
+  PageFaq,
+  PageLiens,
+  JsonLdPage,
+} from "../components/page-kit";
+
+/* Intention unique : connaître le prix de la rénovation au m² (et par poste) en Île-de-France.
+   Mot-clé principal : « prix rénovation m2 ».
+   Données : GAMMES et PIECES_OPTIONS (app/data.ts, repères IDF 2026) et les onze postes
+   historiques de l'observatoire (1er semestre 2024), conservés à l'identique.
+   Retirés : graphique à échelle logarithmique, infographie des « curseurs », liens vers les
+   pages redirigées (clinique du devis, modèle économique, achat direct, pages locales). */
+
+const CHEMIN = "/observatoire-prix-renovation";
+const TITRE = "Prix de la rénovation au m² en Île-de-France";
+const DESCRIPTION =
+  "Prix rénovation m² en Île-de-France : de 250 à 2 500 €/m² selon le niveau de travaux, et fourchettes par poste (plomberie, électricité, carrelage, mur porteur).";
+const FIL = [{ nom: "Prix de la rénovation au m²", href: CHEMIN }];
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/observatoire-prix-renovation" },
-  title: "Observatoire des prix de rénovation en Île-de-France | ARCHI PILOTE RÉNOVATION",
-  description:
-    "Fourchettes de prix indicatives et datées par poste de travaux en Île-de-France : démolition, plomberie, électricité, cloisons, isolation, mur porteur, carottage et plus.",
+  title: "Prix rénovation m² : fourchettes par niveau et par poste | ARCHI PILOTE RÉNOVATION",
+  description: DESCRIPTION,
+  alternates: { canonical: CHEMIN },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Prix rénovation m² : fourchettes par niveau et par poste | ARCHI PILOTE RÉNOVATION",
+    description: DESCRIPTION,
+    url: CHEMIN,
+    images: [{ url: "/photos/chantiers/chCloisonsPlaco.jpeg" }],
+  },
 };
 
-// `href` : page du site qui décrit les travaux correspondant au poste (maillage interne).
-const FOURCHETTES = [
-  { poste: "Démolition / dépose", unite: "m² ou forfait pièce", prix: "20 – 60 € / m²", min: 20, max: 60, href: "/gros-oeuvre-structure" },
-  { poste: "Plomberie (rénovation complète)", unite: "point d'eau", prix: "400 – 900 € / point", min: 400, max: 900, href: "/electricite-plomberie-renovation" },
-  { poste: "Électricité (mise aux normes)", unite: "m² habitable", prix: "70 – 130 € / m²", min: 70, max: 130, href: "/electricite-plomberie-renovation" },
-  { poste: "Cloisons (placo sur ossature)", unite: "m²", prix: "45 – 90 € / m²", min: 45, max: 90, href: "/second-oeuvre" },
-  { poste: "Peinture (préparation incluse)", unite: "m² au sol", prix: "25 – 55 € / m²", min: 25, max: 55, href: "/sols-finitions-renovation" },
-  { poste: "Carrelage (pose incluse)", unite: "m²", prix: "50 – 110 € / m²", min: 50, max: 110, href: "/expertise-carrelage-zellige-travertin" },
-  { poste: "Menuiseries extérieures", unite: "unité posée", prix: "500 – 1 400 € / fenêtre", min: 500, max: 1400, href: "/menuiserie-agencement-sur-mesure" },
-  { poste: "Isolation thermique (intérieure)", unite: "m² de paroi", prix: "40 – 90 € / m²", min: 40, max: 90, href: "/renovation-energetique" },
-  { poste: "Ventilation (VMC simple à double flux)", unite: "logement", prix: "1 500 – 6 000 € / logement", min: 1500, max: 6000, href: "/renovation-energetique" },
-  { poste: "Ouverture de mur porteur", unite: "ouverture", prix: "3 000 – 9 000 € / ouverture", min: 3000, max: 9000, href: "/ouverture-mur-porteur" },
-  { poste: "Carottage (diagnostic ou passage réseau)", unite: "forage", prix: "150 – 450 € / forage", min: 150, max: 450, href: "/chantiers-complexes" },
+const euros = (n: number) => n.toLocaleString("fr-FR").replace(/ | /g, " ");
+
+// `href` : page du site qui décrit les travaux correspondant au poste.
+const POSTES = [
+  { poste: "Démolition / dépose", unite: "m² ou forfait pièce", prix: "20 – 60 € / m²", href: "/ouverture-mur-porteur" },
+  { poste: "Plomberie (rénovation complète)", unite: "point d'eau", prix: "400 – 900 € / point", href: "/renovation-salle-de-bain-maison" },
+  { poste: "Électricité (mise aux normes)", unite: "m² habitable", prix: "70 – 130 € / m²", href: "/renovation-electrique" },
+  { poste: "Cloisons (placo sur ossature)", unite: "m²", prix: "45 – 90 € / m²", href: "/renovation-complete" },
+  { poste: "Peinture (préparation incluse)", unite: "m² au sol", prix: "25 – 55 € / m²", href: "/renovation-complete" },
+  { poste: "Carrelage (pose incluse)", unite: "m²", prix: "50 – 110 € / m²", href: "/renovation-salle-de-bain-maison" },
+  { poste: "Menuiseries extérieures", unite: "unité posée", prix: "500 – 1 400 € / fenêtre", href: "/menuiserie-agencement-sur-mesure" },
+  { poste: "Isolation thermique (intérieure)", unite: "m² de paroi", prix: "40 – 90 € / m²", href: "/renovation-energetique" },
+  { poste: "Ventilation (VMC simple à double flux)", unite: "logement", prix: "1 500 – 6 000 € / logement", href: "/renovation-energetique" },
+  { poste: "Ouverture de mur porteur", unite: "ouverture", prix: "3 000 – 9 000 € / ouverture", href: "/ouverture-mur-porteur" },
+  { poste: "Carottage (diagnostic ou passage réseau)", unite: "forage", prix: "150 – 450 € / forage", href: "/renovation-complete" },
 ];
 
-// Échelle logarithmique commune au graphique (les postes ci-dessus vont de 20 € à 9 000 €).
-const PRIX_SCALE_MIN = 20;
-const PRIX_SCALE_MAX = 9000;
-function prixToPercent(valeur: number) {
-  const a = Math.log10(PRIX_SCALE_MIN);
-  const b = Math.log10(PRIX_SCALE_MAX);
-  return ((Math.log10(valeur) - a) / (b - a)) * 100;
-}
-
-// Six curseurs déjà décrits en toutes lettres dans la section « Ce qui déplace le prix »
-// ci-dessous : mêmes intitulés, reformulés en paire de pôles bas/haut pour l'infographie.
-const FACTEURS_PRIX = [
-  { label: "Surface concernée", bas: "Chantier réduit", haut: "Grande surface" },
-  { label: "État initial du bâti", bas: "Support sain", haut: "Support dégradé" },
-  { label: "Structure du bâtiment", bas: "Structure simple", haut: "Porteurs, planchers complexes" },
-  { label: "Accès au chantier", bas: "Accès facile", haut: "Accès contraint" },
-  { label: "Gamme de matériaux", bas: "Entrée de gamme", haut: "Haut de gamme" },
-  { label: "Délai souhaité", bas: "Délai standard", haut: "Délai accéléré" },
+const FAQ = [
+  {
+    question: "Quel est le prix d'une rénovation au m² en Île-de-France ?",
+    reponse:
+      "Comptez 250 à 450 € le m² pour un rafraîchissement, 600 à 900 € pour une rénovation partielle, 1 000 à 1 500 € pour une rénovation complète et 1 500 à 2 500 € pour du haut de gamme. Ce sont des fourchettes indicatives : le prix contractuel reste celui du devis de chaque entreprise.",
+  },
+  {
+    question: "Ces prix sont-ils garantis pour mon projet ?",
+    reponse:
+      "Non. Le prix réel dépend de l'état du bâti, de l'accès au chantier, de la gamme de matériaux et des contraintes du logement. Seule une visite technique permet d'établir un budget fiable.",
+  },
+  {
+    question: "Pourquoi les fourchettes sont-elles aussi larges ?",
+    reponse:
+      "Un même poste, comme l'ouverture d'un mur porteur, peut demander un simple linteau ou une reprise de charge avec étude d'ingénieur. La largeur de la fourchette reflète la diversité réelle des situations.",
+  },
+  {
+    question: "Les prix incluent-ils les matériaux ?",
+    reponse:
+      "Oui, les fourchettes couvrent fourniture et pose, telles que facturées par une entreprise. Si vous achetez les matériaux en direct, au prix fournisseur, le montant final peut être inférieur.",
+  },
+  {
+    question: "Ces prix sont-ils valables hors Île-de-France ?",
+    reponse:
+      "Non. Ils concernent le marché francilien, où le coût de la main-d'œuvre et les contraintes d'accès diffèrent souvent d'autres régions.",
+  },
 ];
 
 export default function Page() {
   return (
-    <main className="relative z-10 bg-carbone">
-      <MqHero
-        kicker="PREUVES — DONNÉES"
-        title="Observatoire des prix de rénovation en Île-de-France"
-        lead="Combien coûte réellement une ouverture de mur porteur, une isolation ou un carrelage en Île-de-France ? Cet observatoire publie des fourchettes indicatives, datées et classées par poste, établies à partir d'exemples représentatifs de projets accompagnés. Chaque fourchette précise son périmètre et ses limites : elle sert de repère pour préparer un budget, jamais de prix garanti pour un projet donné."
+    <main className="relative z-10">
+      <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
+
+      <PageHero
+        fil={FIL}
+        titre="Prix de la rénovation au m² : les repères en Île-de-France"
+        chapo="Combien coûte une rénovation au m², et poste par poste ? Des fourchettes indicatives et datées, pour cadrer un budget avant de recevoir les devis des entreprises."
+        image="/photos/chantiers/chCloisonsPlaco.jpeg"
+        alt="Chantier en cours : cloisons en plaques de plâtre vissées sur ossature métallique, sous une dalle béton, avant bandes et peinture"
       />
 
-      <MqSection
-        kicker="AVERTISSEMENT"
-        title="Des repères indicatifs, pas des prix garantis"
-        lead="Toute fourchette de prix publiée ici est datée et limitée à l'Île-de-France ; elle ne remplace pas un chiffrage sur mesure."
+      <PageIntro
+        titreCarte="Ce que nous prenons en charge"
+        points={[
+          "Visite technique sur place",
+          "Étude de projet remise sous 48 h ouvrées",
+          "Devis des entreprises rendus comparables, poste par poste",
+          "Achat direct des matériaux possible, au prix fournisseur",
+          "Suivi 12 mois après la réception",
+        ]}
       >
-        <MqProse>
-          <p>
-            Les montants indiqués correspondent à des exemples représentatifs de projets accompagnés en
-            Île-de-France sur la période premier semestre 2024. Ils dépendent fortement de l'état du bâti, de
-            l'accès au chantier et de la gamme choisie. Ils ne constituent ni une offre commerciale ni un
-            engagement de prix pour un projet particulier. Seule une étude de projet permet d'établir un budget
-            fiable pour un logement donné.
-          </p>
-        </MqProse>
-      </MqSection>
-
-      <MqSection
-        kicker="DONNÉES"
-        title="Fourchettes de prix indicatives par poste de travaux"
-        lead="Fourniture et pose, hors remise liée à l'achat direct de matériaux par le client, sur la base des projets accompagnés en Île-de-France."
-      >
-        <div
-          role="img"
-          aria-label="Fourchettes de prix de rénovation observées en Île-de-France, par poste de travaux, premier semestre 2024."
-          className="border border-line bg-surface rounded-none overflow-hidden"
-        >
-          <div className="px-5 pt-5 pb-1 flex items-baseline justify-between gap-4 flex-wrap">
-            <h3 className="display t-base text-ivoire">Fourchettes de prix par poste (échelle logarithmique)</h3>
-            <span className="text-muted t-micro whitespace-nowrap">Île-de-France · 1er semestre 2024</span>
-          </div>
-          <div className="px-5 pt-4 pb-2 flex flex-col gap-3">
-            {FOURCHETTES.map((r) => {
-              const left = prixToPercent(r.min);
-              const right = prixToPercent(r.max);
-              return (
-                <div key={r.poste} className="grid grid-cols-[8rem_1fr_6.5rem] sm:grid-cols-[13rem_1fr_7rem] items-center gap-3">
-                  <span className="t-micro text-ivoire/85 leading-snug">{r.poste}</span>
-                  <div className="relative h-2 bg-line/50 rounded-full overflow-hidden">
-                    <div
-                      className="absolute inset-y-0 bg-orange-deep/75 rounded-full"
-                      style={{ left: `${left}%`, width: `${Math.max(right - left, 1.2)}%` }}
-                    />
-                  </div>
-                  <span className="t-micro text-muted text-right whitespace-nowrap">{r.prix}</span>
-                </div>
-              );
-            })}
-            <div className="grid grid-cols-[8rem_1fr_6.5rem] sm:grid-cols-[13rem_1fr_7rem] gap-3 mt-1">
-              <span aria-hidden />
-              <div className="relative h-4 t-micro text-muted">
-                <span className="absolute" style={{ left: `${prixToPercent(100)}%` }}>100 €</span>
-                <span className="absolute" style={{ left: `${prixToPercent(1000)}%` }}>1 000 €</span>
-                <span className="absolute" style={{ left: `${prixToPercent(9000)}%`, transform: "translateX(-100%)" }}>9 000 €</span>
-              </div>
-              <span aria-hidden />
-            </div>
-          </div>
-          <p className="px-5 pb-5 pt-2 t-micro text-muted leading-snug border-t border-line mt-2">
-            Fourchettes de prix de rénovation observées en Île-de-France, par poste de travaux — premier semestre 2024,
-            à partir d&apos;exemples représentatifs de projets accompagnés. Échelle logarithmique commune : l&apos;unité de
-            référence diffère selon le poste (m², point, unité posée, logement, ouverture, forage — voir le tableau
-            ci-dessous).
-          </p>
-        </div>
-        <div className="overflow-x-auto border border-line rounded-none mt-8">
-          <table className="w-full min-w-[40rem] text-left t-sec">
-            <thead>
-              <tr className="border-b border-line">
-                <th className="px-4 py-3 font-semibold text-ivoire">Poste de travaux</th>
-                <th className="px-4 py-3 font-semibold text-ivoire">Unité de référence</th>
-                <th className="px-4 py-3 font-semibold text-ivoire">Fourchette indicative (premier semestre 2024)</th>
-              </tr>
-            </thead>
-            <tbody>
-              {FOURCHETTES.map((r) => (
-                <tr key={r.poste} className="border-b border-line last:border-b-0 align-top">
-                  <td className="px-4 py-3 font-medium text-ivoire">
-                    <Link href={r.href} className="hover:text-orange-deep transition-colors underline underline-offset-4 decoration-line">
-                      {r.poste}
-                    </Link>
-                  </td>
-                  <td className="px-4 py-3 text-muted leading-relaxed">{r.unite}</td>
-                  <td className="px-4 py-3 text-ivoire/85 leading-relaxed whitespace-nowrap">{r.prix}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-        <p className="text-muted t-petit leading-relaxed mt-4 max-w-2xl">
-          Données indicatives, Île-de-France, premier semestre 2024. Fourchettes établies à partir d'un ensemble
-          d'exemples représentatifs de projets accompagnés, hors matériaux achetés en direct par le client.
-          Chaque intitulé de poste renvoie vers la page qui décrit les travaux correspondants.
+        <p>
+          Le prix d'une rénovation au m² dépend d'abord du niveau de travaux : repeindre ou tout reprendre ne se
+          chiffre pas pareil. Le coût au m² dépend ensuite de l'état du logement, des matériaux et de la main-d'œuvre.
+          Un prix moyen, seul, ne dit donc pas grand-chose.
         </p>
-      </MqSection>
-
-      <MqSection
-        kicker="FACTEURS DE VARIATION"
-        title="Ce qui déplace le prix d'un même poste"
-        lead="Six variables expliquent l'essentiel de l'écart entre le bas et le haut de chaque fourchette."
-      >
-        <div
-          role="img"
-          aria-label="Facteurs qui font varier le prix d'un même poste de rénovation."
-          className="border border-line bg-surface rounded-none overflow-hidden"
-        >
-          <div className="px-5 pt-5 pb-1">
-            <h3 className="display t-base text-ivoire">Six curseurs qui font bouger le prix d&apos;un même poste</h3>
-          </div>
-          <div className="px-5 pt-3 pb-2 flex flex-col gap-5">
-            {FACTEURS_PRIX.map((f) => (
-              <div key={f.label} className="flex flex-col gap-1.5">
-                <span className="t-petit font-medium text-ivoire">{f.label}</span>
-                <div className="relative h-1.5 bg-line rounded-full">
-                  <div
-                    aria-hidden
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 size-3 rounded-full bg-orange-deep border-2 border-surface"
-                  />
-                </div>
-                <div className="flex justify-between t-micro text-muted">
-                  <span>{f.bas}</span>
-                  <span>{f.haut}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <p className="px-5 pb-5 pt-2 t-micro text-muted leading-snug border-t border-line mt-2">
-            Position illustrative : chaque projet se situe différemment sur ces six curseurs, dans un sens ou dans
-            l&apos;autre selon la configuration réelle du logement — voir le détail de chaque facteur ci-dessous.
-          </p>
-        </div>
-        <div className="mt-8">
-          <MqChecklist
-            cols={1}
-            items={[
-              "Surface concernée : un chantier réduit supporte moins bien les coûts fixes de mobilisation.",
-              "État initial du bâti : un support dégradé impose des travaux préparatoires non visibles au premier diagnostic.",
-              "Structure du bâtiment : porteurs, planchers et charges conditionnent la complexité d'une ouverture ou d'un carottage.",
-              "Accès au chantier : étage sans ascenseur, cour étroite ou copropriété contrainte augmentent le temps de mise en œuvre.",
-              "Gamme de matériaux : un carrelage ou une menuiserie d'entrée de gamme et un produit haut de gamme n'ont pas le même prix au m².",
-              "Délai souhaité : une exécution accélérée mobilise davantage de main-d'œuvre simultanée, ce qui a un coût.",
-            ]}
-          />
-        </div>
-      </MqSection>
-
-      <MqSection
-        kicker="MÉTHODE"
-        title="Comment les données de l'observatoire sont préparées"
-        lead="La méthode compte autant que le chiffre : collecte, nettoyage, classement, mise à jour et publication des limites."
-      >
-        <MqNumbered
-          items={[
-            {
-              title: "Collecte des données",
-              text: "Les montants proviennent des devis analysés et des chantiers accompagnés en Île-de-France, avant application de toute remise liée à l'achat direct de matériaux.",
-            },
-            {
-              title: "Nettoyage des données",
-              text: "Les montants incohérents, incomplets ou associés à un périmètre non identifiable sont écartés avant tout calcul de fourchette.",
-            },
-            {
-              title: "Classement par poste homogène",
-              text: "Chaque montant est rattaché à un poste unique et à une unité de mesure cohérente (m², point, unité posée) pour permettre la comparaison.",
-            },
-            {
-              title: "Mise à jour périodique",
-              text: "Les fourchettes sont revues à intervalle régulier pour tenir compte de l'évolution des prix des matériaux et de la main-d'œuvre en Île-de-France.",
-            },
-            {
-              title: "Publication des limites",
-              text: "Le nombre d'observations, la région et la période sont indiqués avec chaque fourchette, avec un rappel explicite de son caractère indicatif.",
-            },
-          ]}
-        />
-      </MqSection>
-
-      <MqSection
-        kicker="EXEMPLE DE SOURCE"
-        title="Un point de données, son contexte"
-        lead="Chaque fourchette repose sur des cas dont le périmètre est connu, jamais sur des moyennes anonymes sans contexte."
-      >
-        <h3 className="display t-haut text-ivoire">Exemple représentatif : ouverture de mur porteur en appartement parisien</h3>
-        <p className="text-muted t-sec leading-relaxed mt-2 max-w-2xl">
-          Un cas type illustre comment un montant s'intègre dans l'observatoire, sans valeur de preuve
-          individuelle.
+        <p>
+          Les repères ci-dessous servent à poser un budget prévisionnel. Ils ne remplacent pas un devis travaux : ce
+          sont les entreprises partenaires qui chiffrent, exécutent et facturent. Nous rendons leurs devis comparables.
         </p>
-        <div className="mt-4">
-          <MqProse>
-            <p>
-              Ouverture d'un mur porteur de 1,80 mètre entre cuisine et séjour dans un immeuble ancien, avec pose
-              d'un IPN et reprise de charge validée par un ingénieur structure partenaire indépendant. Ce cas,
-              anonymisé et présenté comme un exemple représentatif, se situe dans le haut de la fourchette
-              « ouverture de mur porteur » en raison de la reprise de charge nécessaire. Il ne permet pas de
-              déduire le prix d'une ouverture dans un mur en parpaing d'une maison individuelle, dont la
-              structure diffère.
-            </p>
-          </MqProse>
-        </div>
-        <div className="mt-8">
-          {/* 05/09 — PHOTO REMPLACÉE. chPoutreAcierPlafondMurDegarni.jpeg et
-              chPortiqueAcierAngleFenetre.jpeg sont le MÊME fichier (empreinte MD5 identique,
-              0f35247f0161fa03e1e0caa2a5ec87dd) enregistré sous deux noms : le visiteur voyait donc
-              la même photographie ici, sur /realisations, sur /gros-oeuvre-structure et dans un
-              article de blog, sans qu'aucune recherche textuelle ne puisse le montrer. Elle est
-              remplacée ici par chPoutreAcierMurDegarni.jpeg, une autre prise du même type d'ouvrage
-              (poutre soudée sur poteau, mur dégarni jusqu'à la pierre), affichée sur une seule
-              autre page du site. La scène en doublon passe ainsi de quatre pages à trois. */}
-          <MqFig
-            src="/photos/chantiers/chPoutreAcierMurDegarni.jpeg"
-            alt="Poteau acier soudé sous une poutre de reprise de charge, mur dégarni jusqu'à la pierre et gaine électrique apparente"
-            caption="Poteau acier soudé sous la poutre de reprise de charge, dans l'angle d'une ouverture : le mur est dégarni jusqu'à la pierre, la gaine électrique court à nu et le tableau n'est pas encore repris. C'est cet état-là que chiffre une ligne « ouverture de mur porteur ». Chantier réel des équipes partenaires."
-            ratio="aspect-[9/16]"
-          />
-        </div>
-      </MqSection>
+      </PageIntro>
 
-      <MqSection
-        kicker="PASSER DU REPÈRE AU BUDGET"
-        title="Ce qu'il faut lire pour transformer une fourchette en enveloppe"
-        lead="Une fourchette situe un ordre de grandeur. Le budget d'un projet, lui, se construit à partir du logement réel, du périmètre du devis et du mode d'achat des matériaux."
-      >
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 gap-y-8">
-          <div>
-            <h3 className="display t-base text-ivoire">Chiffrer et vérifier</h3>
-            <ul className="flex flex-col gap-2 mt-3">
-              <li><Link href="/estimateur-travaux" className="text-orange-deep hover:underline t-sec">Estimer une enveloppe de travaux en quelques questions</Link></li>
-              <li><Link href="/clinique-du-devis" className="text-orange-deep hover:underline t-sec">Lire un devis de travaux ligne à ligne</Link></li>
-              <li><Link href="/modele-economique-transparence" className="text-orange-deep hover:underline t-sec">Qui facture quoi : le modèle économique détaillé</Link></li>
-              <li><Link href="/achat-direct-materiaux" className="text-orange-deep hover:underline t-sec">Acheter les matériaux en direct, à votre nom</Link></li>
-              <li><Link href="/aides-renovation-energetique" className="text-orange-deep hover:underline t-sec">Les aides mobilisables sur les travaux énergétiques</Link></li>
-              <li><Link href="/services" className="text-orange-deep hover:underline t-sec">L&apos;index complet des prestations pilotées</Link></li>
-            </ul>
-          </div>
-          <div>
-            <h3 className="display t-base text-ivoire">Articles du blog sur le budget et le devis</h3>
-            <ul className="flex flex-col gap-2 mt-3">
-              <li><Link href="/blog/prix-renovation-maison-2026" className="text-orange-deep hover:underline t-sec">Ce que coûtent des travaux de rénovation de maison en 2026</Link></li>
-              <li><Link href="/blog/devis-travaux-lignes-a-verifier" className="text-orange-deep hover:underline t-sec">Les lignes d&apos;un devis à vérifier avant de signer</Link></li>
-              <li><Link href="/blog/cuisine-sur-mesure-ou-caissons-standards" className="text-orange-deep hover:underline t-sec">Cuisine sur mesure ou caissons standards : où se joue l&apos;économie</Link></li>
-              <li><Link href="/blog/parquet-massif-contrecolle-stratifie" className="text-orange-deep hover:underline t-sec">Parquet massif, contrecollé ou stratifié : quel revêtement pour quel usage</Link></li>
-              <li><Link href="/blog/maprimerenov-cee-2026" className="text-orange-deep hover:underline t-sec">MaPrimeRénov&apos; et CEE : ce qu&apos;il faut vérifier avant de compter sur une aide</Link></li>
-              <li><Link href="/blog/ipn-hea-heb-choix-profile" className="text-orange-deep hover:underline t-sec">IPN, HEA ou HEB : ce que change le choix du profilé</Link></li>
-            </ul>
-          </div>
-        </div>
-        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
-          Ces repères valent pour la zone dans laquelle les projets sont accompagnés :{" "}
-          <Link href="/renovation-hauts-de-seine-92" className="text-orange-deep hover:underline">les Hauts-de-Seine (92)</Link>
-          {" "}en priorité et, selon l&apos;ampleur du chantier,{" "}
-          <Link href="/renovation-ile-de-france" className="text-orange-deep hover:underline">le reste de l&apos;Île-de-France</Link>.
-          Le vocabulaire employé dans les devis est détaillé dans{" "}
-          <Link href="/glossaire-renovation" className="text-orange-deep hover:underline">le glossaire technique</Link>.
-        </p>
-      </MqSection>
-
-      <MqSection kicker="QUESTIONS FRÉQUENTES" title="Ce que les porteurs de projet demandent sur ces prix">
-        <MqFaq
-          items={[
-            {
-              q: "Ces prix sont-ils garantis pour mon projet ?",
-              a: "Non. Ces fourchettes sont indicatives et datées, établies à partir d'exemples représentatifs de projets accompagnés en Île-de-France. Le prix réel d'un poste dépend de l'état du bâti, de l'accès au chantier, de la gamme de matériaux choisie et des contraintes propres au logement.",
-            },
-            {
-              q: "Pourquoi les fourchettes de prix sont-elles aussi larges ?",
-              a: "Un même poste, comme l'ouverture d'un mur porteur, peut nécessiter un simple linteau ou une reprise de charge complexe avec étude d'ingénieur. La largeur de la fourchette reflète la diversité réelle des situations rencontrées, pas une imprécision de méthode.",
-            },
-            {
-              q: "Ces prix incluent-ils la fourniture des matériaux ?",
-              a: "Les fourchettes indiquées couvrent fourniture et pose telles que généralement facturées par une entreprise partenaire contractante. Lorsque le client achète les matériaux en direct, comme le permet notre modèle économique, le montant final peut être inférieur.",
-            },
-            {
-              q: "Ces prix sont-ils valables en dehors de l'Île-de-France ?",
-              a: "Non. Ces données concernent spécifiquement le marché francilien, où le coût de la main-d'œuvre et les contraintes d'accès diffèrent souvent d'autres régions. Utiliser ces fourchettes hors Île-de-France exposerait à des écarts importants.",
-            },
-            {
-              q: "À quelle fréquence l'observatoire est-il mis à jour ?",
-              a: "Les fourchettes sont revues périodiquement pour suivre l'évolution du coût des matériaux et de la main-d'œuvre. La période de référence est systématiquement indiquée pour que chaque donnée reste datée et vérifiable.",
-            },
-          ]}
-        />
-        <p className="text-muted t-petit leading-relaxed mt-8 max-w-2xl">
-          Rôle et responsabilités. ARCHI PILOTE RÉNOVATION structure et pilote les projets de rénovation. Selon
-          les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque nécessaire, des
-          architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les
-          entreprises concernées.
-        </p>
-      </MqSection>
-
-      <MqReadNext
+      <PageChiffres
         items={[
-          { href: "/clinique-du-devis", label: "Clinique du devis", sub: "Analyser un devis ligne à ligne" },
-          { href: "/modele-economique-transparence", label: "Modèle économique & transparence", sub: "Achats en direct, au prix fournisseur" },
-          { href: "/realisations", label: "Réalisations", sub: "Cas datés et documentés" },
-          { href: "/estimateur-travaux", label: "Estimateur de travaux", sub: "Une enveloppe en quelques questions" },
-          { href: "/achat-direct-materiaux", label: "Achat direct des matériaux", sub: "Facture à votre nom, sans marge" },
-          { href: "/guides", label: "Guides & conseils", sub: "Les articles classés par sujet" },
+          { valeur: "250 €", label: "le m² pour un rafraîchissement, au plus bas" },
+          { valeur: "1 000 – 1 500 €", label: "le m² pour une rénovation complète" },
+          { valeur: "11", label: "postes de travaux détaillés" },
+          { valeur: "48 h", label: "pour l'étude de projet (ouvrées)" },
         ]}
       />
 
-      <MqCta
-        title="Obtenez un budget réaliste pour votre projet"
-        lead="Étude de projet sans engagement, sous 48 heures ouvrées : budget établi à partir de votre logement, pas d'une moyenne générale."
+      <PageSection
+        id="prix-m2"
+        titre="Prix de la rénovation au m² selon le niveau de travaux"
+        accroche="Quatre niveaux couvrent l'essentiel des projets. Le coût au m² monte avec la part de réseaux, de cloisons et de pièces techniques reprises : cuisine, salle de bain, plomberie, électricité."
+      >
+        <PageTableau
+          colonnes={["Niveau de rénovation", "Ce qu'il comprend", "Prix au m²"]}
+          lignes={GAMMES.map((g) => [
+            <strong key={g.id}>{g.nom}</strong>,
+            g.description,
+            `${euros(g.prixMin)} – ${euros(g.prixMax)} €`,
+          ])}
+          note="Repères Île-de-France 2026, fourniture et pose, hors mobilier et hors honoraires. Ce sont les mêmes fourchettes que celles de l'estimateur."
+        />
+      </PageSection>
+
+      <PageSection
+        id="prix-postes"
+        titre="Prix par poste de travaux"
+        accroche="Dans un devis détaillé, le prix se lit poste par poste, chacun avec son unité : m², point d'eau, fenêtre, logement ou ouverture. Isolation et ventilation relèvent de la rénovation énergétique."
+      >
+        <PageTableau
+          colonnes={["Poste de travaux", "Unité", "Fourchette indicative"]}
+          lignes={POSTES.map((p) => [
+            <Link key={p.poste} href={p.href}>
+              {p.poste}
+            </Link>,
+            p.unite,
+            p.prix,
+          ])}
+          note="Île-de-France, premier semestre 2024. Fourchettes établies à partir d'exemples représentatifs de projets accompagnés, fourniture et pose, hors matériaux achetés en direct. Chaque poste renvoie vers la page qui décrit les travaux."
+        />
+      </PageSection>
+
+      <PageSection
+        titre="Les options qui font monter le budget"
+        accroche="Certains choix s'ajoutent au prix au m². Ils sont déjà compris dans les niveaux « complète » et « haut de gamme » pour la cuisine et la salle de bain."
+      >
+        <PageTableau
+          colonnes={["Option", "Supplément indicatif"]}
+          lignes={PIECES_OPTIONS.map((o) => [o.nom, `environ + ${euros(o.majoration)} €`])}
+        />
+      </PageSection>
+
+      <PageSection
+        titre="Ce qui fait varier le prix d'un même poste"
+        accroche="Six facteurs expliquent l'écart entre le bas et le haut de chaque fourchette."
+      >
+        <PageCartes
+          colonnes={3}
+          items={[
+            { titre: "La surface", texte: "Un petit chantier absorbe moins bien les coûts fixes : installation, protections, évacuation." },
+            { titre: "L'état du bâti", texte: "Un support dégradé impose des travaux préparatoires, souvent invisibles au premier coup d'œil." },
+            { titre: "La structure", texte: "Murs porteurs, planchers et charges décident de la complexité d'une ouverture ou d'un carottage." },
+            { titre: "L'accès au chantier", texte: "Étage sans ascenseur, cour étroite ou copropriété contrainte : le temps de mise en œuvre augmente." },
+            { titre: "La gamme de matériaux", texte: "Un carrelage d'entrée de gamme et un produit haut de gamme n'ont pas le même prix au m²." },
+            { titre: "Le délai souhaité", texte: "Aller plus vite demande plus d'ouvriers en même temps, ce qui a un coût." },
+          ]}
+        />
+        <PageImage
+          src="/photos/chantiers/chPoutreAcierMurDegarni.jpeg"
+          alt="Ouverture de mur porteur en cours : poteau acier soudé sous une poutre de reprise, mur dégarni jusqu'à la pierre et gaine électrique apparente"
+          legende="Ouverture de 1,80 m dans un immeuble ancien, avec reprise de charge validée par un ingénieur : ce cas se situe dans le haut de la fourchette « ouverture de mur porteur »."
+        />
+      </PageSection>
+
+      <PageSection
+        titre="Du prix au m² au budget réel"
+        accroche="Une fourchette donne un ordre de grandeur. Votre budget rénovation, lui, se construit sur votre logement."
+      >
+        <PageCoches
+          items={[
+            "Vérifiez le périmètre : fourniture et pose, dépose, évacuation des gravats, protections",
+            "Repérez les frais annexes et les exclusions écrites sur chaque devis : c'est là que naissent les écarts",
+            "Demandez des devis comparatifs établis sur un même descriptif, pas des prix globaux",
+            "Comparer des taux horaires ne suffit pas : c'est le contenu de chaque ligne qui compte",
+            "Prévoyez une marge pour les aléas, surtout si la structure ou des réseaux anciens sont touchés",
+            "Achetez carrelage, parquet ou robinetterie en direct pour réduire la facture finale",
+          ]}
+        />
+      </PageSection>
+
+      <PageSection
+        titre="Comment ces fourchettes sont établies"
+        accroche="La méthode compte autant que le chiffre."
+      >
+        <PageEtapes
+          items={[
+            { titre: "Collecte", texte: "Les montants viennent des devis analysés et des chantiers accompagnés en Île-de-France." },
+            { titre: "Nettoyage", texte: "Les montants incohérents, incomplets ou au périmètre flou sont écartés." },
+            { titre: "Classement", texte: "Chaque montant est rattaché à un poste et à une unité cohérente : m², point, unité posée." },
+            { titre: "Mise à jour", texte: "Les fourchettes sont revues pour suivre le prix des matériaux et de la main-d'œuvre." },
+            { titre: "Limites publiées", texte: "Région et période sont indiquées avec chaque tableau, avec un rappel de leur caractère indicatif." },
+          ]}
+        />
+      </PageSection>
+
+      <PageAppel
+
+        titre="Passez des fourchettes à votre budget réel"
+
+        texte="Décrivez votre projet en quelques lignes : nous revenons vers vous sous 48 h ouvrées avec une première lecture et un budget indicatif, sans engagement."
+
+        image="/photos/chantiers/chPoutreAcierMurDegarni.jpeg"
+
+        alt="Ouverture de mur porteur en cours : poteau acier soudé sous une poutre de reprise, mur dégarni jusqu'à la pierre et gaine électrique apparente"
+
+        secondaire={{ href: "/estimateur-travaux", label: "Estimer mon budget" }}
+
       />
+
+
+      <PageSection titre="Questions fréquentes sur le prix de la rénovation au m²">
+        <PageFaq items={FAQ} />
+      </PageSection>
+
+      <PageSection titre="Pour aller plus loin">
+        <PageLiens
+          items={[
+            { href: "/estimateur-travaux", titre: "Estimateur de travaux", texte: "Une fourchette adaptée à votre surface en une minute." },
+            { href: "/blog/devis-travaux-lignes-a-verifier", titre: "Lire un devis", texte: "Les lignes à vérifier avant de signer." },
+            { href: "/renovation-appartement", titre: "Rénovation d'appartement", texte: "Un projet piloté de la visite à la réception." },
+          ]}
+        />
+      </PageSection>
+
+      <div id="note-fin" aria-hidden />
+      <CtaFinal />
+      <BarreProjet />
     </main>
   );
 }

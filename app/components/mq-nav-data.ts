@@ -1,54 +1,38 @@
-/* Arborescence de navigation — reprise exactement de la maquette Lovable
-   (batir-optimale, 29/08/2026) : 4 groupes, 32 pages + accueil + contact. */
+/* Arborescence de navigation — refonte 10/2026 « une page = une intention » :
+   3 menus (Travaux, Méthode, Prix & ressources) + Blog + bouton Contact. */
 export const NAV_GROUPS = [
-  {
-    label: "Expertise",
-    links: [
-      { href: "/notre-methode", label: "Notre méthode" },
-      { href: "/parcours-expertise", label: "Parcours & expertise" },
-      { href: "/chantiers-complexes", label: "Chantiers complexes" },
-      { href: "/savoir-faire-ancien", label: "Charme de l’ancien" },
-      { href: "/tendances-materiaux-francais", label: "Tendances & matières" },
-      { href: "/tendances-2026-2027", label: "Tendances 2026-2027" },
-      { href: "/charte-qualite", label: "Charte qualité" },
-    ],
-  },
   {
     label: "Travaux",
     links: [
-      { href: "/renovation-complete", label: "Rénovation complète" },
       { href: "/renovation-appartement", label: "Rénovation d’appartement" },
       { href: "/renovation-maison-pavillon", label: "Rénovation de maison" },
-      { href: "/gros-oeuvre-structure", label: "Gros œuvre & structure" },
-      { href: "/second-oeuvre", label: "Second œuvre technique" },
-      { href: "/expertise-carrelage-zellige-travertin", label: "Carrelage, zellige & travertin" },
-      { href: "/menuiserie-agencement-sur-mesure", label: "Menuiserie & agencement" },
+      { href: "/renovation-complete", label: "Rénovation complète" },
+      { href: "/renovation-salle-de-bain-maison", label: "Salle de bain" },
+      { href: "/renovation-cuisine-maison", label: "Cuisine" },
+      { href: "/renovation-electrique", label: "Rénovation électrique" },
       { href: "/renovation-energetique", label: "Rénovation énergétique" },
-      { href: "/extension-maison", label: "Extension de maison" },
+      { href: "/ouverture-mur-porteur", label: "Ouverture de mur porteur" },
       { href: "/surelevation", label: "Surélévation" },
+      { href: "/extension-maison", label: "Extension de maison" },
+      { href: "/menuiserie-agencement-sur-mesure", label: "Agencement sur mesure" },
     ],
   },
   {
-    label: "Preuves",
+    label: "Méthode",
     links: [
-      { href: "/clinique-du-devis", label: "Clinique du devis" },
-      { href: "/observatoire-prix-renovation", label: "Observatoire des prix réels" },
-      { href: "/realisations", label: "Réalisations" },
-      { href: "/temoignages-clients", label: "Témoignages clients" },
-      { href: "/detail-invisible", label: "Le détail invisible" },
-      { href: "/reseau-partenaires", label: "Réseau de partenaires" },
-      { href: "/investisseurs-professionnels", label: "Investisseurs & professionnels" },
+      { href: "/notre-methode", label: "Notre méthode" },
+      { href: "/realisations", label: "Réalisations et avis" },
+      { href: "/investisseurs-professionnels", label: "Investissement locatif" },
+      { href: "/contact", label: "Contact" },
     ],
   },
   {
-    label: "Ressources",
+    label: "Prix & ressources",
     links: [
-      { href: "/modele-economique-transparence", label: "Modèle économique" },
-      { href: "/achat-direct-materiaux", label: "Achat direct des matériaux" },
-      { href: "/demarches-administratives-renovation", label: "Démarches administratives" },
-      { href: "/glossaire-renovation", label: "Glossaire technique" },
-      { href: "/guides", label: "Guides & conseils" },
+      { href: "/observatoire-prix-renovation", label: "Prix de la rénovation au m²" },
       { href: "/estimateur-travaux", label: "Estimateur de travaux" },
+      { href: "/demarches-administratives-renovation", label: "Démarches administratives" },
+      { href: "/glossaire-renovation", label: "Glossaire" },
       { href: "/faq", label: "Questions fréquentes" },
     ],
   },

@@ -15,7 +15,7 @@ export function PiedRefonte() {
       </span>
 
       <div className="rf-wrap py-16 md:py-20">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_repeat(4,1fr)] gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_repeat(3,1fr)] gap-10 lg:gap-8">
           <div style={{ maxWidth: "22rem" }}>
             <div className="flex items-center gap-2.5">
               <img

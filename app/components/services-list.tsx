@@ -26,7 +26,7 @@ export function ServicesList() {
             <WordReveal as="h2" segments={[{ text: "Vos travaux de rénovation," }, { text: "un seul pilote.", serif: true, gradient: true }]} className="display text-[clamp(2.2rem,5.2vw,4.1rem)] text-ivoire text-balance" />
           </div>
           <Reveal variant="slide-up" delay={0.2}>
-            <Link href="/services" className="btn btn-ghost shrink-0">Le détail des services <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></Link>
+            <Link href="/renovation-complete" className="btn btn-ghost shrink-0">Le détail des services <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M5 12h14m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" /></svg></Link>
           </Reveal>
         </div>
 
@@ -35,7 +35,7 @@ export function ServicesList() {
             {SERVICES.map((service, i) => (
               <Reveal key={service.slug} variant="slide-up" delay={i * 0.06}>
                 <Link
-                  href="/services"
+                  href="/renovation-complete"
                   className="group relative grid grid-cols-[3.2rem_1fr_auto] items-center gap-4 py-5 border-t border-line last:border-b"
                   data-active={active === i}
                   onMouseEnter={() => setActive(i)}

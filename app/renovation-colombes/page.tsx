@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Rénovation à Colombes : maison, extension et appartement | ARCHI PILOTE RÉNOVATION",
   description: "Projet de rénovation à Colombes : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation à Colombes : maison, extension et appartement | ARCHI PILOTE RÉNOVATION",
+    description: "Projet de rénovation à Colombes : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+    url: "/renovation-colombes",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -27,9 +36,9 @@ export default function Page() {
             titre: "De la structure aux finitions",
             liens: [
               { href: "/renovation-maison-pavillon", label: "Maison et pavillon" },
-              { href: "/gros-oeuvre-structure", label: "Gros œuvre et structure" },
-              { href: "/second-oeuvre", label: "Les lots de second œuvre" },
-              { href: "/sols-finitions-renovation", label: "Sols et finitions" },
+              { href: "/ouverture-mur-porteur", label: "Gros œuvre et structure" },
+              { href: "/renovation-complete", label: "Les lots de second œuvre" },
+              { href: "/renovation-complete", label: "Sols et finitions" },
               { href: "/renovation-energetique", label: "Rénovation énergétique" },
               { href: "/renovation-appartement", label: "Appartement en copropriété" },
             ],

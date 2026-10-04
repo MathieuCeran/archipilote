@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Rénovation à Nanterre : maison, pavillon et rénovation complète | ARCHI PILOTE RÉNOVATION",
   description: "Projet de rénovation à Nanterre : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation à Nanterre : maison, pavillon et rénovation complète | ARCHI PILOTE RÉNOVATION",
+    description: "Projet de rénovation à Nanterre : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+    url: "/renovation-nanterre",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -28,9 +37,9 @@ export default function Page() {
             liens: [
               { href: "/renovation-maison-pavillon", label: "Rénovation de pavillon" },
               { href: "/renovation-energetique", label: "Isolation et rénovation énergétique" },
-              { href: "/aides-renovation-energetique", label: "Aides à la rénovation énergétique" },
+              { href: "/renovation-energetique", label: "Aides à la rénovation énergétique" },
               { href: "/renovation-complete", label: "Transformation complète du logement" },
-              { href: "/gros-oeuvre-structure", label: "Structure et reprise de charge" },
+              { href: "/ouverture-mur-porteur", label: "Structure et reprise de charge" },
               { href: "/renovation-appartement", label: "Appartement à forte technicité" },
             ],
           },

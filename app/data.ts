@@ -116,21 +116,21 @@ export const SERVICES = [
   },
   {
     marque: "V", slug: "isolation-dpe", titre: "Isolation & DPE", accroche: "Sortir de la passoire énergétique",
-    texte: "Diagnostic, isolation, VMC double flux, remplacement du chauffage, accompagnement sur MaPrimeRénov' et les CEE. Objectif visé sur ce type de programme : gagner 2 à 3 classes DPE.",
+    texte: "Diagnostic, isolation, VMC double flux, remplacement du chauffage, accompagnement sur MaPrimeRénov' et les CEE. Objectif visé sur ce type de programme : gagner une ou plusieurs classes DPE selon l'état de départ.",
     photo: "chantierIsolation",
     details: ["Diagnostic énergétique complet", "Isolation murs, combles, sols", "VMC double flux", "Accompagnement MaPrimeRénov' & CEE"],
   },
   {
     marque: "VI", slug: "gros-oeuvre", titre: "Gros œuvre & surélévation", accroche: "Piloté de A à Z",
-    texte: "Mur porteur, surélévation, extension, charpente et toiture : pilotés avec un architecte DPLG et un bureau d'études structure partenaires. Toutes les démarches administratives prises en charge.",
+    texte: "Mur porteur, surélévation, extension, charpente et toiture : pilotés avec un architecte et un bureau d'études structure partenaires. Toutes les démarches administratives prises en charge.",
     photo: "grosOeuvre",
-    details: ["Ouverture de mur porteur", "Surélévation & extension", "Architecte DPLG & bureau d'études partenaires", "Démarches administratives incluses"],
+    details: ["Ouverture de mur porteur", "Surélévation & extension", "Architecte & bureau d'études partenaires", "Démarches administratives incluses"],
   },
 ];
 
 export const PROCESS = [
   { numero: "01", titre: "Premier échange", accroche: "Téléphone ou WhatsApp", texte: "Vous décrivez votre projet, votre budget et votre commune. On identifie tout de suite ce qui est faisable et ce qu'il faut vérifier sur place." },
-  { numero: "02", titre: "Visite technique", accroche: "Sous 5 jours", texte: "Nous nous déplaçons, relevons les dimensions et identifions les contraintes réelles : structure, réseaux, copropriété, autorisations à prévoir." },
+  { numero: "02", titre: "Visite technique", accroche: "Sur place", texte: "Nous nous déplaçons, relevons les dimensions et identifions les contraintes réelles : structure, réseaux, copropriété, autorisations à prévoir." },
   { numero: "03", titre: "Devis des entreprises", accroche: "Sous 48h", texte: "Chaque entreprise partenaire vous remet son devis en son nom, poste par poste. Vous savez exactement ce qui est inclus avant de signer — et vous signez avec elle, directement." },
   { numero: "04", titre: "Chantier piloté", accroche: "Point d'avancement hebdomadaire", texte: "Tous les corps de métier sont pilotés par le même interlocuteur. Vous recevez un point d'avancement écrit chaque semaine, avec photos datées." },
   { numero: "05", titre: "Réception & suivi", accroche: "12 mois", texte: "Vous prononcez la réception, nous vous accompagnons ce jour-là et suivons les levées de réserves auprès des entreprises. Puis 12 mois de suivi, en plus des garanties légales." },
@@ -149,7 +149,7 @@ export const FAQ = [
   { question: "Combien coûtent des travaux de rénovation en Île-de-France ?", reponse: "Comptez 250-450 €/m² pour un rafraîchissement, 600-900 €/m² pour une rénovation partielle, 1000-1500 €/m² pour une rénovation complète, 1500-2500 €/m² pour du haut de gamme. Fourchettes indicatives de marché observées en Île-de-France, arrêtées à août 2026 — le prix contractuel reste celui du devis remis par chaque entreprise partenaire. Notre estimateur en ligne donne une première fourchette adaptée à votre projet." },
   { question: "Combien de temps dure une rénovation complète de maison ?", reponse: "Pour une maison de 100 à 150 m² sans reprise de structure lourde, comptez généralement quatre à six mois de travaux, précédés d'un à trois mois de préparation. Dès qu'il y a extension, surélévation ou permis de construire, la phase administrative allonge le calendrier de plusieurs mois avant la première benne." },
   { question: "Pourquoi des joints époxy plutôt que des joints classiques ?", reponse: "Les joints ciment noircissent en quelques mois et se fissurent. Les joints époxy, systématiquement prescrits en salle de bain et cuisine, sont étanches, ne noircissent pas et affichent, selon les fabricants, une durée de vie sans commune mesure avec celle des joints ciment." },
-  { question: "Pilotez-vous la rénovation de maisons classées DPE F ou G ?", reponse: "Oui, c'est l'une de nos spécialités. Nous pilotons le traitement des passoires énergétiques de bout en bout : diagnostic, isolation, VMC double flux, remplacement du chauffage, accompagnement MaPrimeRénov' et CEE. L'objectif est de gagner 2 à 3 classes DPE." },
+  { question: "Pilotez-vous la rénovation de maisons classées DPE F ou G ?", reponse: "Oui, c'est l'une de nos spécialités. Nous pilotons le traitement des passoires énergétiques de bout en bout : diagnostic, isolation, VMC double flux, remplacement du chauffage, accompagnement MaPrimeRénov' et CEE. L'objectif est de gagner une ou plusieurs classes DPE selon l'état de départ." },
   { question: "Qui garantit les travaux, et pendant combien de temps ?", reponse: "Chaque entreprise partenaire porte les assurances correspondant aux activités qu'elle exécute : garantie décennale (10 ans), garantie biennale (2 ans sur les équipements), garantie de parfait achèvement (1 an). Les attestations sont vérifiées et remises avant tout démarrage de chantier." },
   { question: "Qui signe les devis de travaux, et qui je paie ?", reponse: "Chaque entreprise partenaire remet et signe son propre devis. Vous contractez et payez directement avec elle. ARCHI PILOTE RÉNOVATION n'émet aucun devis de travaux et ne facture aucun chantier — notre rôle est le pilotage et l'accompagnement du projet." },
   { question: "Comment se déroule un projet avec ARCHI PILOTE RÉNOVATION ?", reponse: "Cinq étapes : premier échange par téléphone ou WhatsApp, visite technique du bien, consultation des entreprises partenaires et mise en comparaison de leurs devis sur un périmètre commun, arbitrage du budget poste par poste, puis pilotage du chantier jusqu'à la levée des réserves. Les délais de remise des devis restent ceux de chaque entreprise consultée." },

@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Rénovation de maison en Seine-et-Marne (77) | ARCHI PILOTE RÉNOVATION",
   description: "Rénovation complète, structure, maison, appartement et projets complexes en Seine-et-Marne. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation de maison en Seine-et-Marne (77) | ARCHI PILOTE RÉNOVATION",
+    description: "Rénovation complète, structure, maison, appartement et projets complexes en Seine-et-Marne. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+    url: "/renovation-seine-et-marne-77",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -29,17 +38,17 @@ export default function Page() {
               { href: "/renovation-complete", label: "Rénovation intégrale d'une maison" },
               { href: "/renovation-maison-pavillon", label: "Rénovation de maison et de pavillon" },
               { href: "/extension-maison", label: "Extension de maison" },
-              { href: "/savoir-faire-ancien", label: "Savoir-faire du bâti ancien" },
-              { href: "/travaux-perimetre-abf", label: "Bâti protégé et avis des Bâtiments de France" },
-              { href: "/reseau-partenaires", label: "Qui exécute réellement les travaux" },
+              { href: "/renovation-appartement", label: "Savoir-faire du bâti ancien" },
+              { href: "/demarches-administratives-renovation", label: "Bâti protégé et avis des Bâtiments de France" },
+              { href: "/notre-methode", label: "Qui exécute réellement les travaux" },
             ],
           },
           {
             titre: "Enveloppe, énergie et budget",
             liens: [
-              { href: "/renovation-toiture-charpente", label: "Toiture et charpente" },
+              { href: "/renovation-maison-pavillon", label: "Toiture et charpente" },
               { href: "/renovation-energetique", label: "Isolation et rénovation énergétique" },
-              { href: "/aides-renovation-energetique", label: "Aides à la rénovation énergétique" },
+              { href: "/renovation-energetique", label: "Aides à la rénovation énergétique" },
               { href: "/observatoire-prix-renovation", label: "Observatoire des prix de la rénovation" },
             ],
           },

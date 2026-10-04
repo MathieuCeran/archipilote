@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Rénovation complète dans l'Essonne (91) | ARCHI PILOTE RÉNOVATION",
   description: "Rénovation complète, structure, maison, appartement et projets complexes en Essonne. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation complète dans l'Essonne (91) | ARCHI PILOTE RÉNOVATION",
+    description: "Rénovation complète, structure, maison, appartement et projets complexes en Essonne. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+    url: "/renovation-essonne-91",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -28,16 +37,16 @@ export default function Page() {
             liens: [
               { href: "/estimateur-travaux", label: "Estimer un budget travaux" },
               { href: "/observatoire-prix-renovation", label: "Observatoire des prix de la rénovation" },
-              { href: "/clinique-du-devis", label: "Faire relire un devis d'entreprise" },
-              { href: "/chantiers-complexes", label: "Chantiers multi-lots" },
-              { href: "/modele-economique-transparence", label: "Ce que coûte un pilotage, et comment il est facturé" },
+              { href: "/blog/devis-travaux-lignes-a-verifier", label: "Faire relire un devis d'entreprise" },
+              { href: "/renovation-complete", label: "Chantiers multi-lots" },
+              { href: "/notre-methode", label: "Ce que coûte un pilotage, et comment il est facturé" },
             ],
           },
           {
             titre: "Nature des travaux étudiés",
             liens: [
               { href: "/renovation-complete", label: "Rénovation complète de maison" },
-              { href: "/gros-oeuvre-structure", label: "Structure et gros œuvre" },
+              { href: "/ouverture-mur-porteur", label: "Structure et gros œuvre" },
               { href: "/renovation-energetique", label: "Performance énergétique" },
               { href: "/extension-maison", label: "Extension de maison" },
             ],

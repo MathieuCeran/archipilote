@@ -32,13 +32,6 @@ import { NAV_GROUPS, NAV_STANDALONE } from "./mq-nav-data";
 /* La destination mise en avant de chaque menu. Les phrases sont reprises des
    renvois « À lire ensuite » déjà présents dans le site — rien d’inventé. */
 const VEDETTES: Record<string, { href: string; titre: string; ligne: string; img: string; alt: string }> = {
-  Expertise: {
-    href: "/notre-methode",
-    titre: "Notre méthode",
-    ligne: "Les six étapes, et le livrable écrit de chacune.",
-    img: "/photos/maquette/chantier-ouverture-mur-etaiement.jpg",
-    alt: "Ouverture de mur porteur en cours, étaiement métallique en place",
-  },
   Travaux: {
     href: "/renovation-complete",
     titre: "Rénovation complète",
@@ -46,19 +39,19 @@ const VEDETTES: Record<string, { href: string; titre: string; ligne: string; img
     img: "/photos/chantiers2/enfilade-cuisine-parquet-versailles.jpeg",
     alt: "Appartement haussmannien rénové : pièce de vie en parquet Versailles, cuisine intégrée en enfilade et banquette ronde",
   },
-  Preuves: {
-    href: "/realisations",
-    titre: "Réalisations",
-    ligne: "Chantiers documentés des équipes partenaires.",
-    img: "/photos/maquette/pavillon-facade-apres.jpg",
-    alt: "Façade de pavillon après ravalement et remplacement des menuiseries",
+  Méthode: {
+    href: "/notre-methode",
+    titre: "Notre méthode",
+    ligne: "Visite, devis comparables, chantier piloté, réception.",
+    img: "/photos/chantiers/chEtancheiteReceveurDoucheLaser.jpeg",
+    alt: "Salle d'eau en préparation : emplacement du receveur repéré au laser avant carrelage",
   },
-  Ressources: {
-    href: "/estimateur-travaux",
-    titre: "Estimateur de travaux",
-    ligne: "Une première fourchette, en quelques questions.",
-    img: "/photos/maquette/schema-repartition-budget.jpg",
-    alt: "Schéma de répartition d’un budget de rénovation par poste",
+  "Prix & ressources": {
+    href: "/observatoire-prix-renovation",
+    titre: "Prix de la rénovation",
+    ligne: "Les repères au m² et poste par poste.",
+    img: "/photos/chantiers/chParquetChevronsPosePiece.jpeg",
+    alt: "Pose d'un sol stratifié à chevrons dans une pièce en rénovation",
   },
 };
 

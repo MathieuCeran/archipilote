@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Rénovation à La Garenne-Colombes : pilotage et travaux complexes | ARCHI PILOTE RÉNOVATION",
   description: "Projet de rénovation à La Garenne-Colombes : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation à La Garenne-Colombes : pilotage et travaux complexes | ARCHI PILOTE RÉNOVATION",
+    description: "Projet de rénovation à La Garenne-Colombes : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+    url: "/renovation-la-garenne-colombes",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -36,10 +45,10 @@ export default function Page() {
           {
             titre: "Avant de signer quoi que ce soit",
             liens: [
-              { href: "/parcours-expertise", label: "Le parcours d'expertise, étape par étape" },
-              { href: "/clinique-du-devis", label: "Faire relire un devis d'entreprise" },
+              { href: "/notre-methode", label: "Le parcours d'expertise, étape par étape" },
+              { href: "/blog/devis-travaux-lignes-a-verifier", label: "Faire relire un devis d'entreprise" },
               { href: "/estimateur-travaux", label: "Estimer un budget travaux" },
-              { href: "/reseau-partenaires", label: "Les entreprises partenaires qui exécutent les lots" },
+              { href: "/notre-methode", label: "Les entreprises partenaires qui exécutent les lots" },
             ],
           },
           {

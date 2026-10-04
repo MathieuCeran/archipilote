@@ -17,7 +17,7 @@ export function BarreProjet() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const ouverture = document.querySelector(".note-ouverture");
+    const ouverture = document.querySelector(".note-ouverture, [data-ouverture]");
     const fin = document.getElementById("note-fin");
     let apresOuverture = false;
     let avantFin = true;

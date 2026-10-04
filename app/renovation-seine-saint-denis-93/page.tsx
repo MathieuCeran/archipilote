@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Rénovation complexe en Seine-Saint-Denis (93) | ARCHI PILOTE RÉNOVATION",
   description: "Rénovation complète, structure, maison, appartement et projets complexes en Seine-Saint-Denis. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation complexe en Seine-Saint-Denis (93) | ARCHI PILOTE RÉNOVATION",
+    description: "Rénovation complète, structure, maison, appartement et projets complexes en Seine-Saint-Denis. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+    url: "/renovation-seine-saint-denis-93",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -28,15 +37,15 @@ export default function Page() {
             liens: [
               { href: "/renovation-maison-pavillon", label: "Maison de ville et pavillon" },
               { href: "/renovation-energetique", label: "Rénovation énergétique" },
-              { href: "/renovation-toiture-charpente", label: "Toiture et charpente" },
-              { href: "/second-oeuvre", label: "Second œuvre et finitions" },
+              { href: "/renovation-maison-pavillon", label: "Toiture et charpente" },
+              { href: "/renovation-complete", label: "Second œuvre et finitions" },
             ],
           },
           {
             titre: "Appartement et restructuration",
             liens: [
               { href: "/renovation-appartement", label: "Rénovation d'appartement" },
-              { href: "/gros-oeuvre-structure", label: "Restructuration et gros œuvre" },
+              { href: "/ouverture-mur-porteur", label: "Restructuration et gros œuvre" },
               { href: "/ouverture-mur-porteur", label: "Ouverture de mur porteur" },
               { href: "/renovation-complete", label: "Rénovation complète" },
             ],
@@ -53,8 +62,8 @@ export default function Page() {
           {
             titre: "Sécuriser le choix des entreprises",
             liens: [
-              { href: "/garanties-assurances", label: "Garanties, décennale et attestations à exiger" },
-              { href: "/clinique-du-devis", label: "Faire relire un devis avant de signer" },
+              { href: "/notre-methode", label: "Garanties, décennale et attestations à exiger" },
+              { href: "/blog/devis-travaux-lignes-a-verifier", label: "Faire relire un devis avant de signer" },
             ],
           },
         ],

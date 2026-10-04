@@ -6,7 +6,16 @@ export const metadata: Metadata = {
   // Doctrine V3 : page locale sans preuve locale reelle = noindex jusqu'a preuve documentee.
   robots: { index: false, follow: true },
   title: "Rénovation de maison dans le Val-d'Oise (95) | ARCHI PILOTE RÉNOVATION",
-  description: "Rénovation complète, structure, maison, appartement et projets complexes en Val-d'Oise. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  description: "Rénovation complète, structure, maison, appartement et projets complexes dans le Val-d'Oise. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation de maison dans le Val-d'Oise (95) | ARCHI PILOTE RÉNOVATION",
+    description: "Rénovation complète, structure, maison, appartement et projets complexes dans le Val-d'Oise. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+    url: "/renovation-val-doise-95",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -14,7 +23,7 @@ export default function Page() {
     <LocalPage
       variant="departement"
       eyebrow="Val-d'Oise (95)"
-      segments={[{ text: "Rénovation en Val-d'Oise :" }, { text: "projets complets et transformations complexes.", serif: true, gradient: true }]}
+      segments={[{ text: "Rénovation dans le Val-d'Oise :" }, { text: "projets complets et transformations complexes.", serif: true, gradient: true }]}
       intro="Dans le Val-d'Oise, le positionnement privilégie les maisons, pavillons et projets de rénovation globale : enveloppe, toiture, énergie, extension, redistribution et lots techniques."
       bulletsTitle="Projets prioritaires"
       bullets={["Rénovation complète de maison", "Extension", "Surélévation selon faisabilité", "Toiture / charpente", "Rénovation énergétique", "Redistribution et réseaux"]}
@@ -27,18 +36,18 @@ export default function Page() {
             titre: "L'enveloppe d'abord",
             liens: [
               { href: "/renovation-maison-pavillon", label: "Rénovation de pavillon" },
-              { href: "/renovation-toiture-charpente", label: "Toiture, charpente et enveloppe" },
+              { href: "/renovation-maison-pavillon", label: "Toiture, charpente et enveloppe" },
               { href: "/renovation-energetique", label: "Rénovation énergétique" },
-              { href: "/aides-renovation-energetique", label: "Aides et financement des travaux" },
+              { href: "/renovation-energetique", label: "Aides et financement des travaux" },
             ],
           },
           {
             titre: "Puis les lots techniques et la surface",
             liens: [
-              { href: "/electricite-plomberie-renovation", label: "Lots techniques : électricité et plomberie" },
+              { href: "/renovation-electrique", label: "Lots techniques : électricité et plomberie" },
               { href: "/extension-maison", label: "Extension de maison" },
               { href: "/surelevation", label: "Surélévation" },
-              { href: "/sols-finitions-renovation", label: "Sols et finitions" },
+              { href: "/renovation-complete", label: "Sols et finitions" },
             ],
           },
           {
@@ -52,7 +61,7 @@ export default function Page() {
           {
             titre: "Tenir le budget sur une rénovation globale",
             liens: [
-              { href: "/achat-direct-materiaux", label: "Acheter les matériaux en direct" },
+              { href: "/notre-methode", label: "Acheter les matériaux en direct" },
               { href: "/observatoire-prix-renovation", label: "Fourchettes de prix par poste" },
             ],
           },

@@ -6,7 +6,16 @@ export const metadata: Metadata = {
   // Doctrine V3 : page locale sans preuve locale reelle = noindex jusqu'a preuve documentee.
   robots: { index: false, follow: true },
   title: "Rénovation dans le Val-de-Marne (94) | ARCHI PILOTE RÉNOVATION",
-  description: "Rénovation complète, structure, maison, appartement et projets complexes en Val-de-Marne. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  description: "Rénovation complète, structure, maison, appartement et projets complexes dans le Val-de-Marne. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation dans le Val-de-Marne (94) | ARCHI PILOTE RÉNOVATION",
+    description: "Rénovation complète, structure, maison, appartement et projets complexes dans le Val-de-Marne. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+    url: "/renovation-val-de-marne-94",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -14,7 +23,7 @@ export default function Page() {
     <LocalPage
       variant="departement"
       eyebrow="Val-de-Marne (94)"
-      segments={[{ text: "Rénovation en Val-de-Marne :" }, { text: "projets complets et transformations complexes.", serif: true, gradient: true }]}
+      segments={[{ text: "Rénovation dans le Val-de-Marne :" }, { text: "projets complets et transformations complexes.", serif: true, gradient: true }]}
       intro="Le Val-de-Marne offre un mix pertinent de maisons, appartements et petites copropriétés. ARCHI PILOTE RÉNOVATION y étudie les rénovations complètes, les projets structurels, les extensions, les transformations énergétiques et les appartements techniquement complexes."
       bulletsTitle="Projets prioritaires"
       bullets={["Rénovation complète", "Maison et appartement", "Structure / mur porteur", "Énergie", "Réseaux et second œuvre technique", "Copropriété selon le secteur"]}
@@ -37,7 +46,7 @@ export default function Page() {
             liens: [
               { href: "/ouverture-mur-porteur", label: "Ouverture de mur porteur" },
               { href: "/renovation-energetique", label: "Transformation énergétique" },
-              { href: "/chantiers-complexes", label: "Appartement techniquement complexe" },
+              { href: "/renovation-complete", label: "Appartement techniquement complexe" },
               { href: "/demarches-administratives-renovation", label: "Démarches et autorisations" },
             ],
           },

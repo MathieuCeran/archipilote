@@ -1,366 +1,272 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { MqHero, MqSection, MqProse, MqFig, MqNumbered, MqChecklist, MqDark, MqDarkSteps, MqFaq, MqCta, MqReadNext } from "../components/mq";
+import { CtaFinal } from "../components/cta-final";
+import { BarreProjet } from "../blog/[slug]/barre-projet";
+import {
+  PageHero,
+  PageIntro,
+  PageChiffres,
+  PageSection,
+  PageAppel,
+  PageCartes,
+  PageEtapes,
+  PageCoches,
+  PageTableau,
+  PageImage,
+  PageFaq,
+  PageLiens,
+  JsonLdPage,
+} from "../components/page-kit";
+
+/* Intention unique : comment ARCHI PILOTE RÉNOVATION pilote une rénovation (méthode, rôles,
+   modèle économique, garanties). Mot-clé principal (WhatsWrong, 10/2026) : « pilotage de
+   chantier rénovation ».
+   Contenus fusionnés ici (pages redirigées) : parcours-expertise, charte-qualite,
+   detail-invisible, modele-economique-transparence, achat-direct-materiaux,
+   garanties-assurances, reseau-partenaires, ce-que-nous-ne-faisons-pas.
+   Retirés à la fusion (non vérifiables ou hors faits autorisés) : durées indicatives par
+   étape, part des matériaux « 30 à 45 % du budget », noms de fournisseurs et de partenaires,
+   logistique et nettoyage « non facturés », mention « architecte ». */
+
+const CHEMIN = "/notre-methode";
+const TITRE = "Pilotage de chantier rénovation : la méthode ARCHI PILOTE RÉNOVATION";
+const DESCRIPTION =
+  "Pilotage de chantier rénovation à Paris et en Île-de-France : visite technique, devis comparables, contrôles avant fermeture et photos datées chaque jour.";
+const FIL = [{ nom: "Notre méthode", href: CHEMIN }];
 
 export const metadata: Metadata = {
-  alternates: { canonical: "/notre-methode" },
-  title: "Notre méthode de pilotage de rénovation | ARCHI PILOTE RÉNOVATION",
-  description:
-    "Un chantier dérive rarement à cause d'une seule erreur spectaculaire. Il dérive par accumulation : un devis incomplet, une option validée trop vite, un lot oublié.",
+  title: "Pilotage de chantier rénovation : méthode, rôles, garanties | ARCHI PILOTE RÉNOVATION",
+  description: DESCRIPTION,
+  alternates: { canonical: CHEMIN },
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Pilotage de chantier rénovation : méthode, rôles, garanties | ARCHI PILOTE RÉNOVATION",
+    description: DESCRIPTION,
+    url: CHEMIN,
+    images: [{ url: "/photos/chantiers2/chambre-salle-de-bain-ouverte-marbre-cheminee.jpeg" }],
+  },
 };
-
-const STEPS = [
-  {
-    title: "Comprendre le besoin réel",
-    text: "Usage du bien, durée de détention, contraintes familiales, objectif patrimonial et enveloppe budgétaire disponible. Une résidence principale et un investissement locatif n'appellent pas les mêmes arbitrages, même sur un bien identique.",
-  },
-  {
-    title: "Lire le bâti avant les finitions",
-    text: "Structure porteuse, réseaux existants, ventilation, traces d'humidité, état des menuiseries et accès chantier sont examinés avant toute discussion de matériaux ou de couleurs. Un projet esthétiquement séduisant peut être techniquement intenable.",
-  },
-  {
-    title: "Séparer indispensable, souhaitable et optionnel",
-    text: "Chaque poste de dépense est classé selon sa nécessité réelle. Cette hiérarchie sert de filet de sécurité : si le budget évolue en cours de projet, l'arbitrage porte sur l'optionnel, jamais sur un poste technique indispensable.",
-  },
-  {
-    title: "Construire un chiffrage lisible",
-    text: "Un total ne suffit jamais. Le chiffrage détaille les lots, les quantités, les hypothèses retenues et les exclusions explicites. Deux devis ne se comparent que si leurs périmètres sont rigoureusement identiques.",
-  },
-  {
-    title: "Identifier les compétences nécessaires",
-    text: "Certaines opérations exigent un professionnel spécifique : reprise de structure, dépôt de permis, calcul de descente de charges, étude de sols. Nous identifions à ce stade si un architecte DPLG, un ingénieur structure ou le bureau d'études géotechniques Geo2Mo doit intervenir.",
-  },
-  {
-    title: "Verrouiller les interfaces entre les lots",
-    text: "Les erreurs coûteuses se logent rarement à l'intérieur d'un lot, mais entre deux lots : une ouverture qui déplace un réseau, une isolation qui modifie la ventilation, une cuisine dessinée avant les réservations électriques.",
-  },
-  {
-    title: "Suivre les décisions et les changements",
-    text: "Un chantier vivant évolue. Chaque modification est tracée avec sa conséquence identifiée : coût, délai, technique ou esthétique. Un changement non tracé est la première cause de litige en fin de chantier.",
-  },
-  {
-    title: "Documenter la fin du projet",
-    text: "Une rénovation bien pilotée se termine avec un dossier complet : attestations d'assurance des entreprises exécutantes, garanties, notices techniques, réserves et leur levée effective.",
-  },
-];
-
-const STEP_DETAILS = [
-  {
-    title: "Comprendre le besoin réel",
-    liens: [
-      { href: "/parcours-expertise", label: "Le parcours et l'expérience de chiffrage à l'origine de la méthode" },
-      { href: "/estimateur-travaux", label: "Estimer une enveloppe de travaux en quelques questions" },
-      { href: "/investisseurs-professionnels", label: "Cadrage spécifique aux investisseurs et aux professionnels" },
-    ],
-    livrable: "Note de cadrage, liste des objectifs hiérarchisés, budget cible.",
-    documents: "Titre de propriété ou bail, règlement de copropriété, diagnostic de performance énergétique existant.",
-    duree: "3 à 5 jours ouvrés",
-  },
-  {
-    title: "Lire le bâti avant les finitions",
-    liens: [
-      { href: "/gros-oeuvre-structure", label: "Gros œuvre et structure : ce que la lecture du bâti vérifie" },
-      { href: "/detail-invisible", label: "Le détail invisible : ce qui se joue derrière les cloisons" },
-      { href: "/blog/signes-mur-porteur-avant-travaux", label: "Les signes qui doivent alerter avant de toucher à un mur" },
-    ],
-    livrable: "Rapport de visite technique illustré, liste des points de vigilance.",
-    documents: "Plans existants si disponibles, historique de travaux, autorisations antérieures.",
-    duree: "1 visite + 3 jours de restitution",
-  },
-  {
-    title: "Séparer indispensable, souhaitable et optionnel",
-    liens: [
-      { href: "/nos-specialites", label: "Nos spécialités, de la structure aux finitions" },
-      { href: "/observatoire-prix-renovation", label: "Les fourchettes de prix par poste de travaux" },
-      { href: "/ce-que-nous-ne-faisons-pas", label: "Ce que nous ne prenons pas en charge" },
-    ],
-    livrable: "Grille de hiérarchisation des postes, scénarios budgétaires.",
-    documents: "Premiers devis ou estimations, souhaits écrits du client.",
-    duree: "2 à 4 jours ouvrés",
-  },
-  {
-    title: "Construire un chiffrage lisible",
-    liens: [
-      { href: "/clinique-du-devis", label: "Lire un devis de travaux ligne à ligne" },
-      { href: "/modele-economique-transparence", label: "Qui facture quoi : le modèle économique détaillé" },
-      { href: "/blog/devis-travaux-lignes-a-verifier", label: "Les lignes d'un devis à vérifier avant de signer" },
-    ],
-    livrable: "Chiffrage ligne à ligne par lot, tableau comparatif des offres.",
-    documents: "Devis des entreprises consultées, métrés, plans côtés.",
-    duree: "1 à 2 semaines selon la taille du projet",
-  },
-  {
-    title: "Identifier les compétences nécessaires",
-    liens: [
-      { href: "/reseau-partenaires", label: "Les entreprises et compétences mobilisées" },
-      { href: "/chantiers-complexes", label: "Les chantiers qui exigent des compétences renforcées" },
-      { href: "/demarches-administratives-renovation", label: "Les démarches administratives à prévoir" },
-    ],
-    livrable: "Liste des intervenants nécessaires et de leur périmètre de responsabilité.",
-    documents: "Cahier des charges technique, éventuel dossier de structure ou étude géotechnique préexistant.",
-    duree: "3 à 7 jours ouvrés",
-  },
-  {
-    title: "Verrouiller les interfaces entre les lots",
-    liens: [
-      { href: "/second-oeuvre", label: "Second œuvre tous corps d'état" },
-      { href: "/electricite-plomberie-renovation", label: "Électricité et plomberie : réseaux et attentes" },
-      { href: "/renovation-energetique", label: "Isolation et ventilation arbitrées ensemble" },
-      { href: "/blog/ordre-intervention-lots-renovation-complete", label: "Dans quel ordre faire intervenir les lots" },
-    ],
-    livrable: "Tableau des interfaces techniques, plan d'implantation piloté.",
-    documents: "Plans d'exécution, fiches techniques des équipements retenus.",
-    duree: "1 semaine, avant le démarrage des travaux",
-  },
-  {
-    title: "Suivre les décisions et les changements",
-    liens: [
-      { href: "/charte-qualite", label: "La charte qualité qui encadre le suivi de chantier" },
-      { href: "/blog/photos-techniques-avant-de-fermer-les-murs", label: "Les photos techniques à conserver avant de fermer les murs" },
-      { href: "/blog/planning-chantier-commandes-a-lancer-en-premier", label: "Quelles commandes lancer en premier" },
-    ],
-    livrable: "Comptes rendus réguliers, journal des modifications, photos datées transmises quotidiennement sur WhatsApp.",
-    documents: "Avenants signés, bons de commande de matériaux.",
-    duree: "Pendant toute la durée du chantier",
-  },
-  {
-    title: "Documenter la fin du projet",
-    liens: [
-      { href: "/garanties-assurances", label: "Garanties et assurances : ce qui doit être remis" },
-      { href: "/blog/reception-chantier-preparer-les-reserves", label: "Préparer les réserves de réception sans improviser" },
-      { href: "/temoignages-clients", label: "Les retours de clients accompagnés" },
-    ],
-    livrable: "Dossier unique de fin de chantier, procès-verbal de réception, liste des réserves levées.",
-    documents: "Attestations décennale et responsabilité civile, factures, notices d'entretien.",
-    duree: "1 à 2 semaines après réception",
-  },
-];
 
 const FAQ = [
   {
-    q: "Combien de temps dure le pilotage complet d'un projet ?",
-    a: "Le cadrage et le chiffrage prennent en général deux à quatre semaines selon la taille du bien. Le pilotage du chantier lui-même suit ensuite la durée réelle des travaux, du démarrage jusqu'à la levée des réserves.",
+    question: "En quoi consiste le pilotage de chantier en rénovation ?",
+    reponse:
+      "Le pilotage couvre la préparation de chantier, la coordination des entreprises, la planification des lots, le suivi des travaux et la réception. Nous ne posons rien nous-mêmes : nous organisons, vérifions et documentons le travail des entreprises partenaires, de la visite technique jusqu'à la levée des réserves.",
   },
   {
-    q: "Qui rédige le chiffrage détaillé ?",
-    a: "Le chiffrage est analysé et mis en forme par notre équipe, avec une rigueur issue de l'expérience en chiffrage acquise dans le secteur des foncières. Les devis finaux restent émis par les entreprises partenaires contractantes retenues.",
+    question: "Qui signe les devis et qui je paie ?",
+    reponse:
+      "Chaque entreprise partenaire établit et signe son propre devis : vous contractez et payez directement avec elle. ARCHI PILOTE RÉNOVATION n'émet aucun devis de travaux et ne facture aucun chantier. La mission de pilotage fait l'objet d'un document distinct.",
   },
   {
-    q: "La méthode change-t-elle selon la taille du projet ?",
-    a: "Les huit étapes s'appliquent toujours, mais leur durée et leur formalisme s'adaptent. Une rénovation de salle de bains suit une version allégée ; une restructuration complète avec reprise de structure mobilise davantage de documents et de partenaires.",
+    question: "Comment suis-je informé de l'avancement du chantier ?",
+    reponse:
+      "Par des photos datées envoyées chaque jour sur WhatsApp et des comptes rendus réguliers : décisions prises, écarts éventuels, prochaines étapes. Ce reporting par des outils numériques simples vous permet de suivre le chantier sans être sur place en permanence.",
   },
   {
-    q: "Comment suis-je informé de l'avancement du chantier ?",
-    a: "Par des photos datées transmises quotidiennement sur WhatsApp et des comptes rendus réguliers qui font le point sur les décisions prises, les écarts éventuels et les prochaines étapes.",
+    question: "Acheter mes matériaux en direct réduit-il la garantie décennale ?",
+    reponse:
+      "Non. La décennale de l'entreprise porte sur la mise en œuvre, qui reste de sa responsabilité. L'achat direct est réservé aux postes hors décennale (carrelage, sanitaires, parquet, cuisine…), et chaque référence est validée par écrit par l'entreprise qui la pose.",
   },
   {
-    q: "Que se passe-t-il si une contrainte technique apparaît en cours de chantier ?",
-    a: "Chaque aléa est documenté, chiffré et arbitré avant exécution. La méthode vise précisément à éviter qu'un imprévu ne devienne une décision improvisée prise sans validation ni traçabilité.",
-  },
-  {
-    q: "Le pilotage inclut-il les démarches auprès du syndic de copropriété ?",
-    a: "Oui lorsque le projet le nécessite : constitution du dossier technique, demande d'inscription à l'ordre du jour de l'assemblée générale et suivi des pièces justificatives, notamment pour la ventilation mécanique contrôlée ou le carottage de traversée.",
+    question: "Que se passe-t-il si un imprévu apparaît pendant les travaux ?",
+    reponse:
+      "Il est documenté, chiffré par l'entreprise concernée et soumis à votre validation avant exécution : la gestion des coûts reste visible à chaque avenant. Aucune méthode ne supprime tout aléa sur un bâtiment existant ; elle évite qu'un imprévu devienne une décision improvisée.",
   },
 ];
 
-export default function NotreMethodePage() {
+export default function Page() {
   return (
-    <main>
-      <MqHero
-        kicker="Méthode de pilotage"
-        title="Une méthode de rénovation fondée sur les décisions"
-        lead="Un chantier dérive rarement à cause d'une seule erreur spectaculaire. Il dérive par accumulation : un devis incomplet, une option validée trop vite, un lot oublié, un changement tardif ou une responsabilité mal comprise. Notre méthode transforme chaque projet en une suite de huit décisions vérifiables, chacune assortie d'un livrable écrit, de documents précis et d'une durée indicative, du premier rendez-vous jusqu'au dossier de fin de chantier."
+    <main className="relative z-10">
+      <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
+
+      <PageHero
+        fil={FIL}
+        titre="Pilotage de chantier rénovation : notre méthode, de la visite à la réception"
+        chapo="Nous préparons le projet, rendons les devis comparables et coordonnons les entreprises partenaires jusqu'à la réception. Elles exécutent et facturent les travaux ; vous les payez directement."
+        image="/photos/chantiers2/chambre-salle-de-bain-ouverte-marbre-cheminee.jpeg"
+        alt="Chambre d'un appartement haussmannien rénové ouverte sur une salle de bain en marbre sombre, cheminée d'origine conservée : un chantier de rénovation piloté jusqu'aux finitions"
       />
 
-      <div className="rf-wrap mq-mesure--large pb-12 md:pb-16 mq-planche-ouverture">
-        <MqFig entier
-          src="/photos/pedagogie/06-huit-etapes.jpeg"
-          alt="Schéma pédagogique des huit étapes du pilotage : comprendre le besoin, lire le bâti, prioriser, chiffrer, sélectionner, vérifier les interfaces, suivre le chantier, dossier final"
-          caption="Schéma pédagogique : les huit étapes de la méthode, chacune produisant un livrable écrit avant de passer à la suivante."
-          ratio="aspect-[3/2]"
-        />
-      </div>
-
-      <MqSection
-        kicker="Pourquoi cette méthode"
-        title="Le risque se loge dans l'accumulation, pas dans un seul lot"
-        lead="Les litiges de chantier naissent rarement d'une malfaçon isolée. Ils naissent d'une somme de petites approximations : un devis mal lu, une interface oubliée entre deux corps de métier, une décision prise oralement et jamais tracée."
+      <PageIntro
+        titreCarte="Nos engagements"
+        points={[
+          "Visite technique sur place",
+          "Étude de projet remise sous 48 h ouvrées",
+          "Devis des entreprises rendus comparables",
+          "Photos datées envoyées chaque jour",
+          "Suivi 12 mois après la réception",
+        ]}
       >
-        <MqProse>
-          <h3 className="display t-fort text-ivoire">Une suite de décisions, pas une promesse de perfection</h3>
-          <p>Notre objectif n'est pas d'annoncer un chantier sans imprévu, mais d'éviter que l'imprévu devienne une improvisation.</p>
-          <p>
-            Chaque étape du pilotage produit un document daté : note de cadrage, rapport de visite, grille de hiérarchisation, chiffrage
-            comparatif, tableau des interfaces, compte rendu ou dossier de fin de chantier. Cette documentation permet de revenir sur une
-            décision et d'en comprendre l'origine.
-          </p>
-          <p>
-            Elle sert aussi de base au dialogue avec les entreprises partenaires contractantes, qui exécutent et facturent les travaux, et
-            avec les architectes DPLG ou ingénieurs structure partenaires indépendants mobilisés sur les dossiers lourds.
-          </p>
-        </MqProse>
-        <div className="mt-10">
-          <MqFig entier
-            src="/photos/pedagogie/08-notre-methode-dependances.jpeg"
-            alt="Diagramme des dépendances entre structure, réseaux, isolation, ventilation, cuisine et finitions"
-            caption="Dépendances et risques entre les différents lots de rénovation. Schéma pédagogique."
-            ratio="aspect-[3/2]"
-          />
-        </div>
-      </MqSection>
-
-      <MqDark kicker="Détail des huit étapes" title="Livrables, documents et durée indicative">
-        <MqDarkSteps steps={STEPS} />
-        <div className="mt-10">
-          <MqFig entier
-            src="/photos/maquette/schema-planning-lots.jpg"
-            alt="Planning en lots d'un chantier de rénovation présenté sous forme de diagramme de phases hebdomadaires"
-            caption="Schéma pédagogique : enchaînement des lots d'un chantier de rénovation, chaque phase conditionnant la suivante."
-            ratio="aspect-[10/7]"
-          />
-        </div>
-      </MqDark>
-
-      <MqSection>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {STEP_DETAILS.map((d) => (
-            <div key={d.title} className="border border-line bg-surface rounded-none p-5 flex flex-col gap-2">
-              <h3 className="display t-base text-ivoire">{d.title}</h3>
-              <p className="text-muted t-petit leading-relaxed">
-                <strong className="font-semibold text-ivoire/80">Livrable :</strong> {d.livrable}
-              </p>
-              <p className="text-muted t-petit leading-relaxed">
-                <strong className="font-semibold text-ivoire/80">Documents mobilisés :</strong> {d.documents}
-              </p>
-              <p className="text-muted t-petit leading-relaxed">
-                <strong className="font-semibold text-ivoire/80">Durée indicative :</strong> {d.duree}
-              </p>
-              <div className="mt-1 pt-3 border-t border-line">
-                <span className="mq-mention">Le détail sur le site</span>
-                <ul className="flex flex-col gap-1.5 mt-2">
-                  {d.liens.map((l) => (
-                    <li key={l.href}>
-                      <Link href={l.href} className="text-orange-deep t-petit leading-snug hover:underline">
-                        {l.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
-        </div>
-      </MqSection>
-
-      <MqSection
-        kicker="Interfaces entre lots"
-        title="L'étape la plus souvent négligée : verrouiller ce qui se trouve entre deux corps de métier"
-        lead="Une ouverture structurelle peut déplacer un réseau électrique ; une isolation renforcée peut rendre une ventilation existante insuffisante ; une cuisine dessinée trop tôt peut bloquer une réservation de plomberie."
-      >
-        <div className="flex flex-col gap-8">
-          <MqFig entier
-            src="/photos/maquette/schema-vmc.jpg"
-            alt="Schéma d'une ventilation mécanique contrôlée hygroréglable dans un appartement, avec entrées d'air, gaines vers le caisson en combles et bouches d'extraction en pièces techniques"
-            caption="Schéma pédagogique (principe d'une VMC hygroréglable en appartement), pris ici comme exemple d'interface entre lots : la pose de la ventilation dépend de l'étanchéité à l'air obtenue par l'isolation."
-            ratio="aspect-[10/7]"
-          />
-          {/*
-            31/08 : alt corrigé — le schéma réutilisé ici (déjà utilisé sur la page
-            rénovation-énergétique) montre un plan d'appartement avec caisson VMC en combles et
-            gaines vers les pièces techniques, pas un "immeuble ancien" avec une "trémie existante"
-            comme l'affirmait l'ancien alt : ce détail ne figure pas dans l'image. La légende
-            visible (générique, "interface entre lots") restait exacte et n'a pas été modifiée.
-          */}
-          <MqChecklist
-            items={[
-              "Réservations électriques posées avant l'implantation des meubles.",
-              "Arrivées et évacuations d'eau vérifiées avant la pose des cloisons.",
-              "Épaisseurs d'isolation confrontées aux niveaux finis de sol.",
-              "Dimensions de menuiseries validées avant la commande.",
-              "Ventilation dimensionnée après l'amélioration de l'étanchéité à l'air.",
-              "Contraintes de pose transmises à chaque entreprise partenaire concernée.",
-            ]}
-          />
-        </div>
-      </MqSection>
-
-      <MqSection kicker="Résultat" title="Ce que cette méthode démontre, et ce qu'elle ne démontre pas">
-        <div className="flex flex-col gap-8">
-          <MqNumbered
-            items={[
-              {
-                title: "Ce qu'elle démontre",
-                text: "Une décision documentée peut être expliquée, discutée et, si nécessaire, révisée sans perdre le fil du projet.",
-              },
-              {
-                title: "Ce qu'elle ne garantit pas",
-                text: "Aucune méthode ne supprime tout aléa de chantier : un réseau caché, une donnée d'humidité imprévue ou un délai fournisseur peuvent survenir.",
-              },
-              {
-                title: "Ce que cela change concrètement",
-                text: "L'aléa devient un sujet d'arbitrage documenté plutôt qu'une décision improvisée prise sous pression le jour même.",
-              },
-            ]}
-          />
-        </div>
-      </MqSection>
-
-      <MqSection kicker="Questions fréquentes" title="Réponses directes sur la méthode de pilotage">
-        <MqFaq items={FAQ} />
-      </MqSection>
-
-      <section className="py-8 border-t border-line">
-        <div className="rf-wrap mq-mesure--large">
-          <p className="border border-line bg-surface rounded-none px-5 py-4 t-petit leading-relaxed text-muted">
-            <strong className="font-semibold text-ivoire/80">Rôle et responsabilités.</strong> ARCHI PILOTE RÉNOVATION structure et pilote
-            les projets de rénovation. Selon les besoins, le projet mobilise des entreprises partenaires contractantes et, lorsque
-            nécessaire, des architectes ou ingénieurs partenaires indépendants. Les travaux sont exécutés et facturés par les entreprises
-            concernées.
-          </p>
-        </div>
-      </section>
-
-      <MqSection kicker="Zone d'intervention" title="Où cette méthode est appliquée">
-        <p className="text-muted t-sec leading-relaxed max-w-2xl">
-          Le pilotage suppose des visites régulières sur le chantier. ARCHI PILOTE RÉNOVATION intervient donc en
-          priorité dans les Hauts-de-Seine et, selon l&apos;ampleur et la technicité du projet, plus largement en
-          Île-de-France.
+        <p>
+          Un chantier dérive rarement à cause d'une seule erreur. Il dérive par accumulation : un devis incomplet,
+          une option validée trop vite, un lot oublié entre deux corps de métier.
         </p>
-        <ul className="flex flex-col gap-2 mt-4">
-          <li><Link href="/renovation-hauts-de-seine-92" className="text-orange-deep hover:underline t-sec">Rénovation dans les Hauts-de-Seine (92)</Link></li>
-          <li><Link href="/renovation-ile-de-france" className="text-orange-deep hover:underline t-sec">La zone d&apos;intervention en Île-de-France</Link></li>
-          <li><Link href="/services" className="text-orange-deep hover:underline t-sec">L&apos;index complet des prestations pilotées</Link></li>
-          <li><Link href="/guides" className="text-orange-deep hover:underline t-sec">Les guides et articles classés par sujet</Link></li>
-        </ul>
-      </MqSection>
+        <p>
+          Le pilotage de chantier rénovation sert à éviter cette accumulation. Chaque décision est prise au bon
+          moment, écrite et vérifiable : de la phase conception à la phase exécution, vous savez qui fait quoi,
+          pour quel prix et dans quel ordre.
+        </p>
+      </PageIntro>
 
-      <MqCta
-        title="Faites cadrer votre projet en huit étapes"
-        lead="Décrivez votre bien et vos objectifs : nous appliquons la méthode dès le premier rendez-vous."
-      />
-
-      <MqReadNext
+      <PageChiffres
         items={[
-          { href: "/parcours-expertise", label: "Parcours & expertise", sub: "L'origine de la méthode de chiffrage" },
-          { href: "/chantiers-complexes", label: "Chantiers complexes", sub: "Quand la méthode se durcit" },
-          { href: "/clinique-du-devis", label: "Clinique du devis", sub: "Faire analyser un chiffrage existant" },
-          { href: "/charte-qualite", label: "Charte qualité", sub: "Les engagements tenus sur le chantier" },
-          { href: "/garanties-assurances", label: "Garanties & assurances", sub: "Décennale, réception, levée des réserves" },
-          { href: "/reseau-partenaires", label: "Réseau de partenaires", sub: "Qui intervient et sur quel périmètre" },
+          { valeur: "1", label: "interlocuteur pour tout le chantier" },
+          { valeur: "48 h", label: "pour l'étude de projet (ouvrées)" },
+          { valeur: "8", label: "corps de métier coordonnés" },
+          { valeur: "12 mois", label: "de suivi après réception" },
         ]}
       />
 
-      <section className="py-8 border-t border-line">
-        <div className="rf-wrap mq-mesure--large t-petit text-muted">
-          <Link href="/gros-oeuvre-structure" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
-            Voir l'application de cette méthode au gros œuvre et à la structure
-          </Link>
-          {" · "}
-          <Link href="/contact" className="underline underline-offset-4 hover:text-orange-deep transition-colors">
-            Décrire mon projet
-          </Link>
-        </div>
-      </section>
+      <PageSection
+        titre="Les étapes du pilotage de chantier"
+        accroche="Le pilotage de chantier rénovation suit le même déroulé pour chaque projet, d'une salle de bain à une rénovation complète. Seuls la durée et le nombre de documents changent."
+      >
+        <PageEtapes
+          items={[
+            { titre: "Premier échange", texte: "Par téléphone ou WhatsApp : votre bien, vos usages, votre budget et vos délais." },
+            { titre: "Visite technique", texte: "Structure, réseaux, ventilation, humidité, accès : le bâti est lu avant de parler finitions." },
+            { titre: "Étude et planification", texte: "Postes classés en indispensable, souhaitable et optionnel. Ordonnancement des lots et planning arrêtés avec vous." },
+            { titre: "Devis comparables", texte: "Un descriptif commun envoyé aux entreprises partenaires, des devis lus ligne à ligne sur le même périmètre." },
+            { titre: "Chantier piloté", texte: "Préparation de chantier (accès, protections, horaires), coordination des lots, contrôles avant fermeture et changements tracés." },
+            { titre: "Réception et suivi", texte: "Réserves écrites et levées, dossier de fin de chantier, puis suivi 12 mois après la réception." },
+          ]}
+        />
+      </PageSection>
+
+      <PageSection
+        titre="Qui fait quoi sur votre chantier"
+        accroche="Nous ne sommes pas une entreprise générale. Cette séparation des rôles est le socle de notre modèle, pas une réserve en petits caractères."
+      >
+        <PageCartes
+          items={[
+            {
+              titre: "ARCHI PILOTE RÉNOVATION",
+              texte: "Cadrage du projet, lecture des devis, coordination des entreprises, planification, suivi des travaux et préparation de la réception.",
+            },
+            {
+              titre: "Les entreprises partenaires",
+              texte: "Indépendantes, elles établissent leurs devis, exécutent les travaux, les facturent et portent leurs propres assurances.",
+            },
+            {
+              titre: "Architectes et ingénieurs",
+              texte: "Partenaires indépendants, ils interviennent en leur nom quand le dossier l'exige : permis, étude de structure pour un mur porteur.",
+            },
+          ]}
+        />
+        <PageCoches
+          items={[
+            "Nous n'exécutons aucun lot : aucun carrelage posé, aucun câble tiré par nos soins",
+            "Nous n'émettons aucun devis de travaux et ne facturons aucun chantier",
+            "Nous ne vendons aucun matériau et ne prenons aucune marge sur la fourniture",
+            "Nous ne nous substituons à aucune assurance des entreprises",
+            "Nous ne prononçons pas la réception : c'est votre acte, nous vous y accompagnons",
+          ]}
+        />
+      </PageSection>
+
+      <PageSection
+        titre="Contrôles avant fermeture des cloisons"
+        accroche="Ce qui décide de la durée de vie d'une rénovation disparaît derrière les finitions. Chaque point est vérifié et photographié avant que le lot suivant ne le recouvre."
+      >
+        <PageImage
+          src="/photos/chantiers/chEtancheiteSolDoucheTrameArmee.jpeg"
+          alt="Sol de douche à l'italienne en préparation : treillis d'armature sur la dalle, évacuation en attente, cloisons en plaques hydrofuges"
+          legende="Sol de douche en préparation, avant étanchéité et carrelage. Chantier réel des équipes partenaires."
+        />
+        <PageCoches
+          items={[
+            "Étanchéité sous carrelage continue au sol et en remontée, angles et traversées traités",
+            "Renforts posés derrière les cloisons pour meubles suspendus, WC suspendu, sèche-serviettes",
+            "Réservations d'eau, d'évacuation et d'électricité à l'emplacement exact des équipements",
+            "Câblage, boîtes de dérivation et repérage des circuits vérifiés avant plaquage",
+            "Gaines de ventilation raccordées et étanches avant faux plafond",
+            "Traversées de murs et planchers calfeutrées pour le feu et l'acoustique",
+          ]}
+        />
+      </PageSection>
+
+      <PageSection
+        titre="Achat direct des matériaux"
+        accroche="Vous pouvez acheter vos matériaux en direct, à votre nom et au prix fournisseur. Le devis est alors découpé en deux, ligne par ligne, dès le chiffrage."
+      >
+        <PageCartes
+          colonnes={2}
+          items={[
+            {
+              titre: "Ce que vous achetez",
+              texte: "Carrelage et faïence, robinetterie et sanitaires, parquet, cuisine équipée, façades sur mesure, luminaires. Chaque référence est validée par écrit par l'entreprise qui la pose.",
+            },
+            {
+              titre: "Ce que l'entreprise fournit",
+              texte: "Tout ce qui engage sa décennale : câblage, canalisations, étanchéité sous carrelage, colles techniques, isolants, plaques et structure.",
+            },
+          ]}
+        />
+        <PageCoches
+          items={[
+            "Quantités relevées sur place, avec une réserve de coupe calculée selon le calepinage",
+            "Livraisons calées sur le planning des lots : une gestion des stocks sans saturation ni équipe immobilisée",
+            "Contrôle des quantités, références et teintes à la livraison, avant déballage complet",
+          ]}
+        />
+      </PageSection>
+
+      <PageSection
+        titre="Garanties et assurances"
+        accroche="Chaque entreprise partenaire porte les assurances des travaux qu'elle exécute. Avant tout démarrage, elle remet ses attestations : nous vérifions l'activité couverte, la période de validité et l'identité de l'assuré."
+      >
+        <PageTableau
+          colonnes={["Garantie", "Durée", "Ce qu'elle couvre", "Qui la porte"]}
+          lignes={[
+            ["Parfait achèvement", "1 an", "Toute malfaçon signalée dans l'année suivant la réception", "Chaque entreprise, pour ses travaux"],
+            ["Biennale", "2 ans", "Équipements dissociables : volets, chauffage, VMC, robinetterie", "L'entreprise qui les a installés"],
+            ["Décennale", "10 ans", "Dommages touchant la solidité ou rendant l'ouvrage impropre à son usage", "L'entreprise qui a exécuté le lot"],
+          ]}
+          note={
+            <>
+              En cas de malfaçon, c'est l'assurance de l'entreprise concernée qui joue. Nous vous accompagnons dans les
+              constats et le suivi des reprises, sans nous substituer à aucune assurance. Les autorisations à prévoir sont
+              sur la page <Link href="/demarches-administratives-renovation">démarches administratives</Link>.
+            </>
+          }
+        />
+      </PageSection>
+
+      <PageAppel
+
+        titre="Votre projet, piloté de la visite à la réception"
+
+        texte="Décrivez votre projet en quelques lignes : nous revenons vers vous sous 48 h ouvrées avec une première lecture et un budget indicatif, sans engagement."
+
+        image="/photos/chantiers/chEtancheiteSolDoucheTrameArmee.jpeg"
+
+        alt="Sol de douche à l'italienne en préparation : treillis d'armature sur la dalle, évacuation en attente, cloisons en plaques hydrofuges"
+
+        secondaire={{ href: "/estimateur-travaux", label: "Estimer mon budget" }}
+
+      />
+
+
+      <PageSection titre="Questions fréquentes sur le pilotage de chantier">
+        <PageFaq items={FAQ} />
+      </PageSection>
+
+      <PageSection titre="Pour aller plus loin">
+        <PageLiens
+          items={[
+            { href: "/realisations", titre: "Réalisations", texte: "Photos de chantiers réels des entreprises partenaires." },
+            { href: "/observatoire-prix-renovation", titre: "Prix de la rénovation", texte: "Fourchettes au m² et poste par poste." },
+            { href: "/estimateur-travaux", titre: "Estimateur de travaux", texte: "Un premier budget en quelques questions." },
+          ]}
+        />
+      </PageSection>
+
+      <div id="note-fin" aria-hidden />
+      <CtaFinal />
+      <BarreProjet />
     </main>
   );
 }

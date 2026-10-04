@@ -6,10 +6,10 @@ import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import { SERVICES } from "../data";
 
 const SERVICES_LINKS: Record<string, string> = {
-  "second-oeuvre": "/electricite-plomberie-renovation",
+  "second-oeuvre": "/renovation-electrique",
   "cuisine-sur-mesure": "/renovation-cuisine-maison",
   "salle-de-bain": "/renovation-salle-de-bain-maison",
-  "beton-cire": "/sols-finitions-renovation",
+  "beton-cire": "/renovation-complete",
   "isolation-dpe": "/renovation-energetique",
   "gros-oeuvre": "/renovation-complete",
 };

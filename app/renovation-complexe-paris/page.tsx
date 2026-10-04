@@ -6,7 +6,16 @@ export const metadata: Metadata = {
   // Doctrine V3 : page locale sans preuve locale reelle = noindex jusqu'a preuve documentee.
   robots: { index: false, follow: true },
   title: "Rénovation complexe à Paris : copropriété, structure et réseaux | ARCHI PILOTE RÉNOVATION",
-  description: "Rénovation complète, structure, maison, appartement et projets complexes en Paris. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  description: "Rénovation complète, structure, maison, appartement et projets complexes à Paris. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation complexe à Paris : copropriété, structure et réseaux | ARCHI PILOTE RÉNOVATION",
+    description: "Rénovation complète, structure, maison, appartement et projets complexes à Paris. ARCHI PILOTE RÉNOVATION étudie les dossiers selon leur ampleur et leurs contraintes.",
+    url: "/renovation-complexe-paris",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -14,7 +23,7 @@ export default function Page() {
     <LocalPage
       variant="departement"
       eyebrow="Paris (75)"
-      segments={[{ text: "Rénovation en Paris :" }, { text: "projets complets et transformations complexes.", serif: true, gradient: true }]}
+      segments={[{ text: "Rénovation à Paris :" }, { text: "projets complets et transformations complexes.", serif: true, gradient: true }]}
       intro="À Paris, ARCHI PILOTE RÉNOVATION se positionne sur les dossiers où la complexité technique ou administrative justifie un pilotage structuré : redistribution, mur porteur, réseaux, copropriété, ventilation, rénovation complète et interactions avec des professionnels spécialisés. Notre terrain, c'est le projet complexe : celui qui demande de comprendre le bâti et l'immeuble avant de chiffrer quoi que ce soit."
       bulletsTitle="Projets prioritaires"
       bullets={["Appartement en copropriété complexe", "Ouverture structurelle", "Redistribution avec réseaux", "Rénovation complète à forte technicité", "Projets nécessitant un dossier documenté"]}
@@ -28,19 +37,19 @@ export default function Page() {
             liens: [
               { href: "/renovation-appartement", label: "Rénovation d'appartement" },
               { href: "/ouverture-mur-porteur", label: "Ouverture de mur porteur en copropriété" },
-              { href: "/gros-oeuvre-structure", label: "Gros œuvre et reprise de structure" },
-              { href: "/electricite-plomberie-renovation", label: "Réseaux : électricité, plomberie, ventilation" },
+              { href: "/ouverture-mur-porteur", label: "Gros œuvre et reprise de structure" },
+              { href: "/renovation-electrique", label: "Réseaux : électricité, plomberie, ventilation" },
               { href: "/renovation-complete", label: "Rénovation complète à forte technicité" },
-              { href: "/savoir-faire-ancien", label: "Savoir-faire du bâti ancien" },
+              { href: "/renovation-appartement", label: "Savoir-faire du bâti ancien" },
             ],
           },
           {
             titre: "Le dossier administratif et budgétaire",
             liens: [
               { href: "/demarches-administratives-renovation", label: "Autorisations et démarches en copropriété" },
-              { href: "/travaux-perimetre-abf", label: "Façade et menuiseries en périmètre ABF" },
-              { href: "/chantiers-complexes", label: "Piloter un chantier complexe" },
-              { href: "/clinique-du-devis", label: "Lecture critique d'un devis" },
+              { href: "/demarches-administratives-renovation", label: "Façade et menuiseries en périmètre ABF" },
+              { href: "/renovation-complete", label: "Piloter un chantier complexe" },
+              { href: "/blog/devis-travaux-lignes-a-verifier", label: "Lecture critique d'un devis" },
             ],
           },
           {

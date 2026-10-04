@@ -17,10 +17,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const article = ALL_ARTICLES.find((a) => a.slug === slug);
   if (!article) return {};
   return {
-    title: `${article.titre} — ARCHI PILOTE RÉNOVATION`,
+    // Titre long : la marque sauterait dans la troncature de Google, on ne la répète pas.
+    title: article.titre.length > 45 ? article.titre : `${article.titre} — ARCHI PILOTE RÉNOVATION`,
     description: article.excerpt,
     keywords: article.keyword ? [article.keyword] : undefined,
     alternates: { canonical: `/blog/${article.slug}` },
+    openGraph: {
+      type: "article",
+      locale: "fr_FR",
+      siteName: "ARCHI PILOTE RÉNOVATION",
+      title: article.titre,
+      description: article.excerpt,
+      url: `/blog/${article.slug}`,
+      publishedTime: article.dateISO,
+      images: [{ url: photoSrc(article.photo) || "/og.jpg" }],
+    },
   };
 }
 

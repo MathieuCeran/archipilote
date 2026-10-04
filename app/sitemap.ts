@@ -3,60 +3,35 @@ import { ALL_ARTICLES } from "./lib-articles";
 
 const BASE = "https://www.archipiloterenovation.com";
 
-/* Arborescence maquette Lovable (34 pages) + pages historiques conservées.
-   Les pages locales noindexées et les anciennes URLs redirigées n'y figurent pas. */
+/* Pages indexables — refonte 10/2026 « une page = une intention ». Les pages
+   locales noindexées et les anciennes URLs redirigées n'y figurent pas. */
 const STATIC_PATHS = [
   "/",
-  // Expertise
-  "/notre-methode",
-  "/parcours-expertise",
-  "/chantiers-complexes",
-  "/travaux-perimetre-abf",
-  "/savoir-faire-ancien",
-  "/tendances-materiaux-francais",
-  "/tendances-2026-2027",
-  "/charte-qualite",
   // Travaux
-  "/renovation-complete",
   "/renovation-appartement",
   "/renovation-maison-pavillon",
-  "/gros-oeuvre-structure",
-  "/second-oeuvre",
-  "/expertise-carrelage-zellige-travertin",
-  "/menuiserie-agencement-sur-mesure",
+  "/renovation-complete",
+  "/renovation-salle-de-bain-maison",
+  "/renovation-cuisine-maison",
+  "/renovation-electrique",
   "/renovation-energetique",
-  "/extension-maison",
+  "/ouverture-mur-porteur",
   "/surelevation",
-  // Preuves
-  "/clinique-du-devis",
-  "/observatoire-prix-renovation",
-  "/realisations",
-  "/temoignages-clients",
-  "/detail-invisible",
-  "/reseau-partenaires",
+  "/extension-maison",
+  "/menuiserie-agencement-sur-mesure",
   "/investisseurs-professionnels",
-  // Ressources
-  "/modele-economique-transparence",
-  "/achat-direct-materiaux",
+  // Méthode et preuves
+  "/notre-methode",
+  "/realisations",
+  // Prix et ressources
+  "/observatoire-prix-renovation",
+  "/estimateur-travaux",
   "/demarches-administratives-renovation",
   "/glossaire-renovation",
-  "/guides",
-  "/blog",
-  "/estimateur-travaux",
   "/faq",
+  "/blog",
   "/contact",
-  // Pages historiques conservées (longue traîne)
-  "/services",
-  "/nos-specialites",
-  "/garanties-assurances",
-  "/ce-que-nous-ne-faisons-pas",
-  "/aides-renovation-energetique",
-  "/ouverture-mur-porteur",
-  "/renovation-toiture-charpente",
-  "/renovation-cuisine-maison",
-  "/renovation-salle-de-bain-maison",
-  "/electricite-plomberie-renovation",
-  "/sols-finitions-renovation",
+  // Légal
   "/mentions-legales",
   "/politique-confidentialite",
 ];
@@ -64,7 +39,7 @@ const STATIC_PATHS = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticEntries = STATIC_PATHS.map((path) => ({
     url: `${BASE}${path}`,
-    lastModified: new Date("2026-08-29"),
+    lastModified: new Date("2026-10-04"),
   }));
   const articleEntries = ALL_ARTICLES.map((a) => ({
     url: `${BASE}/blog/${a.slug}`,

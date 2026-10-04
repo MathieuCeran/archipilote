@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Rénovation à Rueil-Malmaison : maison et rénovation complète | ARCHI PILOTE RÉNOVATION",
   description: "Projet de rénovation à Rueil-Malmaison : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation à Rueil-Malmaison : maison et rénovation complète | ARCHI PILOTE RÉNOVATION",
+    description: "Projet de rénovation à Rueil-Malmaison : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+    url: "/renovation-rueil-malmaison",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -29,10 +38,10 @@ export default function Page() {
               { href: "/renovation-complete", label: "Rénovation complète de maison" },
               { href: "/extension-maison", label: "Extension de maison" },
               { href: "/surelevation", label: "Surélever une maison" },
-              { href: "/renovation-toiture-charpente", label: "Toiture et charpente" },
+              { href: "/renovation-maison-pavillon", label: "Toiture et charpente" },
               { href: "/renovation-energetique", label: "Rénovation énergétique" },
               { href: "/menuiserie-agencement-sur-mesure", label: "Agencement et menuiserie sur mesure" },
-              { href: "/sols-finitions-renovation", label: "Sols et finitions" },
+              { href: "/renovation-complete", label: "Sols et finitions" },
             ],
           },
           {

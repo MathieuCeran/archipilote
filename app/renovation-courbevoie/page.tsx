@@ -7,6 +7,15 @@ export const metadata: Metadata = {
   robots: { index: false, follow: true },
   title: "Rénovation à Courbevoie : appartement, copropriété et structure | ARCHI PILOTE RÉNOVATION",
   description: "Projet de rénovation à Courbevoie : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+  openGraph: {
+    type: "website",
+    locale: "fr_FR",
+    siteName: "ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation à Courbevoie : appartement, copropriété et structure | ARCHI PILOTE RÉNOVATION",
+    description: "Projet de rénovation à Courbevoie : rénovation complète, structure, maison, appartement et lots techniques selon le bien. Étude et pilotage par ARCHI PILOTE RÉNOVATION.",
+    url: "/renovation-courbevoie",
+    images: [{ url: "/og.jpg" }],
+  },
 };
 
 export default function Page() {
@@ -32,7 +41,7 @@ export default function Page() {
               { href: "/renovation-cuisine-maison", label: "Rénovation de cuisine" },
               { href: "/renovation-salle-de-bain-maison", label: "Rénovation de salle de bain" },
               { href: "/renovation-energetique", label: "Ventilation et rénovation énergétique" },
-              { href: "/chantiers-complexes", label: "Chantier multi-lots en site occupé" },
+              { href: "/renovation-complete", label: "Chantier multi-lots en site occupé" },
             ],
           },
           {
