@@ -71,7 +71,7 @@ export function PiedRefonte() {
             ingénieurs partenaires interviennent en leur nom.
           </p>
           <p className="rf-secondaire" style={{ color: "#6f746f" }}>
-            IA RENOV SASU — RCS Nanterre 889 976 387 — 8 bis rue Gabriel Péri, 92250 La Garenne-Colombes.{" "}
+            Piloté par IA RENOV SASU — RCS Nanterre 889 976 387 — 8 bis rue Gabriel Péri, 92250 La Garenne-Colombes.{" "}
             <Link href="/mentions-legales" style={{ fontSize: "inherit" }}>
               Mentions légales
             </Link>{" "}

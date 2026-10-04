@@ -18,33 +18,32 @@ export default function MentionsLegalesPage() {
       />
       <section className="relative pb-24 md:pb-36">
         <div className="rf-wrap mq-mesure flex flex-col gap-10 text-ivoire/85 t-sec leading-relaxed">
-          {/* MANQUE ENCORE, à réclamer au client — volontairement NON inventé ici :
-              · le capital social d'IA RENOV (mention obligatoire pour une société commerciale,
-                art. R123-237 du code de commerce) ;
-              · le NOM du président, pour nommer le directeur de la publication au lieu de le
-                désigner par sa fonction (art. 6-III de la LCEN).
-              Ces deux informations n'existent nulle part dans le dépôt : les ajouter dès
-              réception, sur les deux lignes correspondantes ci-dessous. */}
+          {/* 04/10/2026 : informations reprises de la fiche Pappers d'IA RENOV
+              (https://www.pappers.fr/entreprise/ia-renov-889976387), qui reproduit le
+              registre du commerce. L'adresse est celle du siège au RCS (« 8 rue Gabriel
+              Péri ») ; le reste du site affiche « 8 bis » — à faire trancher par le client. */}
           <div className="flex flex-col gap-2">
             <h2 className="display t-haut text-ivoire normal-case">Éditeur du site</h2>
-            <p>{SITE.structure}</p>
-            {/* Numéro de TVA intracommunautaire CALCULÉ par la formule légale française
-                appliquée au SIREN 889 976 387 : clé = (12 + 3 × (SIREN mod 97)) mod 97,
-                soit ici (12 + 3 × 29) mod 97 = 02 → FR02 889976387.
-                ⚠ À FAIRE CONFIRMER par l'expert-comptable d'IA RENOV avant de le tenir pour
-                définitif : la formule donne le numéro qui SERAIT attribué, elle ne prouve pas
-                qu'il soit actif. Si la société relève de la franchise en base de TVA
-                (art. 293 B du CGI), aucun numéro intracommunautaire ne s'applique et cette
-                ligne doit être retirée plutôt que corrigée. */}
-            <p>N° de TVA intracommunautaire : FR02 889976387.</p>
-            <p>Directeur de la publication : le Président d&apos;IA RENOV (SASU).</p>
-            <p>Contact : <a href={`mailto:${SITE.email}`} className="text-orange hover:underline">{SITE.email}</a> — {SITE.telAffiche}</p>
+            <p>ARCHI PILOTE RÉNOVATION est piloté par <strong>IA RENOV</strong>.</p>
+            <ul className="flex flex-col gap-1">
+              <li>Forme juridique : société par actions simplifiée unipersonnelle (SASU)</li>
+              <li>Capital social : 1 000,00 €</li>
+              <li>Siège social : 8 rue Gabriel Péri, 92250 La Garenne-Colombes</li>
+              <li>SIREN : 889 976 387 — SIRET du siège : 889 976 387 00023</li>
+              <li>RCS : 889 976 387 R.C.S. Nanterre</li>
+              <li>N° de TVA intracommunautaire : FR02 889976387</li>
+              <li>Code NAF/APE : 74.10Z — Activités spécialisées de design</li>
+              <li>Président et directeur de la publication : Ilann Atlan</li>
+              <li>
+                Contact : <a href={`mailto:${SITE.email}`} className="text-orange hover:underline">{SITE.email}</a> — {SITE.telAffiche}
+              </li>
+            </ul>
           </div>
 
           <div className="flex flex-col gap-2">
             <h2 className="display t-haut text-ivoire normal-case">Ce que la marque est, et n&apos;est pas</h2>
             <p>
-              ARCHI PILOTE RÉNOVATION est une marque de pilotage de projets de rénovation, exploitée par IA RENOV (SASU).
+              ARCHI PILOTE RÉNOVATION est une marque de pilotage de projets de rénovation, pilotée par IA RENOV (SASU).
               ARCHI PILOTE RÉNOVATION n&apos;est pas une entreprise de travaux, n&apos;exécute aucun lot et ne facture aucun
               travaux. Les travaux présentés sur ce site sont réalisés et facturés par des entreprises partenaires
               indépendantes, qui contractent directement avec le client et portent chacune leurs propres assurances
