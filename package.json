@@ -6,8 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "sedestral:sync": "node scripts/sedestral-sync.mjs",
-    "sedestral:dry": "node scripts/sedestral-sync.mjs --dry-run"
+    "whatswrong:sync": "node scripts/whatswrong-sync.mjs",
+    "whatswrong:dry": "node scripts/whatswrong-sync.mjs --dry-run"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

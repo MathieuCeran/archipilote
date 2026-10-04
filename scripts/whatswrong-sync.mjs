@@ -1,28 +1,30 @@
 #!/usr/bin/env node
 /* ============================================================
-   Synchronisation Sedestral → blog ARCHI PILOTE RÉNOVATION
+   Synchronisation WhatsWrong (Léa) → blog ARCHI PILOTE RÉNOVATION
 
+   WhatsWrong ne pousse rien : c'est le site qui tire les articles.
    Cycle complet, exécuté toutes les heures par GitHub Actions :
-     1. GET  /alya/blog-articles?states=DRAFT
+     1. GET  /api/v1/lea/blog-articles?states=DRAFT&limit=20
+        (DRAFT = article terminé et dû aujourd'hui : on publie tout)
      2. pour chaque article inconnu : téléchargement de la couverture
-        et des images du corps dans public/uploads/sedestral/<slug>/,
-        réécriture des URLs sedestral.com → URLs internes, écriture
-        dans content/blog/generated.json
+        et des images du corps dans public/uploads/whatswrong/<slug>/,
+        assainissement du HTML, écriture dans content/blog/generated.json
      3. commit + push  →  déploiement Vercel
-     4. attente de la mise en ligne réelle (HTTP 200 sur l'URL finale)
-     5. PATCH /alya/blog-articles/{id}  { state: PUBLISHED, url }
-        — jamais avant l'étape 4.
+     4. attente de la mise en ligne réelle (la page répond avec le site)
+     5. PATCH /api/v1/lea/blog-articles/{id}  { state: PUBLISHED, url }
+        — jamais avant l'étape 4. C'est ce PATCH qui lance le suivi SEO.
+     6. article retiré à la main de generated.json après publication :
+        PATCH { state: DRAFT } pour que WhatsWrong le sache.
 
-   Idempotence : content/blog/_sedestral-state.json garde l'id Sedestral
+   Idempotence : content/blog/_whatswrong-state.json garde l'id WhatsWrong
    de tout article importé. Un id connu n'est jamais réimporté ; un id
    importé mais non confirmé est repris à l'étape 4 au run suivant.
 
-   Robustesse : chaque article est traité dans son propre try/catch.
-   Une couverture manquante, une image morte ou un PATCH en échec
-   n'interrompent jamais le traitement des autres articles.
+   Limite API : 60 appels/min. Sur HTTP 429, le run s'arrête proprement
+   et le suivant reprend là où celui-ci s'est arrêté.
 
    Aucune dépendance npm : Node 20+ (fetch, fs/promises) uniquement.
-   Usage : node scripts/sedestral-sync.mjs [--dry-run] [--no-push]
+   Usage : node scripts/whatswrong-sync.mjs [--dry-run] [--no-push]
    ============================================================ */
 
 import { readFile, writeFile, mkdir, readdir, rm } from "node:fs/promises";
@@ -37,24 +39,24 @@ const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 
 /* ---------- Configuration ---------- */
 
-const API_BASE = process.env.SEDESTRAL_API_BASE ?? "https://api.sedestral.com/api/v1";
-const API_KEY = process.env.SEDESTRAL_API_KEY;
+const API_BASE = "https://www.whatswrong.io";
+// WW_API_KEY est le nom retenu pour le secret ; WHATSWRONG_API_KEY reste accepté.
+const API_KEY = process.env.WW_API_KEY || process.env.WHATSWRONG_API_KEY;
 
-/* Origine publique du site : sert à construire l'URL renvoyée à Sedestral
-   et à vérifier la mise en ligne. Surchargée par la variable d'environnement
-   SITE_ORIGIN (définie dans le workflow). */
-const SITE_ORIGIN = (process.env.SITE_ORIGIN ?? "https://www.archipiloterenovation.com").replace(/\/$/, "");
+const SITE_ORIGIN = (process.env.SITE_ORIGIN || "https://www.archipiloterenovation.com").replace(/\/$/, "");
 
 const BLOG_PREFIX = "/blog"; // structure d'URL existante : /blog/<slug>
-const DEFAULT_CATEGORY = process.env.SEDESTRAL_DEFAULT_CATEGORY ?? "Rénovation";
+const DEFAULT_CATEGORY = "Rénovation";
+// Couverture de repli si Léa n'en fournit pas : photo illustrative, pas un chantier réel.
+const FALLBACK_COVER = "heroHaussmannien";
 
 const GENERATED_FILE = path.join(ROOT, "content/blog/generated.json");
-const STATE_FILE = path.join(ROOT, "content/blog/_sedestral-state.json");
+const STATE_FILE = path.join(ROOT, "content/blog/_whatswrong-state.json");
 const EDITORIAL_FILE = path.join(ROOT, "app/data.ts");
-const UPLOAD_DIR = path.join(ROOT, "public/uploads/sedestral");
-const UPLOAD_PUBLIC = "/uploads/sedestral";
+const UPLOAD_DIR = path.join(ROOT, "public/uploads/whatswrong");
+const UPLOAD_PUBLIC = "/uploads/whatswrong";
 
-const DEPLOY_TIMEOUT_MS = Number(process.env.SEDESTRAL_DEPLOY_TIMEOUT_MS ?? 15 * 60_000);
+const DEPLOY_TIMEOUT_MS = 15 * 60_000;
 const DEPLOY_POLL_MS = 20_000;
 const MAX_IMAGE_BYTES = 15 * 1024 * 1024;
 const HTTP_TIMEOUT_MS = 45_000;
@@ -72,85 +74,45 @@ const fail = (msg) => { errors.push(msg); console.log(`::error::${msg}`); };
 
 /* ---------- HTTP ---------- */
 
-async function api(pathname, init = {}) {
-  const url = pathname.startsWith("http") ? pathname : `${API_BASE}${pathname}`;
-  const res = await fetch(url, {
-    ...init,
+class RateLimited extends Error {}
+
+async function whatswrong(method, pathname, body) {
+  const res = await fetch(API_BASE + pathname, {
+    method,
     signal: AbortSignal.timeout(HTTP_TIMEOUT_MS),
     headers: {
       Authorization: `Bearer ${API_KEY}`,
       Accept: "application/json",
-      ...(init.body ? { "Content-Type": "application/json" } : {}),
-      ...init.headers,
+      ...(body === undefined ? {} : { "Content-Type": "application/json" }),
     },
+    body: body === undefined ? undefined : JSON.stringify(body),
   });
+  if (res.status === 429) {
+    throw new RateLimited(`limite d'appels atteinte, réessayer dans ${res.headers.get("Retry-After") ?? "?"} s`);
+  }
   const text = await res.text();
   let data = null;
   try { data = text ? JSON.parse(text) : null; } catch { /* réponse non JSON */ }
   if (!res.ok) {
-    const detail = (text || "").slice(0, 400);
-    throw new Error(`${init.method ?? "GET"} ${url} → HTTP ${res.status} ${detail}`);
+    throw new Error(`WhatsWrong ${res.status} (${method} ${pathname}) : ${data?.message ?? text.slice(0, 300)}`);
   }
   return data;
-}
-
-/* ---------- Lecture tolérante de la réponse ----------
-   Les noms de champs exacts de l'API ne sont pas figés : on accepte les
-   variantes usuelles plutôt que de casser au premier renommage. */
-
-function first(obj, keys) {
-  for (const k of keys) {
-    const v = obj?.[k];
-    if (v === null || v === undefined || v === "") continue;
-    if (typeof v === "object" && !Array.isArray(v)) {
-      const nested = v.url ?? v.src ?? v.href ?? v.value ?? v.name;
-      if (nested) return nested;
-      continue;
-    }
-    if (Array.isArray(v)) { if (v.length) return typeof v[0] === "string" ? v[0] : (v[0]?.name ?? v[0]?.value); continue; }
-    return v;
-  }
-  return undefined;
-}
-
-function asList(payload) {
-  if (Array.isArray(payload)) return payload;
-  // 09/09/2026 : l'API Sedestral renvoie ses articles sous la clé « contents ».
-  for (const k of ["contents", "data", "items", "results", "articles", "content", "blogArticles"]) {
-    if (Array.isArray(payload?.[k])) return payload[k];
-  }
-  if (Array.isArray(payload?.data?.items)) return payload.data.items;
-  return [];
-}
-
-function normalize(raw) {
-  /* 09/09/2026 : l'API imbrique le contenu éditorial sous « data », en laissant
-     id, format et state à la racine. On lit donc les champs dans data quand il
-     existe, et l'identifiant à la racine en priorité. */
-  const d = raw?.data && typeof raw.data === "object" && !Array.isArray(raw.data) ? raw.data : raw;
-  return {
-    id: String(first(raw, ["id", "_id", "uuid", "articleId"]) ?? first(d, ["id", "_id"]) ?? ""),
-    title: first(d, ["title", "name", "heading"]),
-    metaDescription: first(d, ["metaDescription", "meta_description", "seoDescription", "description", "excerpt"]),
-    body: first(d, ["body", "content", "html", "bodyHtml", "contentHtml"]),
-    cover: first(d, ["cover", "coverUrl", "cover_url", "coverImage", "image", "thumbnail", "picture"]),
-    slug: first(d, ["slug", "permalink", "handle"]),
-    keyword: first(d, ["keyword", "mainKeyword", "primaryKeyword", "focusKeyword", "mainKeyphrase", "keywords", "tags"]),
-    category: first(d, ["category", "categoryName", "topic"]),
-    publishedAt: first(d, ["publishedAt", "createdAt", "created_at", "date", "updatedAt"]),
-  };
 }
 
 /* ---------- Utilitaires ---------- */
 
 function slugify(s) {
-  return String(s).normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+  return String(s).normalize("NFD").replace(/[̀-ͯ]/g, "")
     .toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 80);
 }
 
 function frDate(iso) {
   return new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Paris" })
     .format(new Date(iso));
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 }
 
 async function readJson(file, fallback) {
@@ -170,10 +132,21 @@ async function editorialSlugs() {
   } catch { return new Set(); }
 }
 
+/** La FAQ arrive à part : on l'ajoute au corps seulement si Léa ne l'y a pas déjà mise. */
+function withFaq(body, faq) {
+  if (!faq?.items?.length) return body;
+  const title = faq.title || "Foire aux questions";
+  if (String(body).toLowerCase().includes(String(title).toLowerCase())) return body;
+  const items = faq.items
+    .filter((q) => q?.question && q?.answer)
+    .map((q) => `<h3>${escapeHtml(q.question)}</h3><p>${q.answer}</p>`)
+    .join("");
+  return items ? `${body}<h2 id="${slugify(title)}">${escapeHtml(title)}</h2>${items}` : body;
+}
+
 /* ---------- Assainissement du HTML ----------
-   Le corps vient d'un outil interne (source de confiance) mais est injecté
-   via dangerouslySetInnerHTML : on retire tout ce qui peut exécuter du code
-   ou casser la mise en page. */
+   Le corps est injecté via dangerouslySetInnerHTML : on retire tout ce qui
+   peut exécuter du code ou casser la mise en page. */
 
 const ALLOWED_TAGS = new Set([
   "p", "br", "hr", "strong", "b", "em", "i", "u", "s", "mark", "small", "sub", "sup",
@@ -185,6 +158,8 @@ const ALLOWED_ATTRS = {
   img: ["src", "alt", "width", "height", "loading"],
   th: ["colspan", "rowspan"],
   td: ["colspan", "rowspan"],
+  // Les ancres du sommaire pointent vers ces id.
+  h2: ["id"], h3: ["id"], h4: ["id"],
 };
 
 function sanitizeHtml(html) {
@@ -262,17 +237,9 @@ async function internalizeBodyImages(html, slug) {
       warn(`[${slug}] image non téléchargée (${src}) : ${e.message} — URL d'origine conservée`);
     }
   }
-  // Les liens sortants vers sedestral.com n'ont rien à faire sur le blog :
+  // Les liens sortants vers whatswrong.io n'ont rien à faire sur le blog :
   // on garde le texte, on retire le lien.
-  const unwrapped = out.match(/<a\b[^>]*href\s*=\s*["'][^"']*sedestral\.com[^"']*["'][^>]*>/gi)?.length ?? 0;
-  if (unwrapped) {
-    out = out.replace(/<a\b[^>]*href\s*=\s*["'][^"']*sedestral\.com[^"']*["'][^>]*>([\s\S]*?)<\/a>/gi, "$1");
-    log(`    ${unwrapped} lien(s) sortant(s) vers sedestral.com retiré(s)`);
-  }
-
-  // Filet de sécurité : plus aucune URL sedestral.com ne doit subsister.
-  const leftovers = [...out.matchAll(/https?:\/\/[^\s"'<>]*sedestral\.com[^\s"'<>]*/gi)].map((m) => m[0]);
-  if (leftovers.length) warn(`[${slug}] ${leftovers.length} URL(s) sedestral.com non réécrite(s) : ${leftovers.slice(0, 3).join(", ")}`);
+  out = out.replace(/<a\b[^>]*href\s*=\s*["'][^"']*whatswrong\.io[^"']*["'][^>]*>([\s\S]*?)<\/a>/gi, "$1");
   return out;
 }
 
@@ -285,9 +252,9 @@ async function git(...args) {
 
 async function commitAndPush(message) {
   if (NO_PUSH) { log(`(push désactivé) commit prévu : ${message}`); return false; }
-  await git("config", "user.name", "sedestral-sync[bot]");
-  await git("config", "user.email", "sedestral-sync@users.noreply.github.com");
-  await git("add", "content/blog", "public/uploads/sedestral");
+  await git("config", "user.name", "whatswrong-sync[bot]");
+  await git("config", "user.email", "whatswrong-sync@users.noreply.github.com");
+  await git("add", "content/blog", "public/uploads/whatswrong");
   const staged = await git("diff", "--cached", "--name-only");
   if (!staged) { log("rien à commiter"); return false; }
   await git("commit", "-m", message);
@@ -303,15 +270,11 @@ async function waitOnline(url, deadline) {
     try {
       const res = await fetch(url, { signal: AbortSignal.timeout(20_000), redirect: "follow", headers: { "Cache-Control": "no-cache" } });
       if (res.ok) {
-        // 09/09/2026 : un HTTP 200 ne prouve pas que la page est en ligne. Le jour où le
-        // domaine a été suspendu par le registrar, chaque adresse du site répondait 200
-        // avec une page « Your domain is suspended » : sur le seul statut, cette boucle
-        // aurait confirmé PUBLISHED à Sedestral pour des articles que personne ne pouvait
-        // lire. On exige donc que le corps soit bien une page du site et non une page
-        // d'interception. Le libellé de la marque figure dans l'en-tête de toutes les pages.
+        // Un HTTP 200 ne prouve pas que la page est en ligne : le 09/09/2026, domaine
+        // suspendu, chaque adresse répondait 200 avec « Your domain is suspended ».
+        // On exige donc la marque, présente dans l'en-tête de toutes les pages.
         const html = await res.text();
-        if (/domain is suspended/i.test(html)) { await new Promise((r) => setTimeout(r, DEPLOY_POLL_MS)); continue; }
-        if (/ARCHI PILOTE/i.test(html)) return true;
+        if (!/domain is suspended/i.test(html) && /ARCHI PILOTE/i.test(html)) return true;
       }
     } catch { /* déploiement en cours */ }
     await new Promise((r) => setTimeout(r, DEPLOY_POLL_MS));
@@ -323,27 +286,18 @@ async function waitOnline(url, deadline) {
 
 async function main() {
   if (!API_KEY) {
-    console.log("::error::SEDESTRAL_API_KEY absente de l'environnement — arrêt.");
+    console.log("::error::WW_API_KEY absente de l'environnement — arrêt.");
     process.exit(1);
   }
-  log(`Synchronisation Sedestral — site ${SITE_ORIGIN}${DRY_RUN ? " (essai à blanc)" : ""}`);
+  log(`Synchronisation WhatsWrong — site ${SITE_ORIGIN}${DRY_RUN ? " (essai à blanc)" : ""}`);
 
-  const payload = await api("/alya/blog-articles?states=DRAFT");
-  const rawList = asList(payload);
-  log(`${rawList.length} article(s) à l'état DRAFT`);
+  const { contents = [] } = await whatswrong("GET", "/api/v1/lea/blog-articles?states=DRAFT&limit=20");
+  log(`${contents.length} article(s) à l'état DRAFT`);
 
   if (DRY_RUN) {
-    console.log("\n--- Réponse brute du premier article (vérification des noms de champs) ---");
-    const sample = rawList[0];
-    if (!sample) { console.log("(aucun article DRAFT)"); return; }
-    const shown = { ...sample };
-    for (const k of Object.keys(shown)) {
-      if (typeof shown[k] === "string" && shown[k].length > 300) shown[k] = shown[k].slice(0, 300) + " …[tronqué]";
+    for (const c of contents) {
+      log(`· ${c.id} — « ${c.data?.title ?? "sans titre"} » → ${BLOG_PREFIX}/${slugify(c.data?.slug || c.data?.title || "")}`);
     }
-    console.log(JSON.stringify(shown, null, 2));
-    console.log("\n--- Champs retenus après normalisation ---");
-    const n = normalize(sample);
-    console.log(JSON.stringify({ ...n, body: n.body ? `${String(n.body).length} caractères` : undefined }, null, 2));
     return;
   }
 
@@ -353,51 +307,56 @@ async function main() {
 
   /* --- Phase 1 : import --- */
   const nouveaux = [];
-  for (const raw of rawList) {
-    const a = normalize(raw);
+  for (const { id, data: d } of contents) {
     try {
-      if (!a.id) throw new Error("identifiant absent de la réponse API");
-      if (state.articles[a.id]) { log(`· ${a.id} déjà importé — ignoré`); continue; }
-      if (!a.title || !a.body) throw new Error("titre ou corps manquant");
-      if (!a.cover) throw new Error("image de couverture absente");
+      if (!id) throw new Error("identifiant absent de la réponse API");
+      if (state.articles[id]) { log(`· ${id} déjà importé — ignoré`); continue; }
+      if (!d?.title || !d?.body) throw new Error("titre ou corps manquant");
 
-      let slug = slugify(a.slug || a.title);
+      let slug = slugify(d.slug || d.title);
       if (!slug) throw new Error("slug impossible à construire");
       let n = 2;
       const base = slug;
       while (taken.has(slug)) slug = `${base}-${n++}`;
 
-      log(`→ import « ${a.title} » (${a.id}) → ${BLOG_PREFIX}/${slug}`);
-      const cover = await downloadImage(String(a.cover), slug, "cover");
-      log(`    couverture → ${cover}`);
-      const body = sanitizeHtml(await internalizeBodyImages(a.body, slug));
+      log(`→ import « ${d.title} » (${id}) → ${BLOG_PREFIX}/${slug}`);
+      let photo = FALLBACK_COVER;
+      if (d.cover?.url) {
+        try {
+          photo = await downloadImage(d.cover.url, slug, "cover");
+          log(`    couverture → ${photo}`);
+        } catch (e) {
+          warn(`[${slug}] couverture non téléchargée (${e.message}) — image de repli`);
+        }
+      } else {
+        warn(`[${slug}] pas de couverture fournie — image de repli`);
+      }
+      const body = sanitizeHtml(await internalizeBodyImages(withFaq(d.body, d.faq), slug));
 
-      const iso = a.publishedAt ? new Date(a.publishedAt).toISOString() : new Date().toISOString();
-      const article = {
-        sedestralId: a.id,
+      const iso = new Date().toISOString();
+      generated.push({
+        whatswrongId: id,
         slug,
-        titre: String(a.title).trim(),
+        titre: String(d.title).trim(),
         date: frDate(iso),
         dateISO: iso.slice(0, 10),
-        excerpt: String(a.metaDescription ?? "").trim(),
-        categorie: String(a.category ?? DEFAULT_CATEGORY).trim() || DEFAULT_CATEGORY,
-        photo: cover,
-        keyword: a.keyword ? String(a.keyword).trim() : undefined,
+        excerpt: String(d.description ?? "").trim(),
+        categorie: DEFAULT_CATEGORY,
+        photo,
+        photoAlt: d.cover?.alt ? String(d.cover.alt).trim() : undefined,
+        keyword: d.mainKeyword ? String(d.mainKeyword).trim() : undefined,
         bodyHtml: body,
-      };
-      generated.push(article);
+      });
       taken.add(slug);
-      state.articles[a.id] = {
+      state.articles[id] = {
         slug,
         url: `${SITE_ORIGIN}${BLOG_PREFIX}/${slug}`,
-        importedAt: new Date().toISOString(),
+        importedAt: iso,
         confirmedAt: null,
       };
-      nouveaux.push(a.id);
+      nouveaux.push(id);
     } catch (e) {
-      fail(`article ignoré (${a.id || "id inconnu"} — « ${a.title ?? "sans titre"} ») : ${e.message}`);
-      // Les fichiers éventuellement déjà écrits pour ce slug sont retirés au run suivant
-      // par le nettoyage des dossiers orphelins ci-dessous.
+      fail(`article ignoré (${id || "id inconnu"} — « ${d?.title ?? "sans titre"} ») : ${e.message}`);
     }
   }
 
@@ -406,41 +365,52 @@ async function main() {
     await writeJson(GENERATED_FILE, generated);
     await writeJson(STATE_FILE, state);
     await cleanOrphanUploads(generated);
-    await commitAndPush(`content: ${nouveaux.length} article(s) Sedestral publié(s)`);
+    await commitAndPush(`content: ${nouveaux.length} article(s) WhatsWrong publié(s)`);
   } else {
     log("aucun nouvel article à importer");
   }
 
-  /* --- Phase 2 : confirmation (nouveaux + reliquats des runs précédents) --- */
-  const aConfirmer = Object.entries(state.articles).filter(([, v]) => !v.confirmedAt);
-  if (!aConfirmer.length) { log("rien à confirmer auprès de Sedestral"); return finish(); }
+  let stateChanged = false;
 
+  /* --- Phase 2 : confirmation PUBLISHED (nouveaux + reliquats des runs précédents) --- */
+  const live = new Set(generated.map((a) => a.slug));
+  const aConfirmer = Object.entries(state.articles).filter(([, v]) => !v.confirmedAt && !v.unpublishedAt && live.has(v.slug));
   const deadline = Date.now() + DEPLOY_TIMEOUT_MS;
-  let confirmés = 0;
   for (const [id, entry] of aConfirmer) {
     try {
       log(`· vérification de la mise en ligne : ${entry.url}`);
-      const online = await waitOnline(entry.url, deadline);
-      if (!online) {
+      if (!(await waitOnline(entry.url, deadline))) {
         fail(`page non accessible dans le délai imparti (${entry.url}) — PATCH non envoyé, reprise au prochain run`);
         continue;
       }
-      await api(`/alya/blog-articles/${encodeURIComponent(id)}`, {
-        method: "PATCH",
-        body: JSON.stringify({ state: "PUBLISHED", url: entry.url }),
-      });
+      await whatswrong("PATCH", `/api/v1/lea/blog-articles/${encodeURIComponent(id)}`, { state: "PUBLISHED", url: entry.url });
       entry.confirmedAt = new Date().toISOString();
-      confirmés += 1;
-      log(`  ✓ confirmé PUBLISHED auprès de Sedestral`);
+      stateChanged = true;
+      log(`  ✓ confirmé PUBLISHED auprès de WhatsWrong`);
     } catch (e) {
+      if (e instanceof RateLimited) throw e;
       fail(`PATCH en échec pour ${id} (${entry.url}) : ${e.message} — reprise au prochain run`);
     }
   }
 
-  if (confirmés) {
+  /* --- Phase 3 : article retiré du blog après publication → retour en DRAFT --- */
+  for (const [id, entry] of Object.entries(state.articles)) {
+    if (!entry.confirmedAt || entry.unpublishedAt || live.has(entry.slug)) continue;
+    try {
+      await whatswrong("PATCH", `/api/v1/lea/blog-articles/${encodeURIComponent(id)}`, { state: "DRAFT" });
+      entry.unpublishedAt = new Date().toISOString();
+      stateChanged = true;
+      log(`  ↩ ${entry.slug} retiré du blog — repassé en DRAFT chez WhatsWrong`);
+    } catch (e) {
+      if (e instanceof RateLimited) throw e;
+      fail(`retour en DRAFT en échec pour ${id} (${entry.slug}) : ${e.message}`);
+    }
+  }
+
+  if (stateChanged) {
     await writeJson(STATE_FILE, state);
     // [skip ci] : ce commit ne change aucun contenu rendu, inutile de redéployer.
-    await commitAndPush(`chore: confirmation Sedestral de ${confirmés} article(s) [skip ci]`);
+    await commitAndPush("chore: état WhatsWrong mis à jour [skip ci]");
   }
   finish();
 }
@@ -469,6 +439,11 @@ function finish() {
 }
 
 main().catch((e) => {
+  if (e instanceof RateLimited) {
+    // Pas une panne : le prochain run horaire reprendra où celui-ci s'arrête.
+    warn(`arrêt anticipé — ${e.message}`);
+    return;
+  }
   console.log(`::error::échec global de la synchronisation : ${e.stack ?? e.message}`);
   process.exit(1);
 });

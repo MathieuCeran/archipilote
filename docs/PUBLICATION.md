@@ -62,7 +62,7 @@ divergence. **Ne plus l'employer.**
 | | GitHub | Vercel | Hostinger (domaine) |
 |---|---|---|---|
 | Yanis (`yabouridasannier-cmyk`) | admin | propriétaire (seul membre) | oui |
-| Thibaut / Sedestral (`agencyinside`) | **écriture** (push) | **aucun — et plus nécessaire** : son push publie | non |
+| Thibaut (`agencyinside`) | **écriture** (push) | **aucun — et plus nécessaire** : son push publie | non |
 
 Le plan Hobby de Vercel n'accepte aucun membre supplémentaire. Depuis le
 branchement Vercel↔GitHub (§2), un accès Vercel n'est plus utile pour publier :
@@ -101,35 +101,35 @@ fusionnés et mis en ligne le 09/09) :
 
 La vérification aboutira dès que le DNS sera rétabli (§4). `robots.txt` autorise
 tout et déclare le sitemap ; `sitemap.ts` liste toutes les pages, articles
-Sedestral compris.
+importés compris.
 
-## 6. La synchronisation Sedestral — ce qui marche, ce qui ne peut pas marcher
+## 6. La synchronisation WhatsWrong
 
-Le mécanisme est décrit en détail dans [`SEDESTRAL.md`](./SEDESTRAL.md) : un
-workflow GitHub Actions horaire importe les articles en brouillon, les écrit dans
-`content/blog/generated.json`, **pousse sur `main`**, puis attend que la page
-soit en ligne (15 min max) avant de confirmer `PUBLISHED` à Sedestral.
+Depuis le 04/10/2026, les articles SEO viennent de **WhatsWrong** (agent Léa), qui
+remplace Sedestral. WhatsWrong ne pousse rien : c'est le site qui tire.
 
-L'hypothèse « Vercel déploie sur ce push » était fausse jusqu'au 09/09 et
-**est vraie depuis** (§2) : le push du bot déclenche le build, l'attente trouve
-la page, le PATCH part. L'automate est donc opérant. Ce choix — déploiement
-automatique — a été fait par Thibaut avec l'accord de Yanis le 09/09.
+Le workflow `.github/workflows/whatswrong-sync.yml` lance toutes les heures
+`scripts/whatswrong-sync.mjs`, qui :
 
-Deux choses à garder à l'esprit, maintenant que ça tourne :
+1. lit `GET /api/v1/lea/blog-articles?states=DRAFT&limit=20` (DRAFT = terminé et dû
+   aujourd'hui : tout est publié) ;
+2. copie couverture et images dans `public/uploads/whatswrong/<slug>/`, assainit le
+   HTML, écrit dans `content/blog/generated.json` et garde l'id WhatsWrong dans
+   `content/blog/_whatswrong-state.json` (jamais deux imports du même article) ;
+3. **pousse sur `main`** → Vercel déploie ;
+4. attend que la page soit réellement en ligne (15 min max, contrôle du contenu et
+   pas seulement du code 200) ;
+5. envoie `PATCH { state: PUBLISHED, url }` : c'est ce qui démarre le suivi SEO ;
+6. si un article est retiré à la main de `generated.json`, renvoie `{ state: DRAFT }`.
 
-- **Le bot publie toutes les heures, sans relecture humaine**, des articles et
-  des images venus de Sedestral — sur un site dont le client a fait retirer une
-  soixantaine de légendes inexactes et interdit toute image présentée comme un
-  chantier réel sans l'être. Le script assainit le HTML ; il ne juge pas la
-  cohérence image/titre ni la véracité des affirmations. Une relecture avant
-  publication, ou un état intermédiaire côté Sedestral, reste à organiser avec
-  le client.
-- **Tant que le domaine est suspendu (§4), l'étape 4 du script est trompée** :
-  l'adresse `https://www.archipiloterenovation.com/blog/<slug>` répond HTTP 200
-  — mais avec la page « Your domain is suspended ». Un contrôle sur le seul code
-  200 confirmerait `PUBLISHED` à Sedestral pour une page que personne ne peut
-  lire. À vérifier dans `sedestral-sync.mjs` : contrôler aussi le contenu (par
-  exemple la présence du titre de l'article), pas seulement le statut.
+La clé d'API est le secret GitHub `WW_API_KEY` (Settings → Secrets and variables →
+Actions). Sur une erreur 429 (60 appels/min), le run s'arrête et le suivant reprend.
+
+Les articles déjà importés depuis Sedestral restent en ligne, inchangés
+(`sedestralId` dans `generated.json`, images sous `public/uploads/sedestral/`).
+
+Le bot publie sans relecture humaine : il assainit le HTML mais ne juge ni la
+cohérence image/titre ni la véracité des affirmations.
 
 ## 7. Commandes de référence
 

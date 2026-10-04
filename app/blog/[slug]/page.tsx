@@ -116,7 +116,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <div className={`rf-couverture-article relative rounded-none overflow-hidden card-e${article.schema ? " bg-surface" : ""}`}>
           <img
             src={photoSrc(article.photo)}
-            alt={article.titre}
+            alt={article.photoAlt ?? article.titre}
             className={`absolute inset-0 size-full ${article.schema ? "object-contain" : "object-cover"}`}
           />
         </div>
@@ -150,7 +150,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
 
         <div className="mq-grille-corps flex flex-col gap-6">
           {article.bodyHtml ? (
-            /* Article importé depuis Sedestral : corps HTML assaini à la synchronisation. */
+            /* Article importé (WhatsWrong) : corps HTML assaini à la synchronisation. */
             <div className="prose-article" dangerouslySetInnerHTML={{ __html: sommaire ? sommaire.corps : article.bodyHtml }} />
           ) : (
             article.corps.map((p, i) => (

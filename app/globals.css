@@ -278,7 +278,7 @@ html.lenis, html.lenis body { height: auto; }
 
 @media (prefers-reduced-motion: reduce) { .marquee-track { animation: none; } }
 
-/* ---------- Corps d'article importé depuis Sedestral ----------
+/* ---------- Corps d'article importé (WhatsWrong, anciennement Sedestral) ----------
    Le HTML vient de l'API : il n'a pas de classes utilitaires, on le stylise
    ici pour rester dans la grammaire typographique du site.
 
