@@ -48,11 +48,25 @@ export type BlogArticle = Article & {
   minutes: number;
 };
 
-const generated: BlogArticle[] = (generatedRaw as unknown as GeneratedArticle[]).map((a) => ({
-  ...a,
-  corps: [],
-  minutes: minutesDeLecture(a.bodyHtml),
-}));
+/** Première image du corps : sert de couverture quand WhatsWrong n'en fournit
+    pas. C'est une image de l'article lui-même — jamais une image inventée. */
+function premiereImage(html: string): { src: string; alt?: string } | null {
+  const img = html.match(/<img\b[^>]*>/i)?.[0];
+  const src = img?.match(/\bsrc="([^"]+)"/i)?.[1];
+  if (!src) return null;
+  return { src, alt: img?.match(/\balt="([^"]*)"/i)?.[1] || undefined };
+}
+
+const generated: BlogArticle[] = (generatedRaw as unknown as GeneratedArticle[]).map((a) => {
+  const repli = a.photo ? null : premiereImage(a.bodyHtml);
+  return {
+    ...a,
+    photo: a.photo || repli?.src || "",
+    photoAlt: a.photoAlt ?? repli?.alt,
+    corps: [],
+    minutes: minutesDeLecture(a.bodyHtml),
+  };
+});
 
 const editoriaux: BlogArticle[] = ARTICLES.map((a) => ({ ...a, minutes: minutesDeLecture(a.corps.join(" ")) }));
 

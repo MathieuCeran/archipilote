@@ -73,6 +73,16 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
       publisher: { "@id": "https://www.archipiloterenovation.com/#organization" },
     },
   ];
+  // Fil d'Ariane : Google l'affiche parfois à la place de l'adresse dans ses résultats.
+  jsonLd.push({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.archipiloterenovation.com/" },
+      { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.archipiloterenovation.com/blog" },
+      { "@type": "ListItem", position: 3, name: article.titre, item: url },
+    ],
+  });
   if (note?.faq.length) {
     jsonLd.push({
       "@context": "https://schema.org",
