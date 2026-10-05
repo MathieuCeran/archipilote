@@ -122,6 +122,9 @@ Le workflow `.github/workflows/whatswrong-sync.yml` lance toutes les heures
 5. envoie `PATCH { state: PUBLISHED, url }` : c'est ce qui démarre le suivi SEO ;
 6. si un article est retiré à la main de `generated.json`, renvoie `{ state: DRAFT }`.
 
+Le commit d'état (`chore: … [skip ci]`) ne redéploie pas : `vercel.json` (`ignoreCommand`)
+annule le build Vercel dès que le message de commit contient `[skip ci]`.
+
 La clé d'API est le secret GitHub `WW_API_KEY` (Settings → Secrets and variables →
 Actions). Sur une erreur 429 (60 appels/min), le run s'arrête et le suivant reprend.
 

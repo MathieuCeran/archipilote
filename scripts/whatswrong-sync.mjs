@@ -250,8 +250,8 @@ async function git(...args) {
 
 async function commitAndPush(message) {
   if (NO_PUSH) { log(`(push désactivé) commit prévu : ${message}`); return false; }
-  await git("config", "user.name", "whatswrong-sync[bot]");
-  await git("config", "user.email", "whatswrong-sync@users.noreply.github.com");
+  await git("config", "user.name", "github-actions[bot]");
+  await git("config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com");
   await git("add", "content/blog", "public/uploads/whatswrong");
   const staged = await git("diff", "--cached", "--name-only");
   if (!staged) { log("rien à commiter"); return false; }
