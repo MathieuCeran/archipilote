@@ -11,3 +11,5 @@ node_modules
 # Photos reçues non publiées (écartées : IA probable, marques, doublons, vidéo)
 medias-bruts/chantiers2-ecartes/
 medias-bruts/chantiers2-non-utilisees/
+.env*
+!.env.example

@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { isMailConfigured, sendLeadMail } from "@/lib/mail";
+
 /* ============================================================
    API contact — protections côté serveur :
    · Same-origin (Origin/Referer) → protège du CSRF cross-site
@@ -7,9 +9,8 @@ import { NextRequest, NextResponse } from "next/server";
    · Délai minimal de remplissage (< 3 s = bot)
    · Validation stricte des champs (longueurs, listes fermées)
    · Rate-limit mémoire par IP (5 req / 10 min — best-effort serverless)
-   Livraison : transfert vers FormSubmit (AJAX) → archipiloterenovation@gmail.com.
-   ⚠ Première soumission : FormSubmit envoie un e-mail d'ACTIVATION à cette
-   adresse — il faut cliquer le lien une seule fois pour ouvrir la livraison.
+   Livraison : SMTP Hostinger (lib/mail.ts) dès que SMTP_USER/SMTP_PASS sont définis.
+   À défaut, repli sur FormSubmit (AJAX) → archipiloterenovation@gmail.com.
    ============================================================ */
 
 export const runtime = "nodejs";
@@ -94,26 +95,37 @@ export async function POST(req: NextRequest) {
   if (copro && !COPROS.has(copro)) errors.push("copro");
   if (errors.length) return NextResponse.json({ ok: false, errors }, { status: 422 });
 
+  const subject = `Nouveau projet — ${projet} à ${commune}`;
+  const fields: [string, string][] = [
+    ["Nom", nom!],
+    ["Téléphone", tel!],
+    ["Courriel", email || "(non renseigné)"],
+    ["Surface", surface || "(non renseignée)"],
+    ["Copropriété", copro || "(non précisé)"],
+    ["Projet", projet!],
+    ["Budget", budget!],
+    ["Démarrage", horizon!],
+    ["Commune", commune!],
+    ["Description", description || "(non renseignée)"],
+  ];
+
+  if (isMailConfigured()) {
+    try {
+      await sendLeadMail({ subject, replyTo: email || undefined, rows: fields });
+      return NextResponse.json({ ok: true });
+    } catch (e) {
+      console.error("[contact] envoi SMTP échoué", e);
+      return NextResponse.json({ ok: false, error: "delivery" }, { status: 502 });
+    }
+  }
+
   try {
     const site = `https://${host}`;
     const r = await fetch(`https://formsubmit.co/ajax/${DEST}`, {
       method: "POST",
       // FormSubmit exige Origin/Referer, même en AJAX serveur.
       headers: { "Content-Type": "application/json", Accept: "application/json", Origin: site, Referer: `${site}/contact` },
-      body: JSON.stringify({
-        _subject: `Nouveau projet — ${projet} à ${commune}`,
-        _template: "table",
-        Nom: nom,
-        Téléphone: tel,
-        Courriel: email || "(non renseigné)",
-        Surface: surface || "(non renseignée)",
-        Copropriété: copro || "(non précisé)",
-        Projet: projet,
-        Budget: budget,
-        Démarrage: horizon,
-        Commune: commune,
-        Description: description || "(non renseignée)",
-      }),
+      body: JSON.stringify({ _subject: subject, _template: "table", ...Object.fromEntries(fields) }),
     });
     const res = (await r.json().catch(() => null)) as { success?: string | boolean } | null;
     const delivered = r.ok && (res?.success === true || res?.success === "true");
