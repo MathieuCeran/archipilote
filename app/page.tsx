@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { HeroDiaporama } from "./accueil/hero-diaporama";
-import { AvisTrustpilot } from "./accueil/avis";
+import { AvisGoogle } from "./accueil/avis";
 import { CtaFinal } from "./components/cta-final";
 import { BarreProjet } from "./blog/[slug]/barre-projet";
 import { FAQ as FAQ_SITE, GAMMES } from "./data";
@@ -312,8 +312,8 @@ export default function Accueil() {
         <PageGalerie items={GALERIE} />
       </PageSection>
 
-      <PageSection titre="Avis clients" accroche="Avis publiés sur Trustpilot, nommés et datés. Chacun peut les vérifier à la source.">
-        <AvisTrustpilot />
+      <PageSection titre="Avis clients" accroche="Avis publiés sur Google, nommés et datés. Chacun peut les vérifier à la source.">
+        <AvisGoogle />
       </PageSection>
 
       <PageSection

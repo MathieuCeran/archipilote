@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { CtaFinal } from "../components/cta-final";
 import { BarreProjet } from "../blog/[slug]/barre-projet";
-import { AvisTrustpilot } from "../accueil/avis";
+import { AvisGoogle } from "../accueil/avis";
 import {
   PageHero,
   PageIntro,
@@ -17,7 +17,7 @@ import {
    Mot-clé principal (WhatsWrong, 10/2026) : « réalisations rénovation appartement ».
    Fusion : temoignages-clients (redirigée). Les citations « exemples anonymisés » de cette
    page ne sont PAS reprises : rien ne permet de les vérifier. Les avis passent par l'encart
-   Trustpilot existant (mêmes avis publiés que sur l'accueil, nommés et datés).
+   Google (mêmes avis publiés que sur l'accueil, nommés et datés).
    Retirés de l'ancienne page : les trois « cas documentés » sans photo (Paris 11e, maison 1970,
    studio 92 : résultats non vérifiables), tous les visuels /maquette et /pedagogie, les
    comparateurs avant/après illustratifs.
@@ -274,9 +274,9 @@ export default function Page() {
 
       <PageSection
         titre="Avis clients"
-        accroche="Les avis sont publiés sur Trustpilot, une plateforme indépendante : nous ne pouvons ni les modifier ni les supprimer."
+        accroche="Les avis sont publiés sur Google : nous ne pouvons ni les modifier ni les supprimer."
       >
-        <AvisTrustpilot />
+        <AvisGoogle />
       </PageSection>
 
       <PageAppel

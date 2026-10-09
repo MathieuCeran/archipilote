@@ -2911,19 +2911,18 @@ a:hover > .rf-cadre img {
   gap: 2px;
 }
 
+/* Étoiles au code couleur Google : jaune pour la note, gris pour le reste. */
 .rf-avis-etoiles span {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 17px;
-  height: 17px;
-  border-radius: 0;
-  background: var(--filet);
-  color: #fff;
+  width: 15px;
+  height: 15px;
+  color: var(--filet);
 }
 
 .rf-avis-etoiles span[data-pleine="true"] {
-  background: #00b67a;
+  color: #fbbc04;
 }
 
 .rf-avis-titre {
@@ -2938,7 +2937,7 @@ a:hover > .rf-cadre img {
 
 /* Les avis n'ont pas tous la même longueur : sans écrêtage, la carte d'un
    avis de mille caractères imposerait sa hauteur aux trois autres. Le texte
-   complet reste à un clic, sur Trustpilot. */
+   complet reste à un clic, sur Google. */
 .rf-avis-texte {
   margin: 0.6rem 0 0;
   font-family: var(--f-read);
