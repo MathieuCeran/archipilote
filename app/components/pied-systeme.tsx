@@ -42,9 +42,7 @@ export function PiedRefonte() {
               <a href={`mailto:${SITE.email}`} style={{ overflowWrap: "anywhere" }}>
                 {SITE.email}
               </a>
-              <a href={SITE.whatsapp} target="_blank" rel="noreferrer">
-                WhatsApp
-              </a>
+              <a href={SITE.sms}>SMS</a>
             </div>
           </div>
 

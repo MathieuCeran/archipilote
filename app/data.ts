@@ -14,7 +14,8 @@ export const SITE = {
   structure: "ARCHI PILOTE RÉNOVATION est piloté par IA RENOV (SASU), RCS 889 976 387 Nanterre, 8 bis rue Gabriel Péri, 92250 La Garenne-Colombes.",
   tel: "+33 6 67 11 79 75",
   telAffiche: "06 67 11 79 75",
-  whatsapp: "https://wa.me/33667117975", // même numéro que le tel — à confirmer si un numéro WhatsApp distinct existe
+  // Contact par appel ou SMS uniquement (WhatsApp retiré le 11/10/2026).
+  sms: "sms:+33667117975",
   email: "archipiloterenovation@gmail.com",
   horaires: [
     { jours: "Lundi — Vendredi", heures: "08h30 – 19h00" },
@@ -129,7 +130,7 @@ export const SERVICES = [
 ];
 
 export const PROCESS = [
-  { numero: "01", titre: "Premier échange", accroche: "Téléphone ou WhatsApp", texte: "Vous décrivez votre projet, votre budget et votre commune. On identifie tout de suite ce qui est faisable et ce qu'il faut vérifier sur place." },
+  { numero: "01", titre: "Premier échange", accroche: "Téléphone ou SMS", texte: "Vous décrivez votre projet, votre budget et votre commune. On identifie tout de suite ce qui est faisable et ce qu'il faut vérifier sur place." },
   { numero: "02", titre: "Visite technique", accroche: "Sur place", texte: "Nous nous déplaçons, relevons les dimensions et identifions les contraintes réelles : structure, réseaux, copropriété, autorisations à prévoir." },
   { numero: "03", titre: "Devis des entreprises", accroche: "Sous 48h", texte: "Chaque entreprise partenaire vous remet son devis en son nom, poste par poste. Vous savez exactement ce qui est inclus avant de signer — et vous signez avec elle, directement." },
   { numero: "04", titre: "Chantier piloté", accroche: "Point d'avancement hebdomadaire", texte: "Tous les corps de métier sont pilotés par le même interlocuteur. Vous recevez un point d'avancement écrit chaque semaine, avec photos datées." },
@@ -152,7 +153,7 @@ export const FAQ = [
   { question: "Pilotez-vous la rénovation de maisons classées DPE F ou G ?", reponse: "Oui, c'est l'une de nos spécialités. Nous pilotons le traitement des passoires énergétiques de bout en bout : diagnostic, isolation, VMC double flux, remplacement du chauffage, accompagnement MaPrimeRénov' et CEE. L'objectif est de gagner une ou plusieurs classes DPE selon l'état de départ." },
   { question: "Qui garantit les travaux, et pendant combien de temps ?", reponse: "Chaque entreprise partenaire porte les assurances correspondant aux activités qu'elle exécute : garantie décennale (10 ans), garantie biennale (2 ans sur les équipements), garantie de parfait achèvement (1 an). Les attestations sont vérifiées et remises avant tout démarrage de chantier." },
   { question: "Qui signe les devis de travaux, et qui je paie ?", reponse: "Chaque entreprise partenaire remet et signe son propre devis. Vous contractez et payez directement avec elle. ARCHI PILOTE RÉNOVATION n'émet aucun devis de travaux et ne facture aucun chantier — notre rôle est le pilotage et l'accompagnement du projet." },
-  { question: "Comment se déroule un projet avec ARCHI PILOTE RÉNOVATION ?", reponse: "Cinq étapes : premier échange par téléphone ou WhatsApp, visite technique du bien, consultation des entreprises partenaires et mise en comparaison de leurs devis sur un périmètre commun, arbitrage du budget poste par poste, puis pilotage du chantier jusqu'à la levée des réserves. Les délais de remise des devis restent ceux de chaque entreprise consultée." },
+  { question: "Comment se déroule un projet avec ARCHI PILOTE RÉNOVATION ?", reponse: "Cinq étapes : premier échange par téléphone ou SMS, visite technique du bien, consultation des entreprises partenaires et mise en comparaison de leurs devis sur un périmètre commun, arbitrage du budget poste par poste, puis pilotage du chantier jusqu'à la levée des réserves. Les délais de remise des devis restent ceux de chaque entreprise consultée." },
 ];
 
 /* 05/09 : « Devis entreprises sous 48 h » retiré du bandeau, et le délai de remise des

@@ -20,7 +20,7 @@ const COPROS = ["Oui", "Non", "Je ne sais pas"];
 /* 03/09 : filet de sécurité. Si la livraison échoue (service d'e-mail indisponible ou
    non activé), le visiteur perdait tout ce qu'il venait de saisir et devait le retaper
    ailleurs — donc, en pratique, le contact était perdu. On lui propose désormais son
-   propre message déjà rédigé, à envoyer par mail ou par WhatsApp en un clic. */
+   propre message déjà rédigé, à envoyer par mail ou par SMS en un clic. */
 function recapitulatif(f: Record<string, string>) {
   const l = [
     `Nom : ${f.nom}`,
@@ -163,11 +163,9 @@ export function ContactForm() {
             </a>
             <a
               className="btn btn-ghost !py-2.5 !px-5 t-petit"
-              href={`${SITE.whatsapp}?text=${encodeURIComponent(recapitulatif(form))}`}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={`${SITE.sms}?body=${encodeURIComponent(recapitulatif(form))}`}
             >
-              Envoyer sur WhatsApp
+              Envoyer par SMS
             </a>
             <a className="btn btn-ghost !py-2.5 !px-5 t-petit" href={`tel:${SITE.tel.replace(/\s/g, "")}`}>
               Appeler le {SITE.telAffiche}

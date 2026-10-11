@@ -290,7 +290,7 @@ export default function Accueil() {
       >
         <PageEtapes
           items={[
-            { titre: "Premier échange", texte: "Par téléphone ou WhatsApp : votre bien, votre projet, votre budget." },
+            { titre: "Premier échange", texte: "Par téléphone ou SMS : votre bien, votre projet, votre budget." },
             { titre: "Visite technique", texte: "Sur place : structure, réseaux, urbanisme, règlement et syndic de copropriété." },
             { titre: "Devis comparables", texte: "Un descriptif commun envoyé aux entreprises partenaires, des devis de rénovation lus ligne à ligne." },
             { titre: "Budget arbitré", texte: "Poste par poste, avec vous, avant de signer. Vous pouvez acheter vos matériaux en direct." },

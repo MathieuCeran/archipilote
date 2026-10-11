@@ -69,7 +69,7 @@ export default function Page() {
       <PageSection
         id="formulaire"
         titre="Votre demande d'étude"
-        accroche="Quelques informations suffisent. Vous pouvez aussi nous appeler ou nous écrire sur WhatsApp."
+        accroche="Quelques informations suffisent. Vous pouvez aussi nous appeler ou nous envoyer un SMS."
       >
         <div className="grid grid-cols-1 lg:grid-cols-[7fr_4fr] gap-8 items-start">
           <ContactForm />
@@ -83,12 +83,10 @@ export default function Page() {
                 </dd>
               </div>
               <div>
-                <dt className="font-semibold">WhatsApp</dt>
+                <dt className="font-semibold">SMS</dt>
                 <dd>
-                  <a href={SITE.whatsapp} target="_blank" rel="noreferrer">
-                    Écrire sur WhatsApp
-                  </a>{" "}
-                  — photos du projet, réponse rapide
+                  <a href={SITE.sms}>Envoyer un SMS au {SITE.telAffiche}</a>{" "}
+                  — nous vous rappelons rapidement
                 </dd>
               </div>
               <div>

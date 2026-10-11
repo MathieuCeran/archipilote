@@ -95,7 +95,7 @@ const FAQ_COMMUNE = [
 ];
 
 const ETAPES = [
-  { titre: "Premier échange", texte: "Votre bien, votre projet, votre budget, par téléphone ou WhatsApp." },
+  { titre: "Premier échange", texte: "Votre bien, votre projet, votre budget, par téléphone ou SMS." },
   { titre: "Visite technique", texte: "Sur place : structure, réseaux, copropriété et urbanisme." },
   { titre: "Devis comparables", texte: "Un descriptif commun pour les entreprises partenaires, des devis lus ligne à ligne." },
   { titre: "Chantier piloté", texte: "Un seul interlocuteur, des photos datées chaque jour." },

@@ -63,7 +63,7 @@ const FAQ = [
   {
     question: "Comment suis-je informé de l'avancement du chantier ?",
     reponse:
-      "Par des photos datées envoyées chaque jour sur WhatsApp et des comptes rendus réguliers : décisions prises, écarts éventuels, prochaines étapes. Ce reporting par des outils numériques simples vous permet de suivre le chantier sans être sur place en permanence.",
+      "Par des photos datées envoyées chaque jour et des comptes rendus réguliers : décisions prises, écarts éventuels, prochaines étapes. Ce reporting par des outils numériques simples vous permet de suivre le chantier sans être sur place en permanence.",
   },
   {
     question: "Acheter mes matériaux en direct réduit-il la garantie décennale ?",
@@ -126,7 +126,7 @@ export default function Page() {
       >
         <PageEtapes
           items={[
-            { titre: "Premier échange", texte: "Par téléphone ou WhatsApp : votre bien, vos usages, votre budget et vos délais." },
+            { titre: "Premier échange", texte: "Par téléphone ou SMS : votre bien, vos usages, votre budget et vos délais." },
             { titre: "Visite technique", texte: "Structure, réseaux, ventilation, humidité, accès : le bâti est lu avant de parler finitions." },
             { titre: "Étude et planification", texte: "Postes classés en indispensable, souhaitable et optionnel. Ordonnancement des lots et planning arrêtés avec vous." },
             { titre: "Devis comparables", texte: "Un descriptif commun envoyé aux entreprises partenaires, des devis lus ligne à ligne sur le même périmètre." },

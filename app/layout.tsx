@@ -5,7 +5,6 @@ import "./systeme.css";
 import { LenisProvider } from "./components/lenis-provider";
 import { NavRefonte } from "./components/nav-systeme";
 import { PiedRefonte } from "./components/pied-systeme";
-import { WhatsappButton } from "./components/whatsapp-button";
 import { SITE_OFFLINE, EXPIRES_AT } from "./site-config";
 import { OfflineScreen } from "./components/offline-screen";
 import { GoogleAds } from "./components/google-ads";
@@ -127,7 +126,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               {children}
               <PiedRefonte />
             </LenisProvider>
-            <WhatsappButton />
             <GoogleAds />
           </>
         )}

@@ -25,7 +25,7 @@ export function GoogleAds() {
     setChoix(v === "granted" || v === "denied" ? v : null);
 
     const onClick = (e: MouseEvent) => {
-      const a = (e.target as Element | null)?.closest?.('a[href^="tel:"]');
+      const a = (e.target as Element | null)?.closest?.('a[href^="tel:"], a[href^="sms:"]');
       if (a) trackConversion(ADS_LABEL_TEL);
     };
     document.addEventListener("click", onClick, { capture: true });

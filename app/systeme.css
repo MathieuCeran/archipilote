@@ -6563,13 +6563,6 @@ body > section.rf-matiere:nth-of-type(2n) .mq-fig--schema .rf-cadre {
   }
 }
 
-/* Le bouton WhatsApp flottant se retire tant que la barre est là : ils se
-   chevauchaient en bas à gauche. */
-body:has(.note-projet.is-visible) .rf-whatsapp {
-  opacity: 0 !important;
-  pointer-events: none;
-}
-
 @media (prefers-reduced-motion: reduce) {
   .note-projet {
     transition: opacity 0.2s linear;
