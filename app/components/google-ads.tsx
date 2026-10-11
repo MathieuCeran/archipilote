@@ -3,7 +3,7 @@
 import Script from "next/script";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { ADS_ID, ADS_LABEL_TEL, CONSENT_KEY, setAdsConsent, trackConversion } from "@/lib/ads";
+import { ADS_ID, ADS_LABEL_TEL, GTAG_ID, CONSENT_KEY, setAdsConsent, trackConversion } from "@/lib/ads";
 
 /* Balise Google Ads + mode consentement v2.
 
@@ -49,9 +49,9 @@ export function GoogleAds() {
         var v = c === "granted" ? "granted" : "denied";
         gtag("consent", "default", { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v, wait_for_update: 500 });
         gtag("js", new Date());
-        gtag("config", ${JSON.stringify(ADS_ID)});
+        gtag("config", ${JSON.stringify(GTAG_ID)});
       `}</Script>
-      <Script src={`https://www.googletagmanager.com/gtag/js?id=${ADS_ID}`} strategy="afterInteractive" />
+      <Script src={`https://www.googletagmanager.com/gtag/js?id=${GTAG_ID}`} strategy="afterInteractive" />
 
       {choix === null && (
         <div

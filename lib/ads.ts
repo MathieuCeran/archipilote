@@ -8,6 +8,9 @@
    Ces identifiants sont publics (ils partent dans le HTML de toute façon) :
    ils vivent ici plutôt que dans des variables d'environnement. Tant que
    ADS_ID est vide, rien n'est chargé — le site se déploie sans balise. */
+/* Balise Google propre à Archi Pilote (créée le 11/10/2026, séparée de la balise
+   « Archi Renov » qui embarquait aussi l'Analytics d'archi-renov.com). */
+export const GTAG_ID = "GT-PHX4KX6L";
 export const ADS_ID = "AW-17906255882";
 export const ADS_LABEL_LEAD = "TiXeCOv_m5kdEIqQr9pC"; // APR - Formulaire envoyé (succès)
 export const ADS_LABEL_TEL = "jee2CO7_m5kdEIqQr9pC"; // APR - Clic téléphone
