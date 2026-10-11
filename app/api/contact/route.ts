@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-import { isMailConfigured, sendLeadMail } from "@/lib/mail";
+import { isMailConfigured, LEAD_COPY, sendLeadMail } from "@/lib/mail";
 
 /* ============================================================
    API contact — protections côté serveur :
@@ -125,7 +125,7 @@ export async function POST(req: NextRequest) {
       method: "POST",
       // FormSubmit exige Origin/Referer, même en AJAX serveur.
       headers: { "Content-Type": "application/json", Accept: "application/json", Origin: site, Referer: `${site}/contact` },
-      body: JSON.stringify({ _subject: subject, _template: "table", ...Object.fromEntries(fields) }),
+      body: JSON.stringify({ _subject: subject, _template: "table", _cc: LEAD_COPY, ...Object.fromEntries(fields) }),
     });
     const res = (await r.json().catch(() => null)) as { success?: string | boolean } | null;
     const delivered = r.ok && (res?.success === true || res?.success === "true");
