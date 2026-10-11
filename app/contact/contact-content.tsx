@@ -3,6 +3,7 @@
 import { useRef, useState } from "react";
 import Link from "next/link";
 import { SITE } from "../data";
+import { ADS_LABEL_LEAD, trackConversion } from "@/lib/ads";
 
 /* Formulaire de contact — mise en page maquette Lovable (une étape, 8 champs),
    branché sur /api/contact (envoi réel + protections anti-bot). */
@@ -59,7 +60,11 @@ export function ContactForm() {
         body: JSON.stringify({ ...form, website: piege, startedAt: startedAt.current }),
       });
       const data = await r.json().catch(() => ({ ok: false }));
-      if (r.ok && data.ok) setDone(true);
+      if (r.ok && data.ok) {
+        // `sent` : le mail est vraiment parti (les robots piégés reçoivent ok sans sent).
+        if (data.sent) trackConversion(ADS_LABEL_LEAD);
+        setDone(true);
+      }
       else if (r.status === 422 && Array.isArray(data.errors) && data.errors.includes("tel")) setError("Vérifiez votre numéro de téléphone — il doit comporter 10 chiffres (ex. 06 12 34 56 78).");
       else if (r.status === 422 && Array.isArray(data.errors) && data.errors.includes("email")) setError("Vérifiez l'adresse e-mail saisie.");
       else if (r.status === 422) setError("Certains champs obligatoires sont incomplets — vérifiez le nom, le téléphone, la commune, le type de projet et le budget.");

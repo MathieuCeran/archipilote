@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { PageHero, PageSection } from "../components/page-kit";
 import { SITE } from "../data";
+import { ReinitialiserCookies } from "../components/google-ads";
 
 export const metadata: Metadata = {
   alternates: { canonical: "/politique-confidentialite" },
@@ -54,10 +55,12 @@ export default function PolitiqueConfidentialitePage() {
               donnée saisie n&apos;est transmise ni conservée par nos serveurs.
             </p>
             <p>
-              Le site ne dépose aucun cookie de mesure d&apos;audience ni de publicité : aucun outil d&apos;analytics
-              tiers (Google Analytics ou équivalent) n&apos;est installé à ce jour. Seuls des cookies techniques
-              strictement nécessaires au fonctionnement du site peuvent être utilisés ; ils ne requièrent pas de
-              consentement au sens de la réglementation applicable aux cookies.
+              Le site utilise la balise Google Ads (Google Ireland Ltd) pour mesurer l&apos;efficacité de ses annonces :
+              une demande envoyée par le formulaire ou un clic sur le numéro de téléphone est comptée comme une
+              conversion. Les cookies publicitaires correspondants ne sont déposés qu&apos;avec votre accord, donné ou
+              refusé dans le bandeau affiché à la première visite. Sans accord, Google ne reçoit que des signaux sans
+              cookie, qui ne permettent pas de vous identifier. Aucun autre outil d&apos;analytics tiers n&apos;est
+              installé. <ReinitialiserCookies />
             </p>
             </Texte>
           </PageSection>

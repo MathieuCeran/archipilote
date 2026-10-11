@@ -112,7 +112,7 @@ export async function POST(req: NextRequest) {
   if (isMailConfigured()) {
     try {
       await sendLeadMail({ subject, replyTo: email || undefined, rows: fields });
-      return NextResponse.json({ ok: true });
+      return NextResponse.json({ ok: true, sent: true });
     } catch (e) {
       console.error("[contact] envoi SMTP échoué", e);
       return NextResponse.json({ ok: false, error: "delivery" }, { status: 502 });
@@ -130,7 +130,7 @@ export async function POST(req: NextRequest) {
     const res = (await r.json().catch(() => null)) as { success?: string | boolean } | null;
     const delivered = r.ok && (res?.success === true || res?.success === "true");
     if (!delivered) throw new Error("formsubmit not delivered");
-    return NextResponse.json({ ok: true });
+    return NextResponse.json({ ok: true, sent: true });
   } catch {
     // La livraison a échoué : on le dit franchement au visiteur (pas de faux succès).
     return NextResponse.json({ ok: false, error: "delivery" }, { status: 502 });

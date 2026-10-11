@@ -8,6 +8,7 @@ import { PiedRefonte } from "./components/pied-systeme";
 import { WhatsappButton } from "./components/whatsapp-button";
 import { SITE_OFFLINE, EXPIRES_AT } from "./site-config";
 import { OfflineScreen } from "./components/offline-screen";
+import { GoogleAds } from "./components/google-ads";
 
 /* PROMOTION DE LA REFONTE — étape 1 : le socle.
 
@@ -127,6 +128,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
               <PiedRefonte />
             </LenisProvider>
             <WhatsappButton />
+            <GoogleAds />
           </>
         )}
       </body>
