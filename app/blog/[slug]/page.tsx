@@ -7,7 +7,7 @@ import { CtaFinal } from "../../components/cta-final";
 import { preparerArticle } from "../article-html";
 import { SommaireSuivi, BarreLecture } from "./suivi-lecture";
 import { BarreProjet } from "./barre-projet";
-import { withWw, wwMetadata, wwVersion } from "@/lib/whatswrong-pages";
+import { versionOf, withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 // Les articles connus au build sont pré-rendus ; un nouvel article de
 // WhatsWrong (lu en direct) est rendu à sa première visite.
@@ -67,13 +67,16 @@ async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const article = tous.find((a) => a.slug === slug);
   if (!article) return notFound();
 
-  const note = article.bodyHtml ? preparerArticle(article.bodyHtml) : null;
+  const ww = await versionOf(`/blog/${article.slug}`);
+  // Un article en HTML (venu de WhatsWrong) : la version d'Eli entière,
+  // ses textes ne passent pas un à un dans les composants.
+  const corpsHtml = article.bodyHtml ? ww?.html || article.bodyHtml : null;
+  const note = corpsHtml ? preparerArticle(corpsHtml) : null;
   const sommaire = note?.sommaire.filter((e) => e.texte) ?? [];
   const lire = suggestions(article, tous);
   const url = `https://www.archipiloterenovation.com/blog/${article.slug}`;
   // Le titre et la description publiés depuis WhatsWrong, s'il y en a :
   // les données structurées disent la même chose que la page.
-  const ww = await wwVersion(`/blog/${article.slug}`);
   const titre = ww?.title || article.titre;
   const resume = ww?.description || article.excerpt;
   const image = photoSrc(article.photo);
@@ -120,7 +123,7 @@ async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
 
   return (
     <main className="relative z-10 note">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
       <BarreLecture />
 
       {/* L'ouverture : la photo de couverture passe DERRIÈRE le titre, sous un

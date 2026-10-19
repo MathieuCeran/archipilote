@@ -13,3 +13,6 @@ medias-bruts/chantiers2-ecartes/
 medias-bruts/chantiers2-non-utilisees/
 .env*
 !.env.example
+
+# Cache de compilation TypeScript
+*.tsbuildinfo

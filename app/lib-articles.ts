@@ -1,3 +1,4 @@
+import { cache } from "react";
 /* ============================================================
    Source unique des articles du blog.
 
@@ -114,7 +115,7 @@ type LiveArticle = {
   publishedAt: string;
 };
 
-async function liveArticles(): Promise<LiveArticle[] | null> {
+async function liveArticlesUncached(): Promise<LiveArticle[] | null> {
   const key = process.env.WW_API_KEY || process.env.WHATSWRONG_API_KEY;
   if (!key) return null;
   try {
@@ -130,6 +131,10 @@ async function liveArticles(): Promise<LiveArticle[] | null> {
     return null;
   }
 }
+
+/* Une lecture par rendu : les métadonnées et la page voient la même
+ * réponse (sinon titre et contenu peuvent diverger si l'une expire). */
+const liveArticles = cache(liveArticlesUncached);
 
 function dateFr(iso: string): string {
   return new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Paris" })

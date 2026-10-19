@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import {
+  cache,
   cloneElement,
   Fragment,
   isValidElement,
@@ -43,6 +44,8 @@ type PageVersion = {
   title: string;
   description: string;
   changes: Changes | null;
+  /** La page entière d'Eli, assainie et sans en-tête. */
+  html: string;
 };
 
 /** La clé d'un texte : la même fonction que WhatsWrong, à l'identique. */
@@ -70,7 +73,7 @@ const TIMEOUT_MS = 2000;
 
 /* Les pages publiées, lues sur WhatsWrong au rendu ; rien si la clé
    manque ou si l'API ne répond pas : la page garde son propre texte. */
-async function publishedPages(): Promise<PageVersion[]> {
+async function publishedPagesUncached(): Promise<PageVersion[]> {
   const key = process.env.WW_API_KEY || process.env.WHATSWRONG_API_KEY;
   if (!key) return [];
   try {
@@ -87,13 +90,12 @@ async function publishedPages(): Promise<PageVersion[]> {
   }
 }
 
-/** La version publiée d'une page (titre, description…), ou null. Pour ce
-    que le texte affiché ne porte pas : les données structurées (JSON-LD). */
-export async function wwVersion(path: string): Promise<PageVersion | null> {
-  return versionOf(path);
-}
+/* Une lecture par rendu : les métadonnées et la page voient la même
+ * réponse (sinon titre et contenu peuvent diverger si l'une expire). */
+const publishedPages = cache(publishedPagesUncached);
 
-async function versionOf(path: string): Promise<PageVersion | null> {
+/** La version publiée d'une page (titre, description, texte), ou null. */
+export async function versionOf(path: string): Promise<PageVersion | null> {
   return (await publishedPages()).find((page) => bare(page.path) === bare(path)) ?? null;
 }
 
