@@ -92,6 +92,11 @@ const INLINE = new Set(["a", "strong", "em", "b", "i", "span", "br", "small", "a
 
 const REMOVED = Symbol("removed");
 
+/* Un composant client (marqué « use client ») : on ne l'exécute jamais ici. */
+function isClientReference(type: unknown): boolean {
+  return (type as { $$typeof?: symbol }).$$typeof === Symbol.for("react.client.reference");
+}
+
 /** Le texte visible d'un nœud React non rendu. */
 function textOf(node: ReactNode): string {
   if (typeof node === "string" || typeof node === "number") return String(node);
@@ -225,6 +230,15 @@ class Overlay {
         return [name, next === REMOVED ? undefined : next];
       }),
     );
+    // Un composant serveur du site (une fonction, pas un composant client) :
+    // exécuté, pour atteindre aussi les textes écrits en lui. Asynchrone
+    // ou client, il reste tel quel.
+    if (typeof element.type === "function" && !isClientReference(element.type)) {
+      const output = (element.type as (p: Record<string, unknown>) => ReactNode)(props);
+      if (!(output instanceof Promise)) {
+        return this.around(element, <>{this.node(output)}</>);
+      }
+    }
     return this.around(element, cloneElement(element, props));
   }
 
