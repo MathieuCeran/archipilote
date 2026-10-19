@@ -145,7 +145,7 @@ async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
             </Link>
           </p>
           <h1 className="rf-titre note-titre">{article.titre}</h1>
-          {article.excerpt && <p className="note-chapo">{article.excerpt}</p>}
+          {resume && <p className="note-chapo">{resume}</p>}
         </div>
       </header>
 
