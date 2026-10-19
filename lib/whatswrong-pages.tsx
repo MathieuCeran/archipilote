@@ -87,6 +87,12 @@ async function publishedPages(): Promise<PageVersion[]> {
   }
 }
 
+/** La version publiée d'une page (titre, description…), ou null. Pour ce
+    que le texte affiché ne porte pas : les données structurées (JSON-LD). */
+export async function wwVersion(path: string): Promise<PageVersion | null> {
+  return versionOf(path);
+}
+
 async function versionOf(path: string): Promise<PageVersion | null> {
   return (await publishedPages()).find((page) => bare(page.path) === bare(path)) ?? null;
 }

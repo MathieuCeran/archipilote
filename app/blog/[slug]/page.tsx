@@ -7,7 +7,7 @@ import { CtaFinal } from "../../components/cta-final";
 import { preparerArticle } from "../article-html";
 import { SommaireSuivi, BarreLecture } from "./suivi-lecture";
 import { BarreProjet } from "./barre-projet";
-import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
+import { withWw, wwMetadata, wwVersion } from "@/lib/whatswrong-pages";
 
 // Les articles connus au build sont pré-rendus ; un nouvel article de
 // WhatsWrong (lu en direct) est rendu à sa première visite.
@@ -71,6 +71,11 @@ async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const sommaire = note?.sommaire.filter((e) => e.texte) ?? [];
   const lire = suggestions(article, tous);
   const url = `https://www.archipiloterenovation.com/blog/${article.slug}`;
+  // Le titre et la description publiés depuis WhatsWrong, s'il y en a :
+  // les données structurées disent la même chose que la page.
+  const ww = await wwVersion(`/blog/${article.slug}`);
+  const titre = ww?.title || article.titre;
+  const resume = ww?.description || article.excerpt;
   const image = photoSrc(article.photo);
   // Photo en fond d'ouverture seulement s'il y en a une, et si ce n'est pas un schéma.
   const photoFond = Boolean(image) && !article.schema;
@@ -79,8 +84,8 @@ async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
     {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
-      headline: article.titre,
-      description: article.excerpt,
+      headline: titre,
+      description: resume,
       datePublished: article.dateISO,
       dateModified: article.dateISO,
       ...(article.keyword ? { keywords: article.keyword } : {}),
@@ -98,7 +103,7 @@ async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Accueil", item: "https://www.archipiloterenovation.com/" },
       { "@type": "ListItem", position: 2, name: "Blog", item: "https://www.archipiloterenovation.com/blog" },
-      { "@type": "ListItem", position: 3, name: article.titre, item: url },
+      { "@type": "ListItem", position: 3, name: titre, item: url },
     ],
   });
   if (note?.faq.length) {
