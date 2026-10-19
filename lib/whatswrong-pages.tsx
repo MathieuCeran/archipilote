@@ -46,7 +46,7 @@ type PageVersion = {
 };
 
 /** La clé d'un texte : la même fonction que WhatsWrong, à l'identique. */
-export function wwKey(value: string): string {
+function wwKey(value: string): string {
   return String(value)
     .replace(/\]\([^)]*\)/g, " ")
     .replace(/<[^>]+>/g, " ")
