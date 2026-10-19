@@ -16,6 +16,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : agrandir sa maison par une extension au sol, en Île-de-France.
    Mot-clé principal : « extension maison ».
@@ -29,7 +30,7 @@ const DESCRIPTION =
   "Extension de maison : PLU, déclaration préalable ou permis de construire, fondations, raccord avec l'existant. Un agrandissement piloté jusqu'à la réception.";
 const FIL = [{ nom: "Extension de maison", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/extension-maison", {
   title: "Extension maison : PLU, permis, raccord et étapes | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -42,7 +43,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers/chCharpenteExtensionBlocsBeton.jpeg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -72,7 +73,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -229,3 +230,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/extension-maison", Page);

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { LocalPage } from "../components/local-page";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/renovation-seine-saint-denis-93", {
   alternates: { canonical: "/renovation-seine-saint-denis-93" },
   // Doctrine V3 : page locale sans preuve locale reelle = noindex jusqu'a preuve documentee.
   robots: { index: false, follow: true },
@@ -16,9 +17,9 @@ export const metadata: Metadata = {
     url: "/renovation-seine-saint-denis-93",
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
-export default function Page() {
+function Page() {
   return (
     <LocalPage
       variant="departement"
@@ -71,3 +72,5 @@ export default function Page() {
     />
   );
 }
+
+export default withWw("/renovation-seine-saint-denis-93", Page);

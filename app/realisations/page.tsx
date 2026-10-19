@@ -12,6 +12,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : voir des réalisations de rénovation d'appartement (preuves en photos).
    Mot-clé principal (WhatsWrong, 10/2026) : « réalisations rénovation appartement ».
@@ -32,7 +33,7 @@ const DESCRIPTION =
   "Réalisations rénovation appartement à Paris et en Île-de-France : photos de chantiers réels, appartement haussmannien, menuiserie sur mesure, avant/après.";
 const FIL = [{ nom: "Réalisations", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/realisations", {
   title: "Réalisations rénovation appartement : photos de chantiers réels | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
 const CH = "/photos/chantiers";
 const REEL = "Chantier réel des équipes partenaires.";
@@ -210,7 +211,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -314,3 +315,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/realisations", Page);

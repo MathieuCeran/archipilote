@@ -3,6 +3,7 @@ import { CtaFinal } from "../components/cta-final";
 import { BarreProjet } from "../blog/[slug]/barre-projet";
 import { PageHero, PageSection, PageCartes, PageEtapes, PageFaq, PageLiens, JsonLdPage } from "../components/page-kit";
 import { Estimateur } from "./estimateur";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : obtenir une fourchette de budget travaux en ligne.
    L'outil (./estimateur.tsx, composant client) est inchangé ; seule la coquille de page est
@@ -15,7 +16,7 @@ const DESCRIPTION =
   "Estimateur de travaux de rénovation : une fourchette de budget en une minute selon la surface, le niveau de travaux, le bien et les options, en Île-de-France.";
 const FIL = [{ nom: "Estimateur de travaux", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/estimateur-travaux", {
   title: "Estimateur de travaux : budget de rénovation en une minute | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -53,7 +54,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -138,3 +139,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/estimateur-travaux", Page);

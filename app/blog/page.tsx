@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { MqHero, MqSection, MqFig, MqReadNext } from "../components/mq";
 import { BlogGrid, type Fiche } from "./blog-grid";
 import { ALL_ARTICLES, photoSrc } from "../lib-articles";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/blog", {
   alternates: { canonical: "/blog" },
   title: "Magazine de la rénovation | ARCHI PILOTE RÉNOVATION",
   description:
     "Prix au m², matériaux, isolation, DPE : nos guides pratiques pour comprendre et réussir votre projet de rénovation en Île-de-France.",
-};
+});
 
 const fiches: Fiche[] = ALL_ARTICLES.map((a) => ({
   slug: a.slug,
@@ -22,7 +23,7 @@ const fiches: Fiche[] = ALL_ARTICLES.map((a) => ({
   schema: Boolean(a.schema),
 }));
 
-export default function BlogPage() {
+function BlogPage() {
   return (
     <main>
       <MqHero
@@ -52,3 +53,5 @@ export default function BlogPage() {
     </main>
   );
 }
+
+export default withWw("/blog", BlogPage);

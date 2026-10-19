@@ -15,6 +15,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : savoir quelle autorisation obtenir avant des travaux, en copropriété
    d'abord (syndic, assemblée générale), puis en mairie et en secteur protégé.
@@ -30,7 +31,7 @@ const DESCRIPTION =
   "Autorisation travaux copropriété : quand saisir le syndic et l'assemblée générale, déclaration préalable ou permis en mairie, secteur ABF et calendrier.";
 const FIL = [{ nom: "Démarches administratives", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/demarches-administratives-renovation", {
   title: "Autorisation travaux copropriété : syndic, AG, mairie, ABF | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers/chFacadeRavalementVillage.jpeg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -73,7 +74,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -245,3 +246,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/demarches-administratives-renovation", Page);

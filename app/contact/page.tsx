@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero, PageSection, PageEtapes, PageCoches, PageFaq, PageLiens, JsonLdPage } from "../components/page-kit";
 import { ContactForm } from "./contact-content";
 import { SITE } from "../data";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : décrire son projet et demander une étude sans engagement.
    Le formulaire (./contact-content.tsx, branché sur /api/contact) est inchangé.
@@ -14,7 +15,7 @@ const DESCRIPTION =
   "Décrivez votre projet de rénovation : commune, type de travaux, surface et budget. Première lecture et budget indicatif sous 48 h ouvrées, sans engagement.";
 const FIL = [{ nom: "Contact", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/contact", {
   title: "Contact : étude de projet sans engagement sous 48 h ouvrées | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -54,7 +55,7 @@ const FAQ = [
 
 const tel = `tel:${SITE.tel.replace(/\s/g, "")}`;
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -160,3 +161,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/contact", Page);

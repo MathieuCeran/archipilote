@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { CtaFinal } from "../components/cta-final";
 import { BarreProjet } from "../blog/[slug]/barre-projet";
 import { PageHero, PageSection, PageCartes, PageLiens, JsonLdPage } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Glossaire : définitions historiques conservées mot pour mot, regroupées par thème.
    Retirés : « Autorisation d'urbanisme » (doublon de déclaration préalable + permis) et
@@ -15,7 +16,7 @@ const DESCRIPTION =
   "Glossaire de la rénovation : une cinquantaine de termes du bâtiment expliqués simplement, par thème : structure, second œuvre, énergie, démarches, devis.";
 const FIL = [{ nom: "Glossaire de la rénovation", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/glossaire-renovation", {
   title: "Glossaire de la rénovation : le vocabulaire du bâtiment | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -28,7 +29,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
 type Terme = { titre: string; texte: string; href?: string };
 
@@ -116,7 +117,7 @@ const FAMILLES: { titre: string; accroche: string; termes: Terme[] }[] = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} />
@@ -149,3 +150,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/glossaire-renovation", Page);

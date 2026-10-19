@@ -18,6 +18,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : rénover une maison ou un pavillon en Île-de-France.
    Mot-clé principal : « rénovation maison ». Termes Eli : rénovation partielle / complète,
@@ -32,7 +33,7 @@ const DESCRIPTION =
   "Rénovation de maison en Île-de-France : lecture du bâti du sol au toit, devis d'entreprises comparables, chantier piloté jusqu'à la réception. Prix au m².";
 const FIL = [{ nom: "Rénovation de maison", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/renovation-maison-pavillon", {
   title: "Rénovation maison : prix au m², étapes, toiture et isolation | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers2/maison-facade-toiture-echafaudage.jpeg" }],
   },
-};
+});
 
 const fmt = (n: number) => n.toLocaleString("fr-FR");
 
@@ -77,7 +78,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -256,3 +257,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/renovation-maison-pavillon", Page);

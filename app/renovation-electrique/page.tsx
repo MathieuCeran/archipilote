@@ -17,6 +17,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : refaire ou mettre aux normes l'installation électrique d'un logement.
    Mot-clé principal : « rénovation électrique ». Secondaires (WhatsWrong) : tableau électrique aux
@@ -33,7 +34,7 @@ const DESCRIPTION =
   "Rénovation électrique et mise aux normes NF C 15-100 : diagnostic, tableau électrique aux normes, circuits refaits avant les cloisons. Prix au m².";
 const FIL = [{ nom: "Rénovation électrique", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/renovation-electrique", {
   title: "Rénovation électrique : mise aux normes, tableau, prix au m² | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers/chTableauElectriqueDisjoncteurs.jpeg" }],
   },
-};
+});
 
 const SURFACES = [30, 50, 80, 100];
 const PRIX_MIN = 70;
@@ -81,7 +82,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -247,3 +248,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/renovation-electrique", Page);

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { LocalPage } from "../components/local-page";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/renovation-colombes", {
   alternates: { canonical: "/renovation-colombes" },
   // Doctrine V3 : page locale sans preuve locale reelle = noindex jusqu'a preuve documentee.
   robots: { index: false, follow: true },
@@ -16,9 +17,9 @@ export const metadata: Metadata = {
     url: "/renovation-colombes",
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
-export default function Page() {
+function Page() {
   return (
     <LocalPage
       variant="ville"
@@ -63,3 +64,5 @@ export default function Page() {
     />
   );
 }
+
+export default withWw("/renovation-colombes", Page);

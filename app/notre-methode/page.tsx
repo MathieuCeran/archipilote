@@ -17,6 +17,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : comment ARCHI PILOTE RÉNOVATION pilote une rénovation (méthode, rôles,
    modèle économique, garanties). Mot-clé principal (WhatsWrong, 10/2026) : « pilotage de
@@ -34,7 +35,7 @@ const DESCRIPTION =
   "Pilotage de chantier rénovation à Paris et en Île-de-France : visite technique, devis comparables, contrôles avant fermeture et photos datées chaque jour.";
 const FIL = [{ nom: "Notre méthode", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/notre-methode", {
   title: "Pilotage de chantier rénovation : méthode, rôles, garanties | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -47,7 +48,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers2/chambre-salle-de-bain-ouverte-marbre-cheminee.jpeg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -77,7 +78,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -270,3 +271,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/notre-methode", Page);

@@ -17,6 +17,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : ouvrir un mur porteur (maison ou appartement) en Île-de-France.
    Mot-clé principal : « ouverture mur porteur ».
@@ -31,7 +32,7 @@ const DESCRIPTION =
   "Ouverture de mur porteur : étude de structure, étaiement, poutre de reprise IPN ou HEB, vote de copropriété. Prix indicatif : 3 000 à 9 000 € par ouverture.";
 const FIL = [{ nom: "Ouverture de mur porteur", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/ouverture-mur-porteur", {
   title: "Ouverture mur porteur : étude, étaiement, prix | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers/chPortiqueAcierAngleFenetre.jpeg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -74,7 +75,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -255,3 +256,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/ouverture-mur-porteur", Page);

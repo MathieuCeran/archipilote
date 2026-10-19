@@ -4,8 +4,9 @@ import Link from "next/link";
 import { PageHero, PageSection } from "../components/page-kit";
 import { SITE } from "../data";
 import { ReinitialiserCookies } from "../components/google-ads";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/politique-confidentialite", {
   alternates: { canonical: "/politique-confidentialite" },
   title: "Politique de confidentialité — ARCHI PILOTE RÉNOVATION",
   description: "Données collectées, finalités, durée de conservation, transferts hors Union européenne et droits RGPD des visiteurs et prospects.",
@@ -18,7 +19,7 @@ export const metadata: Metadata = {
     url: "/politique-confidentialite",
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
 /* Bloc de texte légal : le contenu est repris mot pour mot (validé
    juridiquement) ; seule la présentation passe au kit de page. */
@@ -30,7 +31,7 @@ function Texte({ children }: { children: ReactNode }) {
   );
 }
 
-export default function PolitiqueConfidentialitePage() {
+function PolitiqueConfidentialitePage() {
   return (
     <main className="relative z-10">
       <PageHero fil={[{ nom: "Politique de confidentialité", href: "#" }]} titre="Politique de confidentialité" chapo="Données collectées, finalités, durée de conservation et droits RGPD des visiteurs et prospects." actions={false} />
@@ -157,3 +158,5 @@ export default function PolitiqueConfidentialitePage() {
     </main>
   );
 }
+
+export default withWw("/politique-confidentialite", PolitiqueConfidentialitePage);

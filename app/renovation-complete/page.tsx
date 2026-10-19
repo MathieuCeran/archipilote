@@ -17,6 +17,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : confier une rénovation complète, tous corps d'état, à un seul interlocuteur.
    Mot-clé principal : « entreprise de rénovation tous corps d'état ». La marque n'exécute pas les
@@ -33,7 +34,7 @@ const DESCRIPTION =
   "Rénovation tous corps d'état à Paris : un seul interlocuteur, 8 corps de métier coordonnés, des devis comparables et un chantier suivi jusqu'à la réception.";
 const FIL = [{ nom: "Rénovation complète", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/renovation-complete", {
   title: "Rénovation tous corps d'état : un seul interlocuteur | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers2/salon-trumeau-moulures-appliques.jpeg" }],
   },
-};
+});
 
 /* Postes repris tels quels de l'observatoire des prix (Île-de-France). */
 const POSTES = [
@@ -88,7 +89,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -264,3 +265,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/renovation-complete", Page);

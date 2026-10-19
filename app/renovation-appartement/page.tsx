@@ -18,6 +18,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : rénover un appartement à Paris / en Île-de-France.
    Mot-clé principal (WhatsWrong / DataForSEO, 10/2026) : « rénovation appartement paris » (1 300/mois).
@@ -32,7 +33,7 @@ const DESCRIPTION =
   "Rénovation d'appartement à Paris : prix au m², étapes, copropriété. Visite technique, devis d'entreprises comparables, chantier piloté jusqu'à la réception.";
 const FIL = [{ nom: "Rénovation d'appartement", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/renovation-appartement", {
   title: "Rénovation appartement Paris : prix au m², étapes, copropriété | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers2/sejour-table-marbre-balcon-rue.jpeg" }],
   },
-};
+});
 
 const fmt = (n: number) => n.toLocaleString("fr-FR");
 
@@ -83,7 +84,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -280,3 +281,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/renovation-appartement", Page);

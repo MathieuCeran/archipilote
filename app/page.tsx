@@ -16,6 +16,7 @@ import {
   PageTableau,
   PageFaq,
 } from "./components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* ============================================================================
    ACCUEIL — refonte lot 2 (10/2026).
@@ -41,7 +42,7 @@ import {
 const DESCRIPTION =
   "Entreprise de rénovation à Paris et en Île-de-France : un seul interlocuteur, des devis d'entreprises comparables et un chantier piloté jusqu'à la réception.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/", {
   title: "Entreprise de rénovation à Paris : un seul interlocuteur | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: "/" },
@@ -54,7 +55,7 @@ export const metadata: Metadata = {
     url: "/",
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
 const fmt = (n: number) => n.toLocaleString("fr-FR");
 
@@ -225,7 +226,7 @@ const JSON_LD = [
   },
 ];
 
-export default function Accueil() {
+function Accueil() {
   return (
     <main>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(JSON_LD) }} />
@@ -361,3 +362,5 @@ export default function Accueil() {
     </main>
   );
 }
+
+export default withWw("/", Accueil);

@@ -3,6 +3,7 @@ import { CtaFinal } from "../components/cta-final";
 import { BarreProjet } from "../blog/[slug]/barre-projet";
 import { FAQ as FAQ_ACCUEIL } from "../data";
 import { PageHero, PageSection, PageFaq, PageLiens, JsonLdPage } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Questions fréquentes, regroupées par thème. Sources : FAQ de data.ts (accueil) et FAQ
    historique de cette page, dédoublonnées (« qui signe les devis », « durée d'une
@@ -14,7 +15,7 @@ const DESCRIPTION =
   "Questions fréquentes sur la rénovation : rôle du pilote, devis et prix, structure, second œuvre, rénovation énergétique, copropriété et déroulement du chantier.";
 const FIL = [{ nom: "Questions fréquentes", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/faq", {
   title: "Questions fréquentes sur la rénovation | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -27,7 +28,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
 type Q = { question: string; reponse: string };
 const accueil = (debut: string): Q => {
@@ -116,7 +117,7 @@ const THEMES: { titre: string; accroche: string; items: Q[] }[] = [
 
 const TOUTES = THEMES.flatMap((t) => t.items);
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={TOUTES} />
@@ -149,3 +150,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/faq", Page);

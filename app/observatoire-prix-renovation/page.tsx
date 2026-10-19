@@ -18,6 +18,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : connaître le prix de la rénovation au m² (et par poste) en Île-de-France.
    Mot-clé principal : « prix rénovation m2 ».
@@ -32,7 +33,7 @@ const DESCRIPTION =
   "Prix rénovation m² en Île-de-France : de 250 à 2 500 €/m² selon le niveau de travaux, et fourchettes par poste (plomberie, électricité, carrelage, mur porteur).";
 const FIL = [{ nom: "Prix de la rénovation au m²", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/observatoire-prix-renovation", {
   title: "Prix rénovation m² : fourchettes par niveau et par poste | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers/chCloisonsPlaco.jpeg" }],
   },
-};
+});
 
 const euros = (n: number) => n.toLocaleString("fr-FR").replace(/ | /g, " ");
 
@@ -92,7 +93,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -267,3 +268,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/observatoire-prix-renovation", Page);

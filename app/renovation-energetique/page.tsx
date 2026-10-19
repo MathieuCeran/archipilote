@@ -17,6 +17,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : faire une rénovation énergétique (sortir d'un DPE F ou G) en Île-de-France.
    Mot-clé principal : « rénovation énergétique ». Secondaire (WhatsWrong, 10/2026) :
@@ -32,7 +33,7 @@ const DESCRIPTION =
   "Rénovation énergétique : isolation thermique, VMC et chauffage dans le bon ordre pour sortir d'un DPE F ou G. Aides 2026, prix indicatifs et étapes.";
 const FIL = [{ nom: "Rénovation énergétique", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/renovation-energetique", {
   title: "Rénovation énergétique : ordre des travaux, aides 2026, prix | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers2/combles-isolation-laine-sous-toiture.jpeg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -75,7 +76,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -281,3 +282,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/renovation-energetique", Page);

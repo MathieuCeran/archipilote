@@ -17,6 +17,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : surélever une maison (gagner un étage) en Île-de-France.
    Mot-clé principal (WhatsWrong, 10/2026) : « surélévation maison » (1 600/mois).
@@ -31,7 +32,7 @@ const DESCRIPTION =
   "Surélévation de maison : étude de la structure existante, permis de construire, ossature bois ou maçonnerie, coût des travaux et étapes, en Île-de-France.";
 const FIL = [{ nom: "Surélévation de maison", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/surelevation", {
   title: "Surélévation maison : faisabilité, prix, étapes | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers/chCharpenteMaisonEchafaudage.jpeg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -74,7 +75,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -239,3 +240,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/surelevation", Page);

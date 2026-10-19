@@ -18,6 +18,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : rénover un appartement acheté (ou à acheter) pour le louer.
    Mot-clé principal : « rénovation appartement investissement locatif ».
@@ -32,7 +33,7 @@ const DESCRIPTION =
   "Rénovation d'appartement en investissement locatif : travaux chiffrés avant l'achat, scénarios selon le rendement visé, chantier piloté à distance en Île-de-France.";
 const FIL = [{ nom: "Investissement locatif", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/investisseurs-professionnels", {
   title: "Rénovation investissement locatif : chiffrer avant d'acheter | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers2/appart2-salon-canape-placards-chene.jpeg" }],
   },
-};
+});
 
 const fmt = (n: number) => n.toLocaleString("fr-FR");
 
@@ -83,7 +84,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -244,3 +245,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/investisseurs-professionnels", Page);

@@ -17,6 +17,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : rénover une cuisine à Paris / en Île-de-France (appartement ou maison).
    Mot-clé principal : « rénovation cuisine ».
@@ -31,7 +32,7 @@ const DESCRIPTION =
   "Rénovation de cuisine à Paris : implantation, réseaux et ventilation calés avant les meubles, façades sur mesure sur caissons standards. Prix et étapes.";
 const FIL = [{ nom: "Rénovation de cuisine", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/renovation-cuisine-maison", {
   title: "Rénovation cuisine Paris : implantation, réseaux, prix | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -44,7 +45,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers2/piece-de-vie-cuisine-parquet-versailles.jpeg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -69,7 +70,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -255,3 +256,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/renovation-cuisine-maison", Page);

@@ -17,6 +17,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : rénover une salle de bain (ou une salle d'eau) à Paris / en Île-de-France,
    en appartement comme en maison malgré l'URL historique.
@@ -32,7 +33,7 @@ const DESCRIPTION =
   "Rénovation de salle de bain à Paris : étanchéité sous carrelage, pentes, ventilation et réseaux vérifiés avant la faïence. Prix au m², étapes et chantier piloté.";
 const FIL = [{ nom: "Rénovation de salle de bain", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/renovation-salle-de-bain-maison", {
   title: "Rénovation salle de bain Paris : étanchéité, prix, étapes | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers2/sdb-granit-clair-baignoire.jpeg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -75,7 +76,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -286,3 +287,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/renovation-salle-de-bain-maison", Page);

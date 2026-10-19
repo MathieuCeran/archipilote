@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { CtaFinal } from "../components/cta-final";
 import { BarreProjet } from "../blog/[slug]/barre-projet";
 import { PageHero, PageIntro, PageSection, PageCartes, PageEtapes, PageFaq, PageLiens } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Refonte lot 2 (10/2026) : page passée au kit commun. Toujours en noindex.
    Les pages département et commune disparaissent du site : les cartes des
    départements restent, sans lien. Le maillage ne renvoie plus qu'aux pages
    de travaux finales. */
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/renovation-ile-de-france", {
   alternates: { canonical: "/renovation-ile-de-france" },
   // Doctrine V3 : page locale sans preuve locale reelle = noindex jusqu'a preuve documentee.
   robots: { index: false, follow: true },
@@ -23,7 +24,7 @@ export const metadata: Metadata = {
     url: "/renovation-ile-de-france",
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
 const DEPARTEMENTS = [
   { nom: "Hauts-de-Seine (92)", texte: "Le premier bassin d'intervention. Mix maison / appartement en copropriété, extension, ouverture structurelle, rénovation énergétique." },
@@ -49,7 +50,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <PageHero
@@ -120,3 +121,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/renovation-ile-de-france", Page);

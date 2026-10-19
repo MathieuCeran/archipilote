@@ -17,6 +17,7 @@ import {
   PageLiens,
   JsonLdPage,
 } from "../components/page-kit";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 /* Intention unique : agencement sur mesure (dressings, bibliothèques, placards, rangements,
    menuiserie intérieure) à Paris / en Île-de-France.
@@ -30,7 +31,7 @@ const DESCRIPTION =
   "Agencement sur mesure à Paris : dressings, bibliothèques, placards et rangements dessinés sur le relevé réel, posés par des menuisiers partenaires.";
 const FIL = [{ nom: "Agencement sur mesure", href: CHEMIN }];
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/menuiserie-agencement-sur-mesure", {
   title: "Agencement sur mesure Paris : dressing, bibliothèque, placard | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     url: CHEMIN,
     images: [{ url: "/photos/chantiers2/chambre-baignoire-ouverte-granit-lustre.jpeg" }],
   },
-};
+});
 
 const FAQ = [
   {
@@ -73,7 +74,7 @@ const FAQ = [
   },
 ];
 
-export default function Page() {
+function Page() {
   return (
     <main className="relative z-10">
       <JsonLdPage chemin={CHEMIN} nom={TITRE} description={DESCRIPTION} fil={FIL} faq={FAQ} />
@@ -250,3 +251,5 @@ export default function Page() {
     </main>
   );
 }
+
+export default withWw("/menuiserie-agencement-sur-mesure", Page);

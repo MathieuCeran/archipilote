@@ -3,8 +3,9 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { PageHero, PageSection } from "../components/page-kit";
 import { SITE } from "../data";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = wwMetadata("/mentions-legales", {
   alternates: { canonical: "/mentions-legales" },
   title: "Mentions légales — ARCHI PILOTE RÉNOVATION",
   description: "Mentions légales d'ARCHI PILOTE RÉNOVATION, piloté par IA RENOV (SASU) : éditeur, siège, RCS, hébergement, propriété intellectuelle et données personnelles.",
@@ -17,7 +18,7 @@ export const metadata: Metadata = {
     url: "/mentions-legales",
     images: [{ url: "/og.jpg" }],
   },
-};
+});
 
 /* Bloc de texte légal : le contenu est repris mot pour mot (validé
    juridiquement) ; seule la présentation passe au kit de page. */
@@ -29,7 +30,7 @@ function Texte({ children }: { children: ReactNode }) {
   );
 }
 
-export default function MentionsLegalesPage() {
+function MentionsLegalesPage() {
   return (
     <main className="relative z-10">
       <PageHero fil={[{ nom: "Mentions légales", href: "#" }]} titre="Mentions légales" chapo="Qui édite ce site." actions={false} />
@@ -107,3 +108,5 @@ export default function MentionsLegalesPage() {
     </main>
   );
 }
+
+export default withWw("/mentions-legales", MentionsLegalesPage);
