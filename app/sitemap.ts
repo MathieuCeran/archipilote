@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { ALL_ARTICLES } from "./lib-articles";
+import { allArticles } from "./lib-articles";
 
 const BASE = "https://www.archipiloterenovation.com";
 
@@ -36,12 +36,12 @@ const STATIC_PATHS = [
   "/politique-confidentialite",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const staticEntries = STATIC_PATHS.map((path) => ({
     url: `${BASE}${path}`,
     lastModified: new Date("2026-10-04"),
   }));
-  const articleEntries = ALL_ARTICLES.map((a) => ({
+  const articleEntries = (await allArticles()).map((a) => ({
     url: `${BASE}/blog/${a.slug}`,
     lastModified: new Date(a.dateISO),
   }));

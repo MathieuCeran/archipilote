@@ -289,10 +289,13 @@ class Overlay {
  * Une page du site avec sa version publiée depuis WhatsWrong, s'il y en a
  * une : `export default withWw("/chemin", Page)`.
  */
-export function withWw<P extends object>(path: string, Page: (props: P) => ReactNode) {
+export function withWw<P extends object>(
+  path: string,
+  Page: (props: P) => ReactNode | Promise<ReactNode>,
+) {
   return async function WhatsWrongPage(props: P) {
     const changes = (await versionOf(path))?.changes ?? null;
-    const tree = Page(props);
+    const tree = await Page(props);
     if (changes === null) return tree;
     const overlay = new Overlay(changes);
     const out = overlay.node(tree);

@@ -103,36 +103,29 @@ La vérification aboutira dès que le DNS sera rétabli (§4). `robots.txt` auto
 tout et déclare le sitemap ; `sitemap.ts` liste toutes les pages, articles
 importés compris.
 
-## 6. La synchronisation WhatsWrong
+## 6. WhatsWrong : articles et pages en lecture directe
 
-Depuis le 04/10/2026, les articles SEO viennent de **WhatsWrong** (agent Léa), qui
-remplace Sedestral. WhatsWrong ne pousse rien : c'est le site qui tire.
+Depuis le 19/10/2026, le site **lit WhatsWrong en direct**, au rendu, avec un
+cache d'une minute — plus de synchronisation GitHub ni de redéploiement :
 
-Le workflow `.github/workflows/whatswrong-sync.yml` lance toutes les heures
-`scripts/whatswrong-sync.mjs`, qui :
+- **Articles de Léa** (`/blog/<slug>`) : `app/lib-articles.ts` lit
+  `GET /api/v1/lea/blog?base=https://www.archipiloterenovation.com/blog`. Un
+  article prêt est en ligne au plus une minute après ; WhatsWrong vérifie
+  lui-même qu'il répond à son adresse et le passe « publié » (c'est ce qui
+  démarre son suivi SEO) : le site n'a rien à renvoyer.
+- **Pages réécrites par Eli** : `lib/whatswrong-pages.tsx` lit
+  `GET /api/v1/eli/pages` et pose les changements texte par texte dans l'arbre
+  de la page (`withWw`, `wwMetadata`) : le design ne bouge pas.
 
-1. lit `GET /api/v1/lea/blog-articles?states=DRAFT&limit=20` (DRAFT = terminé et dû
-   aujourd'hui : tout est publié) ;
-2. copie couverture et images dans `public/uploads/whatswrong/<slug>/`, assainit le
-   HTML, écrit dans `content/blog/generated.json` et garde l'id WhatsWrong dans
-   `content/blog/_whatswrong-state.json` (jamais deux imports du même article) ;
-3. **pousse sur `main`** → Vercel déploie ;
-4. attend que la page soit réellement en ligne (15 min max, contrôle du contenu et
-   pas seulement du code 200) ;
-5. envoie `PATCH { state: PUBLISHED, url }` : c'est ce qui démarre le suivi SEO ;
-6. si un article est retiré à la main de `generated.json`, renvoie `{ state: DRAFT }`.
+La clé est la variable d'environnement Vercel `WW_API_KEY` (production). Si
+l'API ne répond pas en 2 secondes, le blog affiche les articles copiés avant le
+19/10 (`content/blog/generated.json`, `public/uploads/`) et les pages gardent
+leur propre texte. Les articles éditoriaux (`app/data.ts`) et ceux importés de
+Sedestral (`sedestralId`) ne changent pas.
 
-Le commit d'état (`chore: … [skip ci]`) ne redéploie pas : `vercel.json` (`ignoreCommand`)
-annule le build Vercel dès que le message de commit contient `[skip ci]`.
-
-La clé d'API est le secret GitHub `WW_API_KEY` (Settings → Secrets and variables →
-Actions). Sur une erreur 429 (60 appels/min), le run s'arrête et le suivant reprend.
-
-Les articles déjà importés depuis Sedestral restent en ligne, inchangés
-(`sedestralId` dans `generated.json`, images sous `public/uploads/sedestral/`).
-
-Le bot publie sans relecture humaine : il assainit le HTML mais ne juge ni la
-cohérence image/titre ni la véracité des affirmations.
+Le HTML des articles arrive assaini par WhatsWrong. Le bot publie sans
+relecture humaine : il ne juge ni la cohérence image/titre ni la véracité des
+affirmations.
 
 ## 7. Commandes de référence
 

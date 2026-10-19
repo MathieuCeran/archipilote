@@ -2,11 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Tirage } from "../../components/tirage";
 import { notFound } from "next/navigation";
-import { ALL_ARTICLES, photoSrc, type BlogArticle } from "../../lib-articles";
+import { ALL_ARTICLES, allArticles, photoSrc, type BlogArticle } from "../../lib-articles";
 import { CtaFinal } from "../../components/cta-final";
 import { preparerArticle } from "../article-html";
 import { SommaireSuivi, BarreLecture } from "./suivi-lecture";
 import { BarreProjet } from "./barre-projet";
+
+// Les articles connus au build sont pré-rendus ; un nouvel article de
+// WhatsWrong (lu en direct) est rendu à sa première visite.
+export const dynamicParams = true;
 
 export function generateStaticParams() {
   return ALL_ARTICLES.map((a) => ({ slug: a.slug }));
@@ -14,7 +18,7 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const article = ALL_ARTICLES.find((a) => a.slug === slug);
+  const article = (await allArticles()).find((a) => a.slug === slug);
   if (!article) return {};
   return {
     // Titre long : la marque sauterait dans la troncature de Google, on ne la répète pas.
@@ -36,8 +40,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 }
 
 /** Trois suggestions : la même rubrique d'abord, puis les plus récentes. */
-function suggestions(article: BlogArticle): BlogArticle[] {
-  const autres = ALL_ARTICLES.filter((a) => a.slug !== article.slug);
+function suggestions(article: BlogArticle, tous: BlogArticle[]): BlogArticle[] {
+  const autres = tous.filter((a) => a.slug !== article.slug);
   const memeRubrique = autres.filter((a) => a.categorie === article.categorie);
   return [...memeRubrique, ...autres.filter((a) => a.categorie !== article.categorie)].slice(0, 3);
 }
@@ -58,12 +62,13 @@ function suggestions(article: BlogArticle): BlogArticle[] {
    ============================================================================ */
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = ALL_ARTICLES.find((a) => a.slug === slug);
+  const tous = await allArticles();
+  const article = tous.find((a) => a.slug === slug);
   if (!article) return notFound();
 
   const note = article.bodyHtml ? preparerArticle(article.bodyHtml) : null;
   const sommaire = note?.sommaire.filter((e) => e.texte) ?? [];
-  const lire = suggestions(article);
+  const lire = suggestions(article, tous);
   const url = `https://www.archipiloterenovation.com/blog/${article.slug}`;
   const image = photoSrc(article.photo);
   // Photo en fond d'ouverture seulement s'il y en a une, et si ce n'est pas un schéma.

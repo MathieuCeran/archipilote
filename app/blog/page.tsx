@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { MqHero, MqSection, MqFig, MqReadNext } from "../components/mq";
 import { BlogGrid, type Fiche } from "./blog-grid";
-import { ALL_ARTICLES, photoSrc } from "../lib-articles";
+import { allArticles, photoSrc } from "../lib-articles";
 import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 export const generateMetadata = (): Promise<Metadata> => wwMetadata("/blog", {
@@ -11,7 +11,7 @@ export const generateMetadata = (): Promise<Metadata> => wwMetadata("/blog", {
     "Prix au m², matériaux, isolation, DPE : nos guides pratiques pour comprendre et réussir votre projet de rénovation en Île-de-France.",
 });
 
-const fiches: Fiche[] = ALL_ARTICLES.map((a) => ({
+const fichesDe = (articles: Awaited<ReturnType<typeof allArticles>>): Fiche[] => articles.map((a) => ({
   slug: a.slug,
   titre: a.titre,
   excerpt: a.excerpt,
@@ -23,7 +23,8 @@ const fiches: Fiche[] = ALL_ARTICLES.map((a) => ({
   schema: Boolean(a.schema),
 }));
 
-function BlogPage() {
+async function BlogPage() {
+  const fiches = fichesDe(await allArticles());
   return (
     <main>
       <MqHero

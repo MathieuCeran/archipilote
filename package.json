@@ -5,9 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
-    "whatswrong:sync": "node scripts/whatswrong-sync.mjs",
-    "whatswrong:dry": "node scripts/whatswrong-sync.mjs --dry-run"
+    "start": "next start"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
