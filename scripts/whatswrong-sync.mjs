@@ -52,7 +52,6 @@ const GENERATED_FILE = path.join(ROOT, "content/blog/generated.json");
 const STATE_FILE = path.join(ROOT, "content/blog/_whatswrong-state.json");
 const EDITORIAL_FILE = path.join(ROOT, "app/data.ts");
 const UPLOAD_DIR = path.join(ROOT, "public/uploads/whatswrong");
-const PAGES_FILE = path.join(ROOT, "content/whatswrong/pages.json");
 const UPLOAD_PUBLIC = "/uploads/whatswrong";
 
 const DEPLOY_TIMEOUT_MS = 15 * 60_000;
@@ -253,45 +252,12 @@ async function commitAndPush(message) {
   if (NO_PUSH) { log(`(push désactivé) commit prévu : ${message}`); return false; }
   await git("config", "user.name", "github-actions[bot]");
   await git("config", "user.email", "41898282+github-actions[bot]@users.noreply.github.com");
-  await git("add", "content/blog", "content/whatswrong", "public/uploads/whatswrong");
+  await git("add", "content/blog", "public/uploads/whatswrong");
   const staged = await git("diff", "--cached", "--name-only");
   if (!staged) { log("rien à commiter"); return false; }
   await git("commit", "-m", message);
   await git("push");
   log(`poussé : ${message}`);
-  return true;
-}
-
-/* ---------- Pages du site réécrites par Eli ---------- */
-
-/** Les pages publiées depuis WhatsWrong (« Publier sur mon site ») : leurs
-    changements texte par texte, copiés dans content/whatswrong/pages.json et
-    posés à l'affichage par lib/whatswrong-pages.tsx. Une page absente garde
-    son texte. Rend true quand le fichier a changé. */
-async function syncPages() {
-  const data = await whatswrong("GET", "/api/v1/eli/pages");
-  if (!Array.isArray(data?.pages)) {
-    warn("pages WhatsWrong : réponse sans liste « pages » — fichier conservé");
-    return false;
-  }
-  const validChanges = (c) =>
-    c !== null && typeof c === "object" && ["replace", "remove", "insert"].every((k) => Array.isArray(c[k]));
-  const pages = data.pages
-    .filter((p) => typeof p?.path === "string" && p.path.startsWith("/") && typeof p.title === "string")
-    .map((p) => ({
-      path: p.path,
-      title: p.title,
-      description: typeof p.description === "string" ? p.description : "",
-      changes: validChanges(p.changes) ? p.changes : null,
-      publishedAt: p.publishedAt,
-    }))
-    .sort((a, b) => a.path.localeCompare(b.path));
-  const next = `${JSON.stringify(pages, null, 2)}\n`;
-  const previous = existsSync(PAGES_FILE) ? await readFile(PAGES_FILE, "utf8") : "";
-  log(`pages : ${pages.length} publiée(s) — ${pages.map((p) => p.path).join(", ") || "aucune"}`);
-  if (next === previous || DRY_RUN) return false;
-  await mkdir(path.dirname(PAGES_FILE), { recursive: true });
-  await writeFile(PAGES_FILE, next);
   return true;
 }
 
@@ -322,10 +288,6 @@ async function main() {
     process.exit(1);
   }
   log(`Synchronisation WhatsWrong — site ${SITE_ORIGIN}${DRY_RUN ? " (essai à blanc)" : ""}`);
-
-  if (await syncPages()) {
-    await commitAndPush("content: pages WhatsWrong mises à jour");
-  }
 
   const { contents = [] } = await whatswrong("GET", "/api/v1/lea/blog-articles?states=DRAFT&limit=20");
   log(`${contents.length} article(s) à l'état DRAFT`);

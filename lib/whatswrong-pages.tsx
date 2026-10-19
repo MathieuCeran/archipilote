@@ -7,15 +7,14 @@ import {
   type ReactNode,
 } from "react";
 import { PageSection } from "@/app/components/page-kit";
-import pages from "@/content/whatswrong/pages.json";
 
 /* ============================================================================
    WHATSWRONG : LES PAGES RÉÉCRITES PAR ELI
 
    Quand une page est publiée depuis WhatsWrong (« Publier sur mon site »),
-   le site lit ses changements sur l'API au rendu (au plus une minute
-   après) ; sans clé ou si l'API ne répond pas, la copie de la
-   synchronisation horaire (content/whatswrong/pages.json). Ils arrivent
+   le site lit ses changements sur l'API au rendu : en ligne au plus une
+   minute après, sans synchro ni redéploiement ; si l'API ne répond pas,
+   la page garde son propre texte. Ils arrivent
    texte par texte : textes réécrits, retirés, blocs ajoutés à côté d'un
    texte ou d'une section. Ils sont posés ici dans l'arbre de la page, avant
    son rendu — dans les props des composants (titre, chapo, items…) comme
@@ -69,22 +68,22 @@ const REVALIDATE_SECONDS = 60;
 // Au-delà, le site n'attend pas : il affiche son propre texte.
 const TIMEOUT_MS = 2000;
 
-/* Les pages publiées, lues sur WhatsWrong au rendu ; sans clé, ou si
-   l'API ne répond pas, la copie de la synchronisation (pages.json). */
+/* Les pages publiées, lues sur WhatsWrong au rendu ; rien si la clé
+   manque ou si l'API ne répond pas : la page garde son propre texte. */
 async function publishedPages(): Promise<PageVersion[]> {
-  const key = process.env.WW_API_KEY;
-  if (!key) return pages as PageVersion[];
+  const key = process.env.WW_API_KEY || process.env.WHATSWRONG_API_KEY;
+  if (!key) return [];
   try {
     const res = await fetch("https://www.whatswrong.io/api/v1/eli/pages", {
       headers: { Authorization: `Bearer ${key}` },
       next: { revalidate: REVALIDATE_SECONDS },
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
-    if (!res.ok) return pages as PageVersion[];
+    if (!res.ok) return [];
     const data = (await res.json()) as { pages?: PageVersion[] };
-    return Array.isArray(data.pages) ? data.pages : (pages as PageVersion[]);
+    return Array.isArray(data.pages) ? data.pages : [];
   } catch {
-    return pages as PageVersion[];
+    return [];
   }
 }
 
