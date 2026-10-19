@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { permanentRedirect } from "next/navigation";
 import {
   cache,
   cloneElement,
@@ -73,20 +74,27 @@ const TIMEOUT_MS = 2000;
 
 /* Les pages publiées, lues sur WhatsWrong au rendu ; rien si la clé
    manque ou si l'API ne répond pas : la page garde son propre texte. */
-async function publishedPagesUncached(): Promise<PageVersion[]> {
+type Published = { pages: PageVersion[]; redirects: { from: string; to: string }[] };
+
+const NONE: Published = { pages: [], redirects: [] };
+
+async function publishedPagesUncached(): Promise<Published> {
   const key = process.env.WW_API_KEY || process.env.WHATSWRONG_API_KEY;
-  if (!key) return [];
+  if (!key) return NONE;
   try {
     const res = await fetch("https://www.whatswrong.io/api/v1/eli/pages", {
       headers: { Authorization: `Bearer ${key}` },
       next: { revalidate: REVALIDATE_SECONDS },
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
-    if (!res.ok) return [];
-    const data = (await res.json()) as { pages?: PageVersion[] };
-    return Array.isArray(data.pages) ? data.pages : [];
+    if (!res.ok) return NONE;
+    const data = (await res.json()) as Partial<Published>;
+    return {
+      pages: Array.isArray(data.pages) ? data.pages : [],
+      redirects: Array.isArray(data.redirects) ? data.redirects : [],
+    };
   } catch {
-    return [];
+    return NONE;
   }
 }
 
@@ -96,7 +104,13 @@ const publishedPages = cache(publishedPagesUncached);
 
 /** La version publiée d'une page (titre, description, texte), ou null. */
 export async function versionOf(path: string): Promise<PageVersion | null> {
-  return (await publishedPages()).find((page) => bare(page.path) === bare(path)) ?? null;
+  return (await publishedPages()).pages.find((page) => bare(page.path) === bare(path)) ?? null;
+}
+
+/** Une page fusionnée dans une autre depuis WhatsWrong redirige (301) vers elle. */
+async function redirectIfMerged(path: string): Promise<void> {
+  const merged = (await publishedPages()).redirects.find((r) => bare(r.from) === bare(path));
+  if (merged) permanentRedirect(merged.to);
 }
 
 /* Les props qui ne sont pas du texte affiché. */
@@ -305,6 +319,7 @@ export function withWw<P extends object>(
 ) {
   return async function WhatsWrongPage(props: P) {
     const path = typeof pathOf === "string" ? pathOf : await pathOf(props);
+    await redirectIfMerged(path);
     const changes = (await versionOf(path))?.changes ?? null;
     const tree = await Page(props);
     if (changes === null) return tree;
