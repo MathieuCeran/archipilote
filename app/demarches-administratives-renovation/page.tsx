@@ -31,7 +31,7 @@ const DESCRIPTION =
   "Autorisation travaux copropriété : quand saisir le syndic et l'assemblée générale, déclaration préalable ou permis en mairie, secteur ABF et calendrier.";
 const FIL = [{ nom: "Démarches administratives", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/demarches-administratives-renovation", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/demarches-administratives-renovation", {
   title: "Autorisation travaux copropriété : syndic, AG, mairie, ABF | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

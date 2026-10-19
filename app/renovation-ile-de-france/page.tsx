@@ -9,7 +9,7 @@ import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
    départements restent, sans lien. Le maillage ne renvoie plus qu'aux pages
    de travaux finales. */
 
-export const metadata: Metadata = wwMetadata("/renovation-ile-de-france", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/renovation-ile-de-france", {
   alternates: { canonical: "/renovation-ile-de-france" },
   // Doctrine V3 : page locale sans preuve locale reelle = noindex jusqu'a preuve documentee.
   robots: { index: false, follow: true },

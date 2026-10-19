@@ -34,7 +34,7 @@ const DESCRIPTION =
   "Rénovation électrique et mise aux normes NF C 15-100 : diagnostic, tableau électrique aux normes, circuits refaits avant les cloisons. Prix au m².";
 const FIL = [{ nom: "Rénovation électrique", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/renovation-electrique", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/renovation-electrique", {
   title: "Rénovation électrique : mise aux normes, tableau, prix au m² | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

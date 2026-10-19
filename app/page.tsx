@@ -42,7 +42,7 @@ import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 const DESCRIPTION =
   "Entreprise de rénovation à Paris et en Île-de-France : un seul interlocuteur, des devis d'entreprises comparables et un chantier piloté jusqu'à la réception.";
 
-export const metadata: Metadata = wwMetadata("/", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/", {
   title: "Entreprise de rénovation à Paris : un seul interlocuteur | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: "/" },

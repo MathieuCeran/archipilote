@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { LocalPage } from "../components/local-page";
 import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
-export const metadata: Metadata = wwMetadata("/renovation-nanterre", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/renovation-nanterre", {
   alternates: { canonical: "/renovation-nanterre" },
   // Doctrine V3 : page locale sans preuve locale reelle = noindex jusqu'a preuve documentee.
   robots: { index: false, follow: true },

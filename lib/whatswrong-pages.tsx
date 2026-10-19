@@ -13,8 +13,9 @@ import pages from "@/content/whatswrong/pages.json";
    WHATSWRONG : LES PAGES RÉÉCRITES PAR ELI
 
    Quand une page est publiée depuis WhatsWrong (« Publier sur mon site »),
-   la synchronisation horaire copie ses changements dans
-   content/whatswrong/pages.json (scripts/whatswrong-sync.mjs). Ils arrivent
+   le site lit ses changements sur l'API au rendu (au plus une minute
+   après) ; sans clé ou si l'API ne répond pas, la copie de la
+   synchronisation horaire (content/whatswrong/pages.json). Ils arrivent
    texte par texte : textes réécrits, retirés, blocs ajoutés à côté d'un
    texte ou d'une section. Ils sont posés ici dans l'arbre de la page, avant
    son rendu — dans les props des composants (titre, chapo, items…) comme
@@ -62,11 +63,33 @@ function bare(p: string): string {
   return p.replace(/\/+$/, "") || "/";
 }
 
-function versionOf(path: string): PageVersion | null {
-  return (
-    (pages as PageVersion[]).find((page) => bare(page.path) === bare(path)) ??
-    null
-  );
+// Une page publiée depuis WhatsWrong s'affiche au plus une minute après :
+// une lecture partagée par toutes les pages (cache de données de Next).
+const REVALIDATE_SECONDS = 60;
+// Au-delà, le site n'attend pas : il affiche son propre texte.
+const TIMEOUT_MS = 2000;
+
+/* Les pages publiées, lues sur WhatsWrong au rendu ; sans clé, ou si
+   l'API ne répond pas, la copie de la synchronisation (pages.json). */
+async function publishedPages(): Promise<PageVersion[]> {
+  const key = process.env.WW_API_KEY;
+  if (!key) return pages as PageVersion[];
+  try {
+    const res = await fetch("https://www.whatswrong.io/api/v1/eli/pages", {
+      headers: { Authorization: `Bearer ${key}` },
+      next: { revalidate: REVALIDATE_SECONDS },
+      signal: AbortSignal.timeout(TIMEOUT_MS),
+    });
+    if (!res.ok) return pages as PageVersion[];
+    const data = (await res.json()) as { pages?: PageVersion[] };
+    return Array.isArray(data.pages) ? data.pages : (pages as PageVersion[]);
+  } catch {
+    return pages as PageVersion[];
+  }
+}
+
+async function versionOf(path: string): Promise<PageVersion | null> {
+  return (await publishedPages()).find((page) => bare(page.path) === bare(path)) ?? null;
 }
 
 /* Les props qui ne sont pas du texte affiché. */
@@ -268,8 +291,8 @@ class Overlay {
  * une : `export default withWw("/chemin", Page)`.
  */
 export function withWw<P extends object>(path: string, Page: (props: P) => ReactNode) {
-  return function WhatsWrongPage(props: P) {
-    const changes = versionOf(path)?.changes ?? null;
+  return async function WhatsWrongPage(props: P) {
+    const changes = (await versionOf(path))?.changes ?? null;
     const tree = Page(props);
     if (changes === null) return tree;
     const overlay = new Overlay(changes);
@@ -282,8 +305,8 @@ export function withWw<P extends object>(path: string, Page: (props: P) => React
 }
 
 /** Le titre et la description publiés depuis WhatsWrong, sinon ceux du site. */
-export function wwMetadata(path: string, metadata: Metadata): Metadata {
-  const version = versionOf(path);
+export async function wwMetadata(path: string, metadata: Metadata): Promise<Metadata> {
+  const version = await versionOf(path);
   if (version === null) return metadata;
   return {
     ...metadata,

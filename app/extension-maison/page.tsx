@@ -30,7 +30,7 @@ const DESCRIPTION =
   "Extension de maison : PLU, déclaration préalable ou permis de construire, fondations, raccord avec l'existant. Un agrandissement piloté jusqu'à la réception.";
 const FIL = [{ nom: "Extension de maison", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/extension-maison", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/extension-maison", {
   title: "Extension maison : PLU, permis, raccord et étapes | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

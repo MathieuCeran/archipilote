@@ -5,7 +5,7 @@ import { PageHero, PageSection } from "../components/page-kit";
 import { SITE } from "../data";
 import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
-export const metadata: Metadata = wwMetadata("/mentions-legales", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/mentions-legales", {
   alternates: { canonical: "/mentions-legales" },
   title: "Mentions légales — ARCHI PILOTE RÉNOVATION",
   description: "Mentions légales d'ARCHI PILOTE RÉNOVATION, piloté par IA RENOV (SASU) : éditeur, siège, RCS, hébergement, propriété intellectuelle et données personnelles.",

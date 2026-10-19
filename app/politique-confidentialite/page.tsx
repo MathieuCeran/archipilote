@@ -6,7 +6,7 @@ import { SITE } from "../data";
 import { ReinitialiserCookies } from "../components/google-ads";
 import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
-export const metadata: Metadata = wwMetadata("/politique-confidentialite", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/politique-confidentialite", {
   alternates: { canonical: "/politique-confidentialite" },
   title: "Politique de confidentialité — ARCHI PILOTE RÉNOVATION",
   description: "Données collectées, finalités, durée de conservation, transferts hors Union européenne et droits RGPD des visiteurs et prospects.",

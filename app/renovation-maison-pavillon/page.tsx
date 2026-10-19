@@ -33,7 +33,7 @@ const DESCRIPTION =
   "Rénovation de maison en Île-de-France : lecture du bâti du sol au toit, devis d'entreprises comparables, chantier piloté jusqu'à la réception. Prix au m².";
 const FIL = [{ nom: "Rénovation de maison", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/renovation-maison-pavillon", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/renovation-maison-pavillon", {
   title: "Rénovation maison : prix au m², étapes, toiture et isolation | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

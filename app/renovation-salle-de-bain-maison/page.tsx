@@ -33,7 +33,7 @@ const DESCRIPTION =
   "Rénovation de salle de bain à Paris : étanchéité sous carrelage, pentes, ventilation et réseaux vérifiés avant la faïence. Prix au m², étapes et chantier piloté.";
 const FIL = [{ nom: "Rénovation de salle de bain", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/renovation-salle-de-bain-maison", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/renovation-salle-de-bain-maison", {
   title: "Rénovation salle de bain Paris : étanchéité, prix, étapes | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

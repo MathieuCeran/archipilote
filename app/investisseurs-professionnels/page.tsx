@@ -33,7 +33,7 @@ const DESCRIPTION =
   "Rénovation d'appartement en investissement locatif : travaux chiffrés avant l'achat, scénarios selon le rendement visé, chantier piloté à distance en Île-de-France.";
 const FIL = [{ nom: "Investissement locatif", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/investisseurs-professionnels", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/investisseurs-professionnels", {
   title: "Rénovation investissement locatif : chiffrer avant d'acheter | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

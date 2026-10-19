@@ -16,7 +16,7 @@ const DESCRIPTION =
   "Estimateur de travaux de rénovation : une fourchette de budget en une minute selon la surface, le niveau de travaux, le bien et les options, en Île-de-France.";
 const FIL = [{ nom: "Estimateur de travaux", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/estimateur-travaux", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/estimateur-travaux", {
   title: "Estimateur de travaux : budget de rénovation en une minute | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

@@ -16,7 +16,7 @@ const DESCRIPTION =
   "Glossaire de la rénovation : une cinquantaine de termes du bâtiment expliqués simplement, par thème : structure, second œuvre, énergie, démarches, devis.";
 const FIL = [{ nom: "Glossaire de la rénovation", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/glossaire-renovation", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/glossaire-renovation", {
   title: "Glossaire de la rénovation : le vocabulaire du bâtiment | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

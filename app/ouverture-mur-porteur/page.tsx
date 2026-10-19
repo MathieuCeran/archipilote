@@ -32,7 +32,7 @@ const DESCRIPTION =
   "Ouverture de mur porteur : étude de structure, étaiement, poutre de reprise IPN ou HEB, vote de copropriété. Prix indicatif : 3 000 à 9 000 € par ouverture.";
 const FIL = [{ nom: "Ouverture de mur porteur", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/ouverture-mur-porteur", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/ouverture-mur-porteur", {
   title: "Ouverture mur porteur : étude, étaiement, prix | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

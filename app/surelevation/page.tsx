@@ -32,7 +32,7 @@ const DESCRIPTION =
   "Surélévation de maison : étude de la structure existante, permis de construire, ossature bois ou maçonnerie, coût des travaux et étapes, en Île-de-France.";
 const FIL = [{ nom: "Surélévation de maison", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/surelevation", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/surelevation", {
   title: "Surélévation maison : faisabilité, prix, étapes | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

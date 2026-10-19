@@ -34,7 +34,7 @@ const DESCRIPTION =
   "Rénovation tous corps d'état à Paris : un seul interlocuteur, 8 corps de métier coordonnés, des devis comparables et un chantier suivi jusqu'à la réception.";
 const FIL = [{ nom: "Rénovation complète", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/renovation-complete", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/renovation-complete", {
   title: "Rénovation tous corps d'état : un seul interlocuteur | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

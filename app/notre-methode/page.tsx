@@ -35,7 +35,7 @@ const DESCRIPTION =
   "Pilotage de chantier rénovation à Paris et en Île-de-France : visite technique, devis comparables, contrôles avant fermeture et photos datées chaque jour.";
 const FIL = [{ nom: "Notre méthode", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/notre-methode", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/notre-methode", {
   title: "Pilotage de chantier rénovation : méthode, rôles, garanties | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

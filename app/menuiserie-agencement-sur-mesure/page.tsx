@@ -31,7 +31,7 @@ const DESCRIPTION =
   "Agencement sur mesure à Paris : dressings, bibliothèques, placards et rangements dessinés sur le relevé réel, posés par des menuisiers partenaires.";
 const FIL = [{ nom: "Agencement sur mesure", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/menuiserie-agencement-sur-mesure", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/menuiserie-agencement-sur-mesure", {
   title: "Agencement sur mesure Paris : dressing, bibliothèque, placard | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

@@ -33,7 +33,7 @@ const DESCRIPTION =
   "Prix rénovation m² en Île-de-France : de 250 à 2 500 €/m² selon le niveau de travaux, et fourchettes par poste (plomberie, électricité, carrelage, mur porteur).";
 const FIL = [{ nom: "Prix de la rénovation au m²", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/observatoire-prix-renovation", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/observatoire-prix-renovation", {
   title: "Prix rénovation m² : fourchettes par niveau et par poste | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

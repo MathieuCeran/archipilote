@@ -15,7 +15,7 @@ const DESCRIPTION =
   "Questions fréquentes sur la rénovation : rôle du pilote, devis et prix, structure, second œuvre, rénovation énergétique, copropriété et déroulement du chantier.";
 const FIL = [{ nom: "Questions fréquentes", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/faq", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/faq", {
   title: "Questions fréquentes sur la rénovation | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

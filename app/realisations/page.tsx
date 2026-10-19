@@ -33,7 +33,7 @@ const DESCRIPTION =
   "Réalisations rénovation appartement à Paris et en Île-de-France : photos de chantiers réels, appartement haussmannien, menuiserie sur mesure, avant/après.";
 const FIL = [{ nom: "Réalisations", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/realisations", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/realisations", {
   title: "Réalisations rénovation appartement : photos de chantiers réels | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

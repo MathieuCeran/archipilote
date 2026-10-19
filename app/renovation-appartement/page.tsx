@@ -33,7 +33,7 @@ const DESCRIPTION =
   "Rénovation d'appartement à Paris : prix au m², étapes, copropriété. Visite technique, devis d'entreprises comparables, chantier piloté jusqu'à la réception.";
 const FIL = [{ nom: "Rénovation d'appartement", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/renovation-appartement", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/renovation-appartement", {
   title: "Rénovation appartement Paris : prix au m², étapes, copropriété | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

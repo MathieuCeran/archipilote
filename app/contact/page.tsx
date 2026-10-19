@@ -15,7 +15,7 @@ const DESCRIPTION =
   "Décrivez votre projet de rénovation : commune, type de travaux, surface et budget. Première lecture et budget indicatif sous 48 h ouvrées, sans engagement.";
 const FIL = [{ nom: "Contact", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/contact", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/contact", {
   title: "Contact : étude de projet sans engagement sous 48 h ouvrées | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

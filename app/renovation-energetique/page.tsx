@@ -33,7 +33,7 @@ const DESCRIPTION =
   "Rénovation énergétique : isolation thermique, VMC et chauffage dans le bon ordre pour sortir d'un DPE F ou G. Aides 2026, prix indicatifs et étapes.";
 const FIL = [{ nom: "Rénovation énergétique", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/renovation-energetique", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/renovation-energetique", {
   title: "Rénovation énergétique : ordre des travaux, aides 2026, prix | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

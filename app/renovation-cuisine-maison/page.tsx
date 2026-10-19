@@ -32,7 +32,7 @@ const DESCRIPTION =
   "Rénovation de cuisine à Paris : implantation, réseaux et ventilation calés avant les meubles, façades sur mesure sur caissons standards. Prix et étapes.";
 const FIL = [{ nom: "Rénovation de cuisine", href: CHEMIN }];
 
-export const metadata: Metadata = wwMetadata("/renovation-cuisine-maison", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/renovation-cuisine-maison", {
   title: "Rénovation cuisine Paris : implantation, réseaux, prix | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },

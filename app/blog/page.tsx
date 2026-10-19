@@ -4,7 +4,7 @@ import { BlogGrid, type Fiche } from "./blog-grid";
 import { ALL_ARTICLES, photoSrc } from "../lib-articles";
 import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
-export const metadata: Metadata = wwMetadata("/blog", {
+export const generateMetadata = (): Promise<Metadata> => wwMetadata("/blog", {
   alternates: { canonical: "/blog" },
   title: "Magazine de la rénovation | ARCHI PILOTE RÉNOVATION",
   description:
