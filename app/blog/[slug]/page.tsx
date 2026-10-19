@@ -7,6 +7,7 @@ import { CtaFinal } from "../../components/cta-final";
 import { preparerArticle } from "../article-html";
 import { SommaireSuivi, BarreLecture } from "./suivi-lecture";
 import { BarreProjet } from "./barre-projet";
+import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 
 // Les articles connus au build sont pré-rendus ; un nouvel article de
 // WhatsWrong (lu en direct) est rendu à sa première visite.
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const article = (await allArticles()).find((a) => a.slug === slug);
   if (!article) return {};
-  return {
+  return wwMetadata(`/blog/${slug}`, {
     // Titre long : la marque sauterait dans la troncature de Google, on ne la répète pas.
     title: article.titre.length > 45 ? article.titre : `${article.titre} — ARCHI PILOTE RÉNOVATION`,
     description: article.excerpt,
@@ -36,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       publishedTime: article.dateISO,
       images: [{ url: photoSrc(article.photo) || "/og.jpg" }],
     },
-  };
+  });
 }
 
 /** Trois suggestions : la même rubrique d'abord, puis les plus récentes. */
@@ -60,7 +61,7 @@ function suggestions(article: BlogArticle, tous: BlogArticle[]): BlogArticle[] {
    centrée, sans repère. Le cartouche existe désormais partout ; seul le
    sommaire dépend des intertitres.
    ============================================================================ */
-export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
+async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
   const tous = await allArticles();
   const article = tous.find((a) => a.slug === slug);
@@ -231,3 +232,5 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     </main>
   );
 }
+
+export default withWw(async ({ params }: { params: Promise<{ slug: string }> }) => `/blog/${(await params).slug}`, ArticlePage);

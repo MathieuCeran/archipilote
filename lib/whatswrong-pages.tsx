@@ -287,13 +287,16 @@ class Overlay {
 
 /**
  * Une page du site avec sa version publiée depuis WhatsWrong, s'il y en a
- * une : `export default withWw("/chemin", Page)`.
+ * une : `export default withWw("/chemin", Page)`. Pour une route dynamique,
+ * le chemin se calcule depuis ses props :
+ * `withWw(async ({ params }) => `/blog/${(await params).slug}`, Page)`.
  */
 export function withWw<P extends object>(
-  path: string,
+  pathOf: string | ((props: P) => string | Promise<string>),
   Page: (props: P) => ReactNode | Promise<ReactNode>,
 ) {
   return async function WhatsWrongPage(props: P) {
+    const path = typeof pathOf === "string" ? pathOf : await pathOf(props);
     const changes = (await versionOf(path))?.changes ?? null;
     const tree = await Page(props);
     if (changes === null) return tree;
