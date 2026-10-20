@@ -232,18 +232,27 @@ class Overlay {
     return value;
   }
 
-  /** Les ajouts ancrés sur l'un des textes de cet élément. */
+  /** Les ajouts ancrés sur l'un des textes de cet élément, posés une seule
+      fois : un texte présent deux fois (une légende aussi en texte
+      alternatif) ne double pas l'ajout. */
   private anchored(element: ReactElement<Record<string, unknown>>): Changes["insert"] {
     const keys = new Set<string>();
-    if (typeof element.type === "string" && isPhrase(element.props.children as ReactNode)) {
-      keys.add(wwKey(textOf(element)));
-    }
-    for (const [name, value] of Object.entries(element.props)) {
-      if (!NOT_TEXT.has(name) && typeof value === "string") keys.add(wwKey(value));
+    if (typeof element.type === "string") {
+      // Le texte affiché, jamais un attribut (alt, title) ; une légende
+      // ancre sa figure entière : l'ajout se pose après l'image, pas dedans.
+      if (element.type === "figure") keys.add(wwKey(textOf(element)));
+      else if (element.type !== "figcaption" && isPhrase(element.props.children as ReactNode)) {
+        keys.add(wwKey(textOf(element)));
+      }
+    } else {
+      for (const [name, value] of Object.entries(element.props)) {
+        if (!NOT_TEXT.has(name) && typeof value === "string") keys.add(wwKey(value));
+      }
     }
     return [...keys].flatMap((key) => {
       const found = this.inserts.get(key) ?? [];
-      if (found.length > 0) this.missed.delete(key);
+      this.inserts.delete(key);
+      this.missed.delete(key);
       return found;
     });
   }

@@ -45,14 +45,23 @@ export function minutesDeLecture(texte: string): number {
   return Math.max(1, Math.round(mots / 230));
 }
 
-/** Une liste qui ne contient QUE des liens d'ancre est un sommaire. */
-function estSommaire(ulInterieur: string): boolean {
+/** Une liste qui ne contient QUE des liens d'ancre, ou QUE les intertitres
+    de l'article recopiés en texte, est un sommaire. */
+function estSommaire(ulInterieur: string, intertitres: Set<string>): boolean {
   const items = [...ulInterieur.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)].map((m) => m[1].trim());
-  return items.length > 0 && items.every((li) => /^<a\b[^>]*href="#[^"]*"[^>]*>[\s\S]*?<\/a>$/i.test(li));
+  return (
+    items.length > 0 &&
+    items.every(
+      (li) => /^<a\b[^>]*href="#[^"]*"[^>]*>[\s\S]*?<\/a>$/i.test(li) || intertitres.has(texteBrut(li)),
+    )
+  );
 }
 
 export function preparerArticle(source: string): { html: string; sommaire: Entree[]; faq: Question[] } {
   let html = source;
+  const intertitres = new Set(
+    [...source.matchAll(/<h2[^>]*>([\s\S]*?)<\/h2>/gi)].map((m) => texteBrut(m[1])),
+  );
 
   // 1. Ancien sommaire Sedestral : « <h2>Sommaire</h2><ul>…</ul> ».
   html = html.replace(/<h2[^>]*>\s*Sommaire\s*<\/h2>\s*<ul[^>]*>[\s\S]*?<\/ul>/i, "");
@@ -65,7 +74,7 @@ export function preparerArticle(source: string): { html: string; sommaire: Entre
       const gardes = [...items.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li>/gi)]
         .map((m) => m[1].trim())
         .filter((li) => !/^<a\b[^>]*href="#[^"]*"[^>]*>[\s\S]*?<\/a>$/i.test(li));
-      const reste = suite && suiteItems !== undefined && !estSommaire(suiteItems) ? suite : "";
+      const reste = suite && suiteItems !== undefined && !estSommaire(suiteItems, intertitres) ? suite : "";
       return `<aside class="note-essentiel"><p class="note-essentiel-titre">${titre}</p><ul>${gardes
         .map((li) => `<li>${li}</li>`)
         .join("")}</ul></aside>${reste}`;
@@ -73,7 +82,7 @@ export function preparerArticle(source: string): { html: string; sommaire: Entre
   );
 
   // 3. Toute autre liste faite uniquement de liens d'ancre est un sommaire : dehors.
-  html = html.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, (m, interieur: string) => (estSommaire(interieur) ? "" : m));
+  html = html.replace(/<ul[^>]*>([\s\S]*?)<\/ul>/gi, (m, interieur: string) => (estSommaire(interieur, intertitres) ? "" : m));
 
   // 4. Les h2 : un id chacun, et le sommaire se construit dessus.
   const sommaire: Entree[] = [];
