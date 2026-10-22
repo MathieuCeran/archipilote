@@ -80,7 +80,11 @@ export function PiedRefonte() {
             ·{" "}
             <Link href="/ai-instruction" style={{ fontSize: "inherit" }}>
               AI instructions
-            </Link>
+            </Link>{" "}
+            · Site conçu par{" "}
+            <a href="https://ajdstudio.fr/" style={{ fontSize: "inherit" }}>
+              ajd.studio
+            </a>
           </p>
         </div>
       </div>
