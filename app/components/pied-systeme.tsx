@@ -76,6 +76,10 @@ export function PiedRefonte() {
             ·{" "}
             <Link href="/politique-confidentialite" style={{ fontSize: "inherit" }}>
               Confidentialité
+            </Link>{" "}
+            ·{" "}
+            <Link href="/ai-instruction" style={{ fontSize: "inherit" }}>
+              AI instructions
             </Link>
           </p>
         </div>
