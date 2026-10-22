@@ -158,7 +158,8 @@ function Page() {
         <p>
           Exemple d'un dossier réel : pour une ouverture de 2,55 m entre un dégagement et un séjour, le bureau d'études a
           fixé un portique acier (poutre IPE180 sur poteaux IPE160), des platines de 10 mm et quatre boulons M12 par
-          platine, avant toute demande de devis.
+          platine, avant toute demande de devis.{" "}
+          <Link href="/etudes-de-cas-structure">Voir ce dossier et une création de trémie, étape par étape</Link>.
         </p>
       </PageSection>
 

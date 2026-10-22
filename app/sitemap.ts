@@ -16,6 +16,7 @@ const STATIC_PATHS = [
   "/renovation-electrique",
   "/renovation-energetique",
   "/ouverture-mur-porteur",
+  "/etudes-de-cas-structure",
   "/surelevation",
   "/extension-maison",
   "/menuiserie-agencement-sur-mesure",
