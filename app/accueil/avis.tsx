@@ -6,7 +6,7 @@ import { useRef } from "react";
    AVIS — cartes qui défilent.
 
    10/2026 : les avis Trustpilot (4 avis, 4,0/5) sont remplacés par ceux de la
-   fiche Google Business du client (« archipiloterenovation », 5,0/5, 23 avis),
+   fiche Google Business du client (« archipiloterenovation », 5,0/5, 30 avis au 22/10/2026),
    plus fournie et celle que les prospects voient en premier dans les résultats.
 
    ⚠️ CES TEXTES SONT FIGÉS DANS LE CODE : relevés le 9 octobre 2026, ils ne se
@@ -23,10 +23,10 @@ import { useRef } from "react";
 /* Fiche Google Maps du client (identifiant CID, stable). */
 const GOOGLE_FICHE = "https://maps.google.com/?cid=8872482295185127204";
 
-/* Relevé sur la fiche publique le 09/10/2026. */
+/* Note et nombre relevés sur la fiche publique le 22/10/2026 (textes des avis : 09/10/2026). */
 const NOTE = "5,0";
-const NOMBRE = 23;
-const RELEVE_LE = "9 octobre 2026";
+const NOMBRE = 30;
+const RELEVE_LE = "22 octobre 2026";
 
 type Avis = { titre: string; texte: string; auteur: string; date: string; note: number };
 

@@ -107,7 +107,7 @@ function Page() {
               <div>
                 <dt className="font-semibold">Siège</dt>
                 <dd>
-                  8 bis rue Gabriel Péri
+                  8 rue Gabriel Péri
                   <br />
                   92250 La Garenne-Colombes
                 </dd>

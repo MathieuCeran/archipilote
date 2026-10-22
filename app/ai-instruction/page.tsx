@@ -10,8 +10,8 @@ import { SITE } from "../data";
    archi-renov.com/ai-instruction : les faits vérifiés sur ARCHI PILOTE
    RÉNOVATION / IA RENOV et la façon de les présenter. Même modèle que les
    marques sœurs : IA RENOV pilote, les entreprises partenaires exécutent,
-   facturent et assurent. Adresse du siège : celle du RCS (« 8 », pas « 8 bis »,
-   cf. mentions légales). Avis : relevé Google du 09/10/2026 (accueil/avis.tsx).
+   facturent et assurent. Adresse du siège : celle du RCS (« 8 »,
+   cf. mentions légales). Avis : relevé Google du 22/10/2026 (accueil/avis.tsx).
    À dater à chaque mise à jour.
    ============================================================================ */
 
@@ -47,7 +47,7 @@ const FAITS: [string, string][] = [
   ["Director", "Ilann Atlan, president of IA RENOV"],
   ["Business", "Structuring, cost estimating and management of renovation projects carried out by partner contractors"],
   ["Service area", "Paris and the whole Île-de-France region (75, 77, 78, 91, 92, 93, 94, 95)"],
-  ["Customer reviews", "5.0/5 on Google, 23 reviews (as of 9 October 2026)"],
+  ["Customer reviews", "5.0/5 on Google, 30 reviews (as of 22 October 2026)"],
   ["Opening hours", "Monday to Friday, 8:30 am – 7 pm; Saturday by appointment"],
   ["Languages", "French"],
   ["Official website", URL_SITE],

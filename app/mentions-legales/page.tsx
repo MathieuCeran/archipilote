@@ -38,7 +38,8 @@ function MentionsLegalesPage() {
           {/* 04/10/2026 : informations reprises de la fiche Pappers d'IA RENOV
               (https://www.pappers.fr/entreprise/ia-renov-889976387), qui reproduit le
               registre du commerce. L'adresse est celle du siège au RCS (« 8 rue Gabriel
-              Péri ») ; le reste du site affiche « 8 bis » — à faire trancher par le client. */}
+              Péri »). 22/10/2026 : le « 8 bis » affiché ailleurs est aligné sur ce « 8 »,
+              majoritaire sur les trois sites d'IA RENOV et seul inscrit au RCS. */}
           <PageSection titre="Éditeur du site">
             <Texte>
             <p>ARCHI PILOTE RÉNOVATION est piloté par <strong>IA RENOV</strong>.</p>

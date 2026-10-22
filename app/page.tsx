@@ -193,7 +193,7 @@ const JSON_LD = [
     email: "archipiloterenovation@gmail.com",
     address: {
       "@type": "PostalAddress",
-      streetAddress: "8 bis rue Gabriel Péri",
+      streetAddress: "8 rue Gabriel Péri",
       postalCode: "92250",
       addressLocality: "La Garenne-Colombes",
       addressRegion: "Île-de-France",
