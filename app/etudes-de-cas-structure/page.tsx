@@ -27,11 +27,11 @@ import {
 const CHEMIN = "/etudes-de-cas-structure";
 const TITRE = "Reprise de structure : deux dossiers pilotés de A à Z";
 const DESCRIPTION =
-  "Mur à pans de bois ouvert par un portique acier, trémie d'escalier de 3,50 × 3,20 m dans une dalle béton : qui diagnostique, qui calcule, qui exécute, et ce que vérifie le pilote, sur deux chantiers à Paris 16e.";
+  "Mur à pans de bois ouvert par un portique acier, trémie d'escalier dans une dalle béton : qui calcule, qui exécute, ce que vérifie le pilote (Paris 16e).";
 const FIL = [{ nom: "Études de cas structure", href: CHEMIN }];
 
 export const metadata: Metadata = {
-  title: "Reprise de structure : deux études de cas pilotées | ARCHI PILOTE RÉNOVATION",
+  title: "Reprise de structure : deux études de cas pilotées",
   description: DESCRIPTION,
   alternates: { canonical: CHEMIN },
   openGraph: {

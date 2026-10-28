@@ -7,9 +7,28 @@
    partenaires contractent directement avec le client.
    ============================================================ */
 
+/** Le fondateur (EEAT) : une personne identifiable, reliée à l'entreprise et à ses pages sur les autres marques. */
+export const FONDATEUR = {
+  nom: "Ilann Atlan",
+  fonction: "Fondateur et président d’IA RENOV",
+  photo: "/photos/equipe/ilann-atlan-portrait.jpg",
+  page: "/qui-sommes-nous",
+} as const;
+
+export const FONDATEUR_LD = {
+  "@type": "Person",
+  "@id": "https://www.archipiloterenovation.com/#ilann-atlan",
+  name: FONDATEUR.nom,
+  jobTitle: FONDATEUR.fonction,
+  image: `https://www.archipiloterenovation.com${FONDATEUR.photo}`,
+  url: `https://www.archipiloterenovation.com${FONDATEUR.page}`,
+  worksFor: { "@id": "https://www.archipiloterenovation.com/#organization" },
+  sameAs: ["https://www.archi-renov.com/a-propos-ia-renov-ilann-atlan/", "https://www.renovinterieurs.fr/a-propos"],
+} as const;
+
 export const SITE = {
   nom: "ARCHI PILOTE RÉNOVATION",
-  baseline: "Rénovation tous corps d'état — Île-de-France",
+  baseline: "Pilotage de rénovation tous corps d'état — Île-de-France",
   zone: "Île-de-France",
   structure: "ARCHI PILOTE RÉNOVATION est piloté par IA RENOV (SASU), RCS 889 976 387 Nanterre, 8 rue Gabriel Péri, 92250 La Garenne-Colombes.",
   tel: "+33 6 67 11 79 75",

@@ -4,10 +4,12 @@ import { Tirage } from "../../components/tirage";
 import { notFound } from "next/navigation";
 import { ALL_ARTICLES, allArticles, photoSrc, type BlogArticle } from "../../lib-articles";
 import { CtaFinal } from "../../components/cta-final";
+import { FONDATEUR } from "../../data";
 import { preparerArticle } from "../article-html";
 import { SommaireSuivi, BarreLecture } from "./suivi-lecture";
 import { BarreProjet } from "./barre-projet";
 import { versionOf, withWw, wwMetadata } from "@/lib/whatswrong-pages";
+import { fondFlou, horsCadre } from "@/lib/image-size";
 
 // Les articles connus au build sont pré-rendus ; un nouvel article de
 // WhatsWrong (lu en direct) est rendu à sa première visite.
@@ -95,7 +97,7 @@ async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
       ...(image ? { image } : {}),
       url,
       timeRequired: `PT${article.minutes}M`,
-      author: { "@type": "Organization", name: "ARCHI PILOTE RÉNOVATION", "@id": "https://www.archipiloterenovation.com/#organization" },
+      author: { "@type": "Person", name: FONDATEUR.nom, "@id": "https://www.archipiloterenovation.com/#ilann-atlan", url: `https://www.archipiloterenovation.com${FONDATEUR.page}` },
       publisher: { "@id": "https://www.archipiloterenovation.com/#organization" },
     },
   ];
@@ -169,6 +171,12 @@ async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
               <dd>{article.categorie}</dd>
             </div>
             <div>
+              <dt>Auteur</dt>
+              <dd>
+                <Link href={FONDATEUR.page}>{FONDATEUR.nom}</Link>
+              </dd>
+            </div>
+            <div>
               <dt>Publié le</dt>
               <dd>
                 <time dateTime={article.dateISO}>{article.date}</time>
@@ -219,8 +227,11 @@ async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
               {lire.map((a) => (
                 <li key={a.slug}>
                   <Link href={`/blog/${a.slug}`} className="note-carte">
-                    <span className={`note-carte-image${photoSrc(a.photo) ? "" : " is-vide"}`}>
-                      {photoSrc(a.photo) && <img src={photoSrc(a.photo)} alt="" loading="lazy" className={a.schema ? "is-schema" : undefined} />}
+                    <span
+                      className={`note-carte-image${photoSrc(a.photo) ? "" : " is-vide"}${!a.schema && horsCadre(photoSrc(a.photo), 3 / 2) ? " cadre-flou" : ""}`}
+                      style={photoSrc(a.photo) ? fondFlou(photoSrc(a.photo)!) : undefined}
+                    >
+                      {photoSrc(a.photo) && <img src={photoSrc(a.photo)} alt={a.titre} loading="lazy" className={a.schema ? "is-schema" : undefined} />}
                     </span>
                     <span className="note-carte-rubrique">{a.categorie}</span>
                     <span className="note-carte-titre">{a.titre}</span>

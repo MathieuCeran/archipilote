@@ -81,13 +81,22 @@ function MentionsLegalesPage() {
             </Texte>
           </PageSection>
 
+          <PageSection titre="Conception et réalisation du site">
+            <Texte>
+            <p>
+              AJD Studio (entreprise individuelle) — SIREN 532 735 990, RCS Bourg-en-Bresse —{" "}
+              <a href="https://ajdstudio.fr/" target="_blank" rel="noreferrer">ajdstudio.fr</a>.
+            </p>
+            </Texte>
+          </PageSection>
+
           <PageSection titre="Propriété intellectuelle">
             <Texte>
             <p>
               L&apos;ensemble des éléments de ce site (textes, structure, charte graphique) est protégé au titre du
               droit d&apos;auteur. Les photographies présentées comme chantiers réels et légendées « chantier réel des
-              équipes partenaires » proviennent de projets effectivement pilotés par les équipes partenaires du
-              groupe. Les autres visuels (schémas explicatifs, références de style, photographies de niveau de
+              équipes partenaires » proviennent de chantiers effectivement pilotés par ARCHI PILOTE RÉNOVATION et réalisés par des
+              entreprises partenaires. Les autres visuels (schémas explicatifs, références de style, photographies de niveau de
               finition) sont des illustrations et sont signalés comme tels sur les pages concernées.
             </p>
             </Texte>
@@ -97,8 +106,9 @@ function MentionsLegalesPage() {
             <Texte>
             <p>
               Les informations transmises via le formulaire de contact de ce site sont utilisées
-              uniquement pour traiter votre demande de projet. Ce site ne dépose aucun cookie de mesure d&apos;audience
-              ni de publicité. Conformément au RGPD, vous disposez d&apos;un droit d&apos;accès, de rectification,
+              uniquement pour traiter votre demande de projet. Les cookies Google Ads, qui mesurent l&apos;efficacité de nos
+              annonces, ne sont déposés qu&apos;avec votre accord, donné ou refusé dans le bandeau affiché à la première
+              visite ; aucun autre cookie de mesure d&apos;audience n&apos;est utilisé. Conformément au RGPD, vous disposez d&apos;un droit d&apos;accès, de rectification,
               d&apos;effacement, de limitation et d&apos;opposition sur vos données, ainsi que d&apos;un droit de réclamation
               auprès de la CNIL. Le détail des données collectées, des durées de conservation et des modalités
               d&apos;exercice de ces droits figure dans la{" "}

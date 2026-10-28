@@ -27,7 +27,7 @@ function HeroBackdrop() {
         src={PHOTOS.heroHaussmannien}
         srcSet={srcSetOf(PHOTOS.heroHaussmannien)}
         sizes="100vw"
-        alt=""
+        alt="Pièce en chantier avec étais métalliques sous le plafond et gravats au sol"
         aria-hidden
         fetchPriority="high"
         className="absolute inset-0 size-full object-cover object-[center_38%]"
@@ -63,7 +63,7 @@ export function Hero() {
               <span className="absolute inline-flex size-full rounded-full bg-orange opacity-70 animate-ping" />
               <span className="relative inline-flex size-2 rounded-full bg-orange" />
             </span>
-            <span className="t-micro sm:t-mini text-white/85">Travaux de rénovation tous corps d&apos;état — Île-de-France</span>
+            <span className="t-micro sm:t-mini text-white/85">Pilotage de rénovation tous corps d&apos;état — Île-de-France</span>
           </motion.div>
 
           <WordReveal
@@ -96,7 +96,7 @@ export function Hero() {
               </Link>
             </motion.div>
             <motion.div initial={{ opacity: 0, filter: "blur(10px)", scale: 0.9 }} animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }} transition={{ duration: 1, delay: 1.2, ease: EASE }}>
-              <Link href="/realisations" className="btn btn-ghost !text-white !border-white/90 hover:!bg-white hover:!text-orange-deep">Voir les réalisations</Link>
+              <Link href="/realisations" className="btn btn-ghost !text-white !border-white/90 hover:!bg-white hover:!text-orange-deep">Voir les projets pilotés</Link>
             </motion.div>
           </div>
 

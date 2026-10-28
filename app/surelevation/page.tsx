@@ -83,7 +83,7 @@ function Page() {
       <PageHero
         fil={FIL}
         titre="Surélévation de maison : gagner un étage sans quitter son terrain"
-        chapo="Une surélévation pose d'abord une question de structure : votre maison peut-elle porter un étage de plus ? Nous faisons vérifier la faisabilité, préparons le permis de construire, puis pilotons le chantier jusqu'à la livraison."
+        chapo="Une surélévation pose d'abord une question de structure : votre maison peut-elle porter un étage de plus ? Nous faisons vérifier la faisabilité, préparons le permis de construire, puis pilotons le chantier jusqu'à la réception."
         image="/photos/chantiers/chCharpenteMaisonEchafaudage.jpeg"
         alt="Maison en pierre sous échafaudage : nouvelle charpente bois et deux lucarnes en panneaux OSB montées au-dessus des murs existants"
       />
@@ -104,7 +104,7 @@ function Page() {
         <p>
           Si vous disposez de combles aménageables, les aménager suffit parfois. Sinon, la surélévation est souvent la bonne solution quand le terrain ne permet pas d'
           <Link href="/extension-maison">extension au sol</Link>. Nous cadrons la faisabilité, mobilisons ingénieurs et
-          architectes partenaires, et coordonnons les entreprises qui exécutent et facturent les travaux.
+          architectes partenaires, et pilotons les entreprises qui exécutent et facturent les travaux.
         </p>
       </PageIntro>
 
@@ -112,7 +112,7 @@ function Page() {
         items={[
           { valeur: "1", label: "interlocuteur pour tout le chantier" },
           { valeur: "48 h", label: "pour l'étude de projet (ouvrées)" },
-          { valeur: "6-10 mois", label: "de l'étude à la livraison, en moyenne" },
+          { valeur: "6-10 mois", label: "de l'étude à la réception, en moyenne" },
           { valeur: "12 mois", label: "de suivi après réception" },
         ]}
       />
@@ -207,7 +207,7 @@ function Page() {
 
       <PageAppel
 
-        titre="Votre surélévation, de l'étude à la livraison"
+        titre="Votre surélévation, de l'étude à la réception"
 
         texte="Décrivez votre projet en quelques lignes : nous revenons vers vous sous 48 h ouvrées avec une première lecture et un budget indicatif, sans engagement."
 

@@ -23,6 +23,7 @@ const STATIC_PATHS = [
   "/investisseurs-professionnels",
   // Méthode et preuves
   "/notre-methode",
+  "/qui-sommes-nous",
   "/realisations",
   // Prix et ressources
   "/observatoire-prix-renovation",

@@ -240,7 +240,7 @@ function Page() {
         </p>
         <p>
           Rénovation complète ou rénovation partielle, chaque photo vient d'un chantier piloté par ARCHI PILOTE
-          RÉNOVATION : diagnostic de l'appartement, planning de chantier, coordination des artisans partenaires
+          RÉNOVATION : diagnostic de l'appartement, planning de chantier, pilotage des artisans partenaires
           jusqu'à la réception de chantier. Quand un chantier n'est pas terminé sur la photo, la légende le dit.
         </p>
       </PageIntro>

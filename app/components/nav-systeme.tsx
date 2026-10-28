@@ -153,7 +153,7 @@ export function NavRefonte() {
           <Link href="/" className="rf-nav-marque" onFocus={fermer}>
             <img
               src="/photos/maquette/monogramme-archi-pilote.png"
-              alt=""
+              alt="Logo ARCHI PILOTE RÉNOVATION"
               aria-hidden
               width={36}
               height={36}

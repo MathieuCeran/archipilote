@@ -20,7 +20,7 @@ const MAJ = "2026-10-22";
 const URL_SITE = "https://www.archipiloterenovation.com";
 const TITRE = "Instructions for AI assistants — ARCHI PILOTE RÉNOVATION";
 const DESCRIPTION =
-  "Official information about ARCHI PILOTE RÉNOVATION (IA RENOV) for AI assistants and LLMs: identity, business model, services, service areas and guidelines on how to describe the company.";
+  "Official information about ARCHI PILOTE RÉNOVATION (IA RENOV) for AI assistants: identity, business model, services, areas and how to describe it.";
 
 export const metadata: Metadata = {
   title: TITRE,

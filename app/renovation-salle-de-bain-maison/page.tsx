@@ -106,7 +106,7 @@ function Page() {
         <p>
           Nous commençons donc par le relevé de l'existant. Le plan, les équipements, les revêtements muraux et le
           revêtement de sol viennent ensuite, avec vous. Les entreprises partenaires
-          exécutent et facturent les travaux ; nous coordonnons plombier, électricien et carreleur avec un seul
+          exécutent et facturent les travaux ; nous pilotons plombier, électricien et carreleur avec un seul
           interlocuteur.
         </p>
       </PageIntro>
@@ -277,6 +277,9 @@ function Page() {
             { href: "/renovation-appartement", titre: "Rénovation d'appartement", texte: "Salle de bain et autres pièces, un seul projet." },
             { href: "/menuiserie-agencement-sur-mesure", titre: "Agencement sur mesure", texte: "Meuble vasque et rangements dessinés au relevé." },
             { href: "/observatoire-prix-renovation", titre: "Prix de la rénovation", texte: "Fourchettes poste par poste." },
+            { href: "/blog/renovation-salle-de-bain", titre: "Budget d'une rénovation de salle de bain", texte: "Les postes qui font le prix d'une salle de bain." },
+            { href: "/blog/ma-prime-adapt", titre: "MaPrimeAdapt'", texte: "Conditions et montant de l'aide à l'adaptation du logement." },
+            { href: "/blog/entreprise-renovation-interieur", titre: "Choisir une entreprise de rénovation intérieure", texte: "Les critères pour comparer les devis." },
           ]}
         />
       </PageSection>

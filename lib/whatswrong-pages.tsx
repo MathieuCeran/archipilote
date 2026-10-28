@@ -342,13 +342,63 @@ export function withWw<P extends object>(
 }
 
 /** Le titre et la description publiés depuis WhatsWrong, sinon ceux du site. */
+/** Au-delà, Google tronque le titre ; la marque ne s'ajoute que si le titre complet tient. */
+const TITLE_MAX = 60;
+const BRAND = "ARCHI PILOTE RÉNOVATION";
+
+/** Le titre sans marque ni séparateur orphelin, puis « | ARCHI PILOTE RÉNOVATION » s'il reste de la place. */
+export function pageTitle(title: string): string {
+  let core = title.trim();
+  const suffix = /\s*[|—–-]\s*ARCHI PILOTE R[ÉE]NOVATION\s*$/i;
+  const dangling = /\s*[|—–-]\s*$/;
+  while (suffix.test(core) || dangling.test(core)) core = core.replace(suffix, "").replace(dangling, "").trim();
+  const full = `${core} | ${BRAND}`;
+  if (full.length <= TITLE_MAX) return full;
+  return core.length <= TITLE_MAX ? core : cut(core);
+}
+
+/** Titre trop long même sans la marque : coupé sur un mot entier, jamais sur une ponctuation pendante. */
+function cut(title: string): string {
+  const words = title.split(" ");
+  let out = "";
+  for (const w of words) {
+    if (`${out} ${w}`.trim().length > TITLE_MAX) break;
+    out = `${out} ${w}`.trim();
+  }
+  return out.replace(/[\s:;,–—-]+$/, "");
+}
+
+const short = (t: Metadata["title"]) => (typeof t === "string" ? pageTitle(t) : t);
+
+/** Au-delà, Google coupe la description : on garde les phrases entières qui tiennent, sinon des mots entiers. */
+const DESCRIPTION_MAX = 155;
+export function pageDescription(text: string): string {
+  const d = text.trim();
+  if (d.length <= DESCRIPTION_MAX) return d;
+  const sentences = d.split(/(?<=[.!?])\s+/);
+  let out = "";
+  for (const sentence of sentences) {
+    if (`${out} ${sentence}`.trim().length > DESCRIPTION_MAX) break;
+    out = `${out} ${sentence}`.trim();
+  }
+  if (out.length >= 70) return out;
+  const words = d.split(" ");
+  out = "";
+  for (const w of words) {
+    if (`${out} ${w}`.trim().length > DESCRIPTION_MAX - 1) break;
+    out = `${out} ${w}`.trim();
+  }
+  return `${out.replace(/[\s:;,–—-]+$/, "")}…`;
+}
+const shortDescription = (d: Metadata["description"]) => (typeof d === "string" ? pageDescription(d) : d);
+
 export async function wwMetadata(path: string, metadata: Metadata): Promise<Metadata> {
   const version = await versionOf(path);
-  if (version === null) return metadata;
+  if (version === null) return { ...metadata, title: short(metadata.title), description: shortDescription(metadata.description) };
   return {
     ...metadata,
-    title: version.title || metadata.title,
-    description: version.description || metadata.description,
+    title: short(version.title || metadata.title),
+    description: shortDescription(version.description || metadata.description),
     openGraph: metadata.openGraph && {
       ...metadata.openGraph,
       title: version.title || metadata.openGraph.title,

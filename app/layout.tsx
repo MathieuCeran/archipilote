@@ -8,6 +8,7 @@ import { PiedRefonte } from "./components/pied-systeme";
 import { SITE_OFFLINE, EXPIRES_AT } from "./site-config";
 import { OfflineScreen } from "./components/offline-screen";
 import { GoogleAds } from "./components/google-ads";
+import { FONDATEUR_LD } from "./data";
 
 /* PROMOTION DE LA REFONTE — étape 1 : le socle.
 
@@ -45,7 +46,7 @@ const newsreader = Newsreader({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.archipiloterenovation.com"),
-  title: "ARCHI PILOTE RÉNOVATION — Rénovation tous corps d'état en Île-de-France",
+  title: "ARCHI PILOTE RÉNOVATION — Pilotage de rénovation tous corps d'état en Île-de-France",
   description:
     "Pilotage de travaux de rénovation en Île-de-France : gros œuvre, second œuvre, cuisine sur-mesure, salle de bain étanche, isolation DPE. Un seul interlocuteur, devis des entreprises rendus comparables poste par poste.",
   alternates: { canonical: "/" },
@@ -67,7 +68,7 @@ export const metadata: Metadata = {
     locale: "fr_FR",
     siteName: "ARCHI PILOTE RÉNOVATION",
     url: "https://www.archipiloterenovation.com",
-    title: "ARCHI PILOTE RÉNOVATION — Rénovation tous corps d'état en Île-de-France",
+    title: "ARCHI PILOTE RÉNOVATION — Pilotage de rénovation tous corps d'état en Île-de-France",
     description:
       "Pilotage de travaux de rénovation en Île-de-France. Un seul interlocuteur, des entreprises partenaires qui contractent directement avec vous.",
     images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Séjour rénové, niveau de finition visé — visuel d'illustration" }],
@@ -78,6 +79,7 @@ export const JSONLD_ORGANIZATION = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
   "@id": "https://www.archipiloterenovation.com/#organization",
+  founder: FONDATEUR_LD,
   name: "ARCHI PILOTE RÉNOVATION",
   /* 03/09 : « legalName: IA RENOV » retiré du balisage. C'était le signal lisible par
      machine qui rattachait publiquement cette marque aux deux autres enseignes exploitées

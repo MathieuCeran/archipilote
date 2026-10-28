@@ -11,7 +11,7 @@ export function PiedRefonte() {
     <footer className="rf-dossier rf-pied">
       {/* Le monogramme en grand : c’est le cartouche de fin de planche. */}
       <span className="rf-filigrane rf-filigrane--pied" aria-hidden>
-        <img src="/photos/maquette/monogramme-archi-pilote.png" alt="" width={1024} height={1024} loading="lazy" />
+        <img src="/photos/maquette/monogramme-archi-pilote.png" alt="Monogramme ARCHI PILOTE RÉNOVATION" width={1024} height={1024} loading="lazy" />
       </span>
 
       <div className="rf-wrap py-16 md:py-20">
@@ -20,7 +20,7 @@ export function PiedRefonte() {
             <div className="flex items-center gap-2.5">
               <img
                 src="/photos/maquette/monogramme-archi-pilote.png"
-                alt=""
+                alt="Logo ARCHI PILOTE RÉNOVATION"
                 aria-hidden
                 width={34}
                 height={34}

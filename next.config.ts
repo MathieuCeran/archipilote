@@ -33,7 +33,7 @@ const nextConfig: NextConfig = {
       { source: "/extension-maison-ile-de-france", destination: "/extension-maison", permanent: true },
       { source: "/surelevation-maison-ile-de-france", destination: "/surelevation", permanent: true },
       { source: "/renovation-energetique-maison", destination: "/renovation-energetique", permanent: true },
-      { source: "/qui-sommes-nous", destination: "/notre-methode", permanent: true },
+      // /qui-sommes-nous a de nouveau sa page (le fondateur, EEAT) : plus de redirection vers la méthode.
       { source: "/devis", destination: "/estimateur-travaux", permanent: true },
       { source: "/glossaire-renovation-maison", destination: "/glossaire-renovation", permanent: true },
       { source: "/menuiserie-sur-mesure", destination: "/menuiserie-agencement-sur-mesure", permanent: true },

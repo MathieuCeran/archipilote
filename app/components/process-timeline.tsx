@@ -11,6 +11,13 @@ import { WordReveal } from "./word-reveal";
 import { Reveal } from "./reveal";
 
 const PHOTOS_STEP = [PHOTOS.planArchitecte, PHOTOS.chantierEchelle, PHOTOS.devisDetail, PHOTOS.chOssatureCloisonsHuisserieMetal, PHOTOS.sejourApres];
+const ALTS_STEP = [
+  "Homme traçant un plan d’architecte à la règle sur une table en bois",
+  "Chantier de rénovation intérieure, mur de briques mis à nu et ouvrier sur une échelle",
+  "Plan technique coté, crayon et règle d’architecte posés dessus",
+  "Ossature métallique de cloisons en cours de montage dans une pièce en chantier",
+  "Séjour contemporain aux murs gris, canapé modulable, bibliothèque noire et baie vitrée",
+];
 
 /** Timeline scrubbée — ligne centrale au scroll, zigzag, 5 étapes réelles du process. */
 export function ProcessTimeline() {
@@ -44,7 +51,7 @@ export function ProcessTimeline() {
                   <Reveal variant="slide-up" delay={0.1} className={`md:row-start-1 ${left ? "md:col-start-1 md:pr-14" : "md:col-start-3 md:pl-14"}`}>
                     <article className={`group card-e rounded-none overflow-hidden flex ${left ? "md:flex-row-reverse" : "md:flex-row"} flex-col-reverse`}>
                       <div className="relative md:w-[42%] aspect-[16/10] md:aspect-auto md:min-h-[13rem] overflow-hidden shrink-0">
-                        <img src={PHOTOS_STEP[i]} srcSet={srcSetOf(PHOTOS_STEP[i])} sizes="(min-width: 768px) 40vw, 100vw" alt="" className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105" loading="lazy" />
+                        <img src={PHOTOS_STEP[i]} srcSet={srcSetOf(PHOTOS_STEP[i])} sizes="(min-width: 768px) 40vw, 100vw" alt={ALTS_STEP[i]} className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105" loading="lazy" />
                         <span className="absolute top-3 left-3 display text-4xl italic text-white/80 leading-none [text-shadow:0_1px_8px_rgba(0,0,0,0.4)]">{step.numero}</span>
                       </div>
                       <div className="p-6 md:p-7 flex flex-col gap-2 flex-1">

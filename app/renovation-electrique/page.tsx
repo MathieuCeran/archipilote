@@ -238,6 +238,9 @@ function Page() {
             { href: "/renovation-complete", titre: "Rénovation complète", texte: "Électricité, plomberie et tous les autres lots." },
             { href: "/renovation-appartement", titre: "Rénovation d'appartement", texte: "Les réseaux en copropriété." },
             { href: "/observatoire-prix-renovation", titre: "Prix de la rénovation", texte: "Fourchettes poste par poste." },
+            { href: "/blog/exemple-devis-remplacement-tableau-electrique", titre: "Exemple de devis de tableau électrique", texte: "Les lignes d'un devis de remplacement, poste par poste." },
+            { href: "/blog/5-etapes-principales-dun-chantier", titre: "Les 5 étapes d'un chantier", texte: "De la visite technique à la réception, dans l'ordre." },
+            { href: "/blog/entreprise-de-renovation", titre: "Choisir une entreprise de rénovation", texte: "Les critères et les pièces à demander avant de signer." },
           ]}
         />
       </PageSection>

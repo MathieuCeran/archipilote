@@ -1,6 +1,7 @@
 import Link from "next/link";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { SITE } from "../data";
+import { fondFlou, horsCadre, imageSize } from "@/lib/image-size";
 
 /* ============================================================================
    LE KIT DE PAGE — 04/10/2026.
@@ -125,7 +126,7 @@ export function PageManifeste({
             </Link>
           )}
         </div>
-        <figure className="pg-manifeste-image">
+        <figure className={`pg-manifeste-image${horsCadre(image, 4 / 5) ? " cadre-flou" : ""}`} style={fondFlou(image)}>
           <img src={image} alt={alt} loading="lazy" />
         </figure>
       </div>
@@ -302,7 +303,7 @@ export function PageTuiles({ items }: { items: { href: string; titre: string; te
       {items.map((t) => (
         <li key={t.href}>
           <Link href={t.href} className="pg-tuile">
-            <span className="pg-tuile-image">
+            <span className={`pg-tuile-image${horsCadre(t.image, 4 / 3) ? " cadre-flou" : ""}`} style={fondFlou(t.image)}>
               <img src={t.image} alt={t.alt} loading="lazy" />
             </span>
             <span className="pg-tuile-titre">{t.titre}</span>
@@ -316,25 +317,41 @@ export function PageTuiles({ items }: { items: { href: string; titre: string; te
 
 /** Galerie de photos réelles, légendées. */
 export function PageGalerie({ items }: { items: { src: string; alt: string; legende?: string }[] }) {
+  // Rangées justifiées : chaque photo garde son format, toutes les photos
+  // d'une rangée ont la même hauteur et la rangée remplit la largeur.
+  // Jamais de recadrage, jamais de trou en bout de ligne.
+  const photos = items.map((g) => ({ ...g, ...(imageSize(g.src) ?? { width: 4, height: 3 }) }));
+  const parRangee = Math.ceil(photos.length / Math.ceil(photos.length / 4));
+  const rangees: (typeof photos)[] = [];
+  for (let i = 0; i < photos.length; i += parRangee) rangees.push(photos.slice(i, i + parRangee));
   return (
-    <ul className="pg-galerie" data-colonnes={items.length % 3 === 0 && items.length % 4 !== 0 ? 3 : 4}>
-      {items.map((g) => (
-        <li key={g.src}>
-          <figure>
-            <img src={g.src} alt={g.alt} loading="lazy" />
-            {g.legende && <figcaption>{g.legende}</figcaption>}
-          </figure>
-        </li>
+    <div className="pg-galerie">
+      {rangees.map((rangee, r) => (
+        <ul key={r} className="pg-galerie-rangee">
+          {rangee.map((g) => (
+            <li key={g.src} style={{ flexGrow: g.width / g.height }}>
+              <figure>
+                <img src={g.src} alt={g.alt} width={g.width} height={g.height} loading="lazy" />
+                {g.legende && <figcaption>{g.legende}</figcaption>}
+              </figure>
+            </li>
+          ))}
+        </ul>
       ))}
-    </ul>
+    </div>
   );
 }
 
-/** Image pleine largeur de la colonne, avec légende courte. */
+/** Image entière, jamais recadrée, hauteur bornée : quand la photo est plus
+    étroite que la colonne (photo en hauteur), les côtés reprennent la même
+    photo floutée au lieu d'un vide. */
 export function PageImage({ src, alt, legende }: { src: string; alt: string; legende?: string }) {
+  const taille = imageSize(src);
   return (
     <figure className="pg-image">
-      <img src={src} alt={alt} loading="lazy" />
+      <div className="pg-image-cadre" style={{ "--fond": `url("${src}")` } as CSSProperties}>
+        <img src={src} alt={alt} width={taille?.width} height={taille?.height} loading="lazy" />
+      </div>
       {legende && <figcaption>{legende}</figcaption>}
     </figure>
   );

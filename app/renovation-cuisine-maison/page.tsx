@@ -13,6 +13,7 @@ import {
   PageCoches,
   PageTableau,
   PageImage,
+  PageGalerie,
   PageFaq,
   PageLiens,
   JsonLdPage,
@@ -66,7 +67,7 @@ const FAQ = [
   {
     question: "Qui achète les meubles et l'électroménager ?",
     reponse:
-      "Vous pouvez les acheter en direct, à votre nom et au prix fournisseur : caissons, façades, plan de travail, électroménager. Nous vérifions les références et les cotes avant commande, puis coordonnons la livraison avec la pose.",
+      "Vous pouvez les acheter en direct, à votre nom et au prix fournisseur : caissons, façades, plan de travail, électroménager. Nous vérifions les références et les cotes avant commande, puis organisons la livraison en lien avec la pose.",
   },
 ];
 
@@ -89,7 +90,7 @@ function Page() {
           "Visite technique de la cuisine sur place",
           "Étude de projet remise sous 48 h ouvrées",
           "Devis des entreprises partenaires rendus comparables",
-          "Plombier, électricien, menuisier coordonnés",
+          "Plombier, électricien, menuisier pilotés",
           "Suivi 12 mois après la réception",
         ]}
       >
@@ -109,7 +110,7 @@ function Page() {
         items={[
           { valeur: "1", label: "interlocuteur pour tout le chantier" },
           { valeur: "48 h", label: "pour l'étude de projet (ouvrées)" },
-          { valeur: "8", label: "corps de métier coordonnés" },
+          { valeur: "8", label: "corps de métier pilotés" },
           { valeur: "12 mois", label: "de suivi après réception" },
         ]}
       />
@@ -146,6 +147,30 @@ function Page() {
               titre: "Ouverture sur le séjour",
               texte: "Supprimer une cloison ou ouvrir un mur porteur : dans ce second cas, étude de structure obligatoire.",
               href: "/ouverture-mur-porteur",
+            },
+          ]}
+        />
+        <PageGalerie
+          items={[
+            {
+              src: "/photos/chantiers3/cuisine-ilot-vert-plan-chene.jpeg",
+              alt: "Cuisine en fin de chantier : îlot vert foncé avec niche ouverte en chêne, plan de travail en bois, meubles bas vert foncé, hotte blanche, sol encore protégé",
+              legende: "Îlot vert foncé et plan en chêne, avant dépose des protections.",
+            },
+            {
+              src: "/photos/chantiers3/cuisine-chene-colonnes-fours.jpeg",
+              alt: "Cuisine en chêne : colonnes avec four et micro-ondes encastrés, meubles bas à prises de main intégrées, parquet chêne",
+              legende: "Façades chêne, colonnes four et micro-ondes encastrés.",
+            },
+            {
+              src: "/photos/chantiers3/cuisine-ilot-escalier-rangements.jpeg",
+              alt: "Cuisine ouverte avec îlot évier au plan blanc, rangements beige intégrés sous l'escalier, faux plafond à spots encastrés",
+              legende: "Îlot évier et rangements intégrés sous l'escalier.",
+            },
+            {
+              src: "/photos/chantiers3/cuisine-l-noir-mat-plan-bois.jpeg",
+              alt: "Cuisine en L noir mat : colonnes four et micro-ondes, plan de travail en bois, crédence grise, évier noir",
+              legende: "Cuisine en L noir mat, plan de travail en bois.",
             },
           ]}
         />
@@ -245,7 +270,7 @@ function Page() {
           items={[
             { href: "/menuiserie-agencement-sur-mesure", titre: "Agencement sur mesure", texte: "Façades, dressings et rangements." },
             { href: "/ouverture-mur-porteur", titre: "Ouverture de mur porteur", texte: "Ouvrir la cuisine sur le séjour." },
-            { href: "/realisations", titre: "Réalisations", texte: "Cuisines et appartements livrés." },
+            { href: "/realisations", titre: "Réalisations", texte: "Cuisines et appartements des projets pilotés." },
           ]}
         />
       </PageSection>

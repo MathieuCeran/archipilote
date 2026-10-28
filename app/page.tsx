@@ -40,17 +40,17 @@ import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
    ============================================================================ */
 
 const DESCRIPTION =
-  "Entreprise de rénovation à Paris et en Île-de-France : un seul interlocuteur, des devis d'entreprises comparables et un chantier piloté jusqu'à la réception.";
+  "Rénovation à Paris et en Île-de-France : pilotage de vos travaux par un seul interlocuteur, des devis d'entreprises partenaires comparables et un chantier suivi jusqu'à la réception.";
 
 export const generateMetadata = (): Promise<Metadata> => wwMetadata("/", {
-  title: "Entreprise de rénovation à Paris : un seul interlocuteur | ARCHI PILOTE RÉNOVATION",
+  title: "Rénovation à Paris : pilotage de vos travaux | ARCHI PILOTE RÉNOVATION",
   description: DESCRIPTION,
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
     locale: "fr_FR",
     siteName: "ARCHI PILOTE RÉNOVATION",
-    title: "Entreprise de rénovation à Paris : un seul interlocuteur | ARCHI PILOTE RÉNOVATION",
+    title: "Rénovation à Paris : pilotage de vos travaux | ARCHI PILOTE RÉNOVATION",
     description: DESCRIPTION,
     url: "/",
     images: [{ url: "/og.jpg" }],
@@ -188,7 +188,7 @@ const JSON_LD = [
     name: "ARCHI PILOTE RÉNOVATION",
     url: "https://www.archipiloterenovation.com/",
     description:
-      "Pilotage de projets de rénovation à Paris et en Île-de-France : visite technique, devis des entreprises partenaires rendus comparables, coordination des corps de métier et suivi du chantier jusqu'à la réception.",
+      "Pilotage de projets de rénovation à Paris et en Île-de-France : visite technique, devis des entreprises partenaires rendus comparables, pilotage des corps de métier et suivi du chantier jusqu'à la réception.",
     telephone: "+33667117975",
     email: "archipiloterenovation@gmail.com",
     address: {
@@ -240,12 +240,12 @@ function Accueil() {
       <PageManifeste
         titre="Un seul interlocuteur pour votre rénovation, des entreprises choisies poste par poste."
         lien={{ href: "/notre-methode", label: "Découvrir notre méthode" }}
-        image="/photos/chantiers2/appart2-coiffeuse-chene.jpeg"
-        alt="Détail d'une chambre rénovée à Paris : tête de lit capitonnée avec niche en chêne et prise intégrée, bureau en bois cannelé et miroir demi-lune"
+        image="/photos/chantiers3/entree-rangement-niche-banc-angles-arrondis.jpeg"
+        alt="Entrée rénovée avec rangement intégré toute hauteur aux façades lisses beige et angles arrondis, niche banc habillée de bois foncé, corniche éclairée, parquet à chevrons"
       >
         <p>
-          Vous cherchez une entreprise de rénovation à Paris ? ARCHI PILOTE RÉNOVATION prépare votre projet, rend
-          les devis des entreprises partenaires comparables et coordonne tous les corps d'état jusqu'à la réception.
+          Vous cherchez une rénovation à Paris, pilotée de bout en bout ? ARCHI PILOTE RÉNOVATION prépare votre projet, rend
+          les devis des entreprises partenaires comparables et pilote tous les corps d'état jusqu'à la réception.
         </p>
         <p>
           Les travaux sont réalisés par des artisans et sociétés du bâtiment indépendants : chacun signe son devis,
@@ -255,8 +255,8 @@ function Accueil() {
 
       <PageSection
         id="travaux"
-        titre="Nos travaux de rénovation"
-        accroche="Rénovation d'appartement ou de maison, salle de bains, cuisine, structure : chaque type de travaux a sa page. Maçonnerie, travaux de plomberie et d'électricité, menuiserie, sols et peinture sont coordonnés par un seul interlocuteur."
+        titre="Les travaux que nous pilotons"
+        accroche="Rénovation d'appartement ou de maison, salle de bains, cuisine, structure : chaque type de travaux a sa page. Maçonnerie, travaux de plomberie et d'électricité, menuiserie, sols et peinture sont pilotés par un seul interlocuteur."
       >
         <PageTuiles items={TRAVAUX} />
       </PageSection>
@@ -301,7 +301,7 @@ function Accueil() {
       </PageSection>
 
       <PageSection
-        titre="Nos réalisations"
+        titre="Nos projets pilotés"
         accroche={
           <p>
             Plutôt qu'une seule entreprise de rénovation à Paris, des entreprises partenaires choisies lot par lot.
@@ -350,7 +350,7 @@ function Accueil() {
         />
       </PageSection>
 
-      <PageSection titre="Entreprise de rénovation à Paris : questions fréquentes">
+      <PageSection titre="Rénovation à Paris : questions fréquentes">
         <PageFaq items={FAQ} />
       </PageSection>
 

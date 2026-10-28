@@ -13,6 +13,7 @@ import {
   PageCoches,
   PageTableau,
   PageImage,
+  PageGalerie,
   PageFaq,
   PageLiens,
   JsonLdPage,
@@ -70,7 +71,7 @@ const FAQ = [
   {
     question: "Qui fabrique et qui achète les meubles ?",
     reponse:
-      "Les menuisiers partenaires fabriquent, posent et facturent leur ouvrage. Vous pouvez acheter en direct la fourniture courante, caissons, quincaillerie, plans : nous validons les références avant commande et coordonnons la livraison avec la pose.",
+      "Les menuisiers partenaires fabriquent, posent et facturent leur ouvrage. Vous pouvez acheter en direct la fourniture courante, caissons, quincaillerie, plans : nous validons les références avant commande et organisons la livraison en lien avec la pose.",
   },
 ];
 
@@ -149,6 +150,40 @@ function Page() {
               titre: "Façades de cuisine",
               texte: "Façades, plinthes et joues sur mesure posées sur des caissons standards.",
               href: "/renovation-cuisine-maison",
+            },
+          ]}
+        />
+        <PageGalerie
+          items={[
+            {
+              src: "/photos/chantiers3/placards-moulures-porte-cintree-chene.jpeg",
+              alt: "Mur de placards sur mesure blancs moulurés toute hauteur encadrant une porte cintrée en chêne, poignées laiton, parquet chêne",
+              legende: "Placards moulurés toute hauteur autour d'une porte cintrée en chêne.",
+            },
+            {
+              src: "/photos/chantiers3/entree-rangement-niche-banc-angles-arrondis.jpeg",
+              alt: "Entrée avec rangement intégré toute hauteur aux façades lisses beige et angles arrondis, niche banc habillée de bois foncé, éclairage en corniche, parquet à chevrons",
+              legende: "Rangement d'entrée avec niche banc, angles arrondis et corniche éclairée.",
+            },
+            {
+              src: "/photos/chantiers3/rangement-sous-escalier-niche-chene.jpeg",
+              alt: "Rangements sur mesure sous un escalier : façades beige sans poignée qui suivent les marches, niche ouverte en chêne, marches bois",
+              legende: "Sous l'escalier : façades qui suivent les marches et niche en chêne.",
+            },
+            {
+              src: "/photos/chantiers3/meuble-mural-noir-led-miroir-dore.jpeg",
+              alt: "Meuble mural sur mesure noir mat en cours de pose : niches éclairées par des rubans LED, miroir doré au centre, portes basses à poignées cuir",
+              legende: "Meuble mural noir mat, niches éclairées, en cours de pose.",
+            },
+            {
+              src: "/photos/chantiers3/vitrine-chene-etageres-verre.jpeg",
+              alt: "Vitrine sur mesure en chêne toute hauteur : portes vitrées et étagères en verre éclairées en partie haute, portes pleines en partie basse",
+              legende: "Vitrine en chêne, étagères en verre éclairées.",
+            },
+            {
+              src: "/photos/chantiers3/placards-blancs-porte-cintree-vue-laterale.jpeg",
+              alt: "Placards blancs moulurés sans poignée, toute hauteur, à côté d'une porte cintrée en chêne, vus de biais",
+              legende: "Même ensemble, vu de biais : façades affleurantes, cintre en chêne.",
             },
           ]}
         />
@@ -240,7 +275,7 @@ function Page() {
           items={[
             { href: "/renovation-cuisine-maison", titre: "Rénovation de cuisine", texte: "Implantation, réseaux et pose des meubles." },
             { href: "/renovation-appartement", titre: "Rénovation d'appartement", texte: "Volumes anciens et rangements intégrés." },
-            { href: "/realisations", titre: "Réalisations", texte: "Dressings, bibliothèques et cuisines livrés." },
+            { href: "/realisations", titre: "Réalisations", texte: "Dressings, bibliothèques et cuisines des chantiers pilotés." },
           ]}
         />
       </PageSection>

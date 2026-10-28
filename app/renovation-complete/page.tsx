@@ -31,7 +31,7 @@ import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
 const CHEMIN = "/renovation-complete";
 const TITRE = "Rénovation complète tous corps d'état à Paris et en Île-de-France";
 const DESCRIPTION =
-  "Rénovation tous corps d'état à Paris : un seul interlocuteur, 8 corps de métier coordonnés, des devis comparables et un chantier suivi jusqu'à la réception.";
+  "Rénovation tous corps d'état à Paris : un seul interlocuteur, 8 corps de métier pilotés, des devis comparables et un chantier suivi jusqu'à la réception.";
 const FIL = [{ nom: "Rénovation complète", href: CHEMIN }];
 
 export const generateMetadata = (): Promise<Metadata> => wwMetadata("/renovation-complete", {
@@ -85,7 +85,7 @@ const FAQ = [
   {
     question: "Est-ce un chantier clé en main ?",
     reponse:
-      "Pour vous, l'organisation est proche d'un chantier clé en main : un interlocuteur unique assure la coordination de chantier, du premier relevé à la réception. La différence : vous signez un devis de travaux avec chaque entreprise partenaire, qui reste responsable de son lot et de ses assurances.",
+      "Pour vous, l'organisation est proche d'un chantier clé en main : un interlocuteur unique assure le pilotage du chantier, du premier relevé à la réception. La différence : vous signez un devis de travaux avec chaque entreprise partenaire, qui reste responsable de son lot et de ses assurances.",
   },
 ];
 
@@ -97,7 +97,7 @@ function Page() {
       <PageHero
         fil={FIL}
         titre="Rénovation tous corps d'état : un seul interlocuteur pour tout le chantier"
-        chapo="Structure, réseaux, cloisons, pièces d'eau, menuiseries et finitions : nous coordonnons les 8 corps de métier d'une rénovation complète, dans le bon ordre, du premier relevé à la réception."
+        chapo="Structure, réseaux, cloisons, pièces d'eau, menuiseries et finitions : nous pilotons les 8 corps de métier d'une rénovation complète, dans le bon ordre, du premier relevé à la réception."
         image="/photos/chantiers2/salon-trumeau-moulures-appliques.jpeg"
         alt="Salon d'un appartement haussmannien après une rénovation complète : trumeau à miroir entre deux appliques dorées, moulures et rosace restaurées, parquet chêne à chevrons, grille de climatisation intégrée au plafond"
       />
@@ -114,7 +114,7 @@ function Page() {
         ]}
       >
         <p>
-          Vous cherchez une entreprise de rénovation tous corps d'état pour ne pas coordonner seul l'électricien, le
+          Vous cherchez une entreprise de rénovation tous corps d'état pour ne pas piloter seul l'électricien, le
           plombier, le plaquiste, le carreleur et le peintre. Nous répondons au même besoin : un seul interlocuteur
           pour l'ensemble des travaux, du gros œuvre au second œuvre.
         </p>
@@ -130,7 +130,7 @@ function Page() {
         items={[
           { valeur: "1", label: "interlocuteur pour tout le chantier" },
           { valeur: "48 h", label: "pour l'étude de projet (ouvrées)" },
-          { valeur: "8", label: "corps de métier coordonnés" },
+          { valeur: "8", label: "corps de métier pilotés" },
           { valeur: "12 mois", label: "de suivi après réception" },
         ]}
       />

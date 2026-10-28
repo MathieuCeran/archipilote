@@ -34,11 +34,15 @@ export type GeneratedArticle = {
   photoAlt?: string;
   keyword?: string;
   bodyHtml: string;
+  /** Date de la relecture juridique : une version WhatsWrong antérieure ne remplace pas cette copie. */
+  reviewedAt?: string;
 };
 
 export type BlogArticle = Article & {
   /** Corps HTML — présent uniquement sur les articles importés. */
   bodyHtml?: string;
+  /** Date de la relecture juridique de la copie du dépôt. */
+  reviewedAt?: string;
   /** Mot-clé principal transmis par WhatsWrong. */
   keyword?: string;
   /** Texte alternatif de la couverture fourni par WhatsWrong. */
@@ -113,6 +117,7 @@ type LiveArticle = {
   html: string;
   mainKeyword: string | null;
   publishedAt: string;
+  lastModifiedAt?: string;
 };
 
 async function liveArticlesUncached(): Promise<LiveArticle[] | null> {
@@ -150,20 +155,23 @@ export async function allArticles(): Promise<BlogArticle[]> {
   const fromLive: BlogArticle[] = live.map((a) => {
     const copie = copies.get(a.id);
     const repli = premiereImage(a.html);
+    // Copie relue (« nous pilotons, les entreprises partenaires réalisent ») : elle prime
+    // tant que l'article n'a pas été modifié dans WhatsWrong depuis la relecture.
+    const relue = copie?.reviewedAt !== undefined && (a.lastModifiedAt ?? a.publishedAt) <= copie.reviewedAt;
     return {
       whatswrongId: a.id,
       slug: copie?.slug ?? a.slug,
-      titre: a.title,
+      titre: relue ? copie.titre : a.title,
       date: copie?.date ?? dateFr(a.publishedAt),
       dateISO: copie?.dateISO ?? a.publishedAt.slice(0, 10),
-      excerpt: a.description,
+      excerpt: relue ? copie.excerpt : a.description,
       categorie: copie?.categorie ?? CATEGORIE_PAR_DEFAUT,
       photo: copie?.photo || repli?.src || "",
       photoAlt: copie?.photoAlt ?? repli?.alt,
       keyword: a.mainKeyword ?? undefined,
-      bodyHtml: a.html,
+      bodyHtml: relue && copie.bodyHtml ? copie.bodyHtml : a.html,
       corps: [],
-      minutes: minutesDeLecture(a.html),
+      minutes: minutesDeLecture(relue && copie.bodyHtml ? copie.bodyHtml : a.html),
     };
   });
   // Les copies de WhatsWrong sont remplacées par la version en direct ; un

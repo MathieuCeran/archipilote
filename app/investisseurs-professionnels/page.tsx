@@ -124,7 +124,7 @@ function Page() {
         items={[
           { valeur: "1", label: "interlocuteur pour tout le chantier" },
           { valeur: "48 h", label: "pour l'étude de projet (ouvrées)" },
-          { valeur: "8", label: "corps de métier coordonnés" },
+          { valeur: "8", label: "corps de métier pilotés" },
           { valeur: "12 mois", label: "de suivi après réception" },
         ]}
       />

@@ -5971,10 +5971,11 @@ body > section.rf-matiere:nth-of-type(2n) .mq-fig--schema .rf-cadre {
 
 .note-prose img {
   display: block;
-  width: 100%;
+  width: auto;
+  max-width: 100%;
   height: auto;
-  max-height: 30rem;
-  object-fit: cover;
+  max-height: 34rem;
+  margin-inline: auto;
   margin-block: 2.2rem;
   background: var(--craie);
 }
@@ -7025,18 +7026,27 @@ body > section.rf-matiere:nth-of-type(2n) .mq-fig--schema .rf-cadre {
   margin: 0;
 }
 
-.pg-image img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 21 / 9;
-  object-fit: cover;
+.pg-image-cadre {
+  position: relative;
+  overflow: hidden;
   background: var(--craie);
 }
 
-@media (max-width: 699px) {
-  .pg-image img {
-    aspect-ratio: 4 / 3;
-  }
+.pg-image-cadre::before {
+  content: "";
+  position: absolute;
+  inset: -3rem;
+  background: var(--fond) center / cover no-repeat;
+  filter: blur(32px) saturate(1.05) brightness(0.92);
+}
+
+.pg-image img {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(34rem, 72svh);
+  object-fit: contain;
 }
 
 .pg-image figcaption {
@@ -7258,12 +7268,22 @@ main > .rf-wrap:has(> .pg-chiffres) {
 
 /* ── Galerie ───────────────────────────────────────────────────────────── */
 .pg-galerie {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.pg-galerie-rangee {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 18rem), 1fr));
-  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.pg-galerie-rangee li {
+  flex-basis: 0;
+  min-width: 0;
 }
 
 .pg-galerie figure {
@@ -7273,9 +7293,15 @@ main > .rf-wrap:has(> .pg-chiffres) {
 .pg-galerie img {
   display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: auto;
   background: var(--craie);
+}
+
+@media (min-width: 700px) {
+  .pg-galerie-rangee {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 }
 
 .pg-galerie figcaption {
@@ -7302,24 +7328,6 @@ main > .rf-wrap:has(> .pg-chiffres) {
 .pg-contenu > .pg-note,
 .pg-contenu > .pg-tableau + .pg-note {
   margin-top: 1rem !important;
-}
-
-/* Galerie : 3 colonnes pour 3, 6 ou 9 photos, 4 pour 4 ou 8 — jamais de
-   ligne bancale. */
-@media (min-width: 700px) {
-  .pg-galerie {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (min-width: 1000px) {
-  .pg-galerie[data-colonnes="3"] {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .pg-galerie[data-colonnes="4"] {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
 }
 
 /* ══════════════════════════════════════════════════════════════════════════
@@ -7908,10 +7916,200 @@ main > .pg-appel-section + .pg-section {
   }
 }
 
+/* Petits téléphones : le numéro et l'appel ne tiennent pas côte à côte sans
+   déborder de l'écran. Le téléphone devient une pastille ronde, l'appel prend
+   le reste de la largeur. */
+.note-projet {
+  box-sizing: border-box;
+  max-width: calc(100vw - 1.2rem);
+}
+
+.note-projet-cta {
+  min-width: 0;
+}
+
+@media (max-width: 429px) {
+  .note-projet-num {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+
+  .note-projet-tel {
+    flex: none;
+    justify-content: center;
+    width: 2.9rem;
+    height: 2.9rem;
+    padding: 0;
+  }
+
+  .note-projet-tel svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
 /* 10/2026 — demande client : l'orange de repérage est remplacé par le bleu du
    site partout (pastilles des boutons, barre projet, repères, survols). */
 .rf {
   --reperage: #2d5c9c;        /* = --tirage */
   --reperage-texte: #1f4378;  /* survol, plus sombre */
   --reperage-claire: #82a9dc; /* = --tirage-clair, sur fond sombre */
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   QUI SOMMES-NOUS — le fondateur (EEAT). Portrait entier, jamais recadré :
+   largeur pleine sur mobile, hauteur bornée sur grand écran.
+   ══════════════════════════════════════════════════════════════════════════ */
+.pg-fondateur {
+  display: grid;
+  gap: 2rem;
+  align-items: center;
+}
+.pg-fondateur-portrait {
+  margin: 0;
+}
+.pg-fondateur-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: var(--craie);
+}
+.pg-fondateur-texte p {
+  margin: 0 0 1rem;
+  line-height: 1.65;
+}
+.pg-fondateur-texte a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.pg-fondateur-role {
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+.pg-fondateur-reperes {
+  display: grid;
+  gap: 1px;
+  margin: 1.5rem 0 0;
+  background: var(--filet, rgba(0, 0, 0, 0.12));
+  border: 1px solid var(--filet, rgba(0, 0, 0, 0.12));
+}
+.pg-fondateur-reperes > div {
+  background: var(--papier, #fff);
+  padding: 0.9rem 1rem;
+}
+.pg-fondateur-reperes dt {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+.pg-fondateur-reperes dd {
+  margin: 0.25rem 0 0;
+}
+@media (min-width: 640px) {
+  .pg-fondateur-reperes {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 900px) {
+  .pg-fondateur {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+  .pg-fondateur-portrait img {
+    width: auto;
+    max-width: 100%;
+    max-height: 40rem;
+    margin-inline: auto;
+  }
+}
+
+/* En-tête fondateur : texte + portrait entier, côte à côte (même hauteur). */
+.pg-hero-fondateur {
+  min-height: 0;
+}
+.pg-hero-fondateur-grille {
+  display: grid;
+  gap: 2.5rem;
+  align-items: center;
+}
+.pg-hero-fondateur-portrait {
+  margin: 0;
+}
+.pg-hero-fondateur-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+@media (min-width: 900px) {
+  .pg-hero-fondateur-grille {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.75fr);
+    gap: clamp(3rem, 6vw, 6rem);
+  }
+  .pg-hero-fondateur-portrait img {
+    width: auto;
+    max-width: 100%;
+    max-height: min(36rem, calc(100svh - 10rem));
+    margin-left: auto;
+  }
+  /* Rôle : texte à gauche, repères à droite. */
+  .pg-fondateur {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+    align-items: start;
+  }
+}
+@media (min-width: 900px) {
+  /* Portrait grand et entier (jamais recadré), au plus près du texte, centré face à lui. */
+  .pg-hero-fondateur-grille {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: clamp(2.5rem, 5vw, 5rem);
+  }
+  .pg-hero-fondateur-portrait img {
+    width: auto;
+    height: clamp(26rem, 64svh, 38rem);
+    max-width: 100%;
+    max-height: none;
+    margin: 0;
+  }
+}
+
+/* 10/2026 — photos jamais recadrées. Un cadre à format fixe (tuile, carte,
+   manifeste) garde sa taille pour l'alignement ; quand la photo s'en éloigne
+   trop (horsCadre), elle y est montrée entière, sur un fond fait de la même
+   photo floutée — ni coupe, ni bande vide. */
+.cadre-flou {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.cadre-flou::before {
+  content: "";
+  position: absolute;
+  inset: -2.5rem;
+  z-index: -1;
+  background: var(--fond) center / cover no-repeat;
+  filter: blur(26px) saturate(1.05) brightness(0.92);
+}
+
+.cadre-flou img {
+  object-fit: contain !important;
+  background: transparent !important;
+}
+
+/* Appel à l'action sur téléphone : la photo passe sous le texte, à son format. */
+@media (max-width: 699px) {
+  .pg-appel-image {
+    min-height: 0;
+  }
+
+  .pg-appel-image img {
+    height: auto;
+  }
 }

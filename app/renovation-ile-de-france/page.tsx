@@ -102,7 +102,7 @@ function Page() {
         <PageFaq items={FAQ} />
       </PageSection>
 
-      <PageSection titre="Nos travaux en détail" accroche="Chaque type de travaux a sa page : étapes, prix et questions fréquentes.">
+      <PageSection titre="Les travaux que nous pilotons, en détail" accroche="Chaque type de travaux a sa page : étapes, prix et questions fréquentes.">
         <PageLiens
           items={[
             { href: "/renovation-appartement", titre: "Rénovation d'appartement", texte: "Appartement ancien ou haussmannien, en copropriété." },

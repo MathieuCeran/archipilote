@@ -123,7 +123,7 @@ function Page() {
         items={[
           { valeur: "1", label: "interlocuteur pour tout le chantier" },
           { valeur: "48 h", label: "pour l'étude de projet (ouvrées)" },
-          { valeur: "8", label: "corps de métier coordonnés" },
+          { valeur: "8", label: "corps de métier pilotés" },
           { valeur: "12 mois", label: "de suivi après réception" },
         ]}
       />
@@ -271,6 +271,9 @@ function Page() {
             { href: "/renovation-complete", titre: "Rénovation complète", texte: "Tous corps d'état, un seul interlocuteur." },
             { href: "/ouverture-mur-porteur", titre: "Ouverture de mur porteur", texte: "Étude, étaiement, poutre et réception." },
             { href: "/observatoire-prix-renovation", titre: "Prix de la rénovation", texte: "Fourchettes poste par poste." },
+            { href: "/blog/renovation-appartement-paris", titre: "Rénover un appartement à Paris", texte: "Étapes, copropriété et budget, cas parisien." },
+            { href: "/blog/charme-de-lancien", titre: "Préserver le charme de l'ancien", texte: "Moulures, parquets, cheminées : ce qui se garde." },
+            { href: "/blog/entreprise-renovation-interieur", titre: "Choisir une entreprise de rénovation intérieure", texte: "Les critères pour comparer les devis." },
           ]}
         />
       </PageSection>

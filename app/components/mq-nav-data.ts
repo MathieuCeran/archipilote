@@ -20,8 +20,9 @@ export const NAV_GROUPS = [
   {
     label: "Méthode",
     links: [
+      { href: "/qui-sommes-nous", label: "Qui sommes-nous" },
       { href: "/notre-methode", label: "Notre méthode" },
-      { href: "/realisations", label: "Réalisations et avis" },
+      { href: "/realisations", label: "Projets pilotés et avis" },
       { href: "/investisseurs-professionnels", label: "Investissement locatif" },
       { href: "/contact", label: "Contact" },
     ],

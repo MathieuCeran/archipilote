@@ -115,7 +115,7 @@ function Page() {
         items={[
           { valeur: "1", label: "interlocuteur pour tout le chantier" },
           { valeur: "48 h", label: "pour l'étude de projet (ouvrées)" },
-          { valeur: "8", label: "corps de métier coordonnés" },
+          { valeur: "8", label: "corps de métier pilotés" },
           { valeur: "12 mois", label: "de suivi après réception" },
         ]}
       />
@@ -272,6 +272,9 @@ function Page() {
             { href: "/renovation-maison-pavillon", titre: "Rénovation de maison", texte: "Toiture, isolation et réseaux d'un pavillon." },
             { href: "/demarches-administratives-renovation", titre: "Démarches administratives", texte: "Mairie, syndic et assemblée générale." },
             { href: "/estimateur-travaux", titre: "Estimateur de travaux", texte: "Un premier budget pour vos travaux d'isolation." },
+            { href: "/blog/changer-fenetres", titre: "Changer ses fenêtres", texte: "Prix, pose et aides : les repères avant de commander." },
+            { href: "/blog/prix-fenetre-double-vitrage", titre: "Prix d'une fenêtre double vitrage", texte: "Les écarts de prix selon le matériau et la pose." },
+            { href: "/blog/installation-de-menuiseries-exterieures", titre: "Poser des menuiseries extérieures", texte: "Les étapes et les points de contrôle de la pose." },
           ]}
         />
       </PageSection>

@@ -3,6 +3,7 @@ import { MqHero, MqSection, MqFig, MqReadNext } from "../components/mq";
 import { BlogGrid, type Fiche } from "./blog-grid";
 import { allArticles, photoSrc } from "../lib-articles";
 import { withWw, wwMetadata } from "@/lib/whatswrong-pages";
+import { horsCadre } from "@/lib/image-size";
 
 export const generateMetadata = (): Promise<Metadata> => wwMetadata("/blog", {
   alternates: { canonical: "/blog" },
@@ -21,6 +22,7 @@ const fichesDe = (articles: Awaited<ReturnType<typeof allArticles>>): Fiche[] =>
   minutes: a.minutes,
   image: photoSrc(a.photo),
   schema: Boolean(a.schema),
+  entiere: !a.schema && horsCadre(photoSrc(a.photo), 3 / 2),
 }));
 
 async function BlogPage() {

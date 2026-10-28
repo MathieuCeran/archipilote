@@ -14,6 +14,8 @@ export type Fiche = {
   minutes: number;
   image: string;
   schema: boolean;
+  /** Photo trop éloignée du format 3:2 de la carte : montrée entière. */
+  entiere?: boolean;
 };
 
 /* ============================================================================
@@ -32,8 +34,11 @@ export type Fiche = {
 function Carte({ a }: { a: Fiche }) {
   return (
     <Link href={`/blog/${a.slug}`} className="blog-carte">
-      <span className={`blog-carte-image${a.image ? "" : " is-vide"}`}>
-        {a.image && <img src={a.image} alt="" loading="lazy" className={a.schema ? "is-schema" : undefined} />}
+      <span
+        className={`blog-carte-image${a.image ? "" : " is-vide"}${a.entiere ? " cadre-flou" : ""}`}
+        style={a.entiere ? ({ "--fond": `url("${a.image}")` } as React.CSSProperties) : undefined}
+      >
+        {a.image && <img src={a.image} alt={a.titre} loading="lazy" className={a.schema ? "is-schema" : undefined} />}
       </span>
       <span className="blog-carte-rubrique">{a.categorie}</span>
       <span className="blog-carte-titre">{a.titre}</span>
@@ -66,7 +71,7 @@ export function BlogGrid({ articles }: { articles: Fiche[] }) {
           <Link href={`/blog/${une.slug}`} className={`blog-une${une.image ? "" : " blog-une--texte"}`}>
             {une.image && (
               <span className="blog-une-image">
-                <img src={une.image} alt="" className={une.schema ? "is-schema" : undefined} />
+                <img src={une.image} alt={une.titre} className={une.schema ? "is-schema" : undefined} />
               </span>
             )}
             <span className="blog-une-texte">

@@ -86,7 +86,7 @@ function Page() {
       <PageHero
         fil={FIL}
         titre="Pilotage de chantier rénovation : notre méthode, de la visite à la réception"
-        chapo="Nous préparons le projet, rendons les devis comparables et coordonnons les entreprises partenaires jusqu'à la réception. Elles exécutent et facturent les travaux ; vous les payez directement."
+        chapo="Nous préparons le projet, rendons les devis comparables et pilotons les entreprises partenaires jusqu'à la réception. Elles exécutent et facturent les travaux ; vous les payez directement."
         image="/photos/chantiers2/chambre-salle-de-bain-ouverte-marbre-cheminee.jpeg"
         alt="Chambre d'un appartement haussmannien rénové ouverte sur une salle de bain en marbre sombre, cheminée d'origine conservée : un chantier de rénovation piloté jusqu'aux finitions"
       />
@@ -116,7 +116,7 @@ function Page() {
         items={[
           { valeur: "1", label: "interlocuteur pour tout le chantier" },
           { valeur: "48 h", label: "pour l'étude de projet (ouvrées)" },
-          { valeur: "8", label: "corps de métier coordonnés" },
+          { valeur: "8", label: "corps de métier pilotés" },
           { valeur: "12 mois", label: "de suivi après réception" },
         ]}
       />
@@ -145,7 +145,7 @@ function Page() {
           items={[
             {
               titre: "ARCHI PILOTE RÉNOVATION",
-              texte: "Cadrage du projet, lecture des devis, coordination des entreprises, planification, suivi des travaux et préparation de la réception.",
+              texte: "Cadrage du projet, lecture des devis, pilotage des entreprises, planification, suivi des travaux et préparation de la réception.",
             },
             {
               titre: "Les entreprises partenaires",

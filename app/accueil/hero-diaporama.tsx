@@ -94,7 +94,7 @@ export function HeroDiaporama() {
         <div className="hd-texte">
           <p className="hd-lieu">Paris, Hauts-de-Seine et Île-de-France</p>
           <h1 className="hd-titre">
-            Entreprise de rénovation à Paris
+            Rénovation à Paris : pilotage de vos travaux
             <span>un seul interlocuteur, du plan à la réception</span>
           </h1>
           <p className="hd-chapo">
