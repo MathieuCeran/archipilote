@@ -163,6 +163,11 @@ function Page() {
               legende: "Façades chêne, colonnes four et micro-ondes encastrés.",
             },
             {
+              src: "/photos/chantiers3/cuisine-ilot-beton-cire-parquet.jpg",
+              alt: "Cuisine d'un appartement haussmannien : îlot massif et crédence en béton ciré beige, façades moulurées, tabourets en bois et parquet à chevrons",
+              legende: "Illustration : îlot et crédence en béton ciré, sans joint.",
+            },
+            {
               src: "/photos/chantiers3/cuisine-ilot-escalier-rangements.jpeg",
               alt: "Cuisine ouverte avec îlot évier au plan blanc, rangements beige intégrés sous l'escalier, faux plafond à spots encastrés",
               legende: "Îlot évier et rangements intégrés sous l'escalier.",
