@@ -107,6 +107,12 @@ export async function versionOf(path: string): Promise<PageVersion | null> {
   return (await publishedPages()).pages.find((page) => bare(page.path) === bare(path)) ?? null;
 }
 
+/** Les adresses fusionnées dans une autre page depuis WhatsWrong : elles
+ *  redirigent, donc elles sortent du sitemap. */
+export async function mergedPaths(): Promise<Set<string>> {
+  return new Set((await publishedPages()).redirects.map((r) => bare(r.from)));
+}
+
 /** Une page fusionnée dans une autre depuis WhatsWrong redirige (301) vers elle. */
 async function redirectIfMerged(path: string): Promise<void> {
   const merged = (await publishedPages()).redirects.find((r) => bare(r.from) === bare(path));

@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { allArticles } from "./lib-articles";
+import { mergedPaths } from "@/lib/whatswrong-pages";
 
 const BASE = "https://www.archipiloterenovation.com";
 
@@ -40,11 +41,13 @@ const STATIC_PATHS = [
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const staticEntries = STATIC_PATHS.map((path) => ({
+  // Une page fusionnée depuis WhatsWrong redirige : elle ne figure pas au sitemap.
+  const merged = await mergedPaths();
+  const staticEntries = STATIC_PATHS.filter((path) => !merged.has(path)).map((path) => ({
     url: `${BASE}${path}`,
     lastModified: new Date("2026-10-04"),
   }));
-  const articleEntries = (await allArticles()).map((a) => ({
+  const articleEntries = (await allArticles()).filter((a) => !merged.has(`/blog/${a.slug}`)).map((a) => ({
     url: `${BASE}/blog/${a.slug}`,
     lastModified: new Date(a.dateISO),
   }));
