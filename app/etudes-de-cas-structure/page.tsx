@@ -58,7 +58,7 @@ const DOSSIER_MUR = [
   {
     titre: "Diagnostic",
     texte:
-      "Immeuble R+3 du XIXe siècle, murs en maçonnerie et pans de bois, planchers sur poutres bois. Le mur à ouvrir est fait de montants de bois sans diagonale : non porteur au calcul, mais susceptible d'avoir repris des charges avec l'âge. Il est traité comme semi-porteur.",
+      "Immeuble R+3 du XIXe siècle, sans sous-sol, combles sous toiture ; murs en maçonnerie et pans de bois, planchers sur poutres bois. Le mur à ouvrir est fait de montants de bois sans diagonale : non porteur au calcul, mais susceptible d'avoir repris des charges avec l'âge. Il est traité comme semi-porteur.",
   },
   {
     titre: "Solutions comparées",
@@ -79,7 +79,7 @@ const DOSSIER_TREMIE = [
   {
     titre: "Diagnostic",
     texte:
-      "Immeuble R+5, façades en maçonnerie, poteaux et poutres mixtes acier-béton. Le plancher haut du sous-sol est une dalle béton armé de 22 cm en bon état, portant entre la façade et une poutre mixte.",
+      "Immeuble R+5, façades en maçonnerie, poteaux et poutres mixtes acier-béton. Le plancher haut du sous-sol est une dalle béton armé de 22 cm en bon état, portant entre la façade et une poutre mixte ; le sol du sous-sol est un dallage en béton armé.",
   },
   {
     titre: "Enjeu",
@@ -176,10 +176,19 @@ export default function EtudesDeCasStructurePage() {
               alt: "Visualisation d'un portique métallique projeté sur le mur à ouvrir : poutre en tête et deux poteaux",
               legende: "Le portique projeté sur le mur.",
             },
+          ]}
+        />
+        <PageGalerie
+          items={[
             {
               src: "/photos/etudes/coupe-portique-poutre-ipe.png",
               alt: "Coupe technique du portique : poutre IPE180, poteau IPE160, platine de pied, boulons M12 et étaiement",
               legende: "Coupe A-A du bureau d'études.",
+            },
+            {
+              src: "/photos/etudes/elevation-portique-ouverture-mur.png",
+              alt: "Élévation du portique d'ouverture : poutre IPE180 sur deux poteaux IPE160 entre les murs existants, ouverture de 255 cm sur 265 cm de haut, platines de 10 mm (400 × 250 mm) soudées en pied et posées sur mortier, étais provisoires",
+              legende: "Élévation : 255 cm de large, 265 cm sous poutre.",
             },
           ]}
         />
