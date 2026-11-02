@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
+import { attributionRows } from "@/lib/attribution";
 import { isMailConfigured, LEAD_COPY, sendLeadMail } from "@/lib/mail";
 
 /* ============================================================
@@ -31,7 +32,7 @@ type Payload = {
   projet?: unknown; budget?: unknown; horizon?: unknown;
   commune?: unknown; description?: unknown; nom?: unknown; tel?: unknown;
   email?: unknown; surface?: unknown; copro?: unknown;
-  website?: unknown; startedAt?: unknown;
+  website?: unknown; startedAt?: unknown; attribution?: unknown;
 };
 
 const hits = new Map<string, { n: number; t: number }>();
@@ -107,6 +108,7 @@ export async function POST(req: NextRequest) {
     ["Démarrage", horizon!],
     ["Commune", commune!],
     ["Description", description || "(non renseignée)"],
+    ...attributionRows(body.attribution),
   ];
 
   if (isMailConfigured()) {

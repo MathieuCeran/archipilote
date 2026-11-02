@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import { captureAttribution } from "@/lib/attribution";
 import { NAV_GROUPS, NAV_STANDALONE } from "./mq-nav-data";
 
 /* ============================================================================
@@ -56,6 +57,11 @@ const VEDETTES: Record<string, { href: string; titre: string; ligne: string; img
 };
 
 export function NavRefonte() {
+  /* Provenance du visiteur, relevée à son arrivée : voir lib/attribution.ts. */
+  useEffect(() => {
+    captureAttribution();
+  }, []);
+
   const [pose, setPose] = useState(false);
   const [menu, setMenu] = useState<string | null>(null);
   const [mobile, setMobile] = useState(false);

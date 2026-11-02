@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { SITE } from "../data";
 import { ADS_LABEL_LEAD, trackConversion } from "@/lib/ads";
+import { getAttribution } from "@/lib/attribution";
 
 /* Formulaire de contact — mise en page maquette Lovable (une étape, 8 champs),
    branché sur /api/contact (envoi réel + protections anti-bot). */
@@ -57,7 +58,7 @@ export function ContactForm() {
       const r = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, website: piege, startedAt: startedAt.current }),
+        body: JSON.stringify({ ...form, website: piege, startedAt: startedAt.current, attribution: getAttribution() }),
       });
       const data = await r.json().catch(() => ({ ok: false }));
       if (r.ok && data.ok) {

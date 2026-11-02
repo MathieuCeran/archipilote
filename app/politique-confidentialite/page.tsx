@@ -52,7 +52,9 @@ function PolitiqueConfidentialitePage() {
               Le formulaire de contact de ce site collecte : nom et prénom, coordonnées (téléphone, courriel
               facultatif), commune du bien, type de projet, surface, budget envisagé, horizon du projet et
               description libre. Ces champs sont ceux strictement nécessaires pour qualifier une demande d&apos;étude
-              de projet. L&apos;estimateur de travaux, lui, fonctionne entièrement dans votre navigateur : aucune
+              de projet. Votre demande indique aussi la provenance de votre visite (moteur de recherche, publicité ou site
+              d&apos;origine, campagne, page d&apos;arrivée), relevée sans cookie et transmise uniquement avec le formulaire.
+              L&apos;estimateur de travaux, lui, fonctionne entièrement dans votre navigateur : aucune
               donnée saisie n&apos;est transmise ni conservée par nos serveurs.
             </p>
             <p>
