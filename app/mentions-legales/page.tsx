@@ -39,7 +39,7 @@ function MentionsLegalesPage() {
               (https://www.pappers.fr/entreprise/ia-renov-889976387), qui reproduit le
               registre du commerce. L'adresse est celle du siège au RCS (« 8 rue Gabriel
               Péri »). 22/10/2026 : le « 8 bis » affiché ailleurs est aligné sur ce « 8 »,
-              majoritaire sur les trois sites d'IA RENOV et seul inscrit au RCS. */}
+              majoritaire sur les quatre sites d'IA RENOV et seul inscrit au RCS. */}
           <PageSection titre="Éditeur du site">
             <Texte>
             <p>ARCHI PILOTE RÉNOVATION est piloté par <strong>IA RENOV</strong>.</p>
@@ -48,8 +48,8 @@ function MentionsLegalesPage() {
               <li>Capital social : 1 000,00 €</li>
               <li>Siège social : 8 rue Gabriel Péri, 92250 La Garenne-Colombes</li>
               <li>SIREN : 889 976 387 — SIRET du siège : 889 976 387 00023</li>
-              <li>RCS : 889 976 387 R.C.S. Nanterre</li>
-              <li>N° de TVA intracommunautaire : FR02 889976387</li>
+              <li>RCS : 889 976 387 R.C.S. Nanterre, immatriculée le 14 octobre 2020</li>
+              <li>N° de TVA intracommunautaire : FR02889976387</li>
               <li>Code NAF/APE : 74.10Z — Activités spécialisées de design</li>
               <li>Président et directeur de la publication : Ilann Atlan</li>
               <li>
@@ -74,7 +74,7 @@ function MentionsLegalesPage() {
           <PageSection titre="Hébergement">
             <Texte>
             <p>
-              Ce site est hébergé par Vercel Inc., 340 S Lemon Ave #4133, Walnut, CA 91789,
+              Ce site est hébergé par Vercel Inc., 440 N Barranca Avenue #4133, Covina, CA 91723,
               États-Unis —{" "}
               <a href="https://vercel.com" target="_blank" rel="noreferrer">vercel.com</a>.
             </p>
@@ -102,17 +102,60 @@ function MentionsLegalesPage() {
             </Texte>
           </PageSection>
 
+          {/* 29/10/2026 : aligné sur HÉRITAGE BÂTI, d'après ce que fait réellement le code
+              (app/api/contact/route.ts, lib/mail.ts) : SMTP Hostinger, repli FormSubmit
+              quand la messagerie n'est pas configurée, copie à LEAD_COPY. */}
           <PageSection titre="Données personnelles et cookies">
             <Texte>
             <p>
-              Les informations transmises via le formulaire de contact de ce site sont utilisées
-              uniquement pour traiter votre demande de projet. Les cookies Google Ads, qui mesurent l&apos;efficacité de nos
-              annonces, ne sont déposés qu&apos;avec votre accord, donné ou refusé dans le bandeau affiché à la première
-              visite ; aucun autre cookie de mesure d&apos;audience n&apos;est utilisé. Conformément au RGPD, vous disposez d&apos;un droit d&apos;accès, de rectification,
-              d&apos;effacement, de limitation et d&apos;opposition sur vos données, ainsi que d&apos;un droit de réclamation
-              auprès de la CNIL. Le détail des données collectées, des durées de conservation et des modalités
-              d&apos;exercice de ces droits figure dans la{" "}
+              Le responsable du traitement est IA RENOV, 8 rue Gabriel Péri, 92250 La Garenne-Colombes. Les
+              informations transmises via le formulaire de contact de ce site sont utilisées uniquement pour traiter
+              votre demande de projet. Elles sont traitées par les prestataires techniques suivants : Vercel Inc.
+              (hébergement du site), Hostinger (messagerie qui reçoit les demandes envoyées depuis le formulaire) et,
+              en secours lorsque cette messagerie n&apos;est pas en service, FormSubmit (service d&apos;envoi de formulaires, situé
+              hors de l&apos;Union européenne). Une copie de chaque demande est adressée au prestataire technique du
+              site, pour s&apos;assurer de sa bonne réception. Les transferts hors de l&apos;Union européenne sont
+              encadrés par les garanties prévues par le règlement général sur la protection des données.
+            </p>
+            <p>
+              Durées de conservation : demande sans suite, 3 ans à compter du dernier contact ; client, durée de la
+              relation, puis archivage pendant les durées imposées par la loi.
+            </p>
+            <p>
+              Vous disposez d&apos;un droit d&apos;accès, de rectification, d&apos;effacement, de limitation du
+              traitement, d&apos;opposition et de portabilité de vos données, ainsi que du droit de retirer votre
+              consentement à tout moment et de définir des directives sur le sort de vos données après votre décès.
+              Pour les exercer, écrivez à <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Vous pouvez adresser une
+              réclamation à la Commission nationale de l&apos;informatique et des libertés (CNIL), sur{" "}
+              <a href="https://www.cnil.fr/" target="_blank" rel="noreferrer">cnil.fr</a>.
+            </p>
+            <p>
+              Les cookies Google Ads, qui mesurent l&apos;efficacité de nos annonces, ne sont déposés qu&apos;avec
+              votre accord, donné ou refusé dans le bandeau affiché à la première visite ; aucun autre cookie de
+              mesure d&apos;audience n&apos;est utilisé. Refuser n&apos;empêche pas d&apos;utiliser le site. Votre
+              choix est conservé six mois, puis vous est demandé à nouveau ; vous pouvez le modifier à tout moment
+              avec le lien « Gérer les cookies » en bas de chaque page. Le détail figure dans la{" "}
               <Link href="/politique-confidentialite">politique de confidentialité</Link>.
+            </p>
+            </Texte>
+          </PageSection>
+
+          <PageSection titre="Médiation de la consommation">
+            <Texte>
+            <p>
+              Conformément à l&apos;article L612-1 du Code de la consommation, tout consommateur a le droit de
+              recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d&apos;un
+              litige. Avant de le saisir, le consommateur adresse une réclamation écrite au professionnel concerné.
+            </p>
+            <p>
+              Pour les questions relatives au site et au pilotage d&apos;ARCHI PILOTE RÉNOVATION, la réclamation est
+              adressée à IA RENOV, 8 rue Gabriel Péri, 92250 La Garenne-Colombes, ou à{" "}
+              <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Les coordonnées du médiateur de la consommation sont
+              communiquées sur simple demande à cette adresse.
+            </p>
+            <p>
+              Pour les litiges relatifs aux travaux, le professionnel cocontractant est l&apos;entreprise partenaire
+              qui a signé le devis ; son médiateur de la consommation est indiqué dans ses documents contractuels.
             </p>
             </Texte>
           </PageSection>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SITE } from "./../data";
 import { NAV_GROUPS } from "./mq-nav-data";
+import { GererCookies } from "./google-ads";
 
 /* Pied de page — registre « dossier ». C’est le cartouche de la planche :
    qui, où, sous quelle responsabilité. Les mentions légales et la répartition
@@ -81,8 +82,10 @@ export function PiedRefonte() {
             <Link href="/ai-instruction" style={{ fontSize: "inherit" }}>
               AI instructions
             </Link>{" "}
+            ·{" "}
+            <GererCookies style={{ fontSize: "inherit", color: "inherit" }} />{" "}
             · Site conçu par{" "}
-            <a href="https://ajdstudio.fr/" style={{ fontSize: "inherit" }}>
+            <a href="https://ajdstudio.fr/" target="_blank" rel="noopener" style={{ fontSize: "inherit" }}>
               ajd.studio
             </a>
           </p>

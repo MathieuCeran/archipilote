@@ -28,7 +28,7 @@ const REPERES = [
   { label: "Société", valeur: "IA RENOV, SASU" },
   { label: "Immatriculation", valeur: "RCS Nanterre 889 976 387" },
   { label: "Siège", valeur: "La Garenne-Colombes (92)" },
-  { label: "Marques", valeur: "ARCHI PILOTE RÉNOVATION, Archi Renov, RenovIntérieurs" },
+  { label: "Marques", valeur: "HÉRITAGE BÂTI, ARCHI RENOV, ARCHI PILOTE RÉNOVATION, RENOVINTÉRIEURS" },
 ];
 
 function QuiSommesNous() {
@@ -81,8 +81,9 @@ function QuiSommesNous() {
             <p className="pg-fondateur-role">{FONDATEUR.fonction}</p>
             <p>
               Ilann Atlan a fondé IA RENOV, la société qui porte ARCHI PILOTE RÉNOVATION ainsi qu’
-              <a href="https://www.archi-renov.com/a-propos-ia-renov-ilann-atlan/">Archi Renov</a> et{" "}
-              <a href="https://www.renovinterieurs.fr/a-propos">RenovIntérieurs</a>. Il pilote des projets de rénovation en
+              <a href="https://heritagebati.fr/qui-sommes-nous/">HÉRITAGE BÂTI</a>,{" "}
+              <a href="https://www.archi-renov.com/a-propos-ia-renov-ilann-atlan/">ARCHI RENOV</a> et{" "}
+              <a href="https://www.renovinterieurs.fr/a-propos">RENOVINTÉRIEURS</a>. Il pilote des projets de rénovation en
               Île-de-France : visite technique, chiffrage par lot, sélection des entreprises partenaires, suivi du chantier et
               réception.
             </p>

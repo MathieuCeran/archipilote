@@ -15,7 +15,14 @@ export const ADS_ID = "AW-17906255882";
 export const ADS_LABEL_LEAD = "TiXeCOv_m5kdEIqQr9pC"; // APR - Formulaire envoyé (succès)
 export const ADS_LABEL_TEL = "jee2CO7_m5kdEIqQr9pC"; // APR - Clic téléphone
 
+/* Choix cookies : { v: "granted" | "denied", t: date du choix } sous cette clé.
+   Gardé six mois (recommandation CNIL), puis redemandé. Une ancienne valeur
+   sans date (« granted » / « denied » seul) compte comme absente. */
 export const CONSENT_KEY = "apr-consent";
+export const CONSENT_MAX_AGE_MS = 182 * 24 * 60 * 60 * 1000;
+export const CONSENT_EVENT = "apr-consent";
+
+export type Choix = "granted" | "denied";
 
 type Gtag = (...args: unknown[]) => void;
 
@@ -31,12 +38,35 @@ export function trackConversion(label: string) {
   g("event", "conversion", { send_to: `${ADS_ID}/${label}` });
 }
 
-export function setAdsConsent(granted: boolean) {
+/** Choix enregistré et encore valable, sinon null. */
+export function readConsent(): Choix | null {
   try {
-    localStorage.setItem(CONSENT_KEY, granted ? "granted" : "denied");
+    const raw = localStorage.getItem(CONSENT_KEY);
+    if (!raw) return null;
+    const c = JSON.parse(raw) as { v?: string; t?: number } | null;
+    if (!c || (c.v !== "granted" && c.v !== "denied") || typeof c.t !== "number" || Date.now() - c.t > CONSENT_MAX_AGE_MS) return null;
+    return c.v;
+  } catch {
+    return null;
+  }
+}
+
+export function setAdsConsent(granted: boolean) {
+  const v: Choix = granted ? "granted" : "denied";
+  try {
+    localStorage.setItem(CONSENT_KEY, JSON.stringify({ v, t: Date.now() }));
   } catch {
     /* navigation privée : le choix vaut pour la page en cours */
   }
-  const v = granted ? "granted" : "denied";
   gtag()?.("consent", "update", { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v });
+  window.dispatchEvent(new Event(CONSENT_EVENT));
+}
+
+/** Efface le choix (tout repasse en refusé) et rouvre le bandeau. */
+export function resetConsent() {
+  try {
+    localStorage.removeItem(CONSENT_KEY);
+  } catch {}
+  gtag()?.("consent", "update", { ad_storage: "denied", ad_user_data: "denied", ad_personalization: "denied", analytics_storage: "denied" });
+  window.dispatchEvent(new Event(CONSENT_EVENT));
 }

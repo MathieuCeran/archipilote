@@ -23,7 +23,11 @@ export const FONDATEUR_LD = {
   image: `https://www.archipiloterenovation.com${FONDATEUR.photo}`,
   url: `https://www.archipiloterenovation.com${FONDATEUR.page}`,
   worksFor: { "@id": "https://www.archipiloterenovation.com/#organization" },
-  sameAs: ["https://www.archi-renov.com/a-propos-ia-renov-ilann-atlan/", "https://www.renovinterieurs.fr/a-propos"],
+  sameAs: [
+    "https://heritagebati.fr/qui-sommes-nous/",
+    "https://www.archi-renov.com/a-propos-ia-renov-ilann-atlan/",
+    "https://www.renovinterieurs.fr/a-propos",
+  ],
 } as const;
 
 export const SITE = {

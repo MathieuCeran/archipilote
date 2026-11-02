@@ -2,15 +2,28 @@
 
 import Script from "next/script";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { ADS_ID, ADS_LABEL_TEL, GTAG_ID, CONSENT_KEY, setAdsConsent, trackConversion } from "@/lib/ads";
+import { useEffect, useState, type CSSProperties } from "react";
+import {
+  ADS_ID,
+  ADS_LABEL_TEL,
+  GTAG_ID,
+  CONSENT_EVENT,
+  CONSENT_KEY,
+  CONSENT_MAX_AGE_MS,
+  readConsent,
+  resetConsent,
+  setAdsConsent,
+  trackConversion,
+} from "@/lib/ads";
 
 /* Balise Google Ads + mode consentement v2.
 
    Par défaut tout est refusé : sans accord, Google ne reçoit que des signaux
    sans cookie (conversions modélisées). Le bandeau propose « Refuser » au même
    niveau que « Accepter », comme l'exige la CNIL. Le choix est gardé dans le
-   navigateur ; il se réinitialise depuis la politique de confidentialité.
+   navigateur avec sa date, six mois, puis redemandé ; il se réinitialise par le
+   lien « Gérer les cookies » du pied de page (ou depuis la politique de
+   confidentialité).
 
    Les appels sont comptés par un seul écouteur sur le document : les liens
    tel: sont éparpillés dans une dizaine de composants, inutile de les toucher. */
@@ -18,18 +31,21 @@ export function GoogleAds() {
   const [choix, setChoix] = useState<"granted" | "denied" | null | undefined>(undefined);
 
   useEffect(() => {
-    let v: string | null = null;
-    try {
-      v = localStorage.getItem(CONSENT_KEY);
-    } catch {}
-    setChoix(v === "granted" || v === "denied" ? v : null);
+    const lire = () => setChoix(readConsent());
+    lire();
+    window.addEventListener(CONSENT_EVENT, lire);
+    window.addEventListener("storage", lire);
 
     const onClick = (e: MouseEvent) => {
       const a = (e.target as Element | null)?.closest?.('a[href^="tel:"], a[href^="sms:"]');
       if (a) trackConversion(ADS_LABEL_TEL);
     };
     document.addEventListener("click", onClick, { capture: true });
-    return () => document.removeEventListener("click", onClick, { capture: true });
+    return () => {
+      document.removeEventListener("click", onClick, { capture: true });
+      window.removeEventListener(CONSENT_EVENT, lire);
+      window.removeEventListener("storage", lire);
+    };
   }, []);
 
   if (!ADS_ID) return null;
@@ -45,8 +61,8 @@ export function GoogleAds() {
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         window.gtag = gtag;
-        var c = null; try { c = localStorage.getItem(${JSON.stringify(CONSENT_KEY)}); } catch (e) {}
-        var v = c === "granted" ? "granted" : "denied";
+        var v = "denied";
+        try { var c = JSON.parse(localStorage.getItem(${JSON.stringify(CONSENT_KEY)}) || "null"); if (c && c.v === "granted" && typeof c.t === "number" && Date.now() - c.t < ${CONSENT_MAX_AGE_MS}) v = "granted"; } catch (e) {}
         gtag("consent", "default", { ad_storage: v, ad_user_data: v, ad_personalization: v, analytics_storage: v, wait_for_update: 500 });
         gtag("js", new Date());
         gtag("config", ${JSON.stringify(GTAG_ID)});
@@ -83,18 +99,17 @@ export function GoogleAds() {
 /* Bouton de la politique de confidentialité : efface le choix et rouvre le bandeau. */
 export function ReinitialiserCookies() {
   return (
-    <button
-      type="button"
-      className="underline"
-      onClick={() => {
-        setAdsConsent(false);
-        try {
-          localStorage.removeItem(CONSENT_KEY);
-        } catch {}
-        location.reload();
-      }}
-    >
+    <button type="button" className="underline" onClick={resetConsent}>
       Modifier mon choix sur les cookies
+    </button>
+  );
+}
+
+/* Lien « Gérer les cookies » du pied de page : efface le choix et rouvre le bandeau. */
+export function GererCookies({ style }: { style?: CSSProperties }) {
+  return (
+    <button type="button" className="underline" style={style} onClick={resetConsent}>
+      Gérer les cookies
     </button>
   );
 }

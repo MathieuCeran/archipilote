@@ -63,7 +63,9 @@ function PolitiqueConfidentialitePage() {
               conversion. Les cookies publicitaires correspondants ne sont déposés qu&apos;avec votre accord, donné ou
               refusé dans le bandeau affiché à la première visite. Sans accord, Google ne reçoit que des signaux sans
               cookie, qui ne permettent pas de vous identifier. Aucun autre outil d&apos;analytics tiers n&apos;est
-              installé. <ReinitialiserCookies />
+              installé. Refuser n&apos;empêche pas d&apos;utiliser le site. Votre choix est conservé six mois, puis
+              vous est demandé à nouveau ; vous pouvez le modifier à tout moment avec le lien « Gérer les cookies »
+              en bas de chaque page. <ReinitialiserCookies />
             </p>
             </Texte>
           </PageSection>
@@ -74,7 +76,8 @@ function PolitiqueConfidentialitePage() {
               Les données transmises via les formulaires sont utilisées exclusivement pour traiter votre demande
               d&apos;étude de projet de rénovation : vous recontacter, qualifier le projet et, le cas échéant,
               organiser une visite technique. Le traitement repose sur l&apos;exécution de mesures précontractuelles
-              prises à votre demande (article 6.1.b du RGPD).
+              prises à votre demande (article 6.1.b du RGPD). La mesure de l&apos;efficacité des annonces par les
+              cookies Google Ads repose sur votre consentement.
             </p>
             </Texte>
           </PageSection>
@@ -90,28 +93,25 @@ function PolitiqueConfidentialitePage() {
             <p>
               Le site est hébergé par Vercel Inc. (États-Unis) ; l&apos;hébergement d&apos;une page web implique un
               traitement technique minimal des requêtes (adresse IP, journaux serveur) nécessaire au fonctionnement
-              du site, encadré par les clauses contractuelles types de la Commission européenne pour les transferts
-              hors Union européenne.
+              du site. Les transferts hors de l&apos;Union européenne sont encadrés par les garanties prévues par le
+              règlement général sur la protection des données.
             </p>
-            {/* 05/09 : SOUS-TRAITANT DU FORMULAIRE DÉCLARÉ. Il manquait, et c'était un vrai
-                manquement : app/api/contact/route.ts transmet l'INTÉGRALITÉ du formulaire —
-                nom, téléphone, courriel, commune, description du projet — au service
-                FormSubmit, hébergé hors Union européenne, alors que cette section ne citait
-                que IA RENOV, les entreprises partenaires et Vercel. Un destinataire non
-                déclaré est un défaut d'information au sens de l'article 13 du RGPD.
-                À METTRE À JOUR le jour où l'acheminement change : le remplacement de
-                FormSubmit par Resend est en cours (les enregistrements DNS restent à poser).
-                Cette page devra alors nommer Resend à la place — ne pas oublier, une
-                politique qui décrit un sous-traitant qui n'est plus employé est aussi
-                fausse qu'une politique qui en omet un. */}
+            {/* 05/09 : SOUS-TRAITANT DU FORMULAIRE DÉCLARÉ (article 13 du RGPD).
+                29/10/2026 : aligné sur HÉRITAGE BÂTI et sur ce que fait réellement le code :
+                app/api/contact/route.ts envoie la demande par le SMTP Hostinger (lib/mail.ts)
+                dès que SMTP_USER/SMTP_PASS sont définis, en copie cachée à LEAD_COPY ; sinon
+                repli sur FormSubmit (hors UE), avec la même copie (_cc). À METTRE À JOUR le
+                jour où l'acheminement change : une politique qui décrit un sous-traitant qui
+                n'est plus employé est aussi fausse qu'une politique qui en omet un. */}
             <p>
-              Les demandes envoyées depuis le formulaire de contact transitent par un prestataire technique
-              d&apos;acheminement de courriels, situé hors de l&apos;Union européenne, qui reçoit les informations que
-              vous saisissez dans ce formulaire — nom, téléphone, courriel, commune et description du projet — pour
-              les transmettre à ARCHI PILOTE RÉNOVATION. Ce prestataire agit uniquement comme intermédiaire
-              d&apos;acheminement et n&apos;exploite pas ces données pour son propre compte. Si vous préférez ne pas
-              passer par lui, vous pouvez nous écrire directement à l&apos;adresse indiquée sur la page de contact, ou
-              nous appeler.
+              Vos données peuvent être traitées par les prestataires techniques suivants : Vercel Inc. (hébergement
+              du site), Hostinger (messagerie qui reçoit les demandes envoyées depuis le formulaire) et, en secours
+              lorsque cette messagerie n&apos;est pas en service, FormSubmit (service d&apos;envoi de formulaires,
+              situé hors de l&apos;Union européenne). Une copie de chaque demande est adressée au prestataire technique
+              du site, pour s&apos;assurer de sa bonne réception. Ces prestataires agissent uniquement pour le compte
+              d&apos;IA RENOV et n&apos;exploitent pas ces données pour leur propre compte. Si vous préférez ne pas
+              passer par le formulaire, vous pouvez nous écrire directement à l&apos;adresse indiquée sur la page de
+              contact, ou nous appeler.
             </p>
             </Texte>
           </PageSection>
@@ -119,11 +119,8 @@ function PolitiqueConfidentialitePage() {
           <PageSection titre="Durée de conservation">
             <Texte>
             <p>
-              Les données d&apos;une demande de contact sont conservées le temps nécessaire au traitement du projet,
-              puis jusqu&apos;à trois ans à compter du dernier échange si le projet ne se concrétise pas, conformément
-              aux recommandations de la CNIL pour la prospection commerciale. Les données rattachées à un projet
-              effectivement piloté sont conservées pendant la durée nécessaire au suivi du chantier et aux
-              obligations légales de conservation qui s&apos;y rattachent.
+              Demande sans suite : 3 ans à compter du dernier contact. Client : durée de la relation, puis archivage
+              pendant les durées imposées par la loi.
             </p>
             </Texte>
           </PageSection>
@@ -132,8 +129,9 @@ function PolitiqueConfidentialitePage() {
             <Texte>
             <p>
               Conformément au Règlement général sur la protection des données (RGPD) et à la loi Informatique et
-              Libertés, vous disposez d&apos;un droit d&apos;accès, de rectification, d&apos;effacement, de limitation et
-              d&apos;opposition, ainsi que d&apos;un droit à la portabilité des données que vous avez fournies.
+              Libertés, vous disposez d&apos;un droit d&apos;accès, de rectification, d&apos;effacement, de limitation du
+              traitement, d&apos;opposition et de portabilité de vos données, ainsi que du droit de retirer votre
+              consentement à tout moment et de définir des directives sur le sort de vos données après votre décès.
             </p>
             <p>
               Pour exercer ces droits, écrivez à{" "}
@@ -144,6 +142,19 @@ function PolitiqueConfidentialitePage() {
               Si vous estimez, après nous avoir contactés, que vos droits ne sont pas respectés, vous pouvez adresser
               une réclamation à la Commission nationale de l&apos;informatique et des libertés (CNIL), 3 place de
               Fontenoy, 75007 Paris — <a href="https://www.cnil.fr" target="_blank" rel="noreferrer">www.cnil.fr</a>.
+            </p>
+            </Texte>
+          </PageSection>
+
+          <PageSection titre="Médiation de la consommation">
+            <Texte>
+            <p>
+              Conformément à l&apos;article L612-1 du Code de la consommation, tout consommateur a le droit de
+              recourir gratuitement à un médiateur de la consommation en vue de la résolution amiable d&apos;un
+              litige, après une réclamation écrite adressée à IA RENOV, 8 rue Gabriel Péri, 92250 La
+              Garenne-Colombes, ou à <a href={`mailto:${SITE.email}`}>{SITE.email}</a>. Les coordonnées du médiateur
+              sont communiquées sur simple demande à cette adresse ; le détail figure dans les{" "}
+              <Link href="/mentions-legales">mentions légales</Link>.
             </p>
             </Texte>
           </PageSection>

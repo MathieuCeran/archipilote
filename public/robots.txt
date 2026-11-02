@@ -1,5 +1,6 @@
 # ARCHI PILOTE RÉNOVATION — visibilité SEO et IA activée le 25/08/2026.
 User-agent: *
 Allow: /
+Disallow: /api/
 
 Sitemap: https://www.archipiloterenovation.com/sitemap.xml
