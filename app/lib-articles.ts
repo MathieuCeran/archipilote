@@ -1,4 +1,5 @@
 import { cache } from "react";
+import { wwContent } from "@/lib/whatswrong-content";
 /* ============================================================
    Source unique des articles du blog.
 
@@ -93,20 +94,13 @@ export function photoSrc(ref: string | undefined): string {
 /* ============================================================
    Lecture directe de WhatsWrong — 19/10/2026.
 
-   Les articles de Léa sont lus au rendu sur l'API de WhatsWrong (cache
-   d'une minute) : un article prêt est en ligne au plus une minute après,
-   sans synchronisation ni redéploiement, et WhatsWrong vérifie lui-même
-   qu'il répond à son adresse pour le dire publié. Les articles déjà
-   copiés gardent leur photo et leur date ; les éditoriaux et ceux de
-   Sedestral ne bougent pas. Si l'API ne répond pas, tout reste comme
-   copié dans le dépôt (ALL_ARTICLES).
+   Les articles de Léa sont enregistrés dans le dépôt par l'Action
+   (lib/whatswrong-content) : en ligne au déploiement qui suit, et WhatsWrong
+   vérifie lui-même qu'ils répondent à leur adresse pour les dire publiés. Les
+   articles déjà copiés gardent leur photo et leur date ; les éditoriaux et
+   ceux de Sedestral ne bougent pas.
    ============================================================ */
 
-const BLOG_BASE = "https://www.archipiloterenovation.com/blog";
-const API_BASE = process.env.WW_API_BASE || "https://www.whatswrong.io";
-const REVALIDATE_SECONDS = 60;
-// Au-delà, le site n'attend pas : il affiche les copies du dépôt.
-const TIMEOUT_MS = 2000;
 const CATEGORIE_PAR_DEFAUT = "Rénovation";
 
 type LiveArticle = {
@@ -120,26 +114,10 @@ type LiveArticle = {
   lastModifiedAt?: string;
 };
 
-async function liveArticlesUncached(): Promise<LiveArticle[] | null> {
-  const key = process.env.WW_API_KEY || process.env.WHATSWRONG_API_KEY;
-  if (!key) return null;
-  try {
-    const res = await fetch(`${API_BASE}/api/v1/lea/blog?base=${encodeURIComponent(BLOG_BASE)}`, {
-      headers: { Authorization: `Bearer ${key}` },
-      next: { revalidate: REVALIDATE_SECONDS },
-      signal: AbortSignal.timeout(TIMEOUT_MS),
-    });
-    if (!res.ok) return null;
-    const data = (await res.json()) as { articles?: LiveArticle[] };
-    return Array.isArray(data.articles) ? data.articles : null;
-  } catch {
-    return null;
-  }
-}
-
-/* Une lecture par rendu : les métadonnées et la page voient la même
- * réponse (sinon titre et contenu peuvent diverger si l'une expire). */
-const liveArticles = cache(liveArticlesUncached);
+/* Les articles enregistrés dans le dépôt par l'Action. */
+const liveArticles = cache(
+  async (): Promise<LiveArticle[]> => wwContent.articles as LiveArticle[],
+);
 
 function dateFr(iso: string): string {
   return new Intl.DateTimeFormat("fr-FR", { day: "numeric", month: "long", year: "numeric", timeZone: "Europe/Paris" })
@@ -150,7 +128,6 @@ function dateFr(iso: string): string {
     lus en direct. */
 export async function allArticles(): Promise<BlogArticle[]> {
   const live = await liveArticles();
-  if (live === null) return ALL_ARTICLES;
   const copies = new Map(generated.filter((a) => a.whatswrongId).map((a) => [a.whatswrongId, a]));
   const fromLive: BlogArticle[] = live.map((a) => {
     const copie = copies.get(a.id);

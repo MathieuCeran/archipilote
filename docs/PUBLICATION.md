@@ -103,29 +103,20 @@ La vérification aboutira dès que le DNS sera rétabli (§4). `robots.txt` auto
 tout et déclare le sitemap ; `sitemap.ts` liste toutes les pages, articles
 importés compris.
 
-## 6. WhatsWrong : articles et pages en lecture directe
+## 6. WhatsWrong : le site enregistre et sert lui-même
 
-Depuis le 19/10/2026, le site **lit WhatsWrong en direct**, au rendu, avec un
-cache d'une minute — plus de synchronisation GitHub ni de redéploiement :
+Depuis le 04/11/2026, WhatsWrong ne sert qu'à **créer** le contenu, comme un CMS.
 
-- **Articles de Léa** (`/blog/<slug>`) : `app/lib-articles.ts` lit
-  `GET /api/v1/lea/blog?base=https://www.archipiloterenovation.com/blog`. Un
-  article prêt est en ligne au plus une minute après ; WhatsWrong vérifie
-  lui-même qu'il répond à son adresse et le passe « publié » (c'est ce qui
-  démarre son suivi SEO) : le site n'a rien à renvoyer.
-- **Pages réécrites par Eli** : `lib/whatswrong-pages.tsx` lit
-  `GET /api/v1/eli/pages` et pose les changements texte par texte dans l'arbre
-  de la page (`withWw`, `wwMetadata`) : le design ne bouge pas.
-
-La clé est la variable d'environnement Vercel `WW_API_KEY` (production). Si
-l'API ne répond pas en 2 secondes, le blog affiche les articles copiés avant le
-19/10 (`content/blog/generated.json`, `public/uploads/`) et les pages gardent
-leur propre texte. Les articles éditoriaux (`app/data.ts`) et ceux importés de
-Sedestral (`sedestralId`) ne changent pas.
-
-Le HTML des articles arrive assaini par WhatsWrong. Le bot publie sans
-relecture humaine : il ne juge ni la cohérence image/titre ni la véracité des
-affirmations.
+- L'Action `.github/workflows/whatswrong-sync.yml` (toutes les 3 h, ou Actions ›
+  Run workflow) lance `scripts/whatswrong-sync.mjs`, qui lit `GET /api/v1/sync` et
+  écrit `content/whatswrong/content.json` et `public/whatswrong/` (les images),
+  puis commite si quelque chose a changé. Le commit déclenche le déploiement.
+- Le site ne lit que ces fichiers (`lib/whatswrong-content.ts`) : si le service ou
+  le compte s'arrête, rien ne bouge. Une erreur de l'API ne touche jamais les fichiers.
+- Le code reste maître : si un titre ou une description changent dans le code
+  après la publication (`wwMeta`), le site garde les siens.
+- `content.json` est généré : ne pas l'éditer à la main.
+- Prérequis : le secret `WW_API_KEY` dans le dépôt GitHub.
 
 ## 7. Commandes de référence
 

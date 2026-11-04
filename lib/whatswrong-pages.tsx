@@ -9,14 +9,14 @@ import {
   type ReactNode,
 } from "react";
 import { PageSection } from "@/app/components/page-kit";
+import { wwContent } from "@/lib/whatswrong-content";
 
 /* ============================================================================
    WHATSWRONG : LES PAGES RÉÉCRITES PAR ELI
 
    Quand une page est publiée depuis WhatsWrong (« Publier sur mon site »),
-   le site lit ses changements sur l'API au rendu : en ligne au plus une
-   minute après, sans synchro ni redéploiement ; si l'API ne répond pas,
-   la page garde son propre texte. Ils arrivent
+   l'Action enregistre ses changements dans le dépôt (whatswrong-content) :
+   en ligne au déploiement qui suit. Ils arrivent
    texte par texte : textes réécrits, retirés, blocs ajoutés à côté d'un
    texte ou d'une section. Ils sont posés ici dans l'arbre de la page, avant
    son rendu — dans les props des composants (titre, chapo, items…) comme
@@ -44,6 +44,9 @@ type PageVersion = {
   path: string;
   title: string;
   description: string;
+  /** Le titre et la description de la page avant WhatsWrong ; null : inconnus. */
+  baseTitle?: string | null;
+  baseDescription?: string | null;
   changes: Changes | null;
   /** La page entière d'Eli, assainie et sans en-tête. */
   html: string;
@@ -66,41 +69,28 @@ function bare(p: string): string {
   return p.replace(/\/+$/, "") || "/";
 }
 
-// Une page publiée depuis WhatsWrong s'affiche au plus une minute après :
-// une lecture partagée par toutes les pages (cache de données de Next).
-const REVALIDATE_SECONDS = 60;
-// Au-delà, le site n'attend pas : il affiche son propre texte.
-const TIMEOUT_MS = 2000;
-
-/* Les pages publiées, lues sur WhatsWrong au rendu ; rien si la clé
-   manque ou si l'API ne répond pas : la page garde son propre texte. */
+/* Les pages publiées, enregistrées dans le dépôt par l'Action. */
 type Published = { pages: PageVersion[]; redirects: { from: string; to: string }[] };
 
-const NONE: Published = { pages: [], redirects: [] };
+const publishedPages = cache(
+  async (): Promise<Published> => ({
+    pages: wwContent.pages as PageVersion[],
+    redirects: wwContent.redirects,
+  }),
+);
 
-async function publishedPagesUncached(): Promise<Published> {
-  const key = process.env.WW_API_KEY || process.env.WHATSWRONG_API_KEY;
-  if (!key) return NONE;
-  try {
-    const res = await fetch("https://www.whatswrong.io/api/v1/eli/pages", {
-      headers: { Authorization: `Bearer ${key}` },
-      next: { revalidate: REVALIDATE_SECONDS },
-      signal: AbortSignal.timeout(TIMEOUT_MS),
-    });
-    if (!res.ok) return NONE;
-    const data = (await res.json()) as Partial<Published>;
-    return {
-      pages: Array.isArray(data.pages) ? data.pages : [],
-      redirects: Array.isArray(data.redirects) ? data.redirects : [],
-    };
-  } catch {
-    return NONE;
-  }
+/**
+ * Le titre ou la description à afficher : celui de WhatsWrong, sauf si le code
+ * du site a changé depuis la publication — le développeur reste maître. Le code
+ * ou la base peuvent porter en plus la marque, ou être raccourcis : même début.
+ */
+function wwMeta<T>(mine: T, theirs: string | null | undefined, base: string | null | undefined): T | string {
+  if (!theirs) return mine;
+  if (typeof mine !== "string" || !mine || !base) return theirs;
+  const own = wwKey(mine);
+  const before = wwKey(base);
+  return own.startsWith(before) || before.startsWith(own) ? theirs : mine;
 }
-
-/* Une lecture par rendu : les métadonnées et la page voient la même
- * réponse (sinon titre et contenu peuvent diverger si l'une expire). */
-const publishedPages = cache(publishedPagesUncached);
 
 /* Les avis clients ne se réécrivent jamais : ni un avis, ni sa signature, ni
    leur section, même si une version publiée les change. */
@@ -457,14 +447,16 @@ const shortDescription = (d: Metadata["description"]) => (typeof d === "string" 
 export async function wwMetadata(path: string, metadata: Metadata): Promise<Metadata> {
   const version = await versionOf(path);
   if (version === null) return { ...metadata, title: short(metadata.title), description: shortDescription(metadata.description) };
+  const title = wwMeta(metadata.title, version.title, version.baseTitle);
+  const description = wwMeta(metadata.description, version.description, version.baseDescription);
   return {
     ...metadata,
-    title: short(version.title || metadata.title),
-    description: shortDescription(version.description || metadata.description),
+    title: short(title),
+    description: shortDescription(description),
     openGraph: metadata.openGraph && {
       ...metadata.openGraph,
-      title: version.title || metadata.openGraph.title,
-      description: version.description || metadata.openGraph.description,
+      title: wwMeta(metadata.openGraph.title, version.title, version.baseTitle) as typeof metadata.openGraph.title,
+      description: typeof description === "string" ? description : metadata.openGraph.description,
     },
   };
 }
