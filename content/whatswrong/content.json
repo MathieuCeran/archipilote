@@ -30,7 +30,8 @@
    },
    "publishedAt": "2026-10-04T08:46:21.295Z",
    "lastModifiedAt": "2026-10-04T08:51:58.067Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "512c55c4-8a98-4089-8bc7-01e3d207728d",
@@ -60,7 +61,8 @@
    },
    "publishedAt": "2026-10-18T09:12:51.565Z",
    "lastModifiedAt": "2026-10-19T11:11:26.044Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "6ae37c76-19b5-4f0e-b374-452d9b1dfc81",
@@ -90,7 +92,8 @@
    },
    "publishedAt": "2026-11-05T08:00:00.000Z",
    "lastModifiedAt": "2026-11-05T11:27:04.024Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "76d76000-97f3-485d-b4a0-13e77b1e572c",
@@ -120,7 +123,8 @@
    },
    "publishedAt": "2026-10-08T08:00:00.000Z",
    "lastModifiedAt": "2026-10-08T08:50:01.470Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "810f0982-ff1b-4ed6-827e-16d89978404c",
@@ -150,7 +154,8 @@
    },
    "publishedAt": "2026-10-06T08:00:00.000Z",
    "lastModifiedAt": "2026-10-06T15:02:20.341Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "99e4a637-5048-4173-b78c-2972595f0632",
@@ -180,7 +185,8 @@
    },
    "publishedAt": "2026-11-03T08:00:00.000Z",
    "lastModifiedAt": "2026-11-03T08:04:58.031Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "9e9ceb67-5492-47a2-a7be-90d35f8affae",
@@ -210,7 +216,8 @@
    },
    "publishedAt": "2026-10-19T23:25:51.266Z",
    "lastModifiedAt": "2026-10-19T23:54:05.408Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "b2e04b45-8669-4589-b77e-9b036a11609f",
@@ -240,7 +247,8 @@
    },
    "publishedAt": "2026-10-05T08:00:00.000Z",
    "lastModifiedAt": "2026-10-05T08:51:57.777Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "c404057d-2404-4517-99ed-94a450444abb",
@@ -266,7 +274,8 @@
    },
    "publishedAt": "2026-10-13T08:00:00.000Z",
    "lastModifiedAt": "2026-10-13T15:53:11.938Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "d152c864-422f-4563-a3a3-2482a65457ee",
@@ -296,7 +305,8 @@
    },
    "publishedAt": "2026-10-15T08:00:00.000Z",
    "lastModifiedAt": "2026-10-15T13:20:31.532Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "e806afe8-3849-4935-a237-6e645c52d76b",
@@ -326,7 +336,8 @@
    },
    "publishedAt": "2026-10-05T14:56:42.519Z",
    "lastModifiedAt": "2026-10-05T18:19:40.622Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "f8ea2c34-3981-49ce-a4f5-2d842056d4bb",
@@ -356,7 +367,8 @@
    },
    "publishedAt": "2026-11-04T08:00:00.000Z",
    "lastModifiedAt": "2026-11-04T08:22:55.658Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "fb62d2b9-dc2c-4048-b601-d044c8606347",
@@ -378,7 +390,8 @@
    },
    "publishedAt": "2026-10-19T12:20:50.896Z",
    "lastModifiedAt": "2026-10-19T12:23:49.325Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   },
   {
    "id": "fe8dc11e-16cd-46df-9b6a-5818ec8472be",
@@ -400,12 +413,14 @@
    },
    "publishedAt": "2026-10-22T08:00:00.000Z",
    "lastModifiedAt": "2026-10-22T08:43:10.898Z",
-   "state": "PUBLISHED"
+   "state": "PUBLISHED",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   }
  ],
  "pages": [
   {
    "id": "de769d25-c512-40ba-97b1-8fa1d314ac0f",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/aide-renovation-salle-bain-senior",
    "url": "https://archipiloterenovation.com/blog/aide-renovation-salle-bain-senior",
    "title": "Aide rénovation salle de bain senior : conditions en 2026",
@@ -513,6 +528,7 @@
   },
   {
    "id": "b6ea9413-a233-4e32-9b61-601a5eb828af",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/amenagement-combles",
    "url": "https://archipiloterenovation.com/blog/amenagement-combles",
    "title": "Aménagement combles : prix au m² et fourchettes en 2026",
@@ -635,6 +651,7 @@
   },
   {
    "id": "af302186-c77f-4c08-af2b-d8de3be341bb",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/amenagement-local-commercial-difference-logement",
    "url": "https://archipiloterenovation.com/blog/amenagement-local-commercial-difference-logement",
    "title": "Aménager un local commercial : ce qui change par rapport",
@@ -816,6 +833,7 @@
   },
   {
    "id": "3707802d-1e45-4a26-9b9c-032ba122b60a",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/coproprietaire-autorisations-avant-travaux",
    "url": "https://archipiloterenovation.com/blog/coproprietaire-autorisations-avant-travaux",
    "title": "Carottage béton Paris : autorisations en copropriété — ARCHI PILOTE",
@@ -1111,6 +1129,7 @@
   },
   {
    "id": "7cb7aded-7a22-4a32-932c-dcaddd6ed908",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/dossier-fin-de-chantier-pieces-a-reunir",
    "url": "https://archipiloterenovation.com/blog/dossier-fin-de-chantier-pieces-a-reunir",
    "title": "Dossier chantier : pièces à réunir pendant les travaux",
@@ -1244,6 +1263,7 @@
   },
   {
    "id": "a6ed2098-097a-42aa-9dd9-a2c761438be5",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/etancheite-sous-carrelage-points-singuliers",
    "url": "https://archipiloterenovation.com/blog/etancheite-sous-carrelage-points-singuliers",
    "title": "Étanchéité sous carrelage extérieur : les points à vérifier",
@@ -1297,6 +1317,7 @@
   },
   {
    "id": "49301f82-1e93-408e-80f8-5227d8d2bd38",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/exemple-devis-remplacement-tableau-electrique",
    "url": "https://archipiloterenovation.com/blog/exemple-devis-remplacement-tableau-electrique",
    "title": "Exemple de devis remplacement tableau électrique en 2026",
@@ -1394,6 +1415,7 @@
   },
   {
    "id": "8115fede-75fd-44e4-b241-c93b6fdeb898",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/extension-ou-surelevation-maison",
    "url": "https://archipiloterenovation.com/blog/extension-ou-surelevation-maison",
    "title": "Surélévation ou extension : choisir selon votre terrain",
@@ -1606,6 +1628,7 @@
   },
   {
    "id": "41bbd20d-0a92-4e88-bc2d-13b1163a1a45",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/ipn-hea-heb-choix-profile",
    "url": "https://archipiloterenovation.com/blog/ipn-hea-heb-choix-profile",
    "title": "IPN ou HEB : comment choisir le profilé pour votre poutre",
@@ -1726,6 +1749,7 @@
   },
   {
    "id": "2a391fbd-b250-42a8-8a0d-c673c036fe05",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/maprimerenov-cee-2026",
    "url": "https://archipiloterenovation.com/blog/maprimerenov-cee-2026",
    "title": "MaPrimeRénov' et CEE : vérifier les aides avant de signer",
@@ -1886,6 +1910,7 @@
   },
   {
    "id": "bad2d513-87bc-4ce1-afdd-9ebf89fdcea5",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/renovation-salle-de-bain",
    "url": "https://archipiloterenovation.com/blog/renovation-salle-de-bain",
    "title": "Rénovation salle de bain : prix, budget complet et conseils",
@@ -2128,6 +2153,7 @@
   },
   {
    "id": "f1b25f1b-bf4f-4b4e-b714-29726b1fecbb",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/blog/surelevation-etude-des-fondations",
    "url": "https://archipiloterenovation.com/blog/surelevation-etude-des-fondations",
    "title": "Surélévation maison : étude des fondations avant le plan",
@@ -2333,6 +2359,7 @@
   },
   {
    "id": "458fe586-1170-4705-856b-0bfc1b4afe2a",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/demarches-administratives-renovation",
    "url": "https://archipiloterenovation.com/demarches-administratives-renovation",
    "title": "Autorisation travaux copropriété : guide pour l'obtenir",
@@ -2814,6 +2841,7 @@
   },
   {
    "id": "6800ee02-237d-490f-beb6-9e8b8aba4c91",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/extension-maison",
    "url": "https://archipiloterenovation.com/extension-maison",
    "title": "Extension de maison : liaison thermique, structure",
@@ -2951,6 +2979,7 @@
   },
   {
    "id": "deec49c7-1bd9-41da-9fed-9b7acfccfda6",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/glossaire-renovation",
    "url": "https://archipiloterenovation.com/glossaire-renovation",
    "title": "Glossaire de la rénovation : lexique du bâtiment expliqué",
@@ -3066,6 +3095,7 @@
   },
   {
    "id": "443d12c4-8d2c-42f8-a5f9-3d7269e6665e",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/investisseurs-professionnels",
    "url": "https://archipiloterenovation.com/investisseurs-professionnels",
    "title": "Rénovation appartement investissement locatif — Pilotage pro",
@@ -3538,6 +3568,7 @@
   },
   {
    "id": "2432ea34-ca75-46b4-bea7-3beb440ae173",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/menuiserie-agencement-sur-mesure",
    "url": "https://archipiloterenovation.com/menuiserie-agencement-sur-mesure",
    "title": "Agencement sur mesure à Paris : dressing et bibliothèque",
@@ -3664,6 +3695,7 @@
   },
   {
    "id": "b3ed6cd3-90bc-4513-8efc-57893c8a83fb",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/notre-methode",
    "url": "https://archipiloterenovation.com/notre-methode",
    "title": "Pilotage de chantier rénovation — méthode Archi Pilote",
@@ -4058,6 +4090,7 @@
   },
   {
    "id": "cd5074e8-513a-4488-9463-e9e4e8dd5a5d",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/observatoire-prix-renovation",
    "url": "https://archipiloterenovation.com/observatoire-prix-renovation",
    "title": "Prix rénovation m² : fourchettes par niveau et par poste",
@@ -4192,6 +4225,7 @@
   },
   {
    "id": "661cd62e-2f2f-4f36-b17c-bf7ea4c4ae53",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/ouverture-mur-porteur",
    "url": "https://archipiloterenovation.com/ouverture-mur-porteur",
    "title": "Ouverture mur porteur à Paris et en Île‑de‑France — Archi Pilote",
@@ -4605,6 +4639,7 @@
   },
   {
    "id": "e1d06e3d-87c3-4ac2-bfe9-a747fb62a2b3",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/realisations",
    "url": "https://archipiloterenovation.com/realisations",
    "title": "Réalisations rénovation appartement — Paris & Île-de-France",
@@ -5013,6 +5048,7 @@
   },
   {
    "id": "f36cbc3a-af07-4503-a443-2a3e8a46be7f",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/renovation-appartement",
    "url": "https://archipiloterenovation.com/renovation-appartement",
    "title": "Rénovation appartement Paris — Pilotage de chantiers complexes",
@@ -5311,6 +5347,7 @@
   },
   {
    "id": "8ee372c0-f53f-406c-a85f-d37b97980b31",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/renovation-complete",
    "url": "https://archipiloterenovation.com/renovation-complete",
    "title": "Entreprise de rénovation tous corps d'état à Paris",
@@ -5759,6 +5796,7 @@
   },
   {
    "id": "51d75b3b-9fbe-453b-92bb-20786fdd87f7",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/renovation-complexe-paris",
    "url": "https://archipiloterenovation.com/renovation-complexe-paris",
    "title": "Rénovation complexe à Paris : copropriété, structure",
@@ -5831,6 +5869,7 @@
   },
   {
    "id": "40288f40-7391-4617-af8f-c6b082813db9",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/renovation-cuisine-maison",
    "url": "https://archipiloterenovation.com/renovation-cuisine-maison",
    "title": "Rénovation cuisine Paris & Île‑de‑France — Pilotage",
@@ -6211,6 +6250,7 @@
   },
   {
    "id": "0f5180a7-27e1-49ab-986f-7b0b2f2832f2",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/renovation-electrique",
    "url": "https://archipiloterenovation.com/renovation-electrique",
    "title": "Rénovation électrique à Paris — pilotage et mise aux normes",
@@ -6502,6 +6542,7 @@
   },
   {
    "id": "3b4436a2-2256-4f47-ad72-2ae1ab93770d",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/renovation-salle-de-bain-maison",
    "url": "https://archipiloterenovation.com/renovation-salle-de-bain-maison",
    "title": "Rénovation salle de bain à Paris — pilotage & chiffrage rapide",
@@ -6833,6 +6874,7 @@
   },
   {
    "id": "b4c53250-8c12-4c24-8f9b-0ff90449745a",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/sols-finitions-renovation",
    "url": "https://archipiloterenovation.com/sols-finitions-renovation",
    "title": "Rénovation tous corps d'état : un seul interlocuteur",
@@ -6969,6 +7011,7 @@
   },
   {
    "id": "ebb03b7f-62ac-45d9-a9db-055323124ddf",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430",
    "path": "/surelevation",
    "url": "https://archipiloterenovation.com/surelevation",
    "title": "Surélévation maison en Île-de-France — Pilotage de projet",
@@ -6983,7 +7026,8 @@
  "redirects": [
   {
    "from": "/surelevation",
-   "to": "/blog/extension-ou-surelevation-maison"
+   "to": "/blog/extension-ou-surelevation-maison",
+   "siteId": "a58ac0e2-e5cd-4b12-b817-daa83b20f430"
   }
  ]
 }
