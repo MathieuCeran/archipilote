@@ -9,11 +9,8 @@ import nodemailer from "nodemailer";
      SMTP_USER  contact@archipiloterenovation.com
      SMTP_PASS  mot de passe de la boîte
      LEAD_TO    destinataire des demandes (défaut : SMTP_USER)
-     LEAD_BCC   copie cachée de chaque demande (défaut : LEAD_COPY ci-dessous)
+     LEAD_BCC   copie cachée de chaque demande (facultatif, aucune par défaut)
    ============================================================ */
-
-/** Copie cachée de chaque demande, en plus du destinataire principal. */
-export const LEAD_COPY = "ceran.mete@gmail.com";
 
 export function isMailConfigured() {
   return Boolean(process.env.SMTP_USER && process.env.SMTP_PASS);
@@ -47,7 +44,7 @@ export async function sendLeadMail(opts: { subject: string; replyTo?: string; ro
   await transporter().sendMail({
     from: { name: "Archi Pilote Rénovation — Site web", address: user },
     to,
-    bcc: process.env.LEAD_BCC ?? LEAD_COPY,
+    bcc: process.env.LEAD_BCC || undefined,
     replyTo: opts.replyTo,
     subject: opts.subject,
     text,

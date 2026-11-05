@@ -109,16 +109,16 @@ function QuiSommesNous() {
           items={[
             {
               titre: "ARCHI PILOTE RÉNOVATION vous accueille",
-              texte: "Le nom sous lequel vous nous contactez : un seul interlocuteur, de la première visite à la réception.",
+              texte: "Au premier contact, c'est ce nom que vous voyez : un seul interlocuteur, de la première visite à la réception.",
             },
             {
               titre: "IA RENOV pilote le projet",
-              texte: "Étude du bien, chiffrage par lot, sélection des entreprises, planning, suivi du chantier et réception.",
+              texte: "Jusqu'à la réception : étude du bien, chiffrage par lot, sélection des entreprises, planning et suivi du chantier.",
               href: "/notre-methode",
             },
             {
               titre: "Les entreprises partenaires réalisent",
-              texte: "Elles signent leur devis avec vous, réalisent et facturent leurs travaux, et portent leurs garanties (décennale, biennale, parfait achèvement).",
+              texte: "Devis signé avec vous, elles réalisent et facturent leurs travaux, et portent leurs garanties (décennale, biennale, parfait achèvement).",
             },
           ]}
         />
